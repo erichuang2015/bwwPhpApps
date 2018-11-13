@@ -18,12 +18,13 @@ class IjdbRoutes implements \Ninja\Routes {
 		$jokeController = new \Ijdb\Controllers\Joke($this->jokesTable, $this->authorsTable, $this->authentication);
 		$authorController = new \Ijdb\Controllers\Register($this->authorsTable);
 		$loginController = new \Ijdb\Controllers\Login($this->authentication);
+		$spartacusController = new \Ijdb\Controllers\Spartacus($this->authorsTable);
 
 		$routes = [
 			'author/register' => [
 				'GET' => [
 					'controller' => $authorController,
-					'action' => 'registrationForm'
+					'action' => 'registrationForm' //the action is the function to call in the controller
 				],
 				'POST' => [
 					'controller' => $authorController,
@@ -87,6 +88,12 @@ class IjdbRoutes implements \Ninja\Routes {
 				'POST' => [
 					'controller' => $loginController,
 					'action' => 'processLogin'
+				]
+			],
+			'spartacus' => [
+				'GET' => [
+					'controller' => $spartacusController,
+					'action' => 'render'
 				]
 			],
 			'' => [

@@ -49,7 +49,7 @@ class Joke {
 	}
 
 	public function home() {
-		$title = 'Internet Joke Database';
+		$title = "Brian Worsham's PHP Webapps - home";
 
 		return ['template' => 'home.html.php', 'title' => $title];
 	}
