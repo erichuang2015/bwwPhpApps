@@ -1,118 +1,127 @@
 "use strict";
 //Spartacus begin
+
+$(document).ready(function () {
+    $(function () {
+        $('[data-toggle="popover"]').popover({
+            trigger: "hover click",
+            html: true,
+            title: ""
+        });
+    });
+});
+
+
+
 function startBtnEventHandler() {
-    $("#gladiator-start-wallpaper").switchClass("gladiator", "red-background");
+    let difficultySetting = [30000, 45000, 60000];//easy, medium, hard
+    let difficultySelection = $("#difficultyLvl")[0].selectedIndex;
+    let difficultyIndex = $("#difficultyLvl")[0].options[difficultySelection].value;
+    difficultyIndex = parseInt(difficultyIndex, 10);
+
+
+
+    $("#gladiator-start-wallpaper").removeClass();
     if (!$("#btn-start").hasClass("hidden")) {
         $("#btn-start").addClass("hidden");
     }
-    $("#spartacus-header").text(
-        "The first exercise will be the Goblet Squat. Get ready.");
+    $("#spartacus-header").text("The first exercise will be the Goblet Squat. Get ready.");
     let now = new Date();
     let firstRound = 1;
     let firstExercise = 1;
     countDown(now.setTime(now.getTime() + 10000));
-    setTimeout(exercise, 10000, firstExercise, firstRound);
+    setTimeout(exercise, 10000, firstExercise, firstRound, difficultySetting[difficultyIndex]);
 }
 
-function exercise(exerciseType, round) {
+function exercise(exerciseType, round, difficultyLvl) {
     let currentExercise = (exerciseType) ? exerciseType : 1;
     let currentRound = round;
     switch (currentExercise) {
         case 1:
             $("#spartacus-header").text("The Goblet Squat");
-            // $("#img-placeholder").removeAttr("class").addClass("exercise-img").attr({"src": "../css/images/goblet-squat.jpg", "alt": "The Goblet Squat"});
             $("#img-placeholder").removeAttr("class").addClass("goblet-squat");
             currentExercise++;
             let now = new Date();
-            countDown(now.setTime(now.getTime() + 30000));
-            setTimeout(rest, 30000, currentExercise, currentRound);
+            countDown(now.setTime(now.getTime() + difficultyLvl));
+            setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 2:
             $("#spartacus-header").text("The Mountain Climber");
-            // $("#img-placeholder").removeAttr("class").addClass("exercise-img").attr({"src": "../css/images/mountain-climber.jpg", "alt": "The Mountain Climber"});
             $("#img-placeholder").removeAttr("class").addClass("mountain-climber");
             currentExercise++;
             let nowA = new Date();
-            countDown(nowA.setTime(nowA.getTime() + 30000));
-            setTimeout(rest, 30000, currentExercise, currentRound);
+            countDown(nowA.setTime(nowA.getTime() + difficultyLvl));
+            setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 3:
             $("#spartacus-header").text("The Gladius Swing");
-            // $("#img-placeholder").removeAttr("class").addClass("exercise-img").attr({"src": "../css/images/single-arm-dumbell-swing.jpg", "alt": "The Gladius Swing"});
             $("#img-placeholder").removeAttr("class").addClass("gladius-swing");
             currentExercise++;
             let nowB = new Date();
-            countDown(nowB.setTime(nowB.getTime() + 30000));
-            setTimeout(rest, 30000, currentExercise, currentRound);
+            countDown(nowB.setTime(nowB.getTime() + difficultyLvl));
+            setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 4:
             $("#spartacus-header").text("The T-Pushup");
-            // $("#img-placeholder").removeAttr("class").addClass("exercise-img").attr({"src": "../css/images/t-pushup.jpg", "alt": "The T-Pushup"});
             $("#img-placeholder").removeAttr("class").addClass("t-pushup");
             currentExercise++;
             let nowC = new Date();
-            countDown(nowC.setTime(nowC.getTime() + 30000));
-            setTimeout(rest, 30000, currentExercise, currentRound);
+            countDown(nowC.setTime(nowC.getTime() + difficultyLvl));
+            setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 5:
             $("#spartacus-header").text("The Latin Leap");
-            // $("#img-placeholder").removeAttr("class").addClass("exercise-img").attr({"src": "../css/images/split-jump.jpg", "alt": "The Latin Leap"});
             $("#img-placeholder").removeAttr("class").addClass("latin-leap");
             currentExercise++;
             let nowD = new Date();
-            countDown(nowD.setTime(nowD.getTime() + 30000));
-            setTimeout(rest, 30000, currentExercise, currentRound);
+            countDown(nowD.setTime(nowD.getTime() + difficultyLvl));
+            setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 6:
             $("#spartacus-header").text("The Dumbell Row");
-            // $("#img-placeholder").removeAttr("class").addClass("exercise-img").attr({"src": "../css/images/dumbbell-row.jpg", "alt": "The Dumbell Row"});
             $("#img-placeholder").removeAttr("class").addClass("dumbell-row");
             currentExercise++;
             let nowE = new Date();
-            countDown(nowE.setTime(nowE.getTime() + 30000));
-            setTimeout(rest, 30000, currentExercise, currentRound);
+            countDown(nowE.setTime(nowE.getTime() + difficultyLvl));
+            setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 7:
             $("#spartacus-header").text("The Dumbell Side Lunge and Touch");
-            // $("#img-placeholder").removeAttr("class").addClass("exercise-img").attr({"src": "../css/images/dumbbell-side-lunge-touch.jpg", "alt": "The Dumbell Side Lunge and Touch"});
             $("#img-placeholder").removeAttr("class").addClass(
                 "dumbell-side-lunge-touch");
             currentExercise++;
             let nowF = new Date();
-            countDown(nowF.setTime(nowF.getTime() + 30000));
-            setTimeout(rest, 30000, currentExercise, currentRound);
+            countDown(nowF.setTime(nowF.getTime() + difficultyLvl));
+            setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 8:
             $("#spartacus-header").text("The Slave Boat Row");
-            // $("#img-placeholder").removeAttr("class").addClass("exercise-img").attr({"src": "../css/images/pushup-position-row.jpg", "alt": "The Slave Boat Row"});
             $("#img-placeholder").removeAttr("class").addClass("slave-boat-row");
             currentExercise++;
             let nowG = new Date();
-            countDown(nowG.setTime(nowG.getTime() + 30000));
-            setTimeout(rest, 30000, currentExercise, currentRound);
+            countDown(nowG.setTime(nowG.getTime() + difficultyLvl));
+            setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 9:
             $("#spartacus-header").text("The Proud Knee");
-            // $("#img-placeholder").removeAttr("class").addClass("exercise-img").attr({"src": "../css/images/dumbbell-lunge-rotation.jpg", "alt": "The Proud Knee"});
             $("#img-placeholder").removeAttr("class").addClass("dumbell-lunge-rotation");
             currentExercise++;
             let nowH = new Date();
-            countDown(nowH.setTime(nowH.getTime() + 30000));
-            setTimeout(rest, 30000, currentExercise, currentRound);
+            countDown(nowH.setTime(nowH.getTime() + difficultyLvl));
+            setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 10:
             $("#spartacus-header").text("The Dumbbell Push Press");
-            // $("#img-placeholder").removeAttr("class").addClass("exercise-img").attr({"src": "../css/images/dumbbell-push-press.jpg", "alt": "The Dumbbell Push Press"});
             $("#img-placeholder").removeAttr("class").addClass("dumbell-push-press");
             currentExercise++;
             let nowI = new Date();
-            countDown(nowI.setTime(nowI.getTime() + 30000));
-            setTimeout(rest, 30000, currentExercise, currentRound);
+            countDown(nowI.setTime(nowI.getTime() + difficultyLvl));
+            setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
     }
 }
 
-function rest(station, set) {
+function rest(station, set, difficulty) {
     if (station == 11 && set == 1) { // End of the first set
         $("#spartacus-header").text(
             "You got lucky and survived this round slave.  We shall see if you can survive a second trip to the arena."
@@ -123,7 +132,7 @@ function rest(station, set) {
         let now = new Date();
         countDown(now.setTime(now.getTime() + 120000));
         set = set + 1;
-        setTimeout(exercise, 120000, station, set); // timer for rest between rounds/ sets
+        setTimeout(exercise, 120000, station, set, difficulty); // timer for rest between rounds/ sets
     } else if (station == 11 && set == 2) { // End of the second set
         $("#spartacus-header").text(
             "You survived another round!  Maybe the gods favor you slave...  We won't know for sure until you survive a third round. Get some rest.  You're going to need it."
@@ -134,7 +143,7 @@ function rest(station, set) {
         let now = new Date();
         countDown(now.setTime(now.getTime() + 120000));
         set = set + 1;
-        setTimeout(exercise, 120000, station, set); // timer for rest between rounds/ sets
+        setTimeout(exercise, 120000, station, set, difficulty); // timer for rest between rounds/ sets
     } else if (station == 11 && set == 3) { // End of workout
         $("#spartacus-header").text(
             "Congratulations!  You're a true champion of the arena. The gods favor you."
@@ -147,7 +156,7 @@ function rest(station, set) {
             "alt").addClass("hidden");
         let now = new Date();
         countDown(now.setTime(now.getTime() + 15000), station);
-        setTimeout(exercise, 15000, station, set);
+        setTimeout(exercise, 15000, station, set, difficulty);
     }
 }
 

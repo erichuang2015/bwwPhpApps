@@ -1,7 +1,7 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
         <div class="container">
-          <h1 class="display-3">Welcome to the home page!</h1>
+          <h1 class="display-3">Welcome to BWW PHPApps!</h1>
           <p>In the navigation tool bar above you have access to a collection of tools that may be of benefit to you.  If you have registered with this site please login for the optimal experience <a href="/login">click here to log in</a>.  If you haven't registered please do so <a href="/author/register">Click here to register an account</a>.</p>
     <p>I hope these apps will somehow benefit you. However, I built this collection of web apps for the following selfish purposes:</p>
     <ol>

@@ -15,7 +15,7 @@
 	<header>
       <!-- Fixed navbar -->
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="/">BWW Apps</a>
+        <a class="navbar-brand" href="/">BWW PHPApps</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,24 +23,58 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="/">Home <span class="sr-only">Home</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/spartacus">Spartacus Workout</a>
-			</li>
-			<li class="nav-item dropdown">
-            	<a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jokes</a>
-				<div class="dropdown-menu" aria-labelledby="dropdown01">
-					<a class="dropdown-item" href="/joke/list">Jokes List</a>
-					<a class="dropdown-item" href="/joke/edit">Add a new Joke</a>
-				</div>
-          	</li>
+						</li>
+						
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="" id="dropdownSpartacus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fitness Apps</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownSpartacus">
+								<a class="dropdown-item" href="/spartacus">Spartacus Workout</a>
+								<a class="dropdown-item" href="/">Run Speed Calculator</a>
+								<a class="dropdown-item" href="/">Fitness Calculator (Body Fat, BMI, ect.)</a>
+							</div>
+						</li>
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="" id="dropdownUtilities" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utility Apps</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownUtilities">
+								<a class="dropdown-item" href="/">Photo Viewer</a>
+								<a class="dropdown-item" href="/">To Do List</a>
+								<a class="dropdown-item" href="/">Shopping List</a>
+							</div>
+						</li>
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="" id="dropdownPractice" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Practice Apps</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownPractice">
+								<a class="dropdown-item" href="/">Horoscopes Generator</a>
+								<a class="dropdown-item" href="/">Distance Converter</a>
+							</div>
+						</li>
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="" id="dropdownJokes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Jokes</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownJokes">
+								<a class="dropdown-item" href="/joke/list">Jokes List</a>
+								<a class="dropdown-item" href="/joke/edit">Add a new Joke</a>
+							</div>
+						</li>
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="" id="dropdownHelp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Help</a>
+							<div class="dropdown-menu" aria-labelledby="dropdownHelp">
+								<a class="dropdown-item" href="/">Settings</a>
+								<a class="dropdown-item" href="/">My Account</a>
+								<a class="dropdown-item" href="/">About</a>
+							</div>
+						</li>
+
 			<?php if ($loggedIn) : ?>
 			<li>
 				<a class="nav-link" href="/logout">Log out</a>
 			</li>
 			<?php else : ?>
 			<li>
-				<a class="nav-link" href="/login">Log in</a>
+			<a class="nav-link" href="/login">Log in</a>
 			</li>
 			<?php endif; ?>
           </ul>
