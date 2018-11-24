@@ -2,26 +2,15 @@
 //Spartacus begin
 
 $(document).ready(function () {
-    $(function () {
-        $('[data-toggle="popover"]').popover({
-            trigger: "hover click",
-            html: true,
-            title: ""
-        });
-    });
+    renderSpartacusWorkout();
 });
 
-
-
-function startBtnEventHandler() {
+function renderSpartacusWorkout() {
     let difficultySetting = [30000, 45000, 60000];//easy, medium, hard
-    let difficultySelection = $("#difficultyLvl")[0].selectedIndex;
-    let difficultyIndex = $("#difficultyLvl")[0].options[difficultySelection].value;
+    let difficultyIndex = $("#diffLevel").val();
+    // console.log(difficultyIndex);
     difficultyIndex = parseInt(difficultyIndex, 10);
 
-
-
-    $("#gladiator-start-wallpaper").removeClass();
     if (!$("#btn-start").hasClass("hidden")) {
         $("#btn-start").addClass("hidden");
     }

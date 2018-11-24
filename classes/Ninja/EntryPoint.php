@@ -50,9 +50,9 @@ class EntryPoint
 			$title = $page['title'];
 			$loggedIn = $authentication->isLoggedIn();
 
-			if ($title === 'Spartacus Workout') {
-				$page['loggedIn'] = $loggedIn;
-			}
+			// if ($title === 'Spartacus Workout') {
+			// 	$page['loggedIn'] = $loggedIn;
+			// }
 
 			if (isset($page['variables'])) {
 				$output = $this->loadTemplate($page['template'], $page['variables']);

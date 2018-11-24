@@ -46,7 +46,7 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="" id="dropdownPractice" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Practice Apps</a>
 							<div class="dropdown-menu" aria-labelledby="dropdownPractice">
-								<a class="dropdown-item" href="/">Horoscopes Generator</a>
+								<a class="dropdown-item" href="/horoscope">Horoscope Generator</a>
 								<a class="dropdown-item" href="/">Distance Converter</a>
 							</div>
 						</li>
@@ -65,6 +65,7 @@
 								<a class="dropdown-item" href="/">Settings</a>
 								<a class="dropdown-item" href="/">My Account</a>
 								<a class="dropdown-item" href="/">About</a>
+								<a class="dropdown-item" href="/">Credits</a>
 							</div>
 						</li>
 

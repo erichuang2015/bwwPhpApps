@@ -42,6 +42,7 @@ class Authentication {
 		}
 	}
 	
+	//if logged it it returns all the data for the user in the author table
 	public function getUser() {
 		if ($this->isLoggedIn()) {
 			return $this->users->find($this->usernameColumn, strtolower($_SESSION['username']))[0];

@@ -4,8 +4,10 @@
         <h1 class="display-3">Spartacus Workout</h1>
         <div id="gladiator-start-wallpaper" class="gladiator"></div>
         <!-- Intro -->
-        <h2 id="spartacus-header">Click below to start your training</h2>
+        <!-- <h2 id="spartacus-header">Click below to start your training</h2> -->
 
+        <!-- Everything in this php tag needs to be part of a form to send for processing to the db -->
+        <form action="" method="post">
         <div id="spartacusSettings" class="row">
               <div class="col-md-4 mb-3">
                 <label for="difficultyLvl">Difficulty Level</label>
@@ -15,11 +17,11 @@
                     <li>The <b>Rudiarius</b> were the few elite gladiators whom through many glorious victories in the arena managed to win their freedom.  Choose <b>Rudiarius</b> if you possess an elite level of cardiovascular fitness or you have survived a few rounds in the arena as a <b>Postulati</b>, and believe you are ready for the ultimate glory.</li></ul>">
                 
 
-                <select class="custom-select d-block w-100" id="difficultyLvl" required>
+                <select class="custom-select d-block w-100" id="difficultyLvl" name="settings[difficultyLvl]" data-difficultyLvl="<?=$settings['difficultyLvl'] ?? '0'?>" required >
                   <option value="">Choose...</option>
-                  <option value="0">Noxii (30 Second Intervals)</option>
-                  <option value="1">Postulati (45 Second Intervals)</option>
-                  <option value="2">Rudiarius (60 Second Intervals)</option>
+                  <option value="1">Noxii (30 Second Intervals)</option>
+                  <option value="2">Postulati (45 Second Intervals)</option>
+                  <option value="3">Rudiarius (60 Second Intervals)</option>
                 </select>
                 <div class="invalid-feedback">
                   Please select a valid difficulty level.
@@ -32,19 +34,19 @@
                     
                 <span class="sr-only">Information about choosing light dumbells weapons</span>
 
-                <select class="custom-select d-block w-100" id="lightWeight" required>
+                <select class="custom-select d-block w-100" id="lightWeight" name="settings[lightWeight]" data-lightweight="<?=$settings['lightWeight'] ?? '0'?>" required>
                   <option value="">Choose...</option>
-                  <option value="2">2 Ibs</option>
-                  <option value="5">5 Ibs</option>
-                  <option value="10">10 Ibs</option>
-                  <option value="15">15 Ibs</option>
-                  <option value="20">20 Ibs</option>
-                  <option value="25">25 Ibs</option>
-                  <option value="30">30 Ibs</option>
-                  <option value="35">35 Ibs</option>
-                  <option value="40">40 Ibs</option>
-                  <option value="45">45 Ibs</option>
-                  <option value="50">50 Ibs</option>
+                  <option value="1">2 Ibs</option>
+                  <option value="2">5 Ibs</option>
+                  <option value="3">10 Ibs</option>
+                  <option value="4">15 Ibs</option>
+                  <option value="5">20 Ibs</option>
+                  <option value="6">25 Ibs</option>
+                  <option value="7">30 Ibs</option>
+                  <option value="8">35 Ibs</option>
+                  <option value="9">40 Ibs</option>
+                  <option value="10">45 Ibs</option>
+                  <option value="11">50 Ibs</option>
                 </select>
                 <div class="invalid-feedback">
                   Please provide a weight selection.
@@ -56,48 +58,43 @@
                 <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about choosing a heavy dumbell" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="You will be doing squats and lunges to work your glutes, thighs, and lower back.  Choose a relatively heavy dumbell that will challenge you for 15 to 20 repetitions per set.">
                 <span class="sr-only">Information about choosing a heavy dumbell</span>
 
-                <select class="custom-select d-block w-100" id="heavyWeight" required>
+                <select class="custom-select d-block w-100" id="heavyWeight" name="settings[heavyWeight]" data-heavyweight="<?=$settings['heavyWeight'] ?? '0'?>" required>
                   <option value="">Choose...</option>
-                  <option value="30">30 Ibs</option>
-                  <option value="35">35 Ibs</option>
-                  <option value="40">40 Ibs</option>
-                  <option value="45">45 Ibs</option>
-                  <option value="50">50 Ibs</option>
-                  <option value="55">55 Ibs</option>
-                  <option value="60">60 Ibs</option>
-                  <option value="65">65 Ibs</option>
-                  <option value="70">70 Ibs</option>
-                  <option value="75">75 Ibs</option>
-                  <option value="80">80 Ibs</option>
-                  <option value="85">85 Ibs</option>
-                  <option value="90">90 Ibs</option>
-                  <option value="95">95 Ibs</option>
-                  <option value="100">100 Ibs</option>
+                  <option value="1">30 Ibs</option>
+                  <option value="2">35 Ibs</option>
+                  <option value="3">40 Ibs</option>
+                  <option value="4">45 Ibs</option>
+                  <option value="5">50 Ibs</option>
+                  <option value="6">55 Ibs</option>
+                  <option value="7">60 Ibs</option>
+                  <option value="8">65 Ibs</option>
+                  <option value="9">70 Ibs</option>
+                  <option value="10">75 Ibs</option>
+                  <option value="11">80 Ibs</option>
+                  <option value="12">85 Ibs</option>
+                  <option value="13">90 Ibs</option>
+                  <option value="14">95 Ibs</option>
+                  <option value="15">100 Ibs</option>
                 </select>
                 <div class="invalid-feedback">
                   Please provide a weight selection.
                 </div>
               </div>
             </div>
-            <?php if ($loggedIn) : ?>
+            
+            <!-- <?php if ($loggedIn) : ?>
               <hr class="mb-4">
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="save-info">
+                <input type="checkbox" class="custom-control-input" name="save" id="save-info">
+                
                 <label class="custom-control-label" for="save-info">Save this information for next time</label>
               </div>
               <hr class="mb-4">
-            <?php endif; ?>
+              <?php endif; ?> -->
 
-        <h3 id="next-exercise-loc" class="next-exercise"></h3>
-        <div class=row>
-            <div id='img-placeholder' class="hidden col-8"></div>
-            
-            <div id="count-down-area" class="count-down-clock text-info  col-4"></div>
-        </div>
-        
-        <button id='btn-start' class="btn btn-primary btn-lg" onclick="startBtnEventHandler();">Start</button>
+        <input type="submit" name="submit" value="Start" class="btn btn-primary btn-lg">
         <!-- End Intro -->
-        
+        </form>
     </div>
 </div>
-<script type="text/javascript" src="/js/spartacus.js"></script>
+<script type="text/javascript" src="/js/horoscope.js"></script>

@@ -1,24 +1,30 @@
 <?php
 namespace Ijdb;
 
-class IjdbRoutes implements \Ninja\Routes {
+class IjdbRoutes implements \Ninja\Routes
+{
 	private $authorsTable;
 	private $jokesTable;
+	private $spartacusSettingsTable;
 	private $authentication;
 
-	public function __construct() {
+	public function __construct()
+	{
 		include __DIR__ . '/../../includes/DatabaseConnection.php';
 
 		$this->jokesTable = new \Ninja\DatabaseTable($pdo, 'joke', 'id');
 		$this->authorsTable = new \Ninja\DatabaseTable($pdo, 'author', 'id');
+		$this->spartacusSettingsTable = new \Ninja\DatabaseTable($pdo, 'spartacus_setting', 'id');
 		$this->authentication = new \Ninja\Authentication($this->authorsTable, 'email', 'password');
 	}
 
-	public function getRoutes(): array {
+	public function getRoutes() : array
+	{
 		$jokeController = new \Ijdb\Controllers\Joke($this->jokesTable, $this->authorsTable, $this->authentication);
 		$authorController = new \Ijdb\Controllers\Register($this->authorsTable);
 		$loginController = new \Ijdb\Controllers\Login($this->authentication);
-		$spartacusController = new \Ijdb\Controllers\Spartacus($this->authorsTable);
+		$spartacusController = new \Ijdb\Controllers\Spartacus($this->authorsTable, $this->spartacusSettingsTable, $this->authentication);
+		$horoscopeController = new \Ijdb\Controllers\Horoscope ();
 
 		$routes = [
 			'author/register' => [
@@ -47,7 +53,7 @@ class IjdbRoutes implements \Ninja\Routes {
 					'action' => 'edit'
 				],
 				'login' => true
-				
+
 			],
 			'joke/delete' => [
 				'POST' => [
@@ -56,7 +62,7 @@ class IjdbRoutes implements \Ninja\Routes {
 				],
 				'login' => true
 			],
-			'joke/list' => [
+			'joke/list' => [ // joke/list is the url or the form action
 				'GET' => [
 					'controller' => $jokeController,
 					'action' => 'list'
@@ -94,7 +100,23 @@ class IjdbRoutes implements \Ninja\Routes {
 				'GET' => [
 					'controller' => $spartacusController,
 					'action' => 'render'
+				],
+				'POST' => [
+					'controller' => $spartacusController,
+					'action' => 'saveSettings'
 				]
+			],
+			'spartacus/exercise' => [
+				'GET' => [
+					'controller' => $spartacusController,
+					'action' => 'renderExercises'
+				],
+			],
+			'horoscope' => [
+				'GET' => [
+					'controller' => $horoscopeController,
+					'action' => 'render'
+				],
 			],
 			'' => [
 				'GET' => [
@@ -107,7 +129,8 @@ class IjdbRoutes implements \Ninja\Routes {
 		return $routes;
 	}
 
-	public function getAuthentication(): \Ninja\Authentication {
+	public function getAuthentication() : \Ninja\Authentication
+	{
 		return $this->authentication;
 	}
 
