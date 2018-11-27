@@ -1,0 +1,593 @@
+/*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+/* html {
+    color: #222;
+    font-size: 1em;
+    line-height: 1.4;
+} */
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+/* ::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+} */
+
+/*
+ * A better looking default horizontal rule
+ */
+
+/* hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+} */
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+/* fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+} */
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+/* textarea {
+    resize: vertical;
+} */
+
+/* ==========================================================================
+   Browser Upgrade Prompt
+   ========================================================================== */
+
+/* .browserupgrade {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+} */
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+body{
+    background-image: url(fabric_plaid_@2X.png);
+}
+
+h1{}
+
+html, body, #wrapper{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#slides img {
+    display: none;
+}
+
+#wrapper td{
+    vertical-align: middle;
+    text-align: center;
+}
+
+.slide-pic{
+    border: 1px solid white;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: white;
+}
+
+.inner-section{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.banner{
+    width: 100%;
+    background-image: url(pink_rice.png);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/*iPad Pro Landscape*/
+@media (max-width: 1367px) {
+    h1#caption {
+/*        font-size: 100%;*/
+        padding-left: 5px;
+        padding-right: 5px;
+        word-wrap: break-word;
+    }
+    .banner{
+        text-align: center;
+/*        padding-top: 3px;
+        padding-bottom: 3px;*/
+        margin-bottom: 0;
+    }
+    .slide-pic{
+/*        height: 100%;
+        width: 100%;*/
+    }
+    .inner-section{
+        margin-left: 5%;
+        margin-top: 5%;
+        margin-right: 5%;
+        margin-bottom: 0%;
+    }
+}
+/*/////////////////////////*/
+
+
+/*iPad Pro*/
+@media (max-width: 1025px) {
+    h1#caption {
+        padding-left: 5px;
+        padding-right: 5px;
+        word-wrap: break-word;
+    }
+    .banner{
+        text-align: center;
+        margin-bottom: 0;
+    }
+    .slide-pic{
+        height: 100%;
+        width: 100%;
+    }
+    .inner-section{
+        margin-left: 5%;
+        margin-top: 1%;
+        margin-right: 5%;
+        margin-bottom: 0%;
+    }
+}
+/*/////////////////////////*/
+
+/*iPad*/
+@media (max-width: 769px) {
+    h1#caption {
+        padding-left: 5px;
+        padding-right: 5px;
+        word-wrap: break-word;
+    }
+    .banner{
+        text-align: center;
+        margin-bottom: 0;
+    }
+    .slide-pic{
+        height: 98%;
+        width: 98%;
+    }
+    .inner-section{
+        margin-left: 5%;
+        margin-top: 5%;
+        margin-right: 5%;
+        margin-bottom: 0%;
+    }
+}
+/*/////////////////////////*/
+
+/*/////////////////////////*/
+
+/*iPad Landscape*/
+
+/*/////////////////////////*/
+
+/*iPhone6 Plus*/
+@media (max-width: 737px) {
+    h1#caption {
+        font-size: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+        word-wrap: break-word;
+    }
+    .banner{
+        text-align: center;
+        margin-bottom: 0;
+    }
+    .slide-pic{
+        height: 55%;
+        width: 55%;
+    }
+    .inner-section{
+        margin-left: 2%;
+        margin-top: 0%;
+        margin-right: 2%;
+    }
+}
+/*/////////////////////////*/
+
+/*iPhone6 Landscape*/
+@media (max-width: 668px) {
+    h1#caption {
+        font-size: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+        word-wrap: break-word;
+    }
+    .banner{
+        text-align: center;
+        margin-bottom: 0;
+    }
+    .slide-pic{
+        height: 44%;
+        width: 44%;
+    }
+    .inner-section{
+        margin-left: 2%;
+        margin-top: 1%;
+        margin-right: 2%;
+    }
+}
+/*/////////////////////////*/
+
+/*iPhone6*/
+@media (max-width: 569px) {
+    h1#caption {
+        font-size: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+        word-wrap: break-word;
+    }
+    .banner{
+        text-align: center;
+        margin-bottom: 0;
+    }
+    .slide-pic{
+        height: 40%;
+        width: 40%;
+    }
+    .inner-section{
+        margin-left: 2%;
+        margin-top: 0%;
+        margin-right: 2%;
+    }
+}
+/*/////////////////////////*/
+
+/*iPhone6 Plus*/
+@media (max-width: 415px) {
+    h1#caption {
+        font-size: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+        word-wrap: break-word;
+    }
+    .banner{
+        text-align: center;
+        margin-bottom: 0;
+    }
+    .slide-pic{
+        height: 95%;
+        width: 95%;
+    }
+    .inner-section{
+        margin-left: 2%;
+        margin-top: 7%;
+        margin-right: 2%;
+    }
+}
+/*/////////////////////////*/
+
+/*Nexus 6P && Nexus 5X*/
+@media (max-width: 413px) {
+    h1#caption {
+        font-size: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+        word-wrap: break-word;
+    }
+    .banner{
+        text-align: center;
+        margin-bottom: 0;
+    }
+    .slide-pic{
+        height: 95%;
+        width: 95%;
+    }
+    .inner-section{
+        margin-left: 2%;
+        margin-top: 2%;
+        margin-right: 2%;
+    }
+}
+/*/////////////////////////*/
+
+/*iPhone6*/
+@media (max-width: 376px) {
+    h1#caption {
+        font-size: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+        word-wrap: break-word;
+    }
+    .banner{
+        text-align: center;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        margin-bottom: 0;
+    }
+    .slide-pic{
+        height: 95%;
+        width: 95%;        
+    }
+    .inner-section{
+        margin-left: 2%;
+        margin-top: 1%;
+        margin-right: 2%;
+        margin-bottom: 1%;
+    }
+}
+/*/////////////////////////*/
+
+/*Galaxy S5*/
+@media (max-width: 361px) {
+    h1#caption {
+        font-size: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+        word-wrap: break-word;
+    }
+    .banner{
+        text-align: center;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        margin-bottom: 0;
+    }
+    .slide-pic{
+        height: 90%;
+        width: 90%;        
+    }
+    .inner-section{
+        margin-left: 2%;
+        margin-top: 2%;
+        margin-right: 2%;
+        margin-bottom: 2%;
+    }
+}
+/*/////////////////////////*/
+
+/*iPhone 5*/
+@media (max-width: 321px) {
+    h1#caption {
+        font-size: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+        word-wrap: break-word;
+    }
+    .banner{
+        text-align: center;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        margin-bottom: 0;
+    }
+    .slide-pic{
+        height: 78%;
+        width: 78%;        
+    }
+    .inner-section{
+        margin-left: 2%;
+        margin-top: 1%;
+        margin-right: 2%;
+        margin-bottom: 1%;
+    }
+}
+/*/////////////////////////*/
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden {
+    display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 1.25dppx),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   http://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after,
+    *:first-letter,
+    *:first-line {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster:
+                                   http://www.sanbeiji.com/archives/953 */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links that are fragment identifiers,
+     * or use the `javascript:` pseudo protocol
+     */
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    /*
+     * Printing Tables:
+     * http://css-discuss.incutio.com/wiki/Printing_Tables
+     */
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}

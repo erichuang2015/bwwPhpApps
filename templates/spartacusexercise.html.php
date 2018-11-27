@@ -1,17 +1,18 @@
 <link rel="stylesheet" href="/css/gladiator.css">
-<div class="jumbotron fill-height">
-    <div class="container fill-height">
-    <input type="hidden" id="diffLevel" name="id" value="<?= $difficultyLevel ?>">
+<div class="jumbotron">
+    <div class="container">
+        <input type="hidden" id="diffLevel" name="id" value="<?= $difficultyLevel ?>">
         <h1 class="display-3">Spartacus Workout</h1>
-        <h2 id="spartacus-header"></h2>
+    </div>
+</div>
+<div class="container">
+    <h2 id="spartacus-header"></h2>
 
-        <h3 id="next-exercise-loc" class="next-exercise"></h3>
-        <div class=row>
-            <div id='img-placeholder' class="hidden col-8"></div>
-            
-            <div id="count-down-area" class="count-down-clock text-info  col-4"></div>
-        </div>
-        
+    <h3 id="next-exercise-loc" class="next-exercise"></h3>
+    <div class=row>
+        <div id='img-placeholder' class="hidden col-8"></div>
+
+        <div id="count-down-area" class="count-down-clock text-info  col-4"></div>
     </div>
 </div>
 <script type="text/javascript" src="/js/spartacus.js"></script>

@@ -3,34 +3,23 @@
         <div class="container">
           <h1 class="display-3">Welcome to BWW PHPApps!</h1>
           <p>In the navigation tool bar above you have access to a collection of tools that may be of benefit to you.  If you have registered with this site please login for the optimal experience <a href="/login">click here to log in</a>.  If you haven't registered please do so <a href="/author/register">Click here to register an account</a>.</p>
-    <p>I hope these apps will somehow benefit you. However, I built this collection of web apps for the following selfish purposes:</p>
-    <ol>
-        <li>I wanted to challenge my web programming capabilities beyond what I get from my day job activities.</li>
-        <li>I needed some practical applications to  help me with my daily routine like a to do list manager and some fitness apps.  I'm cheap! So I chose to make these apps rather purchase something like them elsewhere.</li>
-        <li>Web app coding is my day job, but I find it to be a lot of fun. It's more of a hobby than a job.</li>
-        <li>I needed a platform to showcase my skill sets. Anyone can claim to be a web developer, but this site serves as a demonstration of my web development skills.</li>
-    </ol>
-          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
         </div>
 </div>
 
-<div class="container">
+<div class="container fill-height">
         <!-- Example row of columns -->
         <div class="row">
           <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            <h2>Fitness Apps</h2>
+            <p>If you enjoy physical fitness activities as much as I do then you may find any or all of my fitness apps useful. The Spartacus Workout is a great workout for buring fat and getting cut.  The Run Speed Calculator can help you determine the pace you need to maintain to meet your long distance running goals.  The Fitness Calculator can help you calculate your body fat percentage and BMI.  Whereas, the pyrmamid workout is a great strength trainging alternative to the popular 5x5 routine.</p>
           </div>
           <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            <h2>Utility Apps</h2>
+            <p>These apps are meant to help you get things done, and enjoy a better quality of life. The photo viewer is a simple photo gallery which allows you to upload and view your photos.  The To Do List, Shopping List, Calendar, and Calculator apps all do exactly what you would infer by their respective names.  The notes app is a tool where you can store your notes in the cloud and have them available with you wherever you go as long as you have a browser and an internet connection.</p>
           </div>
           <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            <h2>Practice Apps</h2>
+            <p>These apps of little real world value, and I only wrote them to pracice my coding skills. However, the Horoscope Generator my provide some entertainment value if you are looking for a laugh.</p>
           </div>
         </div>
 

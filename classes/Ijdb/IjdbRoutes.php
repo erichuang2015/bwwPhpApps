@@ -3,9 +3,11 @@ namespace Ijdb;
 
 class IjdbRoutes implements \Ninja\Routes
 {
-	private $authorsTable;
 	private $jokesTable;
+	private $authorsTable;
 	private $spartacusSettingsTable;
+	private $pyramidUserMaxTable;
+	private $photosTable;
 	private $authentication;
 
 	public function __construct()
@@ -15,6 +17,8 @@ class IjdbRoutes implements \Ninja\Routes
 		$this->jokesTable = new \Ninja\DatabaseTable($pdo, 'joke', 'id');
 		$this->authorsTable = new \Ninja\DatabaseTable($pdo, 'author', 'id');
 		$this->spartacusSettingsTable = new \Ninja\DatabaseTable($pdo, 'spartacus_setting', 'id');
+		$this->pyramidUserMaxTable = new \Ninja\DatabaseTable($pdo, 'pyramid_user_max', 'id');
+		$this->photosTable = new \Ninja\DatabaseTable($pdo, 'photo', 'id');
 		$this->authentication = new \Ninja\Authentication($this->authorsTable, 'email', 'password');
 	}
 
@@ -24,7 +28,12 @@ class IjdbRoutes implements \Ninja\Routes
 		$authorController = new \Ijdb\Controllers\Register($this->authorsTable);
 		$loginController = new \Ijdb\Controllers\Login($this->authentication);
 		$spartacusController = new \Ijdb\Controllers\Spartacus($this->authorsTable, $this->spartacusSettingsTable, $this->authentication);
-		$horoscopeController = new \Ijdb\Controllers\Horoscope ();
+		$horoscopeController = new \Ijdb\Controllers\Horoscope();
+		$runSpeedCalculatorController = new \Ijdb\Controllers\RunSpeedCalculator();
+		$fitnessCalculatorController = new \Ijdb\Controllers\FitnessCalculator();
+		$distanceconverterController = new \Ijdb\Controllers\DistanceConverter();
+		$pyramidController = new \Ijdb\Controllers\Pyramid($this->authorsTable, $this->pyramidUserMaxTable, $this->authentication);
+		$photosController = new \Ijdb\Controllers\Photos($this->authorsTable, $this->photosTable, $this->authentication);
 
 		$routes = [
 			'author/register' => [
@@ -110,13 +119,67 @@ class IjdbRoutes implements \Ninja\Routes
 				'GET' => [
 					'controller' => $spartacusController,
 					'action' => 'renderExercises'
-				],
+				]
 			],
 			'horoscope' => [
 				'GET' => [
 					'controller' => $horoscopeController,
 					'action' => 'render'
+				]
+			],
+			'runspeedcalculator' => [
+				'GET' => [
+					'controller' => $runSpeedCalculatorController,
+					'action' => 'render'
+				]
+			],
+			'fitnesscalculator' => [
+				'GET' => [
+					'controller' => $fitnessCalculatorController,
+					'action' => 'render'
+				]
+			],
+			'distanceconverter' => [
+				'GET' => [
+					'controller' => $distanceconverterController,
+					'action' => 'render'
+				]
+			],
+			'pyramid' => [
+				'GET' => [
+					'controller' => $pyramidController,
+					'action' => 'render'
 				],
+				'POST' => [
+					'controller' => $pyramidController,
+					'action' => 'save1RM'
+				]
+			],
+			'pyramid/table' => [
+				'GET' => [
+					'controller' => $pyramidController,
+					'action' => 'renderExercises'
+				]
+			],
+			'photos' => [
+				'GET' => [
+					'controller' => $photosController,
+					'action' => 'render'
+				],
+				'POST' => [
+					'controller' => $photosController,
+					'action' => 'processUserRequest'
+				]
+			],
+			'photos/upload' => [
+				'GET' => [
+					'controller' => $photosController,
+					'action' => 'renderUploadForm'
+				],
+				'POST' => [
+					'controller' => $photosController,
+					'action' => 'savePhoto'
+				]
 			],
 			'' => [
 				'GET' => [

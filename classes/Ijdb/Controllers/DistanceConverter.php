@@ -1,7 +1,7 @@
 <?php
 namespace Ijdb\Controllers;
 
-class Horoscope
+class DistanceConverter
 {
 	public function __construct()
 	{
@@ -10,8 +10,8 @@ class Horoscope
 	public function render()
 	{
 		return [
-		 'template' => 'horoscope.html.php',
-		 'title' => 'Horoscope Generator'
+		 'template' => 'distanceconverter.html.php',
+		 'title' => 'Distance Converter'
 		];
 	}
 }

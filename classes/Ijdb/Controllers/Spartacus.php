@@ -9,7 +9,6 @@ class Spartacus
 	private $authentication;
 	private $authorsTable;
 	private $spartacusSettingsTable;
-	// private $difficultyLevel;
 
 	public function __construct(DatabaseTable $authorsTable, DatabaseTable $spartacusSettingsTable, Authentication $authentication)
 	{
@@ -41,7 +40,6 @@ class Spartacus
 	{
 		$gladiator = $this->authentication->getUser();
 		$loggedIn = $this->authentication->isLoggedIn();
-		// if (isset($_GET['id'])) {
 
 		$settings = [];
 		$settings = $_POST['settings'];

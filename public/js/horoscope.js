@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 $(document).ready(function () {
     "use strict";
     $("#divHoroscopeResults").hide();
@@ -19,11 +20,6 @@ $(document).ready(function () {
     });
 });
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 class HoroscopesGenerator {
     constructor() {
         "use strict";

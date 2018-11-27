@@ -35,7 +35,13 @@ class Login {
 	}
 
 	public function logout() {
+		$loggedIn = $this->authentication->isLoggedIn();
 		session_destroy();
-		return ['template' => 'logout.html.php', 'title' => 'You have been logged out'];
+		return ['template' => 'logout.html.php',
+		'title' => 'You have been logged out',
+		'variables' => [
+			'loggedIn' => $loggedIn
+		]
+	];
 	}
 }
