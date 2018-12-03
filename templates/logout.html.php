@@ -4,5 +4,7 @@
     </div>
 </div>
 <div class="container fill-height">
-    <h2>You have been logged out</h2>
+    <div class="alert alert-primary" role="alert">
+        <h2>You have been logged out</h2>
+    </div>
 </div>

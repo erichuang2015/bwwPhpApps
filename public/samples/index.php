@@ -16,7 +16,7 @@ try {
 	//sample user might not exist so the query may throw an exception, that's fine, ignore it.
 	try {
 		//Drop the user, there's a chance the password has been changed
-		$pdo->query('DROP USER \'ijdb\'@\'localhost\'');
+		$pdo->query('DROP USER \'ijdb_sample\'@\'localhost\'');
 	}
 	catch (PDOException $e) {}
 

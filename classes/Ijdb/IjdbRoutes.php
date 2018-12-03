@@ -169,7 +169,8 @@ class IjdbRoutes implements \Ninja\Routes
 				'POST' => [
 					'controller' => $photosController,
 					'action' => 'processUserRequest'
-				]
+				],
+				'login' => true
 			],
 			'photos/upload' => [
 				'GET' => [
@@ -179,7 +180,8 @@ class IjdbRoutes implements \Ninja\Routes
 				'POST' => [
 					'controller' => $photosController,
 					'action' => 'savePhoto'
-				]
+				],
+				'login' => true
 			],
 			'' => [
 				'GET' => [

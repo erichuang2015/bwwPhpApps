@@ -69,3 +69,7 @@ html {
   .hidden {
     display: none !important;
 }
+
+table.xdebug-error{
+  margin-top: 3em;
+}

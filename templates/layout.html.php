@@ -88,8 +88,8 @@
 
 	<!-- Begin page content -->
 	<main role="main">
-		<?=$output?>
-; 	</main>
+		<?= $output ?>
+ 	</main>
 
 	<footer class="footer">
 		<div class="container">

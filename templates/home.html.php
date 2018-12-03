@@ -1,14 +1,19 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
         <div class="container">
-          <h1 class="display-3">Welcome to BWW PHPApps!</h1>
-          <p>In the navigation tool bar above you have access to a collection of tools that may be of benefit to you.  If you have registered with this site please login for the optimal experience <a href="/login">click here to log in</a>.  If you haven't registered please do so <a href="/author/register">Click here to register an account</a>.</p>
+          <h1 class="display-3">Welcome to BWW Apps!</h1>
+          
         </div>
 </div>
 
 <div class="container fill-height">
         <!-- Example row of columns -->
         <div class="row">
+        <?php if (!$loggedIn) : ?>
+          <div class="alert alert-secondary" role="alert">
+            If you have registered with this site please login for the optimal experience <a href="/login">click here to log in</a>.  If you haven't registered please do so <a href="/author/register">Click here to register an account</a>
+          </div>
+            <?php endif; ?>
           <div class="col-md-4">
             <h2>Fitness Apps</h2>
             <p>If you enjoy physical fitness activities as much as I do then you may find any or all of my fitness apps useful. The Spartacus Workout is a great workout for buring fat and getting cut.  The Run Speed Calculator can help you determine the pace you need to maintain to meet your long distance running goals.  The Fitness Calculator can help you calculate your body fat percentage and BMI.  Whereas, the pyrmamid workout is a great strength trainging alternative to the popular 5x5 routine.</p>

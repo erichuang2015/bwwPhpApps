@@ -29,7 +29,6 @@ class EntryPoint
 
 		ob_start();
 		include __DIR__ . '/../../templates/' . $templateFileName;
-
 		return ob_get_clean();
 	}
 
@@ -50,17 +49,12 @@ class EntryPoint
 			$title = $page['title'];
 			$loggedIn = $authentication->isLoggedIn();
 
-			// if ($title === 'Spartacus Workout') {
-			// 	$page['loggedIn'] = $loggedIn;
-			// }
-
 			if (isset($page['variables'])) {
 				$output = $this->loadTemplate($page['template'], $page['variables']);
 
 			} else {
 				$output = $this->loadTemplate($page['template']);
 			}
-
 			echo $this->loadTemplate('layout.html.php', [
 				'loggedIn' => $loggedIn,
 				'output' => $output,

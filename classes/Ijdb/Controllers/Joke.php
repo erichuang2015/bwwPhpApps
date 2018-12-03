@@ -56,8 +56,13 @@ class Joke
 	public function home()
 	{
 		$title = "BWW PHPApps - home";
-
-		return ['template' => 'home.html.php', 'title' => $title];
+		$loggedIn = $this->authentication->isLoggedIn();
+		return ['template' => 'home.html.php', 
+		'title' => $title,
+		'variables' => [
+			'loggedIn' => $loggedIn
+		]
+	];
 	}
 
 	public function delete()
