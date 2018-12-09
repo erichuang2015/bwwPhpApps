@@ -1,22 +1,32 @@
 <?php
 namespace Ijdb\Controllers;
 
+// include composer autoload
+// include '/vendor/autoload.php';
+//require __DIR__ . '/vendor/autoload.php';
 use \Ninja\Authentication;
 use \Ninja\DatabaseTable;
+
 // import the Intervention Image Manager Class
-use \vendor\Intervention\Image\ImageManager;
+// use \vendor\intervention\image\src\Intervention\Image\ImageManager;
+// use Intervention\Image\ImageManagerStatic as Image
+// use Intervention\Image\ImageManagerStatic as Image;
 
 class Photos
 {
     private $authentication;
     private $authorsTable;
     private $photosTable;
+    // private $manager;
 
     public function __construct(DatabaseTable $authorsTable, DatabaseTable $photosTable, Authentication $authentication)
     {
         $this->authorsTable = $authorsTable;
         $this->photosTable = $photosTable;
         $this->authentication = $authentication;
+        // create an image manager instance with favored driver
+        // $this->$manager = new ImageManager(array('driver' => 'imagick'));
+        // Image::configure(array('driver' => 'imagick'));
     }
 
     public function render()
@@ -36,16 +46,17 @@ class Photos
                     'id' => (int) $photo['id'],
                     'userid' => (int) $photo['userid'],
                     'caption' => (string) $photo['caption'],
-                    'image' => 'data:image/jpeg;base64,'.base64_encode($photo['image']->load())
+                    'name' => (string) $photo['name'],
+                    'directory' => (string) $photo['img_dir'],
                 ];
             }
-            
+
             return [
                 'template' => 'photos.html.php',
                 'title' => 'Photo Gallery',
                 'variables' => [
                     'loggedIn' => $loggedIn,
-                    'photos' => $photos
+                    'photos' => $photos,
                 ],
             ];
         } else {
@@ -86,37 +97,51 @@ class Photos
 
     public function savePhoto()
     {
-        // if (preg_match('/^image/p?jpeg$/i', $_FILES['image']['type']) or preg_match('/^image/(x-)?png$/i', $_FILES['image']['type'])) {
-        //     // Pick a file extension
-        //     if (preg_match('/^image/p?jpeg$/i', $_FILES['image']['type'])) {
-        //         $ext = '.jpg';
-        //     } else if (preg_match('/^image/(x-)?png$/i',
-        //         $_FILES['upload']['type'])) {
-        //         $ext = '.png';
-        //     } else {
-        //         $ext = '.unknown';
-        //     }
+        
+        // print_r($_FILES['userfile']['name'][0]); die;  // print name of the actual file from user's computer
+        // print_r($_FILES['userfile']['type'][0]); die;  // print the type of file to get ext
+        // print_r($_FILES['userfile']['tmp_name'][0]); die; // print the temp name that php gave the file
+        // print_r($_FILES['userfile']['error'][0]); die; // print the error produced by the file
+        // print_r($_FILES['userfile']['size'][0]); die; // print the file size
+        //print_r($_SERVER['DOCUMENT_ROOT']); die; // prints out as: /home/vagrant/Code/bwwPhpApps/public 
+        // print_r(__DIR__ . '/../../../uploads/hello.jpg'); die;
 
+        // Pick a file extension
+        if ($_FILES['userfile']['type'][0] == "image/jpeg") {
+            $ext = '.jpg';
+        } else if ($_FILES['userfile']['type'][0] == "image/png") {
+            $ext = '.png';
+        } else {
+            $error = "Please upload only jpg or png files.  Other file types are not supported.";
+            return ['template' => 'loginerror.html.php', 'title' => $error];
+        }
+
+        $name = $_FILES['userfile']['name'][0] . time() . $_SERVER['REMOTE_ADDR'] . $ext;
+        // return ['template' => 'loginerror.html.php', 'title' => 'Original Name: ' . $_FILE['userfile']['name'] . '!'];
+        
         // The complete path/filename
-        // $filename = 'C:/uploads/' . time() . $_SERVER['REMOTE_ADDR'] . $ext;
+        // $filename = 'classes/Ijdb/Controllers/uploads' . time() . $_SERVER['REMOTE_ADDR'] . $ext;
+        $filename = __DIR__ . '/../../../public/uploads/' . $name;
 
-        // Copy the file (if it is deemed safe)
-        if (!is_uploaded_file($_FILES['image']['tmp_name'])) {
+        // Copy the file (if it is deemed safe) All this function (is_uploaded_file) does is return TRUE if the filename it’s passed as a parameter ($_FILES['userfile']['tmp_name'] in this case) was in fact uploaded as part of a form submission.
+        if (!is_uploaded_file($_FILES['userfile']['tmp_name'][0]) or !copy($_FILES['userfile']['tmp_name'][0], $filename)) {
             $error = "Could not  save file as $filename!";
-            return ['template' => 'loginerror.html.php', 'title' => 'Could not  save file as $filename!'];
+            return ['template' => 'loginerror.html.php', 'title' => 'Could not  save file as ' . $filename . '!'];
             // include $_SERVER['DOCUMENT_ROOT'] . '/includes/error.html.php';
             // exit();
         } else {
-            $check = getimagesize($_FILES["image"]["tmp_name"]);
-            if ($check !== false) {
-                $image = $_FILES['image']['tmp_name'];
-                $imgContent = addslashes(file_get_contents($image));
+            $check = (int)$_FILES['userfile']['size'][0];
+            if ($check > 0 & $check < 2097152) {
+
+                // $image = $_FILES['userfile']['tmp_name'];
+                // $imgContent = addslashes(file_get_contents($image));
 
                 $user = $this->authentication->getUser();
                 $photoData = [];
                 $photoData['userid'] = (int) $user['id'];
                 $photoData['caption'] = $_POST['caption'];
-                $photoData['image'] = base64_decode($imgContent);
+                $photoData['name'] = $name;
+                $photoData['img_dir'] = $filename;
                 $this->photosTable->save($photoData);
                 //do query to save the data then redirect
                 header('location: /photos');

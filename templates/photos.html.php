@@ -51,7 +51,7 @@
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
 
-                    <img class="card-img-top" src="<?= $photo['image'] ?>" alt="Card
+                    <img class="card-img-top" src="uploads/<?= $photo['name'] ?>" alt="Card
                     image cap">
 
                     <div class="card-body">

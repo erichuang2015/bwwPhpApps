@@ -2,7 +2,7 @@
 try {
 	include __DIR__ . '/../includes/autoload.php';
 	// include composer autoload
-	require 'vendor/autoload.php';
+	include __DIR__ . '/../vendor/autoload.php';
 
 	$route = ltrim(strtok($_SERVER['REQUEST_URI'], '?'), '/');
 

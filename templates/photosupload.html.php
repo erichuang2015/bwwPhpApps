@@ -16,7 +16,7 @@
                     data-content="<ul><li>Upload allows you to add new photos to your collection.</li>
                         <li>Delete allows you to remove photos from your collection.</li>
                         <li>View Slideshow allows you to watch your photos appear and disapear from the screen in a graphically pleasing manner.</li></ul>">
-                <input id="image" name="image" type="file"><!-- add a regex to only allow file extensions of png and jpg -->
+                <input id="userfile" name="userfile[]" type="file" value="" multiple=""><!-- add a regex to only allow file extensions of png and jpg -->
                 <div class="invalid-feedback">
                     Please select a valid option.
                 </div>

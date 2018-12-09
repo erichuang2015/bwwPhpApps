@@ -1,5 +1,5 @@
 {
-    "name": "Homestead Improved",
+    "name": "bwwapps",
     "description": "See here: http://www.sitepoint.com/quick-tip-get-homestead-vagrant-vm-running/",
     "require": {
         "php": ">=7",
@@ -12,20 +12,14 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Taylor Otwell",
-            "email": "taylorotwell@gmail.com"
-        },
-        {
-            "name": "Bruno Skvorc",
-            "email": "bruno.skvorc@sitepoint.com"
+            "name": "Brian Worsham",
+            "email": "brian.w.worsham@hotmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Laravel\\Homestead\\": "src/"
+            "Ninja\\": "classes/Ninja",
+            "Ijdb\\": "classes/Ijdb"
         }
-    },
-    "bin": [
-        "homestead"
-    ]
+    }
 }
