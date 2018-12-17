@@ -44,11 +44,11 @@
 						 aria-expanded="false">Utility Apps</a>
 						<div class="dropdown-menu" aria-labelledby="dropdownUtilities">
 							<a class="dropdown-item" href="/photos">Photo Viewer</a>
-							<a class="dropdown-item" href="/">To Do List</a>
+							<!-- <a class="dropdown-item" href="/">To Do List</a>
 							<a class="dropdown-item" href="/">Shopping List</a>
 							<a class="dropdown-item" href="/">Calendar</a>
 							<a class="dropdown-item" href="/">Notes App</a>
-							<a class="dropdown-item" href="/">Calculator</a>
+							<a class="dropdown-item" href="/">Calculator</a> -->
 						</div>
 					</li>
 
@@ -65,22 +65,22 @@
 						<a class="nav-link dropdown-toggle" href="" id="dropdownHelp" data-toggle="dropdown" aria-haspopup="true"
 						 aria-expanded="false">Help</a>
 						<div class="dropdown-menu" aria-labelledby="dropdownHelp">
-							<a class="dropdown-item" href="/">Settings</a>
-							<a class="dropdown-item" href="/">My Account</a>
-							<a class="dropdown-item" href="/">About</a>
-							<a class="dropdown-item" href="/">Credits</a>
+							<a class="dropdown-item" href="/myaccount">My Account</a>
+							<!-- <a class="dropdown-item" href="/">Settings</a> -->
+							<!-- <a class="dropdown-item" href="/">About</a>
+							<a class="dropdown-item" href="/">Credits</a> -->
 						</div>
 					</li>
 
-					<?php if ($loggedIn) : ?>
+					<?php if ($loggedIn): ?>
 						<li>
 							<a class="nav-link" href="/logout">Log out</a>
 						</li>
-					<?php else : ?>
+					<?php else: ?>
 						<li>
 							<a class="nav-link" href="/login">Log in</a>
 						</li>
-					<?php endif; ?>
+					<?php endif;?>
 				</ul>
 			</div>
 		</nav>
@@ -88,7 +88,7 @@
 
 	<!-- Begin page content -->
 	<main role="main">
-		<?= $output ?>
+		<?=$output?>
  	</main>
 
 	<footer class="footer">

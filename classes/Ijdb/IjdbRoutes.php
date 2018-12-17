@@ -34,6 +34,7 @@ class IjdbRoutes implements \Ninja\Routes
 		$distanceconverterController = new \Ijdb\Controllers\DistanceConverter();
 		$pyramidController = new \Ijdb\Controllers\Pyramid($this->authorsTable, $this->pyramidUserMaxTable, $this->authentication);
 		$photosController = new \Ijdb\Controllers\Photos($this->authorsTable, $this->photosTable, $this->authentication);
+		$myaccountController = new \Ijdb\Controllers\MyAccount($this->authorsTable, $this->authentication);
 
 		$routes = [
 			'author/register' => [
@@ -182,6 +183,46 @@ class IjdbRoutes implements \Ninja\Routes
 					'action' => 'savePhoto'
 				],
 				'login' => true
+			],
+			'photos/slideshow' => [
+				'GET' => [
+					'controller' => $photosController,
+					'action' => 'renderSlideShow'
+				],
+				'login' => true
+			],
+			'myaccount' => [
+				'GET' => [
+					'controller' => $myaccountController,
+					'action' => 'render'
+				],
+				'POST' => [
+					'controller' => $myaccountController,
+					'action' => 'processUserRequest'
+				],
+				'login' => true
+			],
+			'myaccount/changepassword' =>  [
+				'GET' => [
+					'controller' => $myaccountController,
+					'action' => 'renderChangePassword'
+				],
+				'POST' => [
+					'controller' => $myaccountController,
+					'action' => 'changePassword'
+				],
+				'login' => true
+			],
+			'myaccount/passwordchangesuccess' => [
+				'GET' => [
+					'controller' => $myaccountController,
+					'action' => 'renderPasswordChangeSuccess'
+				],
+				// 'POST' => [
+				// 	'controller' => $myaccountController,
+				// 	'action' => 'processUserRequest'
+				// ],
+				// 'login' => true
 			],
 			'' => [
 				'GET' => [
