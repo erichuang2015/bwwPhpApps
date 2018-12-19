@@ -217,13 +217,18 @@ class IjdbRoutes implements \Ninja\Routes
 				'GET' => [
 					'controller' => $myaccountController,
 					'action' => 'renderPasswordChangeSuccess'
-				],
-				// 'POST' => [
-				// 	'controller' => $myaccountController,
-				// 	'action' => 'processUserRequest'
-				// ],
-				// 'login' => true
+				]
 			],
+			'myaccount/passwordrecovery' => [
+				'GET' => [
+					'controller' => $myaccountController,
+					'action' => 'renderPasswordRecovery'
+				],
+				'POST' => [
+					'controller' => $myaccountController,
+					'action' => 'recoverPassword'
+				],
+			],			
 			'' => [
 				'GET' => [
 					'controller' => $jokeController,

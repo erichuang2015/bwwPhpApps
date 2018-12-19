@@ -28,9 +28,14 @@ class Register {
 		$errors = [];
 
 		//But if any of the fields have been left blank, set $valid to false
-		if (empty($author['name'])) {
+		if (empty($author['fname'])) {
 			$valid = false;
-			$errors[] = 'Name cannot be blank';
+			$errors[] = 'First name cannot be blank';
+		}
+
+		if (empty($author['lname'])) {
+			$valid = false;
+			$errors[] = 'Last name cannot be blank';
 		}
 
 		if (empty($author['email'])) {
@@ -52,19 +57,49 @@ class Register {
 			}
 		}
 
-
 		if (empty($author['password'])) {
 			$valid = false;
 			$errors[] = 'Password cannot be blank';
 		}
 
+		if (empty($author['firstanswer'])) {
+			$valid = false;
+			$errors[] = 'YOu must provide an answer for the first recovery question.';
+		}
+		else{
+			//convert the answer to lowercase
+			$author['firstanswer'] = strtolower($author['firstanswer']);
+		}
+
+		if (empty($author['secondanswer'])) {
+			$valid = false;
+			$errors[] = 'YOu must provide an answer for the second recovery question.';
+		}
+		else{
+			//convert the answer to lowercase
+			$author['secondanswer'] = strtolower($author['secondanswer']);
+		}
+
+		if (empty($author['thirdanswer'])) {
+			$valid = false;
+			$errors[] = 'YOu must provide an answer for the third recovery question.';
+		}
+		else{
+			//convert the answer to lowercase
+			$author['thirdanswer'] = strtolower($author['thirdanswer']);
+		}
+
 		//If $valid is still true, no fields were blank and the data can be added
 		if ($valid == true) {
-			//Hash the password before saving it in the database
+			//Hash the password and recovery question answers before saving it in the database
 			$author['password'] = password_hash($author['password'], PASSWORD_DEFAULT);
+			$author['firstanswer'] = password_hash($author['firstanswer'], PASSWORD_DEFAULT);
+			$author['secondanswer'] = password_hash($author['secondanswer'], PASSWORD_DEFAULT);
+			$author['thirdanswer'] = password_hash($author['thirdanswer'], PASSWORD_DEFAULT);
 
-			//When submitted, the $author variable now contains a lowercase value for email
-			//and a hashed password
+
+			//When submitted, the $author variable now contains a lowercase value for email and recover question answers
+			//and a hashed password and recovery question answers
 			$this->authorsTable->save($author);
 
 			header('Location: /author/success');

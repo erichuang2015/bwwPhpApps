@@ -126,4 +126,27 @@ class MyAccount
             ],
         ];
     }
+
+    public function renderPasswordRecovery()
+    {
+        return ['template' => 'passwordrecovery.html.php',
+            'title' => "Password recovery form",
+        ];
+    }
+
+    public function recoverPassword()
+    {
+        $author = $_POST['author'];
+        
+        if ($this->authentication->recoverPassWord($author['email'], $author['firstanswer'], $author['secondanswer'], $author['thirdanswer'])) {
+            header('location: /login/success');
+        } else {
+            return ['template' => 'passwordrecovery.html.php',
+                'title' => 'Password recovery form - Errors',
+                'variables' => [
+                    'error' => 'One or more of the recovery questions is incorrect.  Please try again.',
+                ],
+            ];
+        }
+    }
 }

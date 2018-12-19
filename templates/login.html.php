@@ -18,5 +18,7 @@
             </div>
             <input class="btn btn-lg btn-primary btn-block" type="submit" name="login" value="Sign in">
             <span>Need to register?</span><a href="/author/register">click here</a>
+            <br/>
+            <span>Forgot your password?</span><a href="/myaccount/passwordrecovery">click here</a>
             <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
           </form>
