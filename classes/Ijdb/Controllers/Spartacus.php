@@ -25,7 +25,7 @@ class Spartacus
 			$gladiator = $this->authentication->getUser();
 			$settings = $this->spartacusSettingsTable->findById($gladiator['id']);
 		}
-
+		// print_r($settings['difficultyLvl']); die;
 		return [
 		 'template' => 'spartacus.html.php',
 		 'title' => 'Spartacus Workout',
@@ -57,6 +57,7 @@ class Spartacus
 
 	public function renderExercises()
 	{
+		// print_r($_SESSION['difficultyLvl']); die;
 		return [
 		 'template' => 'spartacusexercise.html.php',
 		 'title' => 'Spartacus Workout',

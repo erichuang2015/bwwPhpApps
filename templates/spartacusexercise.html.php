@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/gladiator.css">
 <div class="jumbotron">
     <div class="container">
-        <input type="hidden" id="diffLevel" name="id" value="<?= $difficultyLevel ?>">
+        <input type="hidden" id="diffLevel" name="difficultyLvl" value="<?= $difficultyLevel ?>">
         <h1 class="display-3">Spartacus Workout</h1>
     </div>
 </div>

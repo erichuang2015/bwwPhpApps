@@ -5,6 +5,14 @@
     </div>
 </div>
 
+<?php if (!empty($error)): ?>
+    <div class="container fill-height">
+    <div class="alert alert-danger" role="alert">
+        <h2>Your photo could not be uploaded.  Please check the following:<br> <?=$error?></h2>
+    </div>
+</div>
+<?php endif;?>
+
 <div class="container">
     <form action="" method="post" enctype="multipart/form-data">
         <div class="row">

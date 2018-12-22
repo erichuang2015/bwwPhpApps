@@ -1,10 +1,29 @@
 /*jshint esversion: 6 */
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+    'use strict';
+    window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
+
 $(document).ready(function () {
     let myFitnessCalculator;
     $("#divBMIInputPg").hide();
     $("#divSexInputPg").hide();
     $("#divCalInstructions").hide();
-    $("#ageInputError").hide();
+    // $("#ageInputError").hide();
     $("#age").val("40");
     $("#numMM1").val(2);
     $("#numMM2").val(2);
@@ -28,19 +47,22 @@ $(document).ready(function () {
 
     $("#btnSubmitSexSelect").on("click keyup", function (e) {
         e.preventDefault();
-        $("#ageInputError").text("").hide();
+        var ageSexForm = $("#form-sexSelect");
+        $(ageSexForm).removeClass('was-validated');
+        var ageInput = $("#age")[0];        
+        if (ageInput.checkValidity() === false) {
+            event.stopPropagation();
+            $(ageSexForm).addClass('was-validated');
+            $("#ageInputError").text("You did not enter a number within the valid range.  The age must be greater than 17 and less than 141.  Please try again.");
+            return;
+        }else{
+            $(ageSexForm).addClass('was-validated');
+            $("#ageInputError").text("");
+        }
+
         let sex = $("#form-sexSelect input:checked").val();
         let age = $("#age").val();
         age = parseInt(age);
-        if (isNaN(age)) {
-            $("#ageInputError").text("You did not enter a number.  Please try again.").show();
-            return;
-        }
-        if (age < 18 || age > 140) {
-            $("#ageInputError").text("You did not enter a number within the valid range.  The age must be greater than 17 and less than 141.  Please try again.").show();
-            return;
-        }
-        $("#ageInputError").text("").hide();
         myFitnessCalculator = new FitnessCalculator(sex, age);
         $("#divSexInputPg").hide();
         $("#divCalInstructions").show();
@@ -106,6 +128,7 @@ $(document).ready(function () {
         e.preventDefault();
         $("#divbodFatResults").hide();
         $("#divFitStartPg").show();
+        $("#age").val(40);
     });
 
     $("#btnBMISubmit").on("click keyup", function (e) {

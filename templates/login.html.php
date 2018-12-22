@@ -1,8 +1,11 @@
 <link rel="stylesheet" href="/css/signin.css">
-<?php if (isset($error)) : ?>
-	 <div class="errors"><?= $error; ?></div><!--Need to replace this css errors class with bootstrap version -->
-<?php endif; ?>
-
+<?php if (isset($error)): ?>
+<div class="container fill-height">
+<div class="alert alert-danger" role="alert">
+	 <h2><?=$error;?></h2>
+   </div>
+   </div>
+<?php endif;?>
 
         <form method="post" action="" class="form-signin">
             <img class="mb-4" src="css/images/brand-logo-template.jpg" alt="BWW PhpApps" width="300" height="153">

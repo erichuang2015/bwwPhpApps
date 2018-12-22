@@ -10,6 +10,7 @@ function renderSpartacusWorkout() {
     let difficultyIndex = $("#diffLevel").val();
     // console.log(difficultyIndex);
     difficultyIndex = parseInt(difficultyIndex, 10);
+    difficultyIndex = difficultyIndex - 1; // backing it up one for the zero based array, difficultySetting, it will serve as an index for
 
     if (!$("#btn-start").hasClass("hidden")) {
         $("#btn-start").addClass("hidden");

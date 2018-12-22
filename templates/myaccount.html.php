@@ -5,7 +5,7 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
         <div class="container">
-          <h1 class="display-3"><?= $username ?>'s Account</h1>
+          <h1 class="display-3"><?= $fname . ' ' . $lname ?>'s Account</h1>
         </div>
         <?php if (!$loggedIn) : ?>
         <div class="row">
@@ -46,14 +46,14 @@
 <?php if ($displayMainMenu == true) : ?>
 <form method="post" action="" class="container fill-height">
           <div class="row">
-            <div class="col-4">Username: </div>
-            <div class="col-4"><?= $username ?></div>
-            <div class="col-4"><input name="changeusername" type="submit" value="Change your username"></div>
+            <div class="col-4">Name: </div>
+            <div class="col-4"><?= $fname . ' ' . $lname ?></div>
+            <!-- <div class="col-4"><input name="changeusername" type="submit" value="Change your username"></div> -->
           </div><!-- /row -->
           <div class="row">
             <div class="col-4">Email: </div>
             <div class="col-4"><?= $email ?></div>
-            <div class="col-4"><input name="changeemail" type="submit" value="Change your email"></div>
+            <!-- <div class="col-4"><input name="changeemail" type="submit" value="Change your email"></div> -->
           </div><!-- /row -->
           <div class="row">
             <div class="col-4">Password: </div>

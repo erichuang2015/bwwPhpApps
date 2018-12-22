@@ -1,4 +1,4 @@
-<!-- <link rel="stylesheet" href="/css/gladiator.css"> -->
+<link rel="stylesheet" href="/css/fitnesscalculator.css">
 <div class="jumbotron fill-height">
     <div class="container fill-height">
         <h1 class="display-3">Fitness Calculator</h1>
@@ -17,21 +17,33 @@
             </fieldset>
         </form>
     </div>
+
+
     <div id="divSexInputPg">
-        <p>Select your sex and input your age please.</p>
-        <form id="form-sexSelect">
-            <fieldset>
-                <input id="rbMale" name="rbSexSelect" type="radio" value="Male" checked>
-                <label for="rbMale">Male</label>
-                <input id="rbFemale" name="rbSexSelect" type="radio" value="Female">
-                <label for="rbFemale">Female</label>
+        <h2>Select your sex and input your age please.</h2>
+        <form id="form-sexSelect" class="needs-validation" novalidate>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-check">
+                    <input id="rbMale" name="rbSexSelect" class="form-check-input" type="radio" value="Male" checked>
+                    <label class="form-check-label" for="rbMale">Male</label>
+                </div>
+                <div class="form-check">
+                    <input id="rbFemale" name="rbSexSelect" class="form-check-input" type="radio" value="Female">
+                    <label class="form-check-label" for="rbFemale">Female</label>
+                </div>
+            </div>
+
+            <div class="col">
                 <label class="" for="age">Years of Age:</label>
-                <input id="age" type="number" min="18" max="140" value="40" required /><br><span id="ageInputError"
-                    class="input-error"></span>
-                <input id="btnSubmitSexSelect" type="submit" value="Submit" />
-            </fieldset>
+                <input id="age" name="age" class="form-control col-md-2" type="number" min="18" max="140" value="40" required />
+                <div class="invalid-feedback"><span id="ageInputError"></span></div>
+            </div>
+        </div>
+        <input id="btnSubmitSexSelect" type="submit" value="Submit" class="btn btn-primary"/>
         </form>
     </div>
+
     <div id="divCalInstructions">
         <ol>
             <li>

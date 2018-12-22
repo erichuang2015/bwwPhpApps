@@ -85,4 +85,4 @@
         <!-- End Intro -->
         </form>
 </div>
-<script type="text/javascript" src="/js/horoscope.js"></script>
+<script type="text/javascript" src="/js/spartacussettings.js"></script>

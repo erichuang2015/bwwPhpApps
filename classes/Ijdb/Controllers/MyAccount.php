@@ -21,10 +21,12 @@ class MyAccount
         $accountInfo = $this->authorsTable->find('id', $user['id']);
         $loggedIn = $this->authentication->isLoggedIn();
         return ['template' => 'myaccount.html.php',
-            'title' => $accountInfo[0]['name'] . "'s Account",
+            'title' => $accountInfo[0]['fname'] . " " . $accountInfo[0]['lname'] . "'s Account",
             'variables' => [
                 'loggedIn' => $loggedIn,
-                'username' => $accountInfo[0]['name'],
+                // 'username' => $accountInfo[0]['name'],
+                'fname' => $accountInfo[0]['fname'],
+                'lname' => $accountInfo[0]['lname'],
                 'email' => $accountInfo[0]['email'],
                 'displayMainMenu' => true,
             ],
@@ -54,10 +56,11 @@ class MyAccount
         $accountInfo = $this->authorsTable->find('id', $user['id']);
         $loggedIn = $this->authentication->isLoggedIn();
         return ['template' => 'myaccount.html.php',
-            'title' => $accountInfo[0]['name'] . "'s Account",
+            'title' => $accountInfo[0]['fname'] . ' ' . $accountInfo[0]['lname'] . "'s Account",
             'variables' => [
                 'loggedIn' => $loggedIn,
-                'username' => $accountInfo[0]['name'],
+                'fname' => $accountInfo[0]['fname'],
+                'lname' => $accountInfo[0]['lname'],
                 'email' => $accountInfo[0]['email'],
                 'changePassword' => true,
                 'displayMainMenu' => false],
@@ -80,10 +83,11 @@ class MyAccount
                 $errors[] = 'Invalid input.  Please try again.';
                 $valid = false;
                 return ['template' => 'myaccount.html.php',
-                    'title' => $accountInfo[0]['name'] . "'s Account - Change Password",
+                    'title' => $accountInfo[0]['fname'] . " " . $accountInfo[0]['lname'] . "'s Account - Change Password",
                     'variables' => [
                         'loggedIn' => $loggedIn,
-                        'username' => $accountInfo[0]['name'],
+                        'fname' => $accountInfo[0]['fname'],
+                        'lname' => $accountInfo[0]['lname'],
                         'email' => $accountInfo[0]['email'],
                         'changePassword' => true,
                         'displayMainMenu' => false,
@@ -94,9 +98,13 @@ class MyAccount
             } else {
                 $newPassword1 = password_hash($newPassword1, PASSWORD_DEFAULT);
                 $accountData['id'] = (int) $user['id'];
-                $accountData['name'] = $accountInfo[0]['name'];
+                $accountData['fname'] = $accountInfo[0]['fname']; // update this to use lname and fname and pw recovery questions
+                $accountData['lname'] = $accountInfo[0]['lname'];
                 $accountData['email'] = $accountInfo[0]['email'];
                 $accountData['password'] = $newPassword1;
+                $accountData['firstanswer'] = $accountInfo[0]['firstanswer'];
+                $accountData['secondanswer'] = $accountInfo[0]['secondanswer'];
+                $accountData['thirdanswer'] = $accountInfo[0]['thirdanswer'];
                 $this->authorsTable->save($accountData);
                 // $this->authentication->login($accountData['email'], $accountData['password']);
                 header('Location: /myaccount/passwordchangesuccess');
@@ -137,14 +145,21 @@ class MyAccount
     public function recoverPassword()
     {
         $author = $_POST['author'];
-        
-        if ($this->authentication->recoverPassWord($author['email'], $author['firstanswer'], $author['secondanswer'], $author['thirdanswer'])) {
-            header('location: /login/success');
+        $tempPw = $this->authentication->recoverPassWord($author['email'], $author['firstanswer'], $author['secondanswer'], $author['thirdanswer']);
+        if ($tempPw != false) {
+            //instead of redirecting to login/success render a page showing the new tempPw and telling the user to change it
+            // header('location: /login/success');
+            return ['template' => 'recoverpasswordsuccess.html.php',
+            'title' => 'Password recovery successful',
+            'variables' => [
+                'tempPw' => $tempPw,
+            ],
+        ];
         } else {
             return ['template' => 'passwordrecovery.html.php',
                 'title' => 'Password recovery form - Errors',
                 'variables' => [
-                    'error' => 'One or more of the recovery questions is incorrect.  Please try again.',
+                    'error' => 'One or more of your entries was incorrect.  Please try again.',
                 ],
             ];
         }

@@ -97,7 +97,7 @@ class Photos
     {
         // print_r($_FILES['userfile']['name'][0]); die;  // print name of the actual file from user's computer
         //print_r($_FILES['userfile']['type'][0]); die;  // print the type of file to get ext
-        
+
         // print_r($_FILES['userfile']['tmp_name'][0]); die; // print the temporary name that php gave the file
         // print_r($_FILES['userfile']['error'][0]); die; // print the error produced by the file
         // print_r($_FILES['userfile']['size'][0]); die; // print the file size
@@ -110,7 +110,12 @@ class Photos
         // Pick a file extension
         if ($ext != '.jpg' && $ext != '.jpeg' && $ext != '.png') {
             $error = "Please upload only jpg or png files.  Other file types are not supported.";
-            return ['template' => 'loginerror.html.php', 'title' => $error];
+            return ['template' => 'photosupload.html.php',
+                'title' => "Photo Gallery Upload - Error",
+                'variables' => [
+                    'error' => $error
+                ],
+            ];
         }
 
         $name = time() . $_SERVER['REMOTE_ADDR'] . $ext;
@@ -119,9 +124,14 @@ class Photos
         $filename = __DIR__ . '/../../../public/uploads/' . $name;
         $check = (int) $_FILES['userfile']['size'][0]; // get file size
         // Copy the file (if it is deemed safe) All this function (is_uploaded_file) does is return TRUE if the filename it’s passed as a parameter ($_FILES['userfile']['tmp_name'] in this case) was in fact uploaded as part of a form submission.
-        if ((!is_uploaded_file($_FILES['userfile']['tmp_name'][0])) || $check <= 0 || $check > 2097152) {
-            $error = "Could not  save file as " . $filename . "!";
-            return ['template' => 'loginerror.html.php', 'title' => $error]; //replace this with a proper error template
+        if ((!is_uploaded_file($_FILES['userfile']['tmp_name'][0])) || $check <= 0 || $check > 4194304) {
+            $error = "File size cannot exceed 4MB!";
+            return ['template' => 'photosupload.html.php',
+                'title' => "Photo Gallery Upload - Error",
+                'variables' => [
+                    'error' => $error
+                ],
+            ];
         } else {
             $user = $this->authentication->getUser();
             $photoData = [];
@@ -186,7 +196,7 @@ class Photos
             // Rotate
             $rotate = imagerotate($source, $degrees, 0);
             imagejpeg($rotate, $newDirName);
-        }else{
+        } else {
             $source = imagecreatefrompng($filename);
             // Rotate
             $rotate = imagerotate($source, $degrees, 0);
