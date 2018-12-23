@@ -129,6 +129,8 @@ $(document).ready(function () {
         $("#divbodFatResults").hide();
         $("#divFitStartPg").show();
         $("#age").val(40);
+        var ageSexForm = $("#form-sexSelect");
+        $(ageSexForm).removeClass('was-validated');
     });
 
     $("#btnBMISubmit").on("click keyup", function (e) {
