@@ -1,3 +1,9 @@
 <?php
-$pdo = new PDO('mysql:host=localhost;dbname=ijdb_sample;charset=utf8', 'ijdb_sample', 'mypassword');
+$pdo = NULL;
+try {
+    $pdo = new PDO('mysql:host=localhost;dbname=bwwlocaldb;charset=utf8', 'bworsham', '153756Pw');
+}
+catch (\PDOException $e) {
+    $pdo = new PDO('mysql:host=localhost;dbname=bwwdb;charset=utf8', 'bworsham', '153756Pw');
+}
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

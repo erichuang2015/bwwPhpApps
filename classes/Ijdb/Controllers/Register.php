@@ -3,10 +3,11 @@ namespace Ijdb\Controllers;
 use \Ninja\DatabaseTable;
 
 class Register {
-	private $authorsTable;
+	private $usersTable;
 
-	public function __construct(DatabaseTable $authorsTable) {
-		$this->authorsTable = $authorsTable;
+	public function __construct(DatabaseTable $usersTable) {
+		$this->usersTable = $usersTable;
+		// print_r($this->usersTable); die;
 	}
 
 	public function registrationForm() {
@@ -22,6 +23,7 @@ class Register {
 
 	public function registerUser() {
 		$author = $_POST['author'];
+		
 
 		//Assume the data is valid to begin with
 		$valid = true;
@@ -51,7 +53,7 @@ class Register {
 			$author['email'] = strtolower($author['email']);
 
 			//search for the lowercase version of `$author['email']`
-			if (count($this->authorsTable->find('email', $author['email'])) > 0) {
+			if (count($this->usersTable->find('email', $author['email'])) > 0) {
 				$valid = false;
 				$errors[] = 'That email address is already registered';
 			}
@@ -100,7 +102,7 @@ class Register {
 
 			//When submitted, the $author variable now contains a lowercase value for email and recover question answers
 			//and a hashed password and recovery question answers
-			$this->authorsTable->save($author);
+			$this->usersTable->save($author);
 
 			header('Location: /author/success');
 		}

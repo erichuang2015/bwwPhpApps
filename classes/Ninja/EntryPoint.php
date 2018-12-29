@@ -40,11 +40,16 @@ class EntryPoint
 		$authentication = $this->routes->getAuthentication();
 
 		if (isset($routes[$this->route]['login']) && isset($routes[$this->route]['login']) && !$authentication->isLoggedIn()) {
+			// print_r("hello"); die;
 			header('location: /login/error');
 		} else {
 			$controller = $routes[$this->route][$this->method]['controller'];
+			// print_r($controller);
 			$action = $routes[$this->route][$this->method]['action'];
-			$page = $controller->$action();
+			// print_r('<br>');
+			// print_r($action); die;
+			$page = $controller->$action();//this is throwing an exception
+			// print_r($page); die;
 
 			$title = $page['title'];
 			$loggedIn = $authentication->isLoggedIn();

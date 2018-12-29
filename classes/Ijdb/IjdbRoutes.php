@@ -3,8 +3,7 @@ namespace Ijdb;
 
 class IjdbRoutes implements \Ninja\Routes
 {
-	private $jokesTable;
-	private $authorsTable;
+	private $usersTable;
 	private $spartacusSettingsTable;
 	private $pyramidUserMaxTable;
 	private $photosTable;
@@ -12,29 +11,27 @@ class IjdbRoutes implements \Ninja\Routes
 
 	public function __construct()
 	{
+		
 		include __DIR__ . '/../../includes/DatabaseConnection.php';
-
-		$this->jokesTable = new \Ninja\DatabaseTable($pdo, 'joke', 'id');
-		$this->authorsTable = new \Ninja\DatabaseTable($pdo, 'author', 'id');
+		$this->usersTable = new \Ninja\DatabaseTable($pdo, 'user', 'id');
 		$this->spartacusSettingsTable = new \Ninja\DatabaseTable($pdo, 'spartacus_setting', 'id');
 		$this->pyramidUserMaxTable = new \Ninja\DatabaseTable($pdo, 'pyramid_user_max', 'id');
 		$this->photosTable = new \Ninja\DatabaseTable($pdo, 'photo', 'id');
-		$this->authentication = new \Ninja\Authentication($this->authorsTable, 'email', 'password');
+		$this->authentication = new \Ninja\Authentication($this->usersTable, 'email', 'password');
 	}
 
 	public function getRoutes() : array
 	{
-		$jokeController = new \Ijdb\Controllers\Joke($this->jokesTable, $this->authorsTable, $this->authentication);
-		$authorController = new \Ijdb\Controllers\Register($this->authorsTable);
+		$authorController = new \Ijdb\Controllers\Register($this->usersTable);
 		$loginController = new \Ijdb\Controllers\Login($this->authentication);
-		$spartacusController = new \Ijdb\Controllers\Spartacus($this->authorsTable, $this->spartacusSettingsTable, $this->authentication);
+		$spartacusController = new \Ijdb\Controllers\Spartacus($this->usersTable, $this->spartacusSettingsTable, $this->authentication);
 		$horoscopeController = new \Ijdb\Controllers\Horoscope();
 		$runSpeedCalculatorController = new \Ijdb\Controllers\RunSpeedCalculator();
 		$fitnessCalculatorController = new \Ijdb\Controllers\FitnessCalculator();
 		$distanceconverterController = new \Ijdb\Controllers\DistanceConverter();
-		$pyramidController = new \Ijdb\Controllers\Pyramid($this->authorsTable, $this->pyramidUserMaxTable, $this->authentication);
-		$photosController = new \Ijdb\Controllers\Photos($this->authorsTable, $this->photosTable, $this->authentication);
-		$myaccountController = new \Ijdb\Controllers\MyAccount($this->authorsTable, $this->authentication);
+		$pyramidController = new \Ijdb\Controllers\Pyramid($this->usersTable, $this->pyramidUserMaxTable, $this->authentication);
+		$photosController = new \Ijdb\Controllers\Photos($this->usersTable, $this->photosTable, $this->authentication);
+		$myaccountController = new \Ijdb\Controllers\MyAccount($this->usersTable, $this->authentication);
 
 		$routes = [
 			'author/register' => [
@@ -51,31 +48,6 @@ class IjdbRoutes implements \Ninja\Routes
 				'GET' => [
 					'controller' => $authorController,
 					'action' => 'success'
-				]
-			],
-			'joke/edit' => [
-				'POST' => [
-					'controller' => $jokeController,
-					'action' => 'saveEdit'
-				],
-				'GET' => [
-					'controller' => $jokeController,
-					'action' => 'edit'
-				],
-				'login' => true
-
-			],
-			'joke/delete' => [
-				'POST' => [
-					'controller' => $jokeController,
-					'action' => 'delete'
-				],
-				'login' => true
-			],
-			'joke/list' => [ // joke/list is the url or the form action
-				'GET' => [
-					'controller' => $jokeController,
-					'action' => 'list'
 				]
 			],
 			'login/error' => [
@@ -231,7 +203,7 @@ class IjdbRoutes implements \Ninja\Routes
 			],			
 			'' => [
 				'GET' => [
-					'controller' => $jokeController,
+					'controller' => $myaccountController,
 					'action' => 'home'
 				]
 			]

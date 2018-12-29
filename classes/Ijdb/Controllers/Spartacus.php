@@ -7,12 +7,12 @@ use \Ninja\Authentication;
 class Spartacus
 {
 	private $authentication;
-	private $authorsTable;
+	private $usersTable;
 	private $spartacusSettingsTable;
 
-	public function __construct(DatabaseTable $authorsTable, DatabaseTable $spartacusSettingsTable, Authentication $authentication)
+	public function __construct(DatabaseTable $usersTable, DatabaseTable $spartacusSettingsTable, Authentication $authentication)
 	{
-		$this->authorsTable = $authorsTable;
+		$this->usersTable = $usersTable;
 		$this->spartacusSettingsTable = $spartacusSettingsTable;
 		$this->authentication = $authentication;
 	}

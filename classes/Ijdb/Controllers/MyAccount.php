@@ -6,19 +6,19 @@ use \Ninja\DatabaseTable;
 
 class MyAccount
 {
-    private $authorsTable;
+    private $usersTable;
     private $authentication;
 
-    public function __construct(DatabaseTable $authorsTable, Authentication $authentication)
+    public function __construct(DatabaseTable $usersTable, Authentication $authentication)
     {
-        $this->authorsTable = $authorsTable;
+        $this->usersTable = $usersTable;
         $this->authentication = $authentication;
     }
 
     public function render()
     {
         $user = $this->authentication->getUser();
-        $accountInfo = $this->authorsTable->find('id', $user['id']);
+        $accountInfo = $this->usersTable->find('id', $user['id']);
         $loggedIn = $this->authentication->isLoggedIn();
         return ['template' => 'myaccount.html.php',
             'title' => $accountInfo[0]['fname'] . " " . $accountInfo[0]['lname'] . "'s Account",
@@ -53,7 +53,7 @@ class MyAccount
     public function renderChangePassword()
     {
         $user = $this->authentication->getUser();
-        $accountInfo = $this->authorsTable->find('id', $user['id']);
+        $accountInfo = $this->usersTable->find('id', $user['id']);
         $loggedIn = $this->authentication->isLoggedIn();
         return ['template' => 'myaccount.html.php',
             'title' => $accountInfo[0]['fname'] . ' ' . $accountInfo[0]['lname'] . "'s Account",
@@ -77,7 +77,7 @@ class MyAccount
             $errors = [];
             $user = $this->authentication->getUser();
             $loggedIn = $this->authentication->isLoggedIn();
-            $accountInfo = $this->authorsTable->find('id', $user['id']);
+            $accountInfo = $this->usersTable->find('id', $user['id']);
             $isTheOldPwValid = password_verify($oldPassword, $accountInfo[0]['password']);
             if ($isTheOldPwValid == false || $newPassword1 != $newPassword2) {
                 $errors[] = 'Invalid input.  Please try again.';
@@ -105,7 +105,7 @@ class MyAccount
                 $accountData['firstanswer'] = $accountInfo[0]['firstanswer'];
                 $accountData['secondanswer'] = $accountInfo[0]['secondanswer'];
                 $accountData['thirdanswer'] = $accountInfo[0]['thirdanswer'];
-                $this->authorsTable->save($accountData);
+                $this->usersTable->save($accountData);
                 // $this->authentication->login($accountData['email'], $accountData['password']);
                 header('Location: /myaccount/passwordchangesuccess');
             }
@@ -125,7 +125,7 @@ class MyAccount
     public function renderPasswordChangeSuccess()
     {
         $user = $this->authentication->getUser();
-        $accountInfo = $this->authorsTable->find('id', $user['id']);
+        $accountInfo = $this->usersTable->find('id', $user['id']);
         $loggedIn = $this->authentication->isLoggedIn();
         return ['template' => 'passwordchangesuccess.html.php',
             'title' => 'Password change successful',
@@ -164,4 +164,16 @@ class MyAccount
             ];
         }
     }
+
+    public function home()
+	{
+		$title = "BWW PHPApps - home";
+		$loggedIn = $this->authentication->isLoggedIn();
+		return ['template' => 'home.html.php', 
+		'title' => $title,
+		'variables' => [
+			'loggedIn' => $loggedIn
+		]
+	];
+	}
 }

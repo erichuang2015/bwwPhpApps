@@ -7,12 +7,12 @@ use \Ninja\Authentication;
 class Pyramid
 {
     private $authentication;
-	private $authorsTable;
+	private $usersTable;
     private $pyramidUserMaxTable;
     
-	public function __construct(DatabaseTable $authorsTable, DatabaseTable $pyramidUserMaxTable, Authentication $authentication)
+	public function __construct(DatabaseTable $usersTable, DatabaseTable $pyramidUserMaxTable, Authentication $authentication)
 	{
-        $this->authorsTable = $authorsTable;
+        $this->usersTable = $usersTable;
 		$this->pyramidUserMaxTable = $pyramidUserMaxTable;
 		$this->authentication = $authentication;
 	}

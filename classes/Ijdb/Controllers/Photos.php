@@ -7,12 +7,12 @@ use \Ninja\DatabaseTable;
 class Photos
 {
     private $authentication;
-    private $authorsTable;
+    private $usersTable;
     private $photosTable;
 
-    public function __construct(DatabaseTable $authorsTable, DatabaseTable $photosTable, Authentication $authentication)
+    public function __construct(DatabaseTable $usersTable, DatabaseTable $photosTable, Authentication $authentication)
     {
-        $this->authorsTable = $authorsTable;
+        $this->usersTable = $usersTable;
         $this->photosTable = $photosTable;
         $this->authentication = $authentication;
     }
@@ -136,7 +136,7 @@ class Photos
             $user = $this->authentication->getUser();
             $photoData = [];
             $photoData['userid'] = (int) $user['id'];
-            $photoData['caption'] = $_POST['caption'];
+            $photoData['caption'] = $_POST['caption'];// add some logic to prevent user input from exceeding 100 chars for caption.
             $photoData['name'] = $name;
             $photoData['img_dir'] = $filename;
             $this->photosTable->save($photoData);
@@ -182,7 +182,7 @@ class Photos
 
         //update the DB
         $photoData = [];
-        $photoData['id'] = $photo['id'];
+        $photoData['id'] = (int)$photo['id'];
         $photoData['userid'] = (int) $user['id'];
         $photoData['caption'] = $photo['caption'];
         $photoData['name'] = $newName;

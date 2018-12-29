@@ -16,27 +16,32 @@ try {
 	//sample user might not exist so the query may throw an exception, that's fine, ignore it.
 	try {
 		//Drop the user, there's a chance the password has been changed
-		$pdo->query('DROP USER \'ijdb_sample\'@\'localhost\'');
+		$pdo->query('DROP USER \'bworsham\'@\'localhost\'');
 	}
 	catch (PDOException $e) {}
 
 	//Create the user for the sample code to use
-	$pdo->query('CREATE USER \'ijdb_sample\'@\'localhost\' IDENTIFIED BY \'mypassword\'');
+	$pdo->query('CREATE USER \'bworsham\'@\'localhost\' IDENTIFIED BY \'153756Pw\'');
 
 	//Drop the database, only one sample should be used at once.
-
-	$pdo->query('DROP DATABASE IF EXISTS ijdb_sample');
-
-
-	$pdo->query('CREATE DATABASE ijdb_sample');
-	$pdo->query('GRANT ALL PRIVILEGES ON ijdb_sample.* To \'ijdb_sample\'@\'localhost\'');
-	$pdo->query('FLUSH PRIVILEGES');
-	$pdo->query('USE ijdb_sample');
-
-	if (file_exists('../../database.sql')) {
-		$pdo->exec(file_get_contents('../../database.sql'));
+	
+	if (file_exists('../../bwwlocaldb.sql')) {
+		$pdo->query('DROP DATABASE IF EXISTS bwwlocaldb');
+		$pdo->query('CREATE DATABASE bwwlocaldb');
+		$pdo->query('GRANT ALL PRIVILEGES ON bwwlocaldb.* To \'bworsham\'@\'localhost\'');
+		$pdo->query('FLUSH PRIVILEGES');
+		$pdo->query('USE bwwlocaldb');
+		$pdo->exec(file_get_contents('../../bwwlocaldb.sql'));
 	}
-
+	else // on prod use below
+	{
+		$pdo->query('DROP DATABASE IF EXISTS bwwdb');
+		$pdo->query('CREATE DATABASE bwwdb');
+		$pdo->query('GRANT ALL PRIVILEGES ON bwwdb.* To \'bworsham\'@\'localhost\'');
+		$pdo->query('FLUSH PRIVILEGES');
+		$pdo->query('USE bwwdb');
+		$pdo->exec(file_get_contents('../../bwwdb.sql'));
+	}
 }
 catch (PDOException $e) {
 	echo 'Could not create sample database/user';
