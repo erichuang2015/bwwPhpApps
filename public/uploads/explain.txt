@@ -1,0 +1,1 @@
+this folder has to hold something or you can't push it to Github.  However, you don't wan't to send photos to Github.  Ergo we have this dummy text file.
