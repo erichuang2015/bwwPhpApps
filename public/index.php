@@ -8,7 +8,7 @@ try {
 
 	$route = ltrim(strtok($_SERVER['REQUEST_URI'], '?'), '/');
 
-	$entryPoint = new \Ninja\EntryPoint($route, $_SERVER['REQUEST_METHOD'], new \Ijdb\IjdbRoutes());
+	$entryPoint = new \utilityClasses\EntryPoint($route, $_SERVER['REQUEST_METHOD'], new \BwwClasses\BwwRoutes());
 	//print_r($entryPoint); die;
 	$entryPoint->run();
 } catch (PDOException $e) {

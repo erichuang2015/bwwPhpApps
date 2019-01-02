@@ -14,8 +14,8 @@ return array(
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'PhpConsole\\' => array($vendorDir . '/php-console/php-console/src/PhpConsole'),
-    'Ninja\\' => array($baseDir . '/classes/Ninja'),
+    'utilityClasses\\' => array($baseDir . '/classes/utilityClasses'),
     'Intervention\\Image\\' => array($vendorDir . '/intervention/image/src/Intervention/Image'),
-    'Ijdb\\' => array($baseDir . '/classes/Ijdb'),
+    'BwwClasses\\' => array($baseDir . '/classes/BwwClasses'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
 );

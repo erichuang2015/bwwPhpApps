@@ -1,8 +1,8 @@
 <?php
-namespace Ijdb\Controllers;
+namespace BwwClasses\Controllers;
 
-use \Ninja\DatabaseTable;
-use \Ninja\Authentication;
+use \utilityClasses\DatabaseTable;
+use \utilityClasses\Authentication;
 
 class Pyramid
 {

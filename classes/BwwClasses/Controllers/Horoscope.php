@@ -1,5 +1,5 @@
 <?php
-namespace Ijdb\Controllers;
+namespace BwwClasses\Controllers;
 
 class Horoscope
 {

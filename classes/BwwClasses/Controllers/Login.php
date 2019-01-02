@@ -1,11 +1,11 @@
 <?php
-namespace Ijdb\Controllers;
+namespace BwwClasses\Controllers;
 
 class Login
 {
     private $authentication;
 
-    public function __construct(\Ninja\Authentication $authentication)
+    public function __construct(\utilityClasses\Authentication $authentication)
     {
         $this->authentication = $authentication;
     }

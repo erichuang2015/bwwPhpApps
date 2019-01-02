@@ -1,8 +1,8 @@
 <?php
-namespace Ijdb\Controllers;
+namespace BwwClasses\Controllers;
 
-use \Ninja\Authentication;
-use \Ninja\DatabaseTable;
+use \utilityClasses\Authentication;
+use \utilityClasses\DatabaseTable;
 
 class MyAccount
 {
@@ -167,7 +167,7 @@ class MyAccount
 
     public function home()
 	{
-		$title = "BWW PHPApps - home";
+		$title = "BWW Apps - home";
 		$loggedIn = $this->authentication->isLoggedIn();
 		return ['template' => 'home.html.php', 
 		'title' => $title,

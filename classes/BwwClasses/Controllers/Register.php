@@ -1,6 +1,6 @@
 <?php
-namespace Ijdb\Controllers;
-use \Ninja\DatabaseTable;
+namespace BwwClasses\Controllers;
+use \utilityClasses\DatabaseTable;
 
 class Register {
 	private $usersTable;

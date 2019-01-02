@@ -29,12 +29,12 @@ class ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285
         ),
         'N' => 
         array (
-            'Ninja\\' => 6,
+            'utilityClasses\\' => 6,
         ),
         'I' => 
         array (
             'Intervention\\Image\\' => 19,
-            'Ijdb\\' => 5,
+            'BwwClasses\\' => 5,
         ),
         'G' => 
         array (
@@ -75,17 +75,17 @@ class ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285
         array (
             0 => __DIR__ . '/..' . '/php-console/php-console/src/PhpConsole',
         ),
-        'Ninja\\' => 
+        'utilityClasses\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/classes/Ninja',
+            0 => __DIR__ . '/../..' . '/classes/utilityClasses',
         ),
         'Intervention\\Image\\' => 
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
         ),
-        'Ijdb\\' => 
+        'BwwClasses\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/classes/Ijdb',
+            0 => __DIR__ . '/../..' . '/classes/BwwClasses',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

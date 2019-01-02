@@ -1,7 +1,7 @@
 <?php
-namespace Ijdb;
+namespace BwwClasses;
 
-class IjdbRoutes implements \Ninja\Routes
+class BwwRoutes implements \utilityClasses\Routes
 {
 	private $usersTable;
 	private $spartacusSettingsTable;
@@ -13,25 +13,25 @@ class IjdbRoutes implements \Ninja\Routes
 	{
 		
 		include __DIR__ . '/../../includes/DatabaseConnection.php';
-		$this->usersTable = new \Ninja\DatabaseTable($pdo, 'user', 'id');
-		$this->spartacusSettingsTable = new \Ninja\DatabaseTable($pdo, 'spartacus_setting', 'id');
-		$this->pyramidUserMaxTable = new \Ninja\DatabaseTable($pdo, 'pyramid_user_max', 'id');
-		$this->photosTable = new \Ninja\DatabaseTable($pdo, 'photo', 'id');
-		$this->authentication = new \Ninja\Authentication($this->usersTable, 'email', 'password');
+		$this->usersTable = new \utilityClasses\DatabaseTable($pdo, 'user', 'id');
+		$this->spartacusSettingsTable = new \utilityClasses\DatabaseTable($pdo, 'spartacus_setting', 'id');
+		$this->pyramidUserMaxTable = new \utilityClasses\DatabaseTable($pdo, 'pyramid_user_max', 'id');
+		$this->photosTable = new \utilityClasses\DatabaseTable($pdo, 'photo', 'id');
+		$this->authentication = new \utilityClasses\Authentication($this->usersTable, 'email', 'password');
 	}
 
 	public function getRoutes() : array
 	{
-		$authorController = new \Ijdb\Controllers\Register($this->usersTable);
-		$loginController = new \Ijdb\Controllers\Login($this->authentication);
-		$spartacusController = new \Ijdb\Controllers\Spartacus($this->usersTable, $this->spartacusSettingsTable, $this->authentication);
-		$horoscopeController = new \Ijdb\Controllers\Horoscope();
-		$runSpeedCalculatorController = new \Ijdb\Controllers\RunSpeedCalculator();
-		$fitnessCalculatorController = new \Ijdb\Controllers\FitnessCalculator();
-		$distanceconverterController = new \Ijdb\Controllers\DistanceConverter();
-		$pyramidController = new \Ijdb\Controllers\Pyramid($this->usersTable, $this->pyramidUserMaxTable, $this->authentication);
-		$photosController = new \Ijdb\Controllers\Photos($this->usersTable, $this->photosTable, $this->authentication);
-		$myaccountController = new \Ijdb\Controllers\MyAccount($this->usersTable, $this->authentication);
+		$authorController = new \BwwClasses\Controllers\Register($this->usersTable);
+		$loginController = new \BwwClasses\Controllers\Login($this->authentication);
+		$spartacusController = new \BwwClasses\Controllers\Spartacus($this->usersTable, $this->spartacusSettingsTable, $this->authentication);
+		$horoscopeController = new \BwwClasses\Controllers\Horoscope();
+		$runSpeedCalculatorController = new \BwwClasses\Controllers\RunSpeedCalculator();
+		$fitnessCalculatorController = new \BwwClasses\Controllers\FitnessCalculator();
+		$distanceconverterController = new \BwwClasses\Controllers\DistanceConverter();
+		$pyramidController = new \BwwClasses\Controllers\Pyramid($this->usersTable, $this->pyramidUserMaxTable, $this->authentication);
+		$photosController = new \BwwClasses\Controllers\Photos($this->usersTable, $this->photosTable, $this->authentication);
+		$myaccountController = new \BwwClasses\Controllers\MyAccount($this->usersTable, $this->authentication);
 
 		$routes = [
 			'author/register' => [
@@ -212,7 +212,7 @@ class IjdbRoutes implements \Ninja\Routes
 		return $routes;
 	}
 
-	public function getAuthentication() : \Ninja\Authentication
+	public function getAuthentication() : \utilityClasses\Authentication
 	{
 		return $this->authentication;
 	}

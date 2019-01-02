@@ -1,8 +1,8 @@
 <?php
-namespace Ijdb\Controllers;
+namespace BwwClasses\Controllers;
 
-use \Ninja\Authentication;
-use \Ninja\DatabaseTable;
+use \utilityClasses\Authentication;
+use \utilityClasses\DatabaseTable;
 
 class Photos
 {
