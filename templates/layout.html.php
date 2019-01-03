@@ -93,9 +93,11 @@
 
 	<footer class="footer">
 		<div class="container">
-			<span class="text-muted">Place sticky footer content here.</span>
+			<span class="text-muted">Copyright &copy;</span><span id="currentYear" class="text-muted"></span>
 		</div>
 	</footer>
+
+	<script type="text/javascript" src="/js/layout.js"></script>
 
 </body>
 
