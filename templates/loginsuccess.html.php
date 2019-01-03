@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/loginsuccess.css">
 <div class="jumbotron">
     <div class="container">
         <h1>Login Successful</h1>

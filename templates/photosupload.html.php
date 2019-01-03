@@ -1,4 +1,4 @@
-<!-- <link rel="stylesheet" href="/css/photogallery.css"> -->
+<link rel="stylesheet" href="/css/photogallery.css">
 <div class="jumbotron fill-height">
     <div class="container fill-height">
         <h1 class="display-3">Photo Gallery Upload</h1>
@@ -24,22 +24,22 @@
                     data-content="<ul><li>Upload allows you to add new photos to your collection.</li>
                         <li>Delete allows you to remove photos from your collection.</li>
                         <li>View Slideshow allows you to watch your photos appear and disapear from the screen in a graphically pleasing manner.</li></ul>">
-                <input id="userfile" name="userfile[]" type="file" value="" multiple=""><!-- add a regex to only allow file extensions of png and jpg -->
+                <input id="userfile" name="userfile[]" class="btn btn-secondary" type="file" value="" multiple=""><!-- add a regex to only allow file extensions of png and jpg -->
                 <div class="invalid-feedback">
                     Please select a valid option.
                 </div>
-                <div class="col-md-4 mb-3">
+                <div id="captionDiv" class="col-md-4 mb-3">
                     <label for="caption">Caption:</label>
                     <span class="sr-only">Information about caption.</span>
                     <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about caption." width="12px"
-                        height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Provide an <b>optional</b> description of your image. Must be less than 100 characters.">
-                    <input id="caption" name="caption" type="text" placeholder="optional" size="100" maxlength="100">
+                        height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Provide an <b>optional</b> description of your image. Must be 55 characters or less.">
+                    <input id="caption" name="caption" type="text" placeholder="optional" size="55" maxlength="55">
                 </div>
             </div>
         </div>
         <input name="submit" type="submit" class="btn btn-primary btn-lg">
-        <hr>
-    </form>
+    </form>    
 </div> <!-- /container -->
+<hr>
 <script type="text/javascript" src="/js/photogallery.js">
 </script>

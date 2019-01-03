@@ -1,7 +1,6 @@
+<link rel="stylesheet" href="/css/logout.css">
 <div class="jumbotron">
-    <div class="container">
-        <h1 class="display-3">Logged out</h1>
-    </div>
+    <h1 class="display-3">Logged out</h1>
 </div>
 <div class="container fill-height">
     <div class="alert alert-primary" role="alert">

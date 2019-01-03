@@ -29,3 +29,11 @@ label{
 input[type="password"]{
     display: inline;
 }
+
+#passwordResetForm input[type="password"]{
+    margin-bottom:1em;
+}
+
+#passwordResetForm input[type="submit"]{
+    display:block;
+}

@@ -1,8 +1,9 @@
+<link rel="stylesheet" href="/css/home.css">
+
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
         <div class="container">
-          <h1 class="display-3">Welcome to BWW Apps!</h1>
-          
+          <h1 class="display-3">Welcome to BWW Apps!</h1>          
         </div>
 </div>
 

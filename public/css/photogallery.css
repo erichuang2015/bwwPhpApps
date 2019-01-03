@@ -20,3 +20,8 @@ div.carousel-item img{
 form div.card{
     height: 97%;
 }
+
+div#captionDiv {
+    margin-top: 1em;
+    padding: 0;
+}

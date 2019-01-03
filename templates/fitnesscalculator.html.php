@@ -13,7 +13,7 @@
                 <label for="bodyFat">Body Fat</label>
                 <input id="bmi" name="rbMeasureSelect" type="radio" value="BMI">
                 <label for="bmi">BMI</label>
-                <input id="btnSubmitFitCalc" type="submit" value="Submit" />
+                <input id="btnSubmitFitCalc" class="btn btn-primary" type="submit" value="Submit" />
             </fieldset>
         </form>
     </div>
@@ -109,7 +109,7 @@
                             class="input-error"></span>
                     </div>
                 </div>
-                <input id="btnSubmitNumMM" type="submit" value="Submit" />
+                <input id="btnSubmitNumMM" class="btn btn-primary" type="submit" value="Submit" />
             </fieldset>
         </form>
         <aside>
@@ -120,7 +120,7 @@
     </div>
     <div id="divbodFatResults">
         <h2 id="h2BodyFatResults"></h2><br>
-        <input id='btnBodFatReset' class='' type='reset' value='Reset' />
+        <input id='btnBodFatReset' class='btn btn-secondary' type='reset' value='Reset' />
     </div>
 
     <div id="divBMIInputPg">
@@ -156,8 +156,8 @@
                 </div>
             </div>
             <div class="">
-                <input id="btnBMISubmit" type="submit" value="Submit" />
-                <input id="btnBMIReset" type="reset" value="Reset" />
+                <input id="btnBMISubmit" class="btn btn-primary" type="submit" value="Submit" />
+                <input id="btnBMIReset" class="btn btn-secondary" type="reset" value="Reset" />
             </div>
             <p id="bmiResults"></p>
         </div>

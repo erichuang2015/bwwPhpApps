@@ -46,7 +46,7 @@
             </ol>
             <br>
             <p hidden="" id="mph-paragraph" class="required-mph-paragraph"></p><br>
-            <input type="submit" value="Submit" id="btn-submit-runSpeed" name="btn-submit-runSpeed" class="submitBtn"
+            <input type="submit" value="Submit" id="btn-submit-runSpeed" name="btn-submit-runSpeed" class="btn btn-primary"
                 onclick="getMilesPerHour()">
             <br>
         </div>

@@ -1,6 +1,17 @@
-/* #btnSubmitSexSelect{
-    width:15%;
-} */
+h2{
+    margin-bottom: 1em;
+}
+
+aside{
+    padding-bottom:5em;
+}
+input#btnSubmitFitCalc{
+    display:block;
+}
+
+input#btnSubmitNumMM{
+    margin-bottom: 1em;
+}
 
 label.radio-btn-male{
     display: block;

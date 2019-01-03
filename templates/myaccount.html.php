@@ -19,15 +19,15 @@
 <?php if ($loggedIn) : ?>
 
 <?php if (isset($changePassword)) : ?>
-<form method="post" action="" class="container fill-height">
+<form id="passwordResetForm" method="post" action="" class="container fill-height">
     <!-- <input name="changePasswordSubmitted" type="hidden" value="true"></div> -->
     <label for="oldpassword">Enter your old password:</label>
-    <input id="oldpassword" name="oldpassword" type="password"><br/>
+    <input id="oldpassword" name="oldpassword" type="password">
     <label for="newpassword1">Enter your new password:</label>
-    <input id="newpassword1" name="newpassword1" type="password"><br/>
+    <input id="newpassword1" name="newpassword1" type="password">
     <label for="newpassword2">Enter your new password again:</label>
-    <input id="newpassword2" name="newpassword2" type="password"><br/>
-    <input name="submitPasswordChange" type="submit" class="btn btn-primary btn-lg">
+    <input id="newpassword2" name="newpassword2" type="password">
+    <input name="submitPasswordChange" type="submit" class="btn btn-primary">
 
     <?php if (!empty($errors)): ?>
 	<div class="errors"><!--Need to replace this css errors class with bootstrap version -->
@@ -39,8 +39,8 @@
 		</ul>
 	</div>
     <?php endif; ?>
+</form>
 <hr>
-</form> 
 <?php endif; ?>
 
 <?php if ($displayMainMenu == true) : ?>
@@ -58,7 +58,7 @@
           <div class="row">
             <div class="col-4">Password: </div>
             <div class="col-4">********* </div>
-            <div class="col-4"><input name="changepassword" type="submit" value="Change your password" class="link"></div>
+            <div class="col-4"><input name="changepassword" type="submit" value="Change your password" class="btn btn-link"></div>
           </div><!-- /row -->
         <hr>
 </form> <!-- /container -->

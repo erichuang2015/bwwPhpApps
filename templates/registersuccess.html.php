@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/css/registersuccess.css">
+
 <div class="jumbotron">
     <div class="container">
         <h1>Registration Successful</h1>
