@@ -33,7 +33,7 @@
                     <span class="sr-only">Information about caption.</span>
                     <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about caption." width="12px"
                         height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Provide an <b>optional</b> description of your image. Must be 55 characters or less.">
-                    <input id="caption" name="caption" type="text" placeholder="optional" size="55" maxlength="55">
+                    <input id="caption" name="caption" type="text" css="form-control text" placeholder="optional" size="55" maxlength="55">
                 </div>
             </div>
         </div>

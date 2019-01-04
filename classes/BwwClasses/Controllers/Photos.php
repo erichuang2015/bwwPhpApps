@@ -102,11 +102,21 @@ class Photos
         // print_r($_FILES['userfile']['error'][0]); die; // print the error produced by the file
         // print_r($_FILES['userfile']['size'][0]); die; // print the file size
         //print_r($_SERVER['DOCUMENT_ROOT']); die; // prints out as: /home/vagrant/Code/bwwPhpApps/public
+
+        if(empty($_FILES['userfile']['tmp_name'][0]))
+        {
+            $error = "You did not select a file.  Please try again.";
+            return ['template' => 'photosupload.html.php',
+                'title' => "Photo Gallery Upload - Error",
+                'variables' => [
+                    'error' => $error
+                ],
+            ];
+        }
         $temporaryImgName = $_FILES['userfile']['tmp_name'][0];
         $imageData = getimagesize($temporaryImgName);
         $ext = image_type_to_extension($imageData[2]);
         $ext = strtolower($ext);
-        // print_r($ext); die;
         // Pick a file extension
         if ($ext != '.jpg' && $ext != '.jpeg' && $ext != '.png') {
             $error = "Please upload only jpg or png files.  Other file types are not supported.";
