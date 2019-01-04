@@ -18,3 +18,20 @@ td {
 h2#horoscope-heading2 {
     margin-bottom: 2%;
 }
+
+#btn-submit-horoscope{
+    margin-top:1rem;
+}
+
+/*iPhone6 Plus*/
+@media (max-width: 415px) {
+    div.jumbotron{
+        padding:0;
+        padding-top:5rem;
+        padding-bottom:2rem;
+    }
+}
+/*/////////////////////////*/
+
+
+

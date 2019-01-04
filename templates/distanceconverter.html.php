@@ -7,28 +7,38 @@
 <div id="divDistanceConverter" class="container fill-height">
     <p>Given the fact that there are 12 inches in a foot, and 5,280 feet in a mile, and one eighth of a mile in
         a furlong, we can compute the distance for a selected unit of feet, miles, or furlongs for a given
-        number of inches.</p><br>
-    <p id=paraInstructions>Begin by choosing whether you want to convert inches to feet, miles, or furlongs.</p><br>
+        number of inches.</p>
+    <p id=paraInstructions>Begin by choosing whether you want to convert inches to feet, miles, or furlongs.</p>
 
     <form id="form-measurement" name="form-measurement">
-        <fieldset>
-            <input id="feet" name="rbSelectMetric" type="radio" value="feet" checked>
-            <label for="feet">Feet</label>
-            <input id="miles" name="rbSelectMetric" type="radio" value="miles">
-            <label for="miles">Miles</label>
-            <input id="furlongs" name="rbSelectMetric" type="radio" value="furlongs">
-            <label for="furlongs">Furlongs</label>
-            <input id="btn-submit-Dist-Convert" type="submit" value="Submit" name="btn-submit-Dist-Convert" />
-        </fieldset>
+        <ul>
+            <li>
+                <input id="feet" name="rbSelectMetric" type="radio" value="feet" checked>
+                <label class="label col-form-label" for="feet">Feet</label>
+            </li>
+            <li>
+                <input id="miles" name="rbSelectMetric" type="radio" value="miles">
+                <label class="label col-form-label" for="miles">Miles</label>
+            </li>
+            <li>
+                <input id="furlongs" name="rbSelectMetric" type="radio" value="furlongs">
+                <label class="label col-form-label" for="furlongs">Furlongs</label>
+            </li>
+        </ul>
+        <input id="btn-submit-Dist-Convert" type="submit" value="Submit" name="btn-submit-Dist-Convert" class="btn btn-primary"/>
     </form>
 
-    <div id="inchesInputArea">
-        <label for="inputInches">Inches:</label>
-        <input id="inputInches" name="inputInches" class="" type="text" /><span id="inputError" class="input-error"></span>
-        <input id="btnInputSubmit" name="btnInputSubmit" type="submit" value="Submit" />
-        <label for="resultTxt">Result:</label>
-        <input id="resultTxt" name="inputInches" type="text" readonly />
-        <input id="btnReset" type="reset" value="Reset" />
-    </div>
+    <form id="inchesInputForm">
+        <div class="form-group">
+            <label class="label col-form-label" for="inputInches">Inches:</label>
+            <input id="inputInches" name="inputInches" class="form-control" type="text" /><span id="inputError" class="input-error"></span>
+        </div>
+        <div class="form-group">
+            <label class="label col-form-label" for="resultTxt">Result:</label>
+            <input id="resultTxt" name="inputInches" class="form-control" type="text" readonly />
+        </div>
+        <input id="btnInputSubmit" name="btnInputSubmit" type="submit" value="Submit" class="btn btn-primary" />
+        <input id="btnReset" type="reset" value="Reset" class="btn btn-secondary" />
+    </form>
 </div>
 <script type="text/javascript" src="/js/distanceconverter.js"></script>

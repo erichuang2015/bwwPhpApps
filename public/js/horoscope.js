@@ -1,6 +1,28 @@
 /*jshint esversion: 6 */
 $(document).ready(function () {
     "use strict";
+    // run test on initial page load
+    var size = checkSize();
+    if(size === "small"){
+        $("#largeScreenDisplay").hide();
+        $("#smallScreenDisplay").show();
+    }else{
+        $("#largeScreenDisplay").show();
+        $("#smallScreenDisplay").hide();
+    }
+
+    // run test on resize of the window
+    $(window).on("resize", function(){
+        var windowSize = checkSize();
+        if(windowSize === "small"){
+            $("#largeScreenDisplay").hide();
+            $("#smallScreenDisplay").show();
+        }else{
+            $("#largeScreenDisplay").show();
+            $("#smallScreenDisplay").hide();
+        }
+    });
+
     $("#divHoroscopeResults").hide();
     let myHoroscopeGen;
     $("#btn-submit-horoscope").on("click keyup", function (e) {

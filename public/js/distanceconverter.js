@@ -2,7 +2,7 @@
 $(document).ready(function () {
     "use strict";
     let myDistanceConverter;
-    $("#inchesInputArea").hide();
+    $("#inchesInputForm").hide();
 
     $("#inputInches").on("change", function (e) {
         var inputInchTxt = $("#inputInches").val();
@@ -19,7 +19,7 @@ $(document).ready(function () {
         $("#paraInstructions").text(
             "Enter the number of inches you would like to convert to " +
             myDistanceConverter.unitOfMeasure.toString() + ".");
-        $("#inchesInputArea").show();
+        $("#inchesInputForm").show();
     });
 
     $("#btnInputSubmit").on("click keyup", function (e) {
@@ -60,7 +60,7 @@ $(document).ready(function () {
     });
 
     $("#btnReset").on("click keyup", function (e) {
-        $("#inchesInputArea").hide();
+        $("#inchesInputForm").hide();
         $("#form-measurement").show();
         $("#inputInches").val("");
         $("#resultTxt").val("");

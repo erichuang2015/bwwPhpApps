@@ -25,3 +25,20 @@ div#captionDiv {
     margin-top: 1em;
     padding: 0;
 }
+
+/*iPhone6 Plus*/
+@media (max-width: 415px) {
+    div.jumbotron{
+        padding-top:1rem
+    }
+  }
+  /*/////////////////////////*/
+  
+  
+  /*iPhone6*/
+  @media (max-width: 376px) {
+    div.jumbotron{
+        padding-top:1rem
+    }
+  }
+  /*/////////////////////////*/

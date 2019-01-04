@@ -73,3 +73,27 @@ html {
 table.xdebug-error{
   margin-top: 3em;
 }
+
+
+/*iPhone6 Plus*/
+@media (max-width: 415px) {
+  div.jumbotron{
+      padding-top:5rem
+  }
+}
+/*/////////////////////////*/
+
+
+/*iPhone6*/
+@media (max-width: 376px) {
+  div.jumbotron{
+      padding-top:5rem
+  }
+}
+/*/////////////////////////*/
+
+
+.resolutionSizeCheck {float:left;}
+@media only screen and (max-width: 767px){
+	.resolutionSizeCheck {float:none;}
+}

@@ -21,3 +21,14 @@ function roundTwoDecimals(num) {
 function convertFeetToInches(feet) {
     return feet * 12;
 }
+
+//Function to the css rule
+function checkSize(){
+    var smallScreen = "small";
+    var largeScreen = "large";
+    if ($(".resolutionSizeCheck").css("float") == "none" ){
+        return smallScreen;
+    }else{
+        return largeScreen;
+    }
+}
