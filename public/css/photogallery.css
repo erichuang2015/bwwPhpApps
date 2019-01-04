@@ -26,10 +26,32 @@ div#captionDiv {
     padding: 0;
 }
 
+/*iPad*/
+@media (max-width: 769px) {
+    div.jumbotron{
+        padding-top:1rem
+    }
+
+    div.carousel-item img {
+        max-height: 1024px;
+        max-width: 768px;
+        min-height: auto;
+        min-width: auto;
+    }
+  }
+/*/////////////////////////*/
+
 /*iPhone6 Plus*/
 @media (max-width: 415px) {
     div.jumbotron{
         padding-top:1rem
+    }
+
+    div.carousel-item img {
+        max-height: 715px;
+        max-width: 414px;
+        min-height: auto;
+        min-width: auto;
     }
   }
   /*/////////////////////////*/
@@ -39,6 +61,13 @@ div#captionDiv {
   @media (max-width: 376px) {
     div.jumbotron{
         padding-top:1rem
+    }
+
+    div.carousel-item img {
+        max-height: 650px;
+        max-width: 375px;
+        min-height: auto;
+        min-width: auto;
     }
   }
   /*/////////////////////////*/

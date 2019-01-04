@@ -46,19 +46,21 @@
 <?php if ($displayMainMenu == true) : ?>
 <form method="post" action="" class="container fill-height">
           <div class="row">
-            <div class="col-4">Name: </div>
-            <div class="col-4"><?= $fname . ' ' . $lname ?></div>
+            <div class="col-3">Name: </div>
+            <div class="col"><?= $fname . ' ' . $lname ?></div>
             <!-- <div class="col-4"><input name="changeusername" type="submit" value="Change your username"></div> -->
           </div><!-- /row -->
           <div class="row">
-            <div class="col-4">Email: </div>
-            <div class="col-4"><?= $email ?></div>
+            <div class="col-3">Email: </div>
+            <div class="col"><?= $email ?></div>
             <!-- <div class="col-4"><input name="changeemail" type="submit" value="Change your email"></div> -->
           </div><!-- /row -->
           <div class="row">
-            <div class="col-4">Password: </div>
-            <div class="col-4">********* </div>
-            <div class="col-4"><input name="changepassword" type="submit" value="Change your password" class="btn btn-link"></div>
+            <div class="col-3">Password: </div>
+            <div class="col">********* </div>
+          </div><!-- /row -->
+          <div class="row">
+            <div class="col"><input name="changepassword" type="submit" value="Change your password" class="btn btn-link"></div>
           </div><!-- /row -->
         <hr>
 </form> <!-- /container -->

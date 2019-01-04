@@ -1,27 +1,3 @@
-input[type="submit"].link {
-	overflow: visible;
-    width: auto;
-    text-align: left;
-	color: blue;
-	background: none;
-	margin: 0;
-	padding: 0;
-	border: none;
-    cursor: pointer;
-    -moz-user-select: text;
-    -webkit-appearance: none;
-    text-decoration: underline;
-}
-
-input[type="submit"].link span {
-	text-decoration: underline;
-}
-
-input[type="submit"].link:hover,
-input[type="submit"].link:focus {
-	color: black;
-}
-
 label{
     display: block;
 }

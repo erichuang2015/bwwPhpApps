@@ -24,7 +24,7 @@
 
     <?php if ($index == 0): ?>
         <div class="carousel-item active">
-            <img src="/uploads/<?=$photo['name']?>" alt="<?=htmlspecialchars($photo['caption'], ENT_QUOTES, 'UTF-8')?>">
+            <img class="d-block w-100" src="/uploads/<?=$photo['name']?>" alt="<?=htmlspecialchars($photo['caption'], ENT_QUOTES, 'UTF-8')?>" style="max-width:414;">
         <div class="carousel-caption">
             <h3><?=htmlspecialchars($photo['caption'], ENT_QUOTES, 'UTF-8')?></h3>
         </div>
