@@ -6,7 +6,7 @@
    </div>
    </div>
 <?php endif;?>
-
+      <div class="center-div">
         <form method="post" action="" class="form-signin">
             <img class="mb-4" src="css/images/brand-logo-template.jpg" alt="BWW Apps" width="300" height="153">
             <h1 class="h3 mb-3 font-weight-normal text">Please sign in</h1>
@@ -24,4 +24,5 @@
             <br/>
             <span>Forgot your password?</span><a href="/myaccount/passwordrecovery">click here</a>
             <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-          </form>
+        </form>
+    </div>
