@@ -11,7 +11,7 @@
         <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about 1RM - 1 rep max" width="12px"
             height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="1RM stands for one repetion maximum.  In other words, it is the maximum amount of weight you can lift one time.">
             <input id="max" name="max" type="number" min="10" max="1200" value="<?= $max ?? "" ?>" required>
-        <input id="submit" name="submit" type="submit" class="btn btn-primary">
+        <input id="submit" name="submit" type="submit" class="btn btn-primary" value="submit">
     </form>
 </div>
 <script type="text/javascript" src="/js/pyramid.js"></script>
