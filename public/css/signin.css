@@ -46,3 +46,12 @@ main{
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+/* Edge Browser styles begin */
+@supports (-ms-ime-align: auto) {
+  div.center-div
+  {
+      margin: 0 auto;
+      width: 330px;
+  }
+}
+/* Edge Browser styles end */
