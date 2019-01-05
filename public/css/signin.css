@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
   height: 100%;
 }
 
@@ -11,10 +10,11 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
+  width: 100%;
 }
 
-main{
-  width: -webkit-fill-available;
+main {
+  width: 100%;
 }
 
 .form-signin {
@@ -23,9 +23,11 @@ main{
   padding: 15px;
   margin: auto;
 }
+
 .form-signin .checkbox {
   font-weight: 400;
 }
+
 .form-signin .form-control {
   position: relative;
   box-sizing: border-box;
@@ -33,31 +35,35 @@ main{
   padding: 10px;
   font-size: 16px;
 }
+
 .form-signin .form-control:focus {
   z-index: 2;
 }
+
 .form-signin input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
+
 .form-signin input[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
-div.center-div
-  {
-      margin: 0 auto;
-      width: 330px;
-  }
+/* .box.flex {
+  display: flex;
+  justify-content: center;
+} */
+
 /* Edge Browser styles begin */
+
 @supports (-ms-ime-align: auto) {
-  div.center-div
-  {
-      margin: 0 auto;
-      width: 330px;
-  }
+  /* div.center-div {
+    margin: 0 auto;
+    width: 330px;
+  } */
 }
+
 /* Edge Browser styles end */
