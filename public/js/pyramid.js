@@ -19,12 +19,15 @@ $(document).ready(function () {
         var selectedIndex = selectElement[0].selectedIndex;
         var selectedExercise = selectElement[0][selectedIndex].text;
         var exerciseId = $(selectElement[0][selectedIndex]).attr("data-id");
+        // $("#recordId").val(exerciseId);
         $("#exerciseId").val(exerciseId);
         $("#exerciseTxt").text(selectedExercise.toLowerCase());
         $("#chooseExercisePanel").hide();
         $("#maxInputForm").show();
         var arrayOfInputs = $("input[type='hidden'].user-max-data");
-        var exerciseMax = $(arrayOfInputs[exerciseId - 1]).attr("data-max");// -1 for zero based incex
+        var exerciseMax = $(arrayOfInputs[exerciseId - 1]).attr("data-max");// -1 for zero based index
         $("#max").val(exerciseMax);
+        var recordId = $(arrayOfInputs[exerciseId - 1]).attr("data-id");// -1 for zero based index
+        $("#recordId").val(recordId);
     });
 });

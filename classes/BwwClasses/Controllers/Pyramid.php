@@ -65,14 +65,16 @@ class Pyramid
     public function save1RM()
 	{
 		$user = $this->authentication->getUser();
-		$loggedIn = $this->authentication->isLoggedIn();
+        $loggedIn = $this->authentication->isLoggedIn();
+        // print_r($_POST['recordId']);die;
 		// if (isset($_GET['id'])) {
         $pyramidData = [];
 		// if the user is logged in save their selections for future use.
 		if ($loggedIn) {
-			$pyramidData ['user_id'] = (int)$user['id'];
-            $pyramidData ['max'] = (double)$_POST['max'];
-            $pyramidData ['exercise_type'] = (int)$_POST['exerciseId'];
+            $pyramidData['id'] = (int)$_POST['recordId'] ?? NULL;
+			$pyramidData['user_id'] = (int)$user['id'];
+            $pyramidData['max'] = (double)$_POST['max'];
+            $pyramidData['exercise_type'] = (int)$_POST['exerciseId'];
             $this->pyramidUserMaxTable->save($pyramidData);
             $_SESSION['max'] = (double)$_POST['max'];
             $theExercise = $this->exerciseTypesTable->findById((int)$_POST['exerciseId']);

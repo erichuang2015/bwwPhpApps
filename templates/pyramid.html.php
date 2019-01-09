@@ -47,8 +47,8 @@
             <input type="hidden" class="user-max-data" data-id="<?=$userData["id"]?>" data-user_id="<?=$userData["user_id"]?>" data-max="<?=$userData["max"]?>" data-exercise_type="<?=$userData["exercise_type"]?>">
             <?php endforeach;?>
 
-
-            <input type="hidden" id="exerciseId" name="exerciseId">
+            <input type="hidden" id="recordId" name="recordId">
+            <input type="hidden" id="exerciseId" name="exerciseId"> <!-- This is supposed to be the exercise type -->
             <input id="max" name="max" type="number" min="10" max="1200" size="4" step="0.25" value="" required>
         </div>
     </div>
