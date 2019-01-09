@@ -44,10 +44,7 @@
                 height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="1RM stands for one repetion maximum.  In other words, it is the maximum amount of weight you can lift one time.">
 
             <?php foreach ($userDatas as $userData): ?>
-            <input type="hidden" class="user-max-data" data-id="<?=$userData[" id"]?>" data-user_id="
-            <?=$userData["user_id"]?>" data-max="
-            <?=$userData["max"]?>" data-exercise_type="
-            <?=$userData["exercise_type"]?>">
+            <input type="hidden" class="user-max-data" data-id="<?=$userData["id"]?>" data-user_id="<?=$userData["user_id"]?>" data-max="<?=$userData["max"]?>" data-exercise_type="<?=$userData["exercise_type"]?>">
             <?php endforeach;?>
 
 
