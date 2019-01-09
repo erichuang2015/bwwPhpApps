@@ -1,3 +1,7 @@
+caption{
+    caption-side: top;
+    text-align: center;
+}
 input#max{
     margin-bottom:1em;
 }

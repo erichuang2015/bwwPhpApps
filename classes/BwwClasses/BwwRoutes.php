@@ -7,6 +7,7 @@ class BwwRoutes implements \utilityClasses\Routes
 	private $spartacusSettingsTable;
 	private $pyramidUserMaxTable;
 	private $photosTable;
+	private $exerciseTypesTable;
 	private $authentication;
 
 	public function __construct()
@@ -17,6 +18,8 @@ class BwwRoutes implements \utilityClasses\Routes
 		$this->spartacusSettingsTable = new \utilityClasses\DatabaseTable($pdo, 'spartacus_setting', 'id');
 		$this->pyramidUserMaxTable = new \utilityClasses\DatabaseTable($pdo, 'pyramid_user_max', 'id');
 		$this->photosTable = new \utilityClasses\DatabaseTable($pdo, 'photo', 'id');
+		$this->exerciseTypesTable = new \utilityClasses\DatabaseTable($pdo, 'exercise_types', 'id');
+		
 		$this->authentication = new \utilityClasses\Authentication($this->usersTable, 'email', 'password');
 	}
 
@@ -29,7 +32,8 @@ class BwwRoutes implements \utilityClasses\Routes
 		$runSpeedCalculatorController = new \BwwClasses\Controllers\RunSpeedCalculator();
 		$fitnessCalculatorController = new \BwwClasses\Controllers\FitnessCalculator();
 		$distanceconverterController = new \BwwClasses\Controllers\DistanceConverter();
-		$pyramidController = new \BwwClasses\Controllers\Pyramid($this->usersTable, $this->pyramidUserMaxTable, $this->authentication);
+		// print_r(); die;
+		$pyramidController = new \BwwClasses\Controllers\Pyramid($this->usersTable, $this->pyramidUserMaxTable, $this->exerciseTypesTable, $this->authentication);
 		$photosController = new \BwwClasses\Controllers\Photos($this->usersTable, $this->photosTable, $this->authentication);
 		$myaccountController = new \BwwClasses\Controllers\MyAccount($this->usersTable, $this->authentication);
 

@@ -9,26 +9,46 @@ class Pyramid
     private $authentication;
 	private $usersTable;
     private $pyramidUserMaxTable;
-    
-	public function __construct(DatabaseTable $usersTable, DatabaseTable $pyramidUserMaxTable, Authentication $authentication)
+    private $exerciseTypesTable;
+
+	public function __construct(DatabaseTable $usersTable, DatabaseTable $pyramidUserMaxTable, DatabaseTable $exerciseTypesTable, Authentication $authentication)
 	{
         $this->usersTable = $usersTable;
-		$this->pyramidUserMaxTable = $pyramidUserMaxTable;
+        $this->pyramidUserMaxTable = $pyramidUserMaxTable;
+        $this->exerciseTypesTable = $exerciseTypesTable;
 		$this->authentication = $authentication;
 	}
 
 	public function render()
 	{
         $loggedIn = $this->authentication->isLoggedIn();
-        $userData = [];
+        $userDatas = [];
         if($loggedIn){
 			$user = $this->authentication->getUser();
-            $userData = $this->pyramidUserMaxTable->findById($user['id']);
+            $userDatas = $this->pyramidUserMaxTable->find('user_id', $user['id']);
+            $exerciseTypes = [];
+            $exercises = $this->exerciseTypesTable->findAll(); // get all exercise types
+            // print_r($exercises);die;
+            foreach ($exercises as $exercise) {
+                // print_r($exercise['author_id']);die;
+                if($user['id'] != $exercise['author_id'] && $exercise['author_id'] != 0)
+                {
+                    // print_r("Continuing");
+                    continue;
+                }
+                // print_r("inserting exercise data");die;
+                $exerciseTypes[] = [
+                    'id' => (int)$exercise['id'],
+                    'exerciseName' => (string)$exercise['exercise_name']
+                ];
+            }
             return [
                 'template' => 'pyramid.html.php',
                 'title' => 'Pyramid Workout',
                 'variables' => [
-                   'max' => (double)$userData["max"] ?? NULL
+                    'loggedIn' => $loggedIn,
+                    'userDatas' => $userDatas,
+                    'exerciseTypes' => $exerciseTypes ?? NULL
                   ]
                ];
 		}
@@ -36,11 +56,12 @@ class Pyramid
 		 'template' => 'pyramid.html.php',
          'title' => 'Pyramid Workout',
          'variables' => [
-            'max' => 10
+            'loggedIn' => $loggedIn,
+            'max' => 100
            ]
 		];
     }
-    
+
     public function save1RM()
 	{
 		$user = $this->authentication->getUser();
@@ -49,16 +70,23 @@ class Pyramid
         $pyramidData = [];
 		// if the user is logged in save their selections for future use.
 		if ($loggedIn) {
-			$pyramidData ['id'] = (int)$user['id'];
-			$pyramidData ['max'] = (double)$_POST['max'];
-			$this->pyramidUserMaxTable->save($pyramidData);
-		}
-        $_SESSION['max'] = (double)$_POST['max'];
+			$pyramidData ['user_id'] = (int)$user['id'];
+            $pyramidData ['max'] = (double)$_POST['max'];
+            $pyramidData ['exercise_type'] = (int)$_POST['exerciseId'];
+            $this->pyramidUserMaxTable->save($pyramidData);
+            $_SESSION['max'] = (double)$_POST['max'];
+            $theExercise = $this->exerciseTypesTable->findById((int)$_POST['exerciseId']);
+            $_SESSION['exerciseName'] = $theExercise['exercise_name'];
+        }
+        else{
+            $_SESSION['max'] = (double)$_POST['maxNotLogged'];
+        }
         header('location: /pyramid/table');
     }
 
     public function renderExercises()
 	{
+        $loggedIn = $this->authentication->isLoggedIn();
         $max = $_SESSION['max'];
         $fiftyFivePercent = 0.55;
         $sixtyFivePercent = 0.65;
@@ -83,7 +111,8 @@ class Pyramid
              'sixReps' => $sixReps,
              'fourReps' => $fourReps,
              'threeReps' => $threeReps,
-             'twoReps' => $twoReps
+             'twoReps' => $twoReps,
+             'exerciseName' => $_SESSION['exerciseName'] ?? NULL
             ]
            ];
 	}
