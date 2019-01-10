@@ -42,6 +42,8 @@ class Pyramid
                     'exerciseName' => (string)$exercise['exercise_name']
                 ];
             }
+            $_SESSION['userDatas'] = $userDatas;
+            $_SESSION['exerciseTypes'] = $exerciseTypes ?? NULL;
             return [
                 'template' => 'pyramid.html.php',
                 'title' => 'Pyramid Workout',
@@ -66,11 +68,26 @@ class Pyramid
 	{
 		$user = $this->authentication->getUser();
         $loggedIn = $this->authentication->isLoggedIn();
-        // print_r($_POST['recordId']);die;
+        // print_r($_POST['exerciseId']);die;
 		// if (isset($_GET['id'])) {
         $pyramidData = [];
 		// if the user is logged in save their selections for future use.
 		if ($loggedIn) {
+            if((int)$_POST['exerciseId'] == -1 || !isset($_POST['exerciseId']) )
+            {
+                $error = "You did not select an exercise.  Please try again.";
+                return ['template' => 'pyramid.html.php',
+                    'title' => "Photo Gallery Upload - Error",
+                    'variables' => [
+                        'loggedIn' => $loggedIn,
+                        'userDatas' => $_SESSION['userDatas'],
+                        'exerciseTypes' => $_SESSION['exerciseTypes'],
+                        'error' => $error
+                    ],
+                ];
+            }
+
+
             $pyramidData['id'] = (int)$_POST['recordId'] ?? NULL;
 			$pyramidData['user_id'] = (int)$user['id'];
             $pyramidData['max'] = (double)$_POST['max'];

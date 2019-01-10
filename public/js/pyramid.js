@@ -19,8 +19,11 @@ $(document).ready(function () {
         var selectedIndex = selectElement[0].selectedIndex;
         var selectedExercise = selectElement[0][selectedIndex].text;
         var exerciseId = $(selectElement[0][selectedIndex]).attr("data-id");
-        // $("#recordId").val(exerciseId);
-        $("#exerciseId").val(exerciseId);
+        if(exerciseId){
+            $("#exerciseId").val(exerciseId);
+        }else{
+            $("#exerciseId").val("-1");
+        }
         $("#exerciseTxt").text(selectedExercise.toLowerCase());
         $("#chooseExercisePanel").hide();
         $("#maxInputForm").show();

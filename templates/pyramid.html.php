@@ -4,6 +4,15 @@
         <h1 class="display-3">Pyramid Workout</h1>
     </div>
 </div>
+
+<?php if (!empty($error)): ?>
+    <div class="container fill-height">
+    <div class="alert alert-danger" role="alert">
+        <h2>Your exercise selection could not be processed.  Please check the following: <span class="d-block"> <?=$error?> </span></h2>
+    </div>
+</div>
+<?php endif;?>
+
 <?php if ($loggedIn): ?>
 <div id="chooseExercisePanel" class="container fill-height">
 
