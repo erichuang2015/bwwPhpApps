@@ -64,7 +64,39 @@ class Pyramid
 		];
     }
 
-    public function save1RM()
+    public function processUserRequest()
+    {
+        $exerciseId = (isset($_POST['exerciseId'])) ? (int)$_POST['exerciseId'] : -1;
+        $recordId = (isset($_POST['recordId'])) ? (int)$_POST['recordId'] : NULL;
+        $max = (isset($_POST['max'])) ? (double)$_POST['max'] : 0;
+
+
+        if(isset($_POST['maxNotLogged'])){
+            $maxNotLogged =  (double)$_POST['maxNotLogged'];
+        }
+
+        if (isset($_POST['newExerciseTxtInput'])){
+            $newExerciseName = (string)$_POST['newExerciseTxtInput'];
+            $this->saveNewExercise($newExerciseName);
+        }
+        else{
+            $this->save1RM($exerciseId, $recordId, $max, $maxNotLogged);
+        }
+    }
+
+    private function saveNewExercise($newExerciseName){
+        $user = $this->authentication->getUser();
+        $loggedIn = $this->authentication->isLoggedIn();
+        $userId = (int)$user['id'];
+        $newExerciseData = [];
+        $newExerciseData['exercise_name'] = $newExerciseName;
+        $newExerciseData['author_id'] = $userId;
+        $this->exerciseTypesTable->save($newExerciseData);
+        // $this->render();
+        header('location: /pyramid');
+    }
+
+    private function save1RM($exerciseId, $recordId, $max, $maxNotLogged)
 	{
 		$user = $this->authentication->getUser();
         $loggedIn = $this->authentication->isLoggedIn();
@@ -73,7 +105,7 @@ class Pyramid
         $pyramidData = [];
 		// if the user is logged in save their selections for future use.
 		if ($loggedIn) {
-            if((int)$_POST['exerciseId'] == -1 || !isset($_POST['exerciseId']) )
+            if($exerciseId == -1)
             {
                 $error = "You did not select an exercise.  Please try again.";
                 return ['template' => 'pyramid.html.php',
@@ -88,17 +120,17 @@ class Pyramid
             }
 
 
-            $pyramidData['id'] = (int)$_POST['recordId'] ?? NULL;
+            $pyramidData['id'] = $recordId;
 			$pyramidData['user_id'] = (int)$user['id'];
-            $pyramidData['max'] = (double)$_POST['max'];
-            $pyramidData['exercise_type'] = (int)$_POST['exerciseId'];
+            $pyramidData['max'] = $max;
+            $pyramidData['exercise_type'] = $exerciseId;
             $this->pyramidUserMaxTable->save($pyramidData);
-            $_SESSION['max'] = (double)$_POST['max'];
-            $theExercise = $this->exerciseTypesTable->findById((int)$_POST['exerciseId']);
+            $_SESSION['max'] = $max;
+            $theExercise = $this->exerciseTypesTable->findById($exerciseId);
             $_SESSION['exerciseName'] = $theExercise['exercise_name'];
         }
         else{
-            $_SESSION['max'] = (double)$_POST['maxNotLogged'];
+            $_SESSION['max'] = $maxNotLogged;
         }
         header('location: /pyramid/table');
     }

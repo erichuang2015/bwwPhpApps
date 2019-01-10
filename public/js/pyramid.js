@@ -8,22 +8,42 @@ $(document).ready(function () {
             title: ""
         });
     });
-    // $("#exerciseSelect").on("change", function(){
-    //     var selectedEx = this;
-    //     console.log(selectedEx);
-    // });
-    // $("#exerciseSelect").on("change", function(){ console.log(this.selectedIndex); });
+
+    $("#exerciseSelect").on("change", function(){
+        var selectElement = $("#exerciseSelect");
+        var selectedIndex = selectElement[0].selectedIndex;
+        if(selectedIndex > 0){
+            $("#selectExerciseBtn").removeAttr("disabled");
+        }else{
+            $("#selectExerciseBtn").attr("disabled", "true");
+        }
+    });
+
+    $("#newExerciseTxtInput").on("keyup	", function(){
+        if($(this).val().length > 0){
+            $("#newExerciseSubmitBtn").removeAttr("disabled");
+        }else{
+            $("#newExerciseSubmitBtn").attr("disabled", "true");
+        }
+    });
 
     $("#selectExerciseBtn").on("click keydown", function(){
         var selectElement = $("#exerciseSelect");
         var selectedIndex = selectElement[0].selectedIndex;
         var selectedExercise = selectElement[0][selectedIndex].text;
         var exerciseId = $(selectElement[0][selectedIndex]).attr("data-id");
+        var otherOption = $(selectElement[0][selectedIndex]).attr("data-other");
+        if(otherOption){
+            $("#chooseExercisePanel").hide();
+            $("#newExerciseForm").show();
+            return;
+        }
         if(exerciseId){
             $("#exerciseId").val(exerciseId);
         }else{
             $("#exerciseId").val("-1");
         }
+        // console.log(exerciseId);
         $("#exerciseTxt").text(selectedExercise.toLowerCase());
         $("#chooseExercisePanel").hide();
         $("#maxInputForm").show();

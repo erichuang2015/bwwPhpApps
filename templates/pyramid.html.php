@@ -15,7 +15,6 @@
 
 <?php if ($loggedIn): ?>
 <div id="chooseExercisePanel" class="container fill-height">
-
     <div id="chooseExerciseRow" class="row mb-3">
         <div class="col-xs-12 col-sm-9 col-md-3 col-lg-4">
             <label for="exercise">Which exercise do you want to use the pyramid for?</label>
@@ -31,7 +30,7 @@
                 </option>
                 <?php $value = $value + 1; ?>
                 <?php endforeach;?>
-                <option value="<?=$value?>">Other</option>
+                <option value="<?=$value?>" data-other="other">Other</option>
             </select>
             <div class="invalid-feedback">
                 Please select a valid exercise.
@@ -40,10 +39,35 @@
     </div>
     <div class="row mb-3">
         <div class="col-xs-12 col-sm-9 col-md-3 col-lg-4">
-            <button id="selectExerciseBtn" class="btn btn-primary">submit</button>
+            <button id="selectExerciseBtn" class="btn btn-primary" disabled>submit</button>
         </div>
     </div>
 </div>
+
+<!-- Add new exercise form begins here -->
+<form id="newExerciseForm" action="" method="post" class="container fill-height" style="display: none;">
+    <div id="newExerciseRow" class="row mb-3">
+        <div class="col-xs-12 col-sm-9 col-md-3 col-lg-4">
+            <label for="newExercise">Enter the name of your new exercise below:</label>
+            <span class="sr-only">A text input for entry of a new exercise name.</span>
+            <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="A text input for entry of a new exercise name." width="12px"
+                height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="The exercise name you add will be saved so that you can use it to save your max repetitions against in the future.  The maximum number of characters for this input is 45.">
+                <input type="text" class="d-block w-100" id="newExerciseTxtInput" name="newExerciseTxtInput" maxlength="45" required>
+            <div class="invalid-feedback">
+                Please input a valid exercise name.
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-xs-12 col-sm-9 col-md-3 col-lg-4">
+            <button id="newExerciseSubmitBtn" class="btn btn-primary" disabled>submit</button>
+        </div>
+    </div>
+</form>
+<!-- Add new exercise form ends here -->
+
+
+
 <form id="maxInputForm" action="" method="post" class="container fill-height" style="display: none;">
     <div class="row mb-3">
         <div id="col-xs-12 col-sm-9 col-md-3 col-lg-4">

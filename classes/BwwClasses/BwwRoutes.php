@@ -12,14 +12,14 @@ class BwwRoutes implements \utilityClasses\Routes
 
 	public function __construct()
 	{
-		
+
 		include __DIR__ . '/../../includes/DatabaseConnection.php';
 		$this->usersTable = new \utilityClasses\DatabaseTable($pdo, 'user', 'id');
 		$this->spartacusSettingsTable = new \utilityClasses\DatabaseTable($pdo, 'spartacus_setting', 'id');
 		$this->pyramidUserMaxTable = new \utilityClasses\DatabaseTable($pdo, 'pyramid_user_max', 'id');
 		$this->photosTable = new \utilityClasses\DatabaseTable($pdo, 'photo', 'id');
 		$this->exerciseTypesTable = new \utilityClasses\DatabaseTable($pdo, 'exercise_types', 'id');
-		
+
 		$this->authentication = new \utilityClasses\Authentication($this->usersTable, 'email', 'password');
 	}
 
@@ -129,7 +129,7 @@ class BwwRoutes implements \utilityClasses\Routes
 				],
 				'POST' => [
 					'controller' => $pyramidController,
-					'action' => 'save1RM'
+					'action' => 'processUserRequest'
 				]
 			],
 			'pyramid/table' => [
@@ -204,7 +204,7 @@ class BwwRoutes implements \utilityClasses\Routes
 					'controller' => $myaccountController,
 					'action' => 'recoverPassword'
 				],
-			],			
+			],
 			'' => [
 				'GET' => [
 					'controller' => $myaccountController,
