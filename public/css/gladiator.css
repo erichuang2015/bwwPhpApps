@@ -5,13 +5,13 @@
     height: 340px;
     background-position-x: center;
   }
-  
+
   /* .red-background {
       background: url("images/spartacus/red-background.png");
       background-repeat: no-repeat;
       background-size: auto;
   } */
-  
+
   .goblet-squat{
     background: url("images/spartacus/goblet-squat.jpg");
     background-repeat: no-repeat;
@@ -19,7 +19,7 @@
     width: 566px;
     height: 468px;
   }
-  
+
   .mountain-climber{
     background: url("images/spartacus/mountain-climber.jpg");
     background-repeat: no-repeat;
@@ -109,7 +109,7 @@
     width: 414px;
     height: 468px;
   }
-  
+
   .mountain-climber{
     background: url("images/spartacus/mountain-climber-400x400.jpg");
     background-repeat: no-repeat;
@@ -189,71 +189,71 @@
     background-repeat: no-repeat;
     background-size: auto;
     width: 414px;
-    height: 468px;
+    height: 410px;
   }
-  
+
   .mountain-climber{
     background: url("images/spartacus/mountain-climber-375x375.jpg");
     background-repeat: no-repeat;
     background-size: auto;
     width: 414px;
-    height: 486px;
+    height: 410px;
   }
   .gladius-swing{
     background: url("images/spartacus/single-arm-dumbell-swing-375x375.jpg");
     background-repeat: no-repeat;
     background-size: auto;
     width: 414px;
-    height: 437px;
+    height: 410px;
   }
   .t-pushup{
     background: url("images/spartacus/t-pushup-375x375.jpg");
     background-repeat: no-repeat;
     background-size: auto;
     width: 414px;
-    height: 491px;
+    height: 410px;
   }
   .latin-leap{
     background: url("images/spartacus/split-jump-375x375.jpg");
     background-repeat: no-repeat;
     background-size: auto;
     width: 414px;
-    height: 482px;
+    height: 410px;
   }
   .dumbell-row{
     background: url("images/spartacus/dumbbell-row-375x375.jpg");
     background-repeat: no-repeat;
     background-size: auto;
     width: 414px;
-    height: 502px;
+    height: 410px;
   }
   .dumbell-side-lunge-touch{
     background: url("images/spartacus/dumbbell-side-lunge-touch-375x375.jpg");
     background-repeat: no-repeat;
     background-size: auto;
     width: 414px;
-    height: 452px;
+    height: 410px;
   }
   .slave-boat-row{
     background: url("images/spartacus/pushup-position-row-375x375.jpg");
     background-repeat: no-repeat;
     background-size: auto;
     width: 414px;
-    height: 475px;
+    height: 410px;
   }
   .dumbell-lunge-rotation{
     background: url("images/spartacus/dumbbell-lunge-rotation-375x375.jpg");
     background-repeat: no-repeat;
     background-size: auto;
     width: 414px;
-    height: 501px;
+    height: 410px;
   }
   .dumbell-push-press{
     background: url("images/spartacus/dumbbell-push-press-375x375.jpg");
     background-repeat: no-repeat;
     background-size: auto;
     width: 414px;
-    height: 513px;
+    height: 410px;
   }
 }
 /*/////////////////////////*/
