@@ -1,11 +1,12 @@
-"use strict";
 //Spartacus begin
 
 $(document).ready(function () {
+    "use strict";
     renderSpartacusWorkout();
 });
 
 function renderSpartacusWorkout() {
+    "use strict";
     let difficultySetting = [30000, 45000, 60000];//easy, medium, hard
     let difficultyIndex = $("#diffLevel").val();
     // console.log(difficultyIndex);
@@ -24,6 +25,7 @@ function renderSpartacusWorkout() {
 }
 
 function exercise(exerciseType, round, difficultyLvl) {
+    "use strict";
     let currentExercise = (exerciseType) ? exerciseType : 1;
     let currentRound = round;
     switch (currentExercise) {
@@ -33,6 +35,7 @@ function exercise(exerciseType, round, difficultyLvl) {
             currentExercise++;
             let now = new Date();
             countDown(now.setTime(now.getTime() + difficultyLvl));
+            scrollToTimer();
             setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 2:
@@ -41,6 +44,7 @@ function exercise(exerciseType, round, difficultyLvl) {
             currentExercise++;
             let nowA = new Date();
             countDown(nowA.setTime(nowA.getTime() + difficultyLvl));
+            scrollToTimer();
             setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 3:
@@ -49,6 +53,7 @@ function exercise(exerciseType, round, difficultyLvl) {
             currentExercise++;
             let nowB = new Date();
             countDown(nowB.setTime(nowB.getTime() + difficultyLvl));
+            scrollToTimer();
             setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 4:
@@ -57,6 +62,7 @@ function exercise(exerciseType, round, difficultyLvl) {
             currentExercise++;
             let nowC = new Date();
             countDown(nowC.setTime(nowC.getTime() + difficultyLvl));
+            scrollToTimer();
             setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 5:
@@ -65,6 +71,7 @@ function exercise(exerciseType, round, difficultyLvl) {
             currentExercise++;
             let nowD = new Date();
             countDown(nowD.setTime(nowD.getTime() + difficultyLvl));
+            scrollToTimer();
             setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 6:
@@ -73,6 +80,7 @@ function exercise(exerciseType, round, difficultyLvl) {
             currentExercise++;
             let nowE = new Date();
             countDown(nowE.setTime(nowE.getTime() + difficultyLvl));
+            scrollToTimer();
             setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 7:
@@ -82,6 +90,7 @@ function exercise(exerciseType, round, difficultyLvl) {
             currentExercise++;
             let nowF = new Date();
             countDown(nowF.setTime(nowF.getTime() + difficultyLvl));
+            scrollToTimer();
             setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 8:
@@ -90,6 +99,7 @@ function exercise(exerciseType, round, difficultyLvl) {
             currentExercise++;
             let nowG = new Date();
             countDown(nowG.setTime(nowG.getTime() + difficultyLvl));
+            scrollToTimer();
             setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 9:
@@ -98,6 +108,7 @@ function exercise(exerciseType, round, difficultyLvl) {
             currentExercise++;
             let nowH = new Date();
             countDown(nowH.setTime(nowH.getTime() + difficultyLvl));
+            scrollToTimer();
             setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
         case 10:
@@ -106,12 +117,14 @@ function exercise(exerciseType, round, difficultyLvl) {
             currentExercise++;
             let nowI = new Date();
             countDown(nowI.setTime(nowI.getTime() + difficultyLvl));
+            scrollToTimer();
             setTimeout(rest, difficultyLvl, currentExercise, currentRound, difficultyLvl);
             break;
     }
 }
 
 function rest(station, set, difficulty) {
+    "use strict";
     if (station == 11 && set == 1) { // End of the first set
         $("#spartacus-header").text(
             "You got lucky and survived this round slave.  We shall see if you can survive a second trip to the arena."
@@ -151,6 +164,7 @@ function rest(station, set, difficulty) {
 }
 
 function countDown(restAmount, nextExercise) {
+    "use strict";
     if (nextExercise !== undefined) {
         switch (nextExercise) {
             case 1:
@@ -218,4 +232,10 @@ function countDown(restAmount, nextExercise) {
         }
     }, 1000);
     return;
-}//Spartacus end
+}
+
+function scrollToTimer(){
+    var timer = document.getElementById("count-down-area");
+    timer.scrollIntoView();
+}
+//Spartacus end

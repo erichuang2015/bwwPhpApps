@@ -49,7 +49,7 @@ $(document).ready(function () {
         e.preventDefault();
         var ageSexForm = $("#form-sexSelect");
         $(ageSexForm).removeClass('was-validated');
-        var ageInput = $("#age")[0];        
+        var ageInput = $("#age")[0];
         if (ageInput.checkValidity() === false) {
             event.stopPropagation();
             $(ageSexForm).addClass('was-validated');

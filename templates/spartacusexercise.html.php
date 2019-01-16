@@ -12,7 +12,7 @@
     <div class=row>
         <div id='img-placeholder' class="hidden col-8"></div>
 
-        <div id="count-down-area" class="count-down-clock text-info  col-4"></div>
+        <div id="count-down-area" tabindex="-1" class="count-down-clock text-info  col-4"></div>
     </div>
 </div>
 <script type="text/javascript" src="/js/spartacus.js"></script>

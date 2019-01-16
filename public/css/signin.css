@@ -17,9 +17,13 @@ main {
   width: 100%;
 }
 
+div.login.container{
+  margin-top:1em;
+}
+
 .form-signin {
   width: 100%;
-  max-width: 330px;
+  max-width: 830px;
   padding: 15px;
   margin: auto;
 }
@@ -52,6 +56,14 @@ main {
   border-top-right-radius: 0;
 }
 
+span.forgot-pw{
+  display: inline-block;
+}
+
+span.forgot-pw a{
+  display: block;
+}
+
 /* .box.flex {
   display: flex;
   justify-content: center;
@@ -67,3 +79,11 @@ main {
 }
 
 /* Edge Browser styles end */
+
+/*iPhone 5/SE*/
+@media (max-width: 320px) {
+  div.login.container{
+      margin-top:5em;
+  }
+}
+/*/////////////////////////*/
