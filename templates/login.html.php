@@ -33,8 +33,8 @@
                 </div>
                 <input class="btn btn-lg btn-primary btn-block" type="submit" id="login" name="login" value="Sign in"
                     disabled>
-                <span>Need to register?</span><a href="/author/register"> click here</a>
-                <span class="forgot-pw">Forgot your password?</span><a href="/myaccount/passwordrecovery"> click here</a>
+                <span>Need to register?<a href="/author/register"> click here</a></span>
+                <span class="forgot-pw">Forgot your password?<a href="/myaccount/passwordrecovery"> click here</a></span>
             </form>
         </div>
         <div class="col-1"></div>
