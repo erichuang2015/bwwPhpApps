@@ -77,10 +77,16 @@ span.forgot-pw a {
 /* Edge Browser styles begin */
 
 @supports (-ms-ime-align: auto) {
-  /* div.center-div {
-    margin: 0 auto;
-    width: 330px;
-  } */
+  img {
+    max-height: 395px;
+    width: 100%;
+  }
+  div.login.container {
+    margin-top: -4em;
+    height: auto;
+    max-height: 680px;
+    margin-bottom: 1em;
+  }
 }
 
 /* Edge Browser styles end */
@@ -88,7 +94,6 @@ span.forgot-pw a {
 /* Firefox Browser styles begin */
 
 @-moz-document url-prefix() {
-
     img {
       max-height: 395px;
       width: 100%;
@@ -99,7 +104,6 @@ span.forgot-pw a {
       max-height: 680px;
       margin-bottom: 1em;
     }
-
 }
 
 /* Firefox Browser styles end */
