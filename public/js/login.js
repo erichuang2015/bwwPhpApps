@@ -19,56 +19,54 @@
 
 $(document).ready(function () {
     'use strict';
+    var emailStatus = false;
+    var passwordStatus = false;
     $("#email").on("keyup blur change", function () {
         var emailInput = $("#email");
-        validateEntries(emailInput);
+        emailStatus = validateEntries(emailInput);
+        toggleSignInBtn(emailStatus, passwordStatus);
     });
 
     $("#password").on("keyup blur change", function () {
         var passwordInput = $("#password");
-        validateEntries(passwordInput);
+        passwordStatus = validateEntries(passwordInput);
+        toggleSignInBtn(emailStatus, passwordStatus);
     });
+
+
+
+
 });
 
 function validateEntries(inputElement) {
     $("#loginForm").removeClass('was-validated');
-    var emailStatus = false;
-    var passwordStatus = false;
     var inputTxt = $(inputElement).val();
     var inputTxtLength = inputTxt.length;
-    // console.log(inputElement);
+    var status = false;
     if(inputElement[0].id == "email")//logic to determine if the inputElement is the email input
     {
         if (ValidateEmail(inputTxt)) {
             status = true;
             $("#emailInputError").text("");
-            emailStatus = true;
         }
         else {
             status = false;
             $("#emailInputError").text("Error: Enter a valid email address");
         }
+        return status;
     }
     else{
         if (inputTxtLength < 1) {
             $("#passwordInputError").text("Error: Enter a password");
+            status = false;
         }
         else {
             $("#passwordInputError").text("");
-            passwordStatus = true;
+            status = true;
         }
+        return status;
     }
-
-    if (emailStatus && passwordStatus) {
-        $("#login").removeAttr("disabled");
-    }
-    else {
-        $("#login").attr("disabled", "true");
-    }
-    $("#loginForm").addClass('was-validated');
-
 }
-
 
 function ValidateEmail(mail) {
     'use strict';
@@ -78,4 +76,16 @@ function ValidateEmail(mail) {
     else {
         return (false);
     }
+}
+
+function toggleSignInBtn(emailStatus, passwordStatus)
+{
+    'use strict';
+    if (emailStatus == true && passwordStatus == true) {
+        $("#login").removeAttr("disabled");
+    }
+    else {
+        $("#login").attr("disabled", "true");
+    }
+    $("#loginForm").addClass('was-validated');
 }
