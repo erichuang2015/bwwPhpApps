@@ -5,6 +5,11 @@ h2{
 aside{
     padding-bottom:5em;
 }
+
+ul{
+    list-style-type: none;
+}
+
 input#btnSubmitFitCalc{
     display:block;
 }
@@ -13,6 +18,19 @@ input#btnSubmitNumMM{
     margin-bottom: 1em;
 }
 
+input.bmi{
+    border: black thin solid;
+    width:3rem;
+}
+
 label.radio-btn-male{
     display: block;
+}
+
+div.bmi-btns-row{
+    margin-top: 1rem;
+}
+
+label.bmi-ft-lbl{
+    margin-right:0.95rem;
 }

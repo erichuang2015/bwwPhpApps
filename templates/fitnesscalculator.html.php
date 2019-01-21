@@ -19,32 +19,34 @@
     </div>
 
 
-    <div id="divSexInputPg">
+    <div id="divSexInputPg" display="none">
         <h2>Select your sex and input your age please.</h2>
         <form id="form-sexSelect" class="needs-validation" novalidate>
-        <div class="form-row">
-            <div class="col">
-                <div class="form-check">
-                    <input id="rbMale" name="rbSexSelect" class="form-check-input" type="radio" value="Male" checked>
-                    <label class="form-check-label" for="rbMale">Male</label>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-check">
+                        <input id="rbMale" name="rbSexSelect" class="form-check-input" type="radio" value="Male"
+                            checked>
+                        <label class="form-check-label" for="rbMale">Male</label>
+                    </div>
+                    <div class="form-check">
+                        <input id="rbFemale" name="rbSexSelect" class="form-check-input" type="radio" value="Female">
+                        <label class="form-check-label" for="rbFemale">Female</label>
+                    </div>
                 </div>
-                <div class="form-check">
-                    <input id="rbFemale" name="rbSexSelect" class="form-check-input" type="radio" value="Female">
-                    <label class="form-check-label" for="rbFemale">Female</label>
-                </div>
-            </div>
 
-            <div class="col">
-                <label class="" for="age">Years of Age:</label>
-                <input id="age" name="age" class="form-control col-md-2" type="number" min="18" max="140" value="40" required />
-                <div class="invalid-feedback"><span id="ageInputError"></span></div>
+                <div class="col">
+                    <label class="" for="age">Years of Age:</label>
+                    <input id="age" name="age" class="form-control col-md-2" type="number" min="18" max="140" value="40"
+                        required />
+                    <div class="invalid-feedback"><span id="ageInputError"></span></div>
+                </div>
             </div>
-        </div>
-        <input id="btnSubmitSexSelect" type="submit" value="Submit" class="btn btn-primary"/>
+            <input id="btnSubmitSexSelect" type="submit" value="Submit" class="btn btn-primary" />
         </form>
     </div>
 
-    <div id="divCalInstructions">
+    <div id="divCalInstructions" display="none">
         <ol>
             <li>
                 <p class="">The site you will use for the skinfold measurement is located
@@ -118,46 +120,31 @@
             <cite>THE IDEAL WAY TO MEASURE BODY FAT USING THE ACCU-MEASURE&reg; CALIPER by ACCU-MEASURE&reg;</cite>
         </aside>
     </div>
-    <div id="divbodFatResults">
+    <div id="divbodFatResults" display="none">
         <h2 id="h2BodyFatResults"></h2><br>
         <input id='btnBodFatReset' class='btn btn-secondary' type='reset' value='Reset' />
     </div>
 
-    <div id="divBMIInputPg">
+    <div id="divBMIInputPg" display="none">
         <p>To calculate your BMI we need your height and weight. Please input both meaurements below.</p>
         <div class="container">
-            <div class="row">
-                <div class="col-1">
-                    <!--height label-->
-                    <label for="inputHeight">Height:</label>
-                </div>
-                <div class="col-3">
-                    <!--height Inputbox-->
-                    <ul>
-                        <li>
-                            <label for="inputHeightFt">Feet:</label>
-                            <input id="inputHeightFt" type="number" min="0" max="7" value="6" />
-                        </li>
-                        <li>
-                            <label for="inputHeightIn">Inches:</label>
-                            <input id="inputHeightIn" type="number" min="0" max="12" value="0" />
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-1">
-                    <!--weight label-->
-                    <label for="iputWeight">Weight:</label>
-                </div>
-                <div class="col-3">
-                    <!--weight inputbox-->
-                    <input id="inputWeight" type="number" min="10" max="800" value="190" />
-                </div>
-            </div>
-            <div class="">
-                <input id="btnBMISubmit" class="btn btn-primary" type="submit" value="Submit" />
-                <input id="btnBMIReset" class="btn btn-secondary" type="reset" value="Reset" />
+            <label for="inputHeight">Height:</label>
+            <ul>
+                <li>
+                    <label for="inputHeightFt" class="bmi-ft-lbl">Feet:</label>
+                    <input id="inputHeightFt" class="bmi" type="number" min="0" max="7" value="6" maxlength="1" autofocus/>
+                </li>
+                <li>
+                    <label for="inputHeightIn">Inches:</label>
+                    <input id="inputHeightIn" class="bmi" type="number" min="0" max="12" value="0" maxlength="2" />
+                </li>
+            </ul>
+            <label for="iputWeight">Weight:</label>
+            <input id="inputWeight" class="bmi" type="number" min="10" max="800" value="190" />
+
+            <div class="row bmi-btns-row">
+                <div class="col col-sm-1 col-md-2 col-lg-1 col-xl-1"><input id="btnBMISubmit" class="btn btn-primary" type="submit" value="Submit" /></div>
+                <div class="col col-sm-1 col-md-2 col-lg-1 col-xl-1"><input id="btnBMIReset" class="btn btn-secondary" type="reset" value="Reset" /></div>
             </div>
             <p id="bmiResults"></p>
         </div>
