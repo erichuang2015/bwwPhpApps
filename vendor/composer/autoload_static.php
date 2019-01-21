@@ -26,15 +26,16 @@ class ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'PhpConsole\\' => 11,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'N' => 
         array (
-            'utilityClasses\\' => 6,
+            'Ninja\\' => 6,
         ),
         'I' => 
         array (
             'Intervention\\Image\\' => 19,
-            'BwwClasses\\' => 5,
+            'Ijdb\\' => 5,
         ),
         'G' => 
         array (
@@ -75,17 +76,21 @@ class ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285
         array (
             0 => __DIR__ . '/..' . '/php-console/php-console/src/PhpConsole',
         ),
-        'utilityClasses\\' => 
+        'PHPMailer\\PHPMailer\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/classes/utilityClasses',
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+        'Ninja\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/classes/Ninja',
         ),
         'Intervention\\Image\\' => 
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
         ),
-        'BwwClasses\\' => 
+        'Ijdb\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/classes/BwwClasses',
+            0 => __DIR__ . '/../..' . '/classes/Ijdb',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

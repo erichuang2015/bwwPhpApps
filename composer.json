@@ -7,6 +7,7 @@
         "symfony/process": "~2.0",
         "symfony/yaml": "^3.3",
         "php-console/php-console": "^3.1",
+        "phpmailer/phpmailer": "^6.0",
         "intervention/image": "^2.4",
         "twbs/bootstrap": "4.2.1"
     },
