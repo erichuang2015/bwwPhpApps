@@ -20,8 +20,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Ninja\\": "classes/Ninja",
-            "Ijdb\\": "classes/Ijdb"
+            "utilityClasses\\": "classes/utilityClasses",
+            "BwwClasses\\": "classes/BwwClasses"
         }
     }
 }

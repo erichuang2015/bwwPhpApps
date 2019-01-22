@@ -13,6 +13,10 @@ class ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285
     );
 
     public static $prefixLengthsPsr4 = array (
+        'u' => 
+        array (
+            'utilityClasses\\' => 15,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
@@ -28,22 +32,25 @@ class ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285
             'PhpConsole\\' => 11,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
-        'N' => 
-        array (
-            'Ninja\\' => 6,
-        ),
         'I' => 
         array (
             'Intervention\\Image\\' => 19,
-            'Ijdb\\' => 5,
         ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
         ),
+        'B' => 
+        array (
+            'BwwClasses\\' => 11,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'utilityClasses\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/classes/utilityClasses',
+        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
@@ -80,21 +87,17 @@ class ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
-        'Ninja\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/classes/Ninja',
-        ),
         'Intervention\\Image\\' => 
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
         ),
-        'Ijdb\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/classes/Ijdb',
-        ),
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'BwwClasses\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/classes/BwwClasses',
         ),
     );
 
