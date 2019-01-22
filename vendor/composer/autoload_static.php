@@ -13,11 +13,7 @@ class ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285
     );
 
     public static $prefixLengthsPsr4 = array (
-        'u' => 
-        array (
-            'utilityClasses\\' => 15,
-        ),
-        'S' => 
+        'S' =>
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Yaml\\' => 23,
@@ -25,74 +21,75 @@ class ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\Console\\' => 26,
         ),
-        'P' => 
+        'P' =>
         array (
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'PhpConsole\\' => 11,
         ),
-        'I' => 
+        'N' =>
+        array (
+            'utilityClasses\\' => 6,
+        ),
+        'I' =>
         array (
             'Intervention\\Image\\' => 19,
+            'BwwClasses\\' => 5,
         ),
-        'G' => 
+        'G' =>
         array (
             'GuzzleHttp\\Psr7\\' => 16,
-        ),
-        'B' => 
-        array (
-            'BwwClasses\\' => 11,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'utilityClasses\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/classes/utilityClasses',
-        ),
-        'Symfony\\Polyfill\\Mbstring\\' => 
+        'Symfony\\Polyfill\\Mbstring\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
-        'Symfony\\Component\\Yaml\\' => 
+        'Symfony\\Component\\Yaml\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
         ),
-        'Symfony\\Component\\Process\\' => 
+        'Symfony\\Component\\Process\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/process',
         ),
-        'Symfony\\Component\\Debug\\' => 
+        'Symfony\\Component\\Debug\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/debug',
         ),
-        'Symfony\\Component\\Console\\' => 
+        'Symfony\\Component\\Console\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
-        'Psr\\Log\\' => 
+        'Psr\\Log\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
-        'Psr\\Http\\Message\\' => 
+        'Psr\\Http\\Message\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
-        'PhpConsole\\' => 
+        'PhpConsole\\' =>
         array (
             0 => __DIR__ . '/..' . '/php-console/php-console/src/PhpConsole',
         ),
-        'Intervention\\Image\\' => 
+        'utilityClasses\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/classes/utilityClasses',
+        ),
+        'Intervention\\Image\\' =>
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
         ),
-        'GuzzleHttp\\Psr7\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
-        ),
-        'BwwClasses\\' => 
+        'BwwClasses\\' =>
         array (
             0 => __DIR__ . '/../..' . '/classes/BwwClasses',
+        ),
+        'GuzzleHttp\\Psr7\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
     );
 
