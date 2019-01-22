@@ -30,7 +30,6 @@ class ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'PhpConsole\\' => 11,
-            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'I' => 
         array (
@@ -82,10 +81,6 @@ class ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285
         'PhpConsole\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-console/php-console/src/PhpConsole',
-        ),
-        'PHPMailer\\PHPMailer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Intervention\\Image\\' => 
         array (
