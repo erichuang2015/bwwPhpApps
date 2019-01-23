@@ -4,6 +4,7 @@ namespace BwwClasses;
 class BwwRoutes implements \utilityClasses\Routes
 {
 	private $usersTable;
+	private $usersVerifyTable;
 	private $spartacusSettingsTable;
 	private $pyramidUserMaxTable;
 	private $photosTable;
@@ -15,6 +16,7 @@ class BwwRoutes implements \utilityClasses\Routes
 
 		include __DIR__ . '/../../includes/DatabaseConnection.php';
 		$this->usersTable = new \utilityClasses\DatabaseTable($pdo, 'user', 'id');
+		$this->usersVerifyTable = new \utilityClasses\DatabaseTable($pdo, 'user_verify', 'id');
 		$this->spartacusSettingsTable = new \utilityClasses\DatabaseTable($pdo, 'spartacus_setting', 'id');
 		$this->pyramidUserMaxTable = new \utilityClasses\DatabaseTable($pdo, 'pyramid_user_max', 'id');
 		$this->photosTable = new \utilityClasses\DatabaseTable($pdo, 'photo', 'id');
@@ -25,7 +27,7 @@ class BwwRoutes implements \utilityClasses\Routes
 
 	public function getRoutes() : array
 	{
-		$authorController = new \BwwClasses\Controllers\Register($this->usersTable);
+		$registerController = new \BwwClasses\Controllers\Register($this->usersTable, $this->usersVerifyTable);
 		$loginController = new \BwwClasses\Controllers\Login($this->authentication);
 		$spartacusController = new \BwwClasses\Controllers\Spartacus($this->usersTable, $this->spartacusSettingsTable, $this->authentication);
 		$horoscopeController = new \BwwClasses\Controllers\Horoscope();
@@ -38,19 +40,19 @@ class BwwRoutes implements \utilityClasses\Routes
 		$myaccountController = new \BwwClasses\Controllers\MyAccount($this->usersTable, $this->authentication);
 
 		$routes = [
-			'author/register' => [
+			'user/register' => [
 				'GET' => [
-					'controller' => $authorController,
+					'controller' => $registerController,
 					'action' => 'registrationForm' //the action is the function to call in the controller
 				],
 				'POST' => [
-					'controller' => $authorController,
+					'controller' => $registerController,
 					'action' => 'registerUser'
 				]
 			],
-			'author/success' => [
+			'user/success' => [
 				'GET' => [
-					'controller' => $authorController,
+					'controller' => $registerController,
 					'action' => 'success'
 				]
 			],

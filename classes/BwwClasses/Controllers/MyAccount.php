@@ -144,8 +144,8 @@ class MyAccount
 
     public function recoverPassword()
     {
-        $author = $_POST['author'];
-        $tempPw = $this->authentication->recoverPassWord($author['email'], $author['firstanswer'], $author['secondanswer'], $author['thirdanswer']);
+        $user = $_POST['user'];
+        $tempPw = $this->authentication->recoverPassWord($user['email'], $user['firstanswer'], $user['secondanswer'], $user['thirdanswer']);
         if ($tempPw != false) {
             //instead of redirecting to login/success render a page showing the new tempPw and telling the user to change it
             // header('location: /login/success');
@@ -169,7 +169,7 @@ class MyAccount
 	{
 		$title = "BWW Apps - home";
 		$loggedIn = $this->authentication->isLoggedIn();
-		return ['template' => 'home.html.php', 
+		return ['template' => 'home.html.php',
 		'title' => $title,
 		'variables' => [
 			'loggedIn' => $loggedIn

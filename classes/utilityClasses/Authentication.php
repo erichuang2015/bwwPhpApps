@@ -3,7 +3,7 @@ namespace UtilityClasses;
 
 class Authentication
 {
-    private $users; // $users is the authors table
+    private $users; // $users is the users table
     private $usernameColumn;
     private $passwordColumn;
     // need recovery question vars
@@ -46,7 +46,7 @@ class Authentication
         }
     }
 
-    //if logged it it returns all the data for the user in the author table
+    //if logged it it returns all the data for the user in the user table
     public function getUser()
     {
         if ($this->isLoggedIn()) {
@@ -72,7 +72,7 @@ class Authentication
             $tempPassword = $this->random_password();
             $tempPasswordHashed = password_hash($tempPassword, PASSWORD_DEFAULT);
 			// Update the db with the new $tempPassword
-			
+
             $accountInfo = $this->users->find('id', $user[0]['id']);
             $accountData['id'] = (int) $user[0]['id'];
             $accountData['fname'] = $accountInfo[0]['fname'];

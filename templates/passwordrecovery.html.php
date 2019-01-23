@@ -5,7 +5,7 @@
 		<ul>
 		<?php foreach ($errors as $error): ?>
 			<li><?= $error ?></li>
-		<?php endforeach; 	?> 
+		<?php endforeach; 	?>
 		</ul>
 	</div>
 <?php endif; ?>
@@ -24,7 +24,7 @@
 
           <div class="mb-3">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="author[email]" placeholder="you@example.com" value="" autocomplete="off" required>
+            <input type="email" class="form-control" id="email" name="user[email]" placeholder="you@example.com" value="" autocomplete="off" required>
             <div class="invalid-feedback">
               Please enter a valid email address.
             </div>
@@ -34,7 +34,7 @@
 
 		  <div class="mb-3">
             <label for="firstAnswer">When you were young, what did you want to be when you grew up?</label>
-            <input type="text" id="firstAnswer" name="author[firstanswer]" class="form-control" value="" autocomplete="off" required>
+            <input type="text" id="firstAnswer" name="user[firstanswer]" class="form-control" value="" autocomplete="off" required>
             <div class="invalid-feedback">
               Please answer the question about what you want to you wanted to be when you grew up.
             </div>
@@ -42,7 +42,7 @@
 
 		  <div class="mb-3">
             <label for="secondAnswer">Who was your childhood hero?</label>
-            <input type="text" id="secondAnswer" name="author[secondanswer]" class="form-control" value="" autocomplete="off" required>
+            <input type="text" id="secondAnswer" name="user[secondanswer]" class="form-control" value="" autocomplete="off" required>
             <div class="invalid-feedback">
               Please answer the question about who your childhood hero was.
             </div>
@@ -50,17 +50,17 @@
 
 		  <div class="mb-3">
             <label for="thirdAnswer">Where was your best family vacation as a kid?</label>
-            <input type="text" id="thirdAnswer" name="author[thirdanswer]" class="form-control" value="" autocomplete="off" required>
+            <input type="text" id="thirdAnswer" name="user[thirdanswer]" class="form-control" value="" autocomplete="off" required>
             <div class="invalid-feedback">
               Please answer the question about your best family vacation when you were a kid.
             </div>
 		  </div>
 
 		  <hr class="mb-4">
-		  
+
 		  <div class="col-md-4">
 		  <input class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="Recover password">
-		  
+
         </form>
       </div>
   </div>

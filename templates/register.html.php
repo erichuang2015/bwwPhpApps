@@ -31,13 +31,13 @@
 
                     <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>
-                        <input type="text" class="form-control" id="firstName" name="author[fname]" pattern="[A-Za-z]{1,45}"
+                        <input type="text" class="form-control" id="firstName" name="user[fname]" pattern="[A-Za-z]{1,45}"
                             placeholder="" value="" autocomplete="off" required autofocus>
                         <div class="invalid-feedback"><span id="firstNameInputError"></span></div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Last name</label>
-                        <input type="text" class="form-control" id="lastName" name="author[lname]" pattern="[A-Za-z]{1,45}"
+                        <input type="text" class="form-control" id="lastName" name="user[lname]" pattern="[A-Za-z]{1,45}"
                             placeholder="" value="" autocomplete="off" required>
                         <div class="invalid-feedback"><span id="lastNameInputError"></span></div>
                     </div>
@@ -45,14 +45,14 @@
 
                 <div class="mb-3">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="author[email]" placeholder="you@example.com"
+                    <input type="email" class="form-control" id="email" name="user[email]" placeholder="you@example.com"
                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value="" autocomplete="off" required>
                     <div class="invalid-feedback"><span id="emailInputError"></span></div>
                 </div>
 
                 <div class="mb-3">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="author[password]" class="form-control" pattern="^(?=.*[\d\W])(?=.*[a-z])(?=.*[A-Z]).{8,24}$"
+                    <input type="password" id="password" name="user[password]" class="form-control" pattern="^(?=.*[\d\W])(?=.*[a-z])(?=.*[A-Z]).{8,24}$"
                         value="" maxlength="24" autocomplete="off" required>
                     <div class="invalid-feedback"><span id="passwordInputError"></span></div>
                 </div>
@@ -63,21 +63,21 @@
 
                 <div class="mb-3">
                     <label for="firstAnswer">When you were young, what did you want to be when you grew up?</label>
-                    <input type="text" id="firstAnswer" name="author[firstanswer]" class="form-control" value=""
+                    <input type="text" id="firstAnswer" name="user[firstanswer]" class="form-control" value=""
                         autocomplete="off" required>
                     <div class="invalid-feedback"><span id="firstAnswerInputError"></span></div>
                 </div>
 
                 <div class="mb-3">
                     <label for="secondAnswer">Who was your childhood hero?</label>
-                    <input type="text" id="secondAnswer" name="author[secondanswer]" class="form-control" value=""
+                    <input type="text" id="secondAnswer" name="user[secondanswer]" class="form-control" value=""
                         autocomplete="off" required>
                     <div class="invalid-feedback"><span id="secondAnswerInputError"></span></div>
                 </div>
 
                 <div class="mb-3">
                     <label for="thirdAnswer">Where was your best family vacation as a kid?</label>
-                    <input type="text" id="thirdAnswer" name="author[thirdanswer]" class="form-control" value=""
+                    <input type="text" id="thirdAnswer" name="user[thirdanswer]" class="form-control" value=""
                         autocomplete="off" required>
                     <div class="invalid-feedback"><span id="thirdAnswerInputError"></span></div>
                 </div>

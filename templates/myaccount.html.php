@@ -10,7 +10,7 @@
         <?php if (!$loggedIn) : ?>
         <div class="row">
           <div class="alert alert-secondary" role="alert">
-            If you have registered with this site please login for the optimal experience <a href="/login">click here to log in</a>.  If you haven't registered please do so <a href="/author/register">Click here to register an account</a>
+            If you have registered with this site please login for the optimal experience <a href="/login">click here to log in</a>.  If you haven't registered please do so <a href="/user/register">Click here to register an account</a>
           </div><!-- /alert -->
         </div><!-- /row -->
         <?php endif; ?>

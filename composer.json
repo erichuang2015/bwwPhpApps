@@ -1,6 +1,6 @@
 {
     "name": "bwwapps",
-    "description": "See here: http://www.sitepoint.com/quick-tip-get-homestead-vagrant-vm-running/",
+    "description": "A website with fitness and helpful utility apps.",
     "require": {
         "php": ">=7",
         "symfony/console": "~2.0",
