@@ -47,13 +47,23 @@ class BwwRoutes implements \utilityClasses\Routes
 				],
 				'POST' => [
 					'controller' => $registerController,
-					'action' => 'registerUser'
+					'action' => 'storeUserData'
 				]
 			],
-			'user/success' => [
+			'user/registersuccess' => [
 				'GET' => [
 					'controller' => $registerController,
 					'action' => 'success'
+				]
+			],
+			'user/registerverifycode' => [
+				'GET' => [
+					'controller' => $registerController,
+					'action' => 'renderVerifyCode'
+				],
+				'POST' => [
+					'controller' => $registerController,
+					'action' => 'registerUser'
 				]
 			],
 			'login/error' => [
