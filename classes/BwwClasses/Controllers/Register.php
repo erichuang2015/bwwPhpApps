@@ -2,10 +2,7 @@
 namespace BwwClasses\Controllers;
 
 use \utilityClasses\DatabaseTable;
-// require_once('/../vendor/phpmailer/phpmailer/src/PHPMailer.php');
-
-// include __DIR__ . '/../../includes/DatabaseConnection.php';
-
+ use Mailgun\Mailgun;
 
 class Register
 {
@@ -14,8 +11,6 @@ class Register
 
     public function __construct(DatabaseTable $usersTable, DatabaseTable $usersVerifyTable)
     {
-		// include __DIR__ . '/../../../vendor/phpmailer/phpmailer/src/PHPMailer.php';
-		// require_once( __DIR__ . '/../../../vendor/phpmailer/phpmailer/src/PHPMailer.php');
 		$this->usersTable = $usersTable;
         $this->usersVerifyTable = $usersVerifyTable;
     }
@@ -120,56 +115,26 @@ class Register
 			// print_r($userData); die;
             $this->usersVerifyTable->save($userData);
 
-            // $message = "Your Activation Code is " . $code . "";
-            // $to = (string) $userData['email'];
-			// $_SESSION['email'] = $to;
-
-			// $this->renderVerifyCode($message);
-
-			ini_set( 'display_errors', 1 );
-			error_reporting( E_ALL );
-			$from = "brian.w.worsham@gmail.com";
+			$from = "postmaster@bwwapps.com";
 			$to = (string) $userData['email'];
 			$subject = "Activation Code For bwwapps.com";
-			$message = "Your Activation Code is " . $code . "";
-			$headers = "From:" . $from;
-			$mailStatus = mail($to,$subject,$message, $headers);
-			// print_r($mailStatus);die;
-			// echo "The email message was sent.";
+            $message = "Your Activation Code is " . $code . "";
+
+            // First, instantiate the SDK with your API credentials
+            $mg = Mailgun::create('9ef5b49296997b3214b27532122ff188-c8c889c9-7652993f');
+
+            // Now, compose and send your message.
+            // $mg->messages()->send($domain, $params);
+            $mg->messages()->send('bwwapps.com', [
+                'from' => $from,
+                'to' => $to,
+                'subject' => $subject,
+                'text' => $message
+            ]);
+
 			$_SESSION['email'] = $to;
 			$_SESSION['message'] = $message;
 			header('Location: /user/registerverifycode');
-
-            // $subject = "Activation Code For bwwapps.com";
-            // $from = 'brian.w.worsham@hotmail.com';
-            // // $body = 'Your Activation Code is ' . $code . ' Please Click On This link <a href="verification.php">Verify.php?id=' . $db_id . '&code=' . $code . '</a>to activate your account.';
-            // $headers = "From:" . $from;
-			// mail($to, $subject, $message, $headers);
-            // $mail = new \vendor\phpmailer\phpmailer\src\PHPMailer();
-            // $mail->CharSet = "utf-8";
-            // $mail->IsSMTP();
-			// // enable SMTP authentication
-            // $mail->SMTPAuth = true;
-			// // GMAIL username
-            // $mail->Username = "brian.w.worsham@gmail.com";
-			// // GMAIL password
-            // $mail->Password = "153756Pw";
-            // $mail->SMTPSecure = "ssl";
-			// // sets GMAIL as the SMTP server
-            // $mail->Host = "smtp.gmail.com";
-			// // set the SMTP port for the GMAIL server
-            // $mail->Port = "465";
-            // $mail->From = 'brian.w.worsham@gmail.com';
-            // $mail->FromName = 'Brian Worsham';
-            // $mail->AddAddress($to, $user['fname']);
-            // $mail->Subject = 'Activation Code For bwwapps.com';
-            // $mail->IsHTML(true);
-            // $mail->Body = "Your Activation Code is " . $code . "";
-            // if ($mail->Send()) {
-            //     header('Location: /user/registerverifycode');
-            // } else {
-            //     echo "Mail Error - >" . $mail->ErrorInfo;
-            // }
 
         } else {
             //If the data is not valid, show the form again
