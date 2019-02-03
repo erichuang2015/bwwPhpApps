@@ -2,7 +2,7 @@
 namespace BwwClasses\Controllers;
 
 use \utilityClasses\DatabaseTable;
- use Mailgun\Mailgun;
+use Mailgun\Mailgun;
 
 class Register
 {

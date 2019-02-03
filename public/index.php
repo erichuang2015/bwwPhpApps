@@ -1,8 +1,8 @@
 <?php
 try {
-	
-	include __DIR__ . '/../includes/autoload.php';
-	
+
+	// include __DIR__ . '/../includes/autoload.php';
+
 	// include composer autoload
 	include __DIR__ . '/../vendor/autoload.php';
 
