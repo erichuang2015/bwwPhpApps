@@ -8,11 +8,13 @@ class Register
 {
     private $usersTable;
     private $usersVerifyTable;
+    private $mailTable;
 
-    public function __construct(DatabaseTable $usersTable, DatabaseTable $usersVerifyTable)
+    public function __construct(DatabaseTable $usersTable, DatabaseTable $usersVerifyTable, DatabaseTable $mailTable)
     {
 		$this->usersTable = $usersTable;
         $this->usersVerifyTable = $usersVerifyTable;
+        $this->mailTable = $mailTable;
     }
 
     public function registrationForm()
@@ -120,8 +122,13 @@ class Register
 			$subject = "Activation Code For bwwapps.com";
             $message = "Your Activation Code is " . $code . "";
 
+            $id = 1;
+            $apiVal = $this->mailTable->findById($id);
+            $apiData = $apiVal['api_val'];
+            // print_r($apiData); die;
+
             // First, instantiate the SDK with your API credentials
-            $mg = Mailgun::create('9ef5b49296997b3214b27532122ff188-c8c889c9-7652993f');
+            $mg = Mailgun::create($apiData);
 
             // Now, compose and send your message.
             // $mg->messages()->send($domain, $params);

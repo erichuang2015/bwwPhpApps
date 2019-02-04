@@ -9,6 +9,7 @@ class BwwRoutes implements \utilityClasses\Routes
 	private $pyramidUserMaxTable;
 	private $photosTable;
 	private $exerciseTypesTable;
+	private $mailTable;
 	private $authentication;
 
 	public function __construct()
@@ -21,13 +22,14 @@ class BwwRoutes implements \utilityClasses\Routes
 		$this->pyramidUserMaxTable = new \utilityClasses\DatabaseTable($pdo, 'pyramid_user_max', 'id');
 		$this->photosTable = new \utilityClasses\DatabaseTable($pdo, 'photo', 'id');
 		$this->exerciseTypesTable = new \utilityClasses\DatabaseTable($pdo, 'exercise_types', 'id');
+		$this->mailTable = new \utilityClasses\DatabaseTable($pdo, 'mail', 'id');
 
 		$this->authentication = new \utilityClasses\Authentication($this->usersTable, 'email', 'password');
 	}
 
 	public function getRoutes() : array
 	{
-		$registerController = new \BwwClasses\Controllers\Register($this->usersTable, $this->usersVerifyTable);
+		$registerController = new \BwwClasses\Controllers\Register($this->usersTable, $this->usersVerifyTable, $this->mailTable);
 		$loginController = new \BwwClasses\Controllers\Login($this->authentication);
 		$spartacusController = new \BwwClasses\Controllers\Spartacus($this->usersTable, $this->spartacusSettingsTable, $this->authentication);
 		$horoscopeController = new \BwwClasses\Controllers\Horoscope();
