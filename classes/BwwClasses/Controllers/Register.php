@@ -2,7 +2,8 @@
 namespace BwwClasses\Controllers;
 
 use \utilityClasses\DatabaseTable;
-use Mailgun\Mailgun;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class Register
 {
@@ -111,36 +112,37 @@ class Register
 
             $code = substr(md5(mt_rand()), 0, 15); // generate a random code to send user so they can validate their email address before registering
             $userData['verifycode'] = (string) $code;
-
             //When submitted, the $user variable now contains a lowercase value for email and recover question answers
 			//and a hashed password and recovery question answers
-			// print_r($userData); die;
-            $this->usersVerifyTable->save($userData);
+            // print_r($userData); die;
 
-			$from = "postmaster@bwwapps.com";
+            $this->usersVerifyTable->save($userData);
 			$to = (string) $userData['email'];
 			$subject = "Activation Code For bwwapps.com";
             $message = "Your Activation Code is " . $code . "";
-
             $id = 1;
             $apiVal = $this->mailTable->findById($id);
             $apiData = $apiVal['api_val'];
-            // print_r($apiData); die;
 
-            // First, instantiate the SDK with your API credentials
-            $mg = Mailgun::create($apiData);
+            //using PHPMailer to send mail thru Gmail is limited to 99 emails per day.
+            $mail = new PHPMailer();
+            $mail->isSMTP();
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = '465';
+            $mail->isHTML();
+            $mail->Username = 'brian.w.worsham';
+            $mail->Password = $apiData;
+            $mail->SetFrom('no-reply@bwwapps.com');
+            $mail->Subject = $subject;
+            $mail->Body = $message;
+            $mail->AddAddress($to);
 
-            // Now, compose and send your message.
-            // $mg->messages()->send($domain, $params);
-            $mg->messages()->send('bwwapps.com', [
-                'from' => $from,
-                'to' => $to,
-                'subject' => $subject,
-                'text' => $message
-            ]);
+            $mail->Send();
 
 			$_SESSION['email'] = $to;
-			$_SESSION['message'] = $message;
+			// $_SESSION['message'] = $message;
 			header('Location: /user/registerverifycode');
 
         } else {
@@ -162,7 +164,7 @@ class Register
         return ['template' => 'registerverifycode.html.php',
             'title' => 'Register - Verification Code',
             'variables' => [
-				'message' => $_SESSION['message']
+				'email' => $_SESSION['email']
             ],
         ];
     }
