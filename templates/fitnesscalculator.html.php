@@ -19,15 +19,20 @@
     </div>
 
 
-    <div id="divSexInputPg" display="none">
+    <div id="divSexInputPg" style="display: none">
         <h2>Select your sex and input your age please.</h2>
         <form id="form-sexSelect" class="needs-validation" novalidate>
+            <!--always use class='needs-validation' and novalidate attr -->
             <div class="form-row">
+                <!--form-row for rows within  the form duh... -->
                 <div class="col">
                     <div class="form-check">
+                        <!--form-check is for checkbox for radio btn container -->
                         <input id="rbMale" name="rbSexSelect" class="form-check-input" type="radio" value="Male"
                             checked>
+                        <!--form-check-input is for checkbox for radio btn input -->
                         <label class="form-check-label" for="rbMale">Male</label>
+                        <!--form-check-input is for checkbox for radio btn label -->
                     </div>
                     <div class="form-check">
                         <input id="rbFemale" name="rbSexSelect" class="form-check-input" type="radio" value="Female">
@@ -39,20 +44,24 @@
                     <label class="" for="age">Years of Age:</label>
                     <input id="age" name="age" class="form-control col-md-2" type="number" min="18" max="140" value="40"
                         required />
+                    <!--form-control is for text or number inputs -->
                     <div class="invalid-feedback"><span id="ageInputError"></span></div>
+                    <!--invalid-feedback displays the error message in red font -->
                 </div>
             </div>
             <input id="btnSubmitSexSelect" type="submit" value="Submit" class="btn btn-primary" />
         </form>
     </div>
 
-    <div id="divCalInstructions" display="none">
+    <div id="divCalInstructions" style="display: none">
         <ol>
             <li>
                 <p class="">The site you will use for the skinfold measurement is located
                     approximately one inch above the point of your right hipbone. Put your left index finger on
-                    the point of your right hipbone and move up one inch (see figure 1).<img src="css/images/fitnessCalculator/figure1.png"
-                        alt="Figure 1 shows the location on abdomen for skinfold test." title="Figure 1 shows the location on abdomen for skinfold test." /></p>
+                    the point of your right hipbone and move up one inch (see figure 1).<img
+                        src="css/images/fitnessCalculator/figure1.png"
+                        alt="Figure 1 shows the location on abdomen for skinfold test."
+                        title="Figure 1 shows the location on abdomen for skinfold test." /></p>
             </li>
             <li>
                 <p>Make sure the slide on the curved part of the caliper is moved all the way to the right, and
@@ -62,18 +71,26 @@
                 <p class="">While standing, with your fingers about 2-3 inches apart, firmly
                     grasp the skinfold between the thumb and index finger of your left hand, and gently pull
                     the skinfold away from your body. Pull the skin and underlying fat away from the muscle
-                    tissue (see figures 2 and 3).<img class="" src="css/images/fitnessCalculator/figure2.png" alt="Figure 2 shows how to grip the skinfold 2-3 inches apart."
-                        title="Figure 2 shows how to grip the skinfold 2-3 inches apart." /><img src="css/images/fitnessCalculator/figure3.png"
-                        alt="Figure 3 shows how to pull the skin and underlying fat away from the muscle tissue." title="Figure 3 shows how to pull the skin and underlying fat away from the muscle tissue." /></p>
+                    tissue (see figures 2 and 3).<img class="" src="css/images/fitnessCalculator/figure2.png"
+                        alt="Figure 2 shows how to grip the skinfold 2-3 inches apart."
+                        title="Figure 2 shows how to grip the skinfold 2-3 inches apart." /><img
+                        src="css/images/fitnessCalculator/figure3.png"
+                        alt="Figure 3 shows how to pull the skin and underlying fat away from the muscle tissue."
+                        title="Figure 3 shows how to pull the skin and underlying fat away from the muscle tissue." />
+                </p>
             </li>
             <li>
                 <p class="">With the caliper in your right hand, place its jaws over the
                     skinfold about 1/4 of an inch from your left thumb and forefinger (see figures 4 and 5).
                     The caliper heads should be halfway between the crest and base of the fold, right in the
                     middle of the fold (see figure 4). The caliper must be perpendicular to the skinfold.<img class=""
-                        src="css/images/fitnessCalculator/figure4.png" alt="Figure 4 shows the caliper heads in the middle of the skinfold."
-                        title="Figure 4 shows the caliper heads in the middle of the skinfold." /><img src="css/images/fitnessCalculator/figure5.png"
-                        alt="Figure 5 shows the caliper being used in a perpendicular position to the skinfold." title="Figure 5 shows the caliper being used in a perpendicular position to the skinfold." /></p>
+                        src="css/images/fitnessCalculator/figure4.png"
+                        alt="Figure 4 shows the caliper heads in the middle of the skinfold."
+                        title="Figure 4 shows the caliper heads in the middle of the skinfold." /><img
+                        src="css/images/fitnessCalculator/figure5.png"
+                        alt="Figure 5 shows the caliper being used in a perpendicular position to the skinfold."
+                        title="Figure 5 shows the caliper being used in a perpendicular position to the skinfold." />
+                </p>
             </li>
             <li>
                 <p>While continuing to hold the skinfold with the left hand, press the thumb where indicated on
@@ -89,26 +106,26 @@
                         measurement, and record the reading when it becomes most consistent.</span></p>
             </li>
         </ol>
-        <form id="form-input-mm">
+        <form id="form-input-mm" class="needs-validation" novalidate>
             <fieldset>
-                <div class="row">
+                <div class="form-row">
                     <div class="col-4">
                         <label for="numMM1"><span class="required-field" title="Required Field">*</span> 1st
                             Caliper Reading in <b>Millimeters:</b></label>
                     </div>
-                    <div class="col-8">
-                        <input id="numMM1" type="number" min="2" max="36" value="2" required><br><span id="inputNumMM1Error"
-                            class="input-error"></span>
+                    <div class="col-12">
+                        <input id="numMM1" type="number" min="2" max="36" value="2" class="form-control col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2" required>
+                        <div class="invalid-feedback col-12"><span id="inputNumMM1Error"></span></div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="form-row">
                     <div class="col-4">
                         <label for="numMM2"><span class="required-field" title="Required Field">*</span> 2nd
                             Caliper Reading in <b>Millimeters:</b></label>
                     </div>
-                    <div class="col-8">
-                        <input id="numMM2" type="number" min="2" max="36" value="2" required><br><span id="inputNumMM2Error"
-                            class="input-error"></span>
+                    <div class="col-12">
+                        <input id="numMM2" type="number" min="2" max="36" value="2" class="form-control col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2" required>
+                        <div class="invalid-feedback col-12"><span id="inputNumMM2Error"></span></div>
                     </div>
                 </div>
                 <input id="btnSubmitNumMM" class="btn btn-primary" type="submit" value="Submit" />
@@ -120,19 +137,20 @@
             <cite>THE IDEAL WAY TO MEASURE BODY FAT USING THE ACCU-MEASURE&reg; CALIPER by ACCU-MEASURE&reg;</cite>
         </aside>
     </div>
-    <div id="divbodFatResults" display="none">
+    <div id="divbodFatResults" style="display: none">
         <h2 id="h2BodyFatResults"></h2><br>
         <input id='btnBodFatReset' class='btn btn-secondary' type='reset' value='Reset' />
     </div>
 
-    <div id="divBMIInputPg" display="none">
+    <div id="divBMIInputPg" style="display: none">
         <p>To calculate your BMI we need your height and weight. Please input both meaurements below.</p>
         <div class="container">
             <label for="inputHeight">Height:</label>
             <ul>
                 <li>
                     <label for="inputHeightFt" class="bmi-ft-lbl">Feet:</label>
-                    <input id="inputHeightFt" class="bmi" type="number" min="0" max="7" value="6" maxlength="1" autofocus/>
+                    <input id="inputHeightFt" class="bmi" type="number" min="0" max="7" value="6" maxlength="1"
+                        autofocus />
                 </li>
                 <li>
                     <label for="inputHeightIn">Inches:</label>
@@ -143,8 +161,10 @@
             <input id="inputWeight" class="bmi" type="number" min="10" max="800" value="190" />
 
             <div class="row bmi-btns-row">
-                <div class="col col-sm-1 col-md-2 col-lg-1 col-xl-1"><input id="btnBMISubmit" class="btn btn-primary" type="submit" value="Submit" /></div>
-                <div class="col col-sm-1 col-md-2 col-lg-1 col-xl-1"><input id="btnBMIReset" class="btn btn-secondary" type="reset" value="Reset" /></div>
+                <div class="col col-sm-1 col-md-2 col-lg-1 col-xl-1"><input id="btnBMISubmit" class="btn btn-primary"
+                        type="submit" value="Submit" /></div>
+                <div class="col col-sm-1 col-md-2 col-lg-1 col-xl-1"><input id="btnBMIReset" class="btn btn-secondary"
+                        type="reset" value="Reset" /></div>
             </div>
             <p id="bmiResults"></p>
         </div>

@@ -1,10 +1,17 @@
 .container {
-    max-width: 960px;
-  }
+  max-width: 960px;
+}
 
-  .container.registration{
-    padding-bottom: 1em;
-  }
-  
-  .lh-condensed { line-height: 1.25; }
-  
+.container.fill-height {
+  margin-top: 4%;
+  margin-bottom: -3%;
+}
+
+.container.registration {
+  padding-bottom: 1em;
+  margin-top:4%;
+}
+
+.lh-condensed {
+  line-height: 1.25;
+}

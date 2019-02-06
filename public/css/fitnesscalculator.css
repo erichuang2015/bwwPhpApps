@@ -15,7 +15,8 @@ input#btnSubmitFitCalc{
 }
 
 input#btnSubmitNumMM{
-    margin-bottom: 1em;
+    margin-bottom: 16px;
+    margin-top: 16px;
 }
 
 input.bmi{

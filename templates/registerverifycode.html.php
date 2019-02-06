@@ -6,7 +6,7 @@
         <img class="d-block mx-auto mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         <h2>Register an account</h2>
         <p class="lead">We just emailed your account activation code to you at <?=$email?>. Please input your activation code below to activate
-            your account. </p>
+            your account. If you don't see the email in your inbox check you junk mail folder.</p>
     </div>
 
     <div class="row">

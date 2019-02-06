@@ -16,7 +16,7 @@ class DatabaseTable {
 		$query = $this->pdo->prepare($sql);
 		$query->execute($parameters);
 		return $query;
-	}	
+	}
 
 	public function total() {
 		$query = $this->query('SELECT COUNT(*) FROM `' . $this->table . '`');
@@ -94,7 +94,7 @@ class DatabaseTable {
 	}
 
 
-	public function delete($id ) {
+	public function delete($id) {
 		$parameters = [':id' => $id];
 
 		$this->query('DELETE FROM `' . $this->table . '` WHERE `' . $this->primaryKey . '` = :id', $parameters);

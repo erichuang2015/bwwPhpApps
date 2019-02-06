@@ -20,14 +20,9 @@
 
 $(document).ready(function () {
     let myFitnessCalculator;
-    $("#divBMIInputPg").hide();
-    $("#divSexInputPg").hide();
-    $("#divCalInstructions").hide();
-    // $("#ageInputError").hide();
     $("#age").val("40");
     $("#numMM1").val(2);
     $("#numMM2").val(2);
-    $("#divbodFatResults").hide();
     $("#spanConsistentReq").removeClass("span-consistent-req");
     $("#btnSubmitFitCalc").on("click keyup", function (e) {
         e.preventDefault();
@@ -54,8 +49,8 @@ $(document).ready(function () {
             event.stopPropagation();
             $(ageSexForm).addClass('was-validated');
             $("#ageInputError").text("You did not enter a number within the valid range.  The age must be greater than 17 and less than 141.  Please try again.");
-            return;
-        }else{
+            return; // bad input so return and don't process the data
+        } else {
             $(ageSexForm).addClass('was-validated');
             $("#ageInputError").text("");
         }
@@ -68,52 +63,46 @@ $(document).ready(function () {
         $("#divCalInstructions").show();
     });
 
-    $("#btnSubmitNumMM").on("click keyup", function (e) {
-        e.preventDefault();
-        $("#spanConsistentReq").removeClass("span-consistent-req");
-        let firstReading = $("#numMM1").val();
-        let secondReading = $("#numMM2").val();
-        firstReading = parseInt(firstReading);
-        secondReading = parseInt(secondReading);
-        let averageReading;
-        //validation testing
-        let invalidInput = false;
-        if (isNaN(firstReading)) {
-            $("#inputNumMM1Error").text("You did not enter a valid number.  Please try again.").show();
-            invalidInput = true;
-        }
-        if (isNaN(secondReading) || firstReading < 2 || secondReading < 2) {
-            $("#inputNumMM2Error").text("You did not enter a valid number.  Please try again.").show();
-            invalidInput = true;
-        }
-        if (firstReading < 2 || firstReading > 36) {
-            $("#inputNumMM1Error").text("Please a number within the range of 2 through 36.").show();
-            invalidInput = true;
-        }
-        if (secondReading < 2 || secondReading > 36) {
-            $("#inputNumMM2Error").text("Please a number within the range of 2 through 36.").show();
-            invalidInput = true;
-        }
-
-        if (invalidInput == true) {
-            return;
-        }
-        else {
-            $("#inputNumMM1Error").text("").hide();
-            $("#inputNumMM2Error").text("").hide();
-
-            if (firstReading > secondReading) {
-                if (firstReading - secondReading > 1) {
-                    $("#spanConsistentReq").addClass("span-consistent-req");
-                    return;
-                }
+    $("#numMM1, #numMM2").on("keyup change blur", function (e) {
+        let milimeterForm = $("#form-input-mm");
+        $(milimeterForm).removeClass('was-validated');
+        let numMM1 = $("#numMM1")[0];
+        let numMM2 = $("#numMM2")[0];
+        if (numMM1.checkValidity() === false || numMM2.checkValidity() === false) {
+            e.stopPropagation();
+            $(milimeterForm).addClass('was-validated');
+            if (numMM1.checkValidity() === false) {
+                $("#inputNumMM1Error").text("You did not enter a valid number within the range of 2 through 36.  Please try again.");
             }
             else {
-                if (secondReading - firstReading > 1) {
-                    $("#spanConsistentReq").addClass("span-consistent-req");
-                    return;
-                }
+                $("#inputNumMM1Error").text("");
             }
+            if (numMM2.checkValidity() === false) {
+                $("#inputNumMM2Error").text("You did not enter a valid number within the range of 2 through 36.  Please try again.");
+            }
+            else {
+                $("#inputNumMM2Error").text("");
+            }
+            $("#btnSubmitNumMM").prop('disabled', true);
+        }
+        else {
+            $(milimeterForm).addClass('was-validated');
+            $("#btnSubmitNumMM").prop('disabled', false);
+            $("#inputNumMM1Error").text("");
+            $("#inputNumMM2Error").text("");
+        }
+    });
+
+    $("#btnSubmitNumMM").on("click keyup", function (e) {
+        e.preventDefault();
+        if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
+            let milimeterForm = $("#form-input-mm");
+            $(milimeterForm).removeClass('was-validated');
+            let firstReading = $("#numMM1").val();
+            let secondReading = $("#numMM2").val();
+            firstReading = parseInt(firstReading);
+            secondReading = parseInt(secondReading);
+            let averageReading;
             averageReading = (firstReading + secondReading) / 2;
             myFitnessCalculator.setMm = averageReading;
             myFitnessCalculator.calcBodyFat();
@@ -131,6 +120,10 @@ $(document).ready(function () {
         $("#age").val(40);
         var ageSexForm = $("#form-sexSelect");
         $(ageSexForm).removeClass('was-validated');
+        var milimeterForm = $("#form-input-mm");
+        $(milimeterForm).removeClass('was-validated');
+        $("#numMM1").val("2");
+        $("#numMM2").val("2");
     });
 
     $("#btnBMISubmit").on("click keyup", function (e) {

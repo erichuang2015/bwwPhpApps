@@ -201,7 +201,7 @@ class Register
                 $user['secondanswer'] = $verifyData[0]['secondanswer'];
                 $user['thirdanswer'] = $verifyData[0]['thirdanswer'];
                 $this->usersTable->save($user);
-                $this->usersVerifyTable->delete('id', $verifyData[0]['id']);
+                $this->usersVerifyTable->delete($verifyData[0]['id']);
 				// $_SESSION['email'] = null;
 				// $_SESSION['message'] = null;
                 header('Location: /user/registersuccess');
