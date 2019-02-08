@@ -6,7 +6,7 @@
     </div>
 </div>
 <div class="container fill-height">
-    <form action="" method="post">
+    <form action="" method="post" class="needs-validation" autocomplete="off" novalidate>
         <div id="spartacusSettings" class="row">
             <div class="col-md-4 mb-3">
                 <label for="difficultyLvl">Difficulty Level</label>
@@ -18,27 +18,26 @@
                     <li>The <b>Rudiarius</b> were the few elite gladiators whom through many glorious victories in the arena managed to win their freedom.  Choose <b>Rudiarius</b> if you possess an elite level of cardiovascular fitness or you have survived a few rounds in the arena as a <b>Postulati</b>, and believe you are ready for the ultimate glory.</li></ul>">
 
 
-                <select class="custom-select d-block w-100" id="difficultyLvl" name="settings[difficultyLvl]"
+                <select class="form-control d-block w-100" id="difficultyLvl" name="settings[difficultyLvl]"
                     data-difficultyLvl="<?=$settings['difficultyLvl'] ?? '0'?>" required>
                     <option value="">Choose...</option>
                     <option value="1">Noxii (30 Second Intervals)</option>
                     <option value="2">Postulati (45 Second Intervals)</option>
                     <option value="3">Rudiarius (60 Second Intervals)</option>
                 </select>
-                <div class="invalid-feedback">
-                    Please select a valid difficulty level.
-                </div>
+                <div class="invalid-feedback"><span id="difficultyLvlError"></span></div>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="lightWeight">Light Dumbells</label>
 
-                <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about choosing a light weight pair of dumbells"
-                    width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right"
+                <img src="/css/vendor/open-iconic-master/svg/info.svg"
+                    alt="Information about choosing a light weight pair of dumbells" width="12px" height="12px"
+                    data-container="body" data-toggle="popover" data-placement="right"
                     data-content="You will be doing resistance training for your shoulders, triceps, biceps, and upper back.  Choose a relatively light pair of dumbells that will challenge you for 15 to 20 repetitions per set.">
 
                 <span class="sr-only">Information about choosing light dumbells weapons</span>
 
-                <select class="custom-select d-block w-100" id="lightWeight" name="settings[lightWeight]"
+                <select class="form-control d-block w-100" id="lightWeight" name="settings[lightWeight]"
                     data-lightweight="<?=$settings['lightWeight'] ?? '0'?>" required>
                     <option value="">Choose...</option>
                     <option value="1">2 Ibs</option>
@@ -53,8 +52,7 @@
                     <option value="10">45 Ibs</option>
                     <option value="11">50 Ibs</option>
                 </select>
-                <div class="invalid-feedback">
-                    Please provide a weight selection.
+                <div class="invalid-feedback"><span id="lightWeightError">Please provide a weight selection.</span>
                 </div>
             </div>
             <div class="col-md-4 mb-3">
@@ -65,7 +63,7 @@
                     data-content="You will be doing squats and lunges to work your glutes, thighs, and lower back.  Choose a relatively heavy dumbell that will challenge you for 15 to 20 repetitions per set.">
                 <span class="sr-only">Information about choosing a heavy dumbell</span>
 
-                <select class="custom-select d-block w-100" id="heavyWeight" name="settings[heavyWeight]"
+                <select class="form-control d-block w-100" id="heavyWeight" name="settings[heavyWeight]"
                     data-heavyweight="<?=$settings['heavyWeight'] ?? '0'?>" required>
                     <option value="">Choose...</option>
                     <option value="1">30 Ibs</option>
@@ -84,13 +82,12 @@
                     <option value="14">95 Ibs</option>
                     <option value="15">100 Ibs</option>
                 </select>
-                <div class="invalid-feedback">
-                    Please provide a weight selection.
+                <div class="invalid-feedback"><span id="heavyWeightError">Please provide a weight selection.</span>
                 </div>
             </div>
         </div>
 
-        <input type="submit" name="submit" value="Start" class="btn btn-primary btn-lg">
+        <input type="submit" name="submit" id="submitBtn" value="Start" class="btn btn-primary btn-lg" disabled>
         <!-- End Intro -->
     </form>
 </div>

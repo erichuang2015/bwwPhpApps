@@ -43,7 +43,6 @@ $(document).ready(function () {
         }else{
             $("#exerciseId").val("-1");
         }
-        // console.log(exerciseId);
         $("#exerciseTxt").text(selectedExercise.toLowerCase());
         $("#chooseExercisePanel").hide();
         $("#maxInputForm").show();

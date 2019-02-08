@@ -7,7 +7,7 @@
         <ul>
             <?php foreach ($errors as $error): ?>
             <li>
-            <h2><?=$error?></h2>
+                <h2><?=$error?></h2>
             </li>
             <?php endforeach;?>
         </ul>

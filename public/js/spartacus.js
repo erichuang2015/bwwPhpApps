@@ -9,7 +9,6 @@ function renderSpartacusWorkout() {
     "use strict";
     let difficultySetting = [30000, 45000, 60000];//easy, medium, hard
     let difficultyIndex = $("#diffLevel").val();
-    // console.log(difficultyIndex);
     difficultyIndex = parseInt(difficultyIndex, 10);
     difficultyIndex = difficultyIndex - 1; // backing it up one for the zero based array, difficultySetting, it will serve as an index for
 

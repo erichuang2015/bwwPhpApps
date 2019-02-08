@@ -38,7 +38,7 @@ $(document).ready(function () {
         e.preventDefault();
         myHoroscopeGen.resetHoroscope();
         $("#divHoroscopeResults").hide();
-        $("#btn-submit-horoscope").show(); 
+        $("#btn-submit-horoscope").show();
     });
 });
 
@@ -79,7 +79,6 @@ class HoroscopesGenerator {
                     if (i === 16) {
                         continue;
                     }
-                    //console.log(_horoscopeData[x].charAt(i));
                     // 65-90 A-Z & 97-122 a-z
                     valid = (_horoscopeData[x].charAt(i) > 64 && _horoscopeData[x].charAt(i) < 123) ? true : true; // both true to turn validation off
                     if (valid === false) {

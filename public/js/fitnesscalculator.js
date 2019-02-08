@@ -23,7 +23,6 @@ $(document).ready(function () {
     $("#age").val("40");
     $("#numMM1").val(2);
     $("#numMM2").val(2);
-    // $("#spanConsistentReq").removeClass("span-consistent-req");
     $("#btnSubmitFitCalc").on("click keyup", function (e) {
         e.preventDefault();
         let selectedMeasurementId = $("#divFitnessCalculator input:checked").attr("id");
@@ -81,7 +80,6 @@ $(document).ready(function () {
             largerNum = secondReading;
             smallerNum = firstReading;
         }
-        console.log(numMM2);
         if (numMM1.checkValidity() === false || numMM2.checkValidity() === false) {
             e.stopPropagation();
             $(milimeterForm).addClass('was-validated');

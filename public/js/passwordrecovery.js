@@ -18,18 +18,12 @@
 
 $(document).ready(function () {
     'use strict';
-    $("#firstName, #lastName, #email, #password, #firstAnswer, #secondAnswer, #thirdAnswer").on("keyup blur change", function () {
-        var firstName = $("#firstName").val();
-        var lastName = $("#lastName").val();
+    $("#email, #firstAnswer, #secondAnswer, #thirdAnswer").on("keyup blur change", function () {
         var email = $("#email").val();
-        var password = $("#password").val();
         var firstAnswer = $("#firstAnswer").val();
         var secondAnswer = $("#secondAnswer").val();
         var thirdAnswer = $("#thirdAnswer").val();
-        var firstNameStatus = false;
-        var lastNameStatus = false;
         var emailStatus = false;
-        var passwordStatus = false;
         var firstAnswerStatus = false;
         var secondAnswerStatus = false;
         var thirdAnswerStatus = false;
@@ -37,51 +31,16 @@ $(document).ready(function () {
         var secondAnswerLength = secondAnswer.length;
         var thirdAnswerLength = thirdAnswer.length;
 
-        firstNameStatus = (ValidateName(firstName)) ? true : false;
-        lastNameStatus = (ValidateName(lastName)) ? true : false;
         emailStatus = (ValidateEmail(email)) ? true : false;
-        passwordStatus = (ValidatePassword(password)) ? true : false;
         firstAnswerStatus = (ValidatePasswordRecoveryAnswers(firstAnswerLength, firstAnswer)) ? true : false;
         secondAnswerStatus = (ValidatePasswordRecoveryAnswers(secondAnswerLength, secondAnswer)) ? true : false;
         thirdAnswerStatus = (ValidatePasswordRecoveryAnswers(thirdAnswerLength, thirdAnswer)) ? true : false;
 
-        if (firstNameStatus && lastNameStatus && emailStatus && passwordStatus && firstAnswerStatus && secondAnswerStatus && thirdAnswerStatus) {
+        if (emailStatus && firstAnswerStatus && secondAnswerStatus && thirdAnswerStatus) {
             $("#submitBtn").removeAttr("disabled");
         }
         else {
             $("#submitBtn").attr("disabled", "true");
-        }
-    });
-
-    $("#firstName").on("keyup blur change", function (e) {
-        if (e.keycode != 9 && e.which != 9 && e.type != "tab") {
-            var firstName = $("#firstName").val();
-            if (ValidateName(firstName)) {
-                $("#firstNameInputError").text("");
-                $("#firstName").removeClass("is-invalid");
-                $("#firstName").addClass("is-valid");
-            }
-            else {
-                $("#firstNameInputError").text("Error: Enter a valid first name");
-                $("#firstName").removeClass("is-valid");
-                $("#firstName").addClass("is-invalid");
-            }
-        }
-    });
-
-    $("#lastName").on("keyup blur change", function (e) {
-        if (e.keycode != 9 && e.which != 9 && e.type != "tab") {
-            var lastName = $("#lastName").val();
-            if (ValidateName(lastName)) {
-                $("#lastNameInputError").text("");
-                $("#lastName").removeClass("is-invalid");
-                $("#lastName").addClass("is-valid");
-            }
-            else {
-                $("#lastNameInputError").text("Error: Enter a valid last name");
-                $("#lastName").removeClass("is-valid");
-                $("#lastName").addClass("is-invalid");
-            }
         }
     });
 
@@ -97,22 +56,6 @@ $(document).ready(function () {
                 $("#emailInputError").text("Error: Enter a valid email address");
                 $("#email").removeClass("is-valid");
                 $("#email").addClass("is-invalid");
-            }
-        }
-    });
-
-    $("#password").on("keyup blur change", function (e) {
-        if (e.keycode != 9 && e.which != 9 && e.type != "tab") {
-            var password = $("#password").val();
-            if (ValidatePassword(password)) {
-                $("#passwordInputError").text("");
-                $("#password").removeClass("is-invalid");
-                $("#password").addClass("is-valid");
-            }
-            else {
-                $("#passwordInputError").text("Error: Enter a valid password");
-                $("#password").removeClass("is-valid");
-                $("#password").addClass("is-invalid");
             }
         }
     });
@@ -181,27 +124,6 @@ function ValidateEmail(mail) {
     }
 }
 
-function ValidateName(name) {
-    'use strict';
-    if (/^(?=.{1,45}$)[a-z]+(?:['_.\s][a-z]+)*$/i.test(name)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-//Must be at least one uppercase one lowercase and one number or symbol between 8-24 chars
-function ValidatePassword(password) {
-    'use strict';
-    if (/^(?=.*[\d\W])(?=.*[a-z])(?=.*[A-Z]).{8,24}$/.test(password)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
 //Accept input as long as there is input and the first char is not whitespace
 function ValidatePasswordRecoveryAnswers(answerLength, answer) {
     'use strict';
@@ -212,6 +134,3 @@ function ValidatePasswordRecoveryAnswers(answerLength, answer) {
         return false;
     }
 }
-
-
-
