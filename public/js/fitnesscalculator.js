@@ -23,7 +23,7 @@ $(document).ready(function () {
     $("#age").val("40");
     $("#numMM1").val(2);
     $("#numMM2").val(2);
-    $("#spanConsistentReq").removeClass("span-consistent-req");
+    // $("#spanConsistentReq").removeClass("span-consistent-req");
     $("#btnSubmitFitCalc").on("click keyup", function (e) {
         e.preventDefault();
         let selectedMeasurementId = $("#divFitnessCalculator input:checked").attr("id");
@@ -68,6 +68,20 @@ $(document).ready(function () {
         $(milimeterForm).removeClass('was-validated');
         let numMM1 = $("#numMM1")[0];
         let numMM2 = $("#numMM2")[0];
+        let firstReading = $("#numMM1").val();
+        let secondReading = $("#numMM2").val();
+        firstReading = parseInt(firstReading);
+        secondReading = parseInt(secondReading);
+        let largerNum = 0;
+        let smallerNum = 0;
+        if(firstReading > secondReading){
+            largerNum = firstReading;
+            smallerNum = secondReading;
+        }else{
+            largerNum = secondReading;
+            smallerNum = firstReading;
+        }
+        console.log(numMM2);
         if (numMM1.checkValidity() === false || numMM2.checkValidity() === false) {
             e.stopPropagation();
             $(milimeterForm).addClass('was-validated');
@@ -85,11 +99,17 @@ $(document).ready(function () {
             }
             $("#btnSubmitNumMM").prop('disabled', true);
         }
+        else if(largerNum - smallerNum > 1){
+            $("#spanConsistentReq").addClass("text-danger");
+            $("#btnSubmitNumMM").prop('disabled', true);
+            $("#inputNumMM2Error").text("The second reading cannot be greater than 1mm than the first reading.  Please try again.");
+        }
         else {
             $(milimeterForm).addClass('was-validated');
             $("#btnSubmitNumMM").prop('disabled', false);
             $("#inputNumMM1Error").text("");
             $("#inputNumMM2Error").text("");
+            $("#spanConsistentReq").removeClass("text-danger");
         }
     });
 
@@ -115,39 +135,89 @@ $(document).ready(function () {
 
     $("#btnBodFatReset").on("click keyup", function (e) {
         e.preventDefault();
-        $("#divbodFatResults").hide();
-        $("#divFitStartPg").show();
-        $("#age").val(40);
-        var ageSexForm = $("#form-sexSelect");
-        $(ageSexForm).removeClass('was-validated');
-        var milimeterForm = $("#form-input-mm");
-        $(milimeterForm).removeClass('was-validated');
-        $("#numMM1").val("2");
-        $("#numMM2").val("2");
+        if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
+            $("#divbodFatResults").hide();
+            $("#divFitStartPg").show();
+            $("#age").val(40);
+            var ageSexForm = $("#form-sexSelect");
+            $(ageSexForm).removeClass('was-validated');
+            var milimeterForm = $("#form-input-mm");
+            $(milimeterForm).removeClass('was-validated');
+            $("#numMM1").val("2");
+            $("#numMM2").val("2");
+        }
+    });
+
+    $("#inputHeightFt, #inputHeightIn, #inputWeight").on("keyup change blur", function (e) {
+        let inputBMIForm = $("#divBMIInputPg");
+        $(inputBMIForm).removeClass('was-validated');
+        let inputHeightFt = $("#inputHeightFt")[0];
+        let inputHeightIn = $("#inputHeightIn")[0];
+        let inputWeight = $("#inputWeight")[0];
+        if (inputHeightFt.checkValidity() === false || inputHeightIn.checkValidity() === false || inputWeight.checkValidity() === false) {
+            e.stopPropagation();
+            $(inputBMIForm).addClass('was-validated');
+            if (inputHeightFt.checkValidity() === false) {
+                $("#inputHeightFtError").text("You did not enter a valid number between 1 and 7.  Please try again.");
+            }
+            else {
+                $("#inputHeightFtError").text("");
+            }
+            if (inputHeightIn.checkValidity() === false) {
+                $("#inputHeightInError").text("You did not enter a valid number between 0 and 11.  Please try again.");
+            }
+            else {
+                $("#inputHeightInError").text("");
+            }
+            if (inputWeight.checkValidity() === false) {
+                $("#inputWeightError").text("You did not enter a valid number between 10 and 800.  Please try again.");
+            }
+            else {
+                $("#inputWeightError").text("");
+            }
+            $("#btnBMISubmit").prop('disabled', true);
+        }
+        else {
+            $(inputBMIForm).addClass('was-validated');
+            $("#btnBMISubmit").prop('disabled', false);
+            $("#inputHeightFtError").text("");
+            $("#inputHeightInError").text("");
+            $("#inputWeightError").text("");
+        }
     });
 
     $("#btnBMISubmit").on("click keyup", function (e) {
-        let feet = $("#inputHeightFt").val();
-        let inchesFromFt = convertFeetToInches(feet);
-        let inches = $("#inputHeightIn").val();
-        if (inchesFromFt != 0) {
-            inches = parseInt(inchesFromFt) + parseInt(inches);
+        e.preventDefault();
+        if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
+            let inputBMIForm = $("#divBMIInputPg");
+            $(inputBMIForm).removeClass('was-validated');
+            let feet = $("#inputHeightFt").val();
+            let inchesFromFt = convertFeetToInches(feet);
+            let inches = $("#inputHeightIn").val();
+            if (inchesFromFt != 0) {
+                inches = parseInt(inchesFromFt) + parseInt(inches);
+            }
+            let weight = $("#inputWeight").val();
+            let kilograms = parseFloat(weight) * 0.45;
+            let meters = parseFloat(inches) * 0.025;
+            let height = parseFloat(meters) * parseFloat(meters);
+            let bmi = kilograms / height;
+            $("#bmiResults").text("Your BMI is: " + roundTwoDecimals(bmi) + ".");
         }
-        let weight = $("#inputWeight").val();
-        let kilograms = parseFloat(weight) * 0.45;
-        let meters = parseFloat(inches) * 0.025;
-        let height = parseFloat(meters) * parseFloat(meters);
-        let bmi = kilograms / height;
-        $("#bmiResults").text("Your BMI is: " + roundTwoDecimals(bmi) + ".");
     });
 
     $("#btnBMIReset").on("click keyup", function (e) {
-        $("#inputHeightFt").val(0);
-        $("#inputHeightIn").val(0);
-        $("#inputWeight").val(10);
-        $("#bmiResults").text("");
-        $("#divFitStartPg").show();
-        $("#divBMIInputPg").hide();
+        e.preventDefault();
+        if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
+            let inputBMIForm = $("#divBMIInputPg");
+            $(inputBMIForm).removeClass('was-validated');
+            $("#inputHeightFt").val(5);
+            $("#inputHeightIn").val(0);
+            $("#inputWeight").val(150);
+            $("#bmiResults").text("");
+            $("#divFitStartPg").show();
+            $("#divBMIInputPg").hide();
+        }
     });
 });
 

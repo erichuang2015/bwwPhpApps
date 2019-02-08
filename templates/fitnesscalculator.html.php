@@ -114,7 +114,8 @@
                             Caliper Reading in <b>Millimeters:</b></label>
                     </div>
                     <div class="col-12">
-                        <input id="numMM1" type="number" min="2" max="36" value="2" class="form-control col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2" required>
+                        <input id="numMM1" type="number" min="2" max="36" value="2"
+                            class="form-control col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2" required>
                         <div class="invalid-feedback col-12"><span id="inputNumMM1Error"></span></div>
                     </div>
                 </div>
@@ -124,7 +125,8 @@
                             Caliper Reading in <b>Millimeters:</b></label>
                     </div>
                     <div class="col-12">
-                        <input id="numMM2" type="number" min="2" max="36" value="2" class="form-control col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2" required>
+                        <input id="numMM2" type="number" min="2" max="36" value="2"
+                            class="form-control col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2" required>
                         <div class="invalid-feedback col-12"><span id="inputNumMM2Error"></span></div>
                     </div>
                 </div>
@@ -142,32 +144,35 @@
         <input id='btnBodFatReset' class='btn btn-secondary' type='reset' value='Reset' />
     </div>
 
-    <div id="divBMIInputPg" style="display: none">
+    <form id="divBMIInputPg" class="needs-validation" novalidate style="display: none">
         <p>To calculate your BMI we need your height and weight. Please input both meaurements below.</p>
-        <div class="container">
-            <label for="inputHeight">Height:</label>
-            <ul>
-                <li>
-                    <label for="inputHeightFt" class="bmi-ft-lbl">Feet:</label>
-                    <input id="inputHeightFt" class="bmi" type="number" min="0" max="7" value="6" maxlength="1"
-                        autofocus />
-                </li>
-                <li>
-                    <label for="inputHeightIn">Inches:</label>
-                    <input id="inputHeightIn" class="bmi" type="number" min="0" max="12" value="0" maxlength="2" />
-                </li>
-            </ul>
-            <label for="iputWeight">Weight:</label>
-            <input id="inputWeight" class="bmi" type="number" min="10" max="800" value="190" />
+        <label for="inputHeight">Height:</label>
+        <ul>
+            <li>
+                <label for="inputHeightFt" class="bmi-ft-lbl">Feet:</label>
+                <input id="inputHeightFt" class="form-control col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2" type="number"
+                    min="1" max="7" value="5" maxlength="1" autofocus required />
+                <div class="invalid-feedback col-12"><span id="inputHeightFtError"></span></div>
+            </li>
+            <li>
+                <label for="inputHeightIn">Inches:</label>
+                <input id="inputHeightIn" class="form-control col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2" type="number"
+                    min="0" max="11" value="0" maxlength="2" required />
+                <div class="invalid-feedback col-12"><span id="inputHeightInError"></span></div>
+            </li>
+        </ul>
+        <label for="iputWeight">Weight:</label>
+        <input id="inputWeight" class="form-control col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2" type="number" min="10"
+            max="800" value="150" required />
+        <div class="invalid-feedback col-12"><span id="inputWeightError"></span></div>
 
-            <div class="row bmi-btns-row">
-                <div class="col col-sm-1 col-md-2 col-lg-1 col-xl-1"><input id="btnBMISubmit" class="btn btn-primary"
-                        type="submit" value="Submit" /></div>
-                <div class="col col-sm-1 col-md-2 col-lg-1 col-xl-1"><input id="btnBMIReset" class="btn btn-secondary"
-                        type="reset" value="Reset" /></div>
-            </div>
-            <p id="bmiResults"></p>
+        <div class="row bmi-btns-row">
+            <div class="col col-sm-1 col-md-2 col-lg-1 col-xl-1"><input id="btnBMISubmit" class="btn btn-primary"
+                    type="submit" value="Submit"/></div>
+            <div class="col col-sm-1 col-md-2 col-lg-1 col-xl-1"><input id="btnBMIReset" class="btn btn-secondary"
+                    type="reset" value="Reset" /></div>
         </div>
-    </div>
+        <p id="bmiResults"></p>
+    </form>
 </div>
 <script type="text/javascript" src="/js/fitnesscalculator.js"></script>

@@ -14,6 +14,10 @@ input#btnSubmitFitCalc{
     display:block;
 }
 
+input[type='number']{
+    padding-left: 2px;
+}
+
 input#btnSubmitNumMM{
     margin-bottom: 16px;
     margin-top: 16px;
@@ -34,4 +38,8 @@ div.bmi-btns-row{
 
 label.bmi-ft-lbl{
     margin-right:0.95rem;
+}
+
+#bmiResults{
+    margin-top: 15px;
 }
