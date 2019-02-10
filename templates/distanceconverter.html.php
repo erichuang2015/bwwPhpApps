@@ -25,19 +25,22 @@
                 <label class="label col-form-label" for="furlongs">Furlongs</label>
             </li>
         </ul>
-        <input id="btn-submit-Dist-Convert" type="submit" value="Submit" name="btn-submit-Dist-Convert" class="btn btn-primary"/>
+        <input id="btn-submit-Dist-Convert" type="submit" value="Submit" name="btn-submit-Dist-Convert"
+            class="btn btn-primary" />
     </form>
 
-    <form id="inchesInputForm">
+    <form id="inchesInputForm" class="needs-validation" style="display: none;" novalidate>
         <div class="form-group">
             <label class="label col-form-label" for="inputInches">Inches:</label>
-            <input id="inputInches" name="inputInches" class="form-control" type="text" /><span id="inputError" class="input-error"></span>
+            <input id="inputInches" name="inputInches" class="form-control" type="text" required autofocus />
+            <div class="invalid-feedback"><span id="inputInchesError"></span></div>
         </div>
         <div class="form-group">
             <label class="label col-form-label" for="resultTxt">Result:</label>
-            <input id="resultTxt" name="inputInches" class="form-control" type="text" readonly />
+            <span id="resultTxt" name="inputInches" class="form-control" type="text" readonly></span>
         </div>
-        <input id="btnInputSubmit" name="btnInputSubmit" type="submit" value="Submit" class="btn btn-primary" />
+        <input id="btnInputSubmit" name="btnInputSubmit" type="submit" value="Submit" class="btn btn-primary"
+            disabled />
         <input id="btnReset" type="reset" value="Reset" class="btn btn-secondary" />
     </form>
 </div>

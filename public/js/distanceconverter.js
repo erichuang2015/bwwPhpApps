@@ -4,11 +4,30 @@ $(document).ready(function () {
     let myDistanceConverter;
     $("#inchesInputForm").hide();
 
-    $("#inputInches").on("change", function (e) {
+    $("#inputInches").on("change blur keyup", function (e) {
         var inputInchTxt = $("#inputInches").val();
-        inputInchTxt = removeCommas(inputInchTxt);
-        inputInchTxt = addCommas(inputInchTxt);
+        var inputInches = removeCommas(inputInchTxt);
+        inputInchTxt = addCommas(inputInches);
         $("#inputInches").val(inputInchTxt);
+
+        if (isNaN(inputInches)) {
+            $("#inputInches").removeClass("is-valid");
+            $("#inputInches").addClass("is-invalid");
+            $("#inputInchesError").text("Error: Please enter a number.");
+            $("#btnInputSubmit").attr("disabled", "true");
+        }
+        else if (parseFloat(Number(inputInches)) <= 0) {
+            $("#inputInches").removeClass("is-valid");
+            $("#inputInches").addClass("is-invalid");
+            $("#inputInchesError").text("Error: Please enter a number greater than zero.");
+            $("#btnInputSubmit").attr("disabled", "true");
+        }
+        else {
+            $("#inputInches").removeClass("is-invalid");
+            $("#inputInches").addClass("is-valid");
+            $("#inputInchesError").text("");
+            $("#btnInputSubmit").removeAttr("disabled");
+        }
     });
 
     $("#btn-submit-Dist-Convert").on("click keyup", function (e) {
@@ -24,47 +43,52 @@ $(document).ready(function () {
 
     $("#btnInputSubmit").on("click keyup", function (e) {
         e.preventDefault();
-        let numInches = $("#inputInches").val();
-        numInches = numInches.toString();
-        numInches = removeCommas(numInches);
-        numInches = Number.parseFloat(numInches);
-        if (isNaN(numInches)) {
-            $("#inputError").text("You did not enter a number.  Please try again.").show();
-            $("#resultTxt").val("");
-            return;
+        if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
+            let numInches = $("#inputInches").val();
+            numInches = numInches.toString();
+            numInches = removeCommas(numInches);
+            numInches = Number.parseFloat(numInches);
+            if (isNaN(numInches)) {
+                $("#inputError").text("You did not enter a number.  Please try again.").show();
+                $("#resultTxt").text("");
+                return;
+            }
+            else {
+                $("#inputError").text("").hide();
+            }
+            myDistanceConverter.numInches = numInches;
+            let result;
+            switch (myDistanceConverter.selectedMetric.toString()) {
+                case "feet":
+                    myDistanceConverter.numOfFeet = myDistanceConverter.calcFeet();
+                    result = myDistanceConverter.numOfFeet;
+                    break;
+                case "miles":
+                    myDistanceConverter.numOfFeet = myDistanceConverter.calcFeet();
+                    myDistanceConverter.numOfMiles = myDistanceConverter.calcMiles();
+                    result = myDistanceConverter.numOfMiles;
+                    break;
+                case "furlongs":
+                    myDistanceConverter.numOfFeet = myDistanceConverter.calcFeet();
+                    myDistanceConverter.numOfMiles = myDistanceConverter.calcMiles();
+                    result = myDistanceConverter.calcFurlongs();
+                    break;
+            }
+            result = roundTwoDecimals(result);
+            result = addCommas(result.toString());
+            $("#resultTxt").text(result.toString() + " " + myDistanceConverter.selectedMetric.toString());
         }
-        else {
-            $("#inputError").text("").hide();
-        }
-        myDistanceConverter.numInches = numInches;
-        let result;
-        switch (myDistanceConverter.selectedMetric.toString()) {
-            case "feet":
-                myDistanceConverter.numOfFeet = myDistanceConverter.calcFeet();
-                result = myDistanceConverter.numOfFeet;
-                break;
-            case "miles":
-                myDistanceConverter.numOfFeet = myDistanceConverter.calcFeet();
-                myDistanceConverter.numOfMiles = myDistanceConverter.calcMiles();
-                result = myDistanceConverter.numOfMiles;
-                break;
-            case "furlongs":
-                myDistanceConverter.numOfFeet = myDistanceConverter.calcFeet();
-                myDistanceConverter.numOfMiles = myDistanceConverter.calcMiles();
-                result = myDistanceConverter.calcFurlongs();
-                break;
-        }
-        result = roundTwoDecimals(result);
-        result = addCommas(result.toString());
-        $("#resultTxt").val(result.toString() + " " + myDistanceConverter.selectedMetric.toString());
     });
 
     $("#btnReset").on("click keyup", function (e) {
         $("#inchesInputForm").hide();
         $("#form-measurement").show();
         $("#inputInches").val("");
-        $("#resultTxt").val("");
-        $("#feet, #miles, #furlongs").removeAttr("checked");
+        $("#resultTxt").text("");
+        $("#inputInches").removeClass("is-invalid");
+        $("#inputInches").removeClass("is-valid");
+        $("#inputInchesError").text("");
+        $("#btnInputSubmit").attr("disabled", "true");
     });
 });
 
