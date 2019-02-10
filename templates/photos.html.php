@@ -35,7 +35,7 @@
                 <div class="invalid-feedback">
                     Please select a valid option.
                 </div><!-- /invalid-feedback -->
-                <input name="submit" type="submit" class="btn btn-primary btn-lg">
+                <input id="submit" name="submit" type="submit" class="btn btn-primary btn-lg" disabled>
             </div><!-- /col-md-4 mb-3 -->
         </div><!-- /row -->
     </form>
