@@ -28,14 +28,26 @@ $(document).ready(function() {
 
     $("#userfile").on("change", function(){
         var userFile = $("#userfile");
-        // console.log(userFile);
-        // console.log(userFile[0].files[0].length);
         if(userFile.length > 0){
-            $("#submitBtn").removeAttr("disabled");
-            //$("#cancelBtn").css("display", "block");
-            $("#cancelBtn").show();
+            var fileType = userFile[0].files[0].type;
+            if(fileType == "image/jpeg" || fileType == "image/png"){
+                $("#submitBtn").removeAttr("disabled");
+                $(userFile).removeClass("is-invalid");
+                $(userFile).addClass("is-valid");
+                $("#cancelBtn").show();
+            }
+            else{
+                $("#submitBtn").attr("disabled", "true");
+                $(userFile).removeClass("is-valid");
+                $(userFile).addClass("is-invalid");
+                $("#userFileError").text("Error: Please only upload jpeg or png image files.");
+            }
+
         } else {
             $("#submitBtn").attr("disabled", "true");
+            $(userFile).removeClass("is-valid");
+            $(userFile).addClass("is-invalid");
+            $("#userFileError").text("Error: Please select an image to upload.");
         }
     });
 

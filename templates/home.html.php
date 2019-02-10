@@ -4,7 +4,7 @@
 <div class="jumbotron">
         <div class="container">
           <h1 class="display-3">BWW Apps</h1>
-          <em>Every second counts</em>
+          <em>Helping you win at life</em>
         </div>
 </div>
 
