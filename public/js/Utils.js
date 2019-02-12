@@ -15,7 +15,7 @@ function removeCommas(nStr) {
 }
 
 function roundTwoDecimals(num) {
-    return Math.round(num * 100) / 100
+    return Math.round(num * 100) / 100;
 }
 
 function convertFeetToInches(feet) {
