@@ -53,6 +53,10 @@
 
                 <div class="mb-3">
                     <label for="password">Password</label>
+                    <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about password requirements"
+                        width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right"
+                        data-content="Passwords must be more than 7 and less than 25 characters in length.  They must contain at lease one number, one uppercase and one lowercase alphabetical character, and may contain special characters.">
+                    <span class="sr-only">Information about password requirements</span>
                     <input type="password" id="password" name="user[password]" class="form-control"
                         pattern="^(?=.*[\d\W])(?=.*[a-z])(?=.*[A-Z]).{8,24}$" value="" maxlength="24" autocomplete="off"
                         required>

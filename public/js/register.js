@@ -18,6 +18,13 @@
 
 $(document).ready(function () {
     'use strict';
+    $(function () {
+        $('[data-toggle="popover"]').popover({
+            trigger: "hover click",
+            html: true,
+            title: ""
+        });
+    });
     $("#firstName, #lastName, #email, #password, #firstAnswer, #secondAnswer, #thirdAnswer").on("keyup blur change", function () {
         var firstName = $("#firstName").val();
         var lastName = $("#lastName").val();

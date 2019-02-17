@@ -1,5 +1,5 @@
 label{
-    display: block;
+    display: inline;
 }
 
 input[type="password"]{
@@ -7,9 +7,15 @@ input[type="password"]{
 }
 
 #passwordResetForm input[type="password"]{
-    margin-bottom:1em;
+    margin-bottom: 15px;
 }
 
 #passwordResetForm input[type="submit"]{
     display:block;
+    margin-top: 15px;
+}
+
+.invalid-feedback{
+    margin-bottom: 15px;
+    margin-top: -15px;
 }
