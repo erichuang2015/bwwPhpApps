@@ -1,3 +1,6 @@
+h1{
+    margin-bottom: 0;
+}
 
 /*iPhone6 Plus*/
 @media (max-width: 415px) {
