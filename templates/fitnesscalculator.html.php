@@ -156,13 +156,13 @@
             </li>
             <li>
                 <label for="inputHeightIn">Inches:</label>
-                <input id="inputHeightIn" class="form-control col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2" type="number"
+                <input id="inputHeightIn" class="form-control col-xl-1 col-lg-1 col-md-2 col-sm-2 col-3" type="number"
                     min="0" max="11" value="0" maxlength="2" required />
                 <div class="invalid-feedback col-12"><span id="inputHeightInError"></span></div>
             </li>
         </ul>
         <label for="iputWeight">Weight:</label>
-        <input id="inputWeight" class="form-control col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2" type="number" min="10"
+        <input id="inputWeight" class="form-control col-xl-1 col-lg-1 col-md-3 col-sm-3 col-3" type="number" min="10"
             max="800" value="150" required />
         <div class="invalid-feedback col-12"><span id="inputWeightError"></span></div>
 
