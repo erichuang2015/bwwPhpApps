@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     $("input[type=text]").on("change blur keyup", function (e) {
         if (e.keycode != 9 && e.which != 9) {
-            let value = $(this).val();
+            let value = $(this).val().toLowerCase().trim();
             let wordStatus = false;
             let ing = "ing";
             let labelTxt = $(this).prev().text().toLowerCase();
@@ -90,24 +90,24 @@ class HoroscopesGenerator {
         this.resetHoroscope = resetHoroscope; //The this keyword makes this method public
 
         function setHoroscopeData() {
-            _horoscopeData.one = $('#one').val();
-            _horoscopeData.two = $('#two').val();
-            _horoscopeData.three = $('#three').val();
-            _horoscopeData.four = $('#four').val();
-            _horoscopeData.five = $('#five').val();
-            _horoscopeData.six = $('#six').val();
-            _horoscopeData.seven = $('#seven').val();
-            _horoscopeData.eight = $('#eight').val();
-            _horoscopeData.nine = $('#nine').val();
-            _horoscopeData.ten = $('#ten').val();
-            _horoscopeData.eleven = $('#eleven').val();
-            _horoscopeData.twelve = $('#twelve').val();
-            _horoscopeData.thirteen = $('#thirteen').val();
-            _horoscopeData.fourteen = $('#fourteen').val();
-            _horoscopeData.fifteen = $('#fifteen').val();
-            _horoscopeData.sixteen = $('#sixteen').val();
-            _horoscopeData.seventeen = $('#seventeen').val();
-            _horoscopeData.eighteen = $('#eighteen').val();
+            _horoscopeData.one = $('#one').val().toLowerCase().trim();
+            _horoscopeData.two = $('#two').val().toLowerCase().trim();
+            _horoscopeData.three = $('#three').val().toLowerCase().trim();
+            _horoscopeData.four = $('#four').val().toLowerCase().trim();
+            _horoscopeData.five = $('#five').val().toLowerCase().trim();
+            _horoscopeData.six = $('#six').val().toLowerCase().trim();
+            _horoscopeData.seven = $('#seven').val().toLowerCase().trim();
+            _horoscopeData.eight = $('#eight').val().toLowerCase().trim();
+            _horoscopeData.nine = $('#nine').val().toLowerCase().trim();
+            _horoscopeData.ten = $('#ten').val().toLowerCase().trim();
+            _horoscopeData.eleven = $('#eleven').val().toLowerCase().trim();
+            _horoscopeData.twelve = $('#twelve').val().toLowerCase().trim();
+            _horoscopeData.thirteen = $('#thirteen').val().toLowerCase().trim();
+            _horoscopeData.fourteen = $('#fourteen').val().toLowerCase().trim();
+            _horoscopeData.fifteen = $('#fifteen').val().toLowerCase().trim();
+            _horoscopeData.sixteen = $('#sixteen').val().toLowerCase().trim();
+            _horoscopeData.seventeen = $('#seventeen').val().toLowerCase().trim();
+            _horoscopeData.eighteen = $('#eighteen').val().toLowerCase().trim();
         }
         function displayHoroscope() {
             $('#horoscope-heading2').text('Today\'s Horoscopes');
