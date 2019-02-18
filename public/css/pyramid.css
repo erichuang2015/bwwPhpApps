@@ -1,11 +1,48 @@
-caption{
+caption {
     caption-side: top;
     text-align: center;
 }
-input#max{
-    margin-bottom:1em;
+
+input#max {
+    margin-bottom: 1em;
 }
-input#submit{
-    display:block;
+
+input#submit {
+    display: block;
     margin-top: 10%;
+}
+
+/*iPhone6 Plus*/
+
+@media (max-width: 415px) {
+    form#maxInputForm, form#maxInputFormNotAuthenticated {
+        margin-left: 15px;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPhone6*/
+
+@media (max-width: 376px) {
+    form#maxInputForm, form#maxInputFormNotAuthenticated {
+        margin-left: 15px;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPhone 5/SE*/
+
+@media (max-width: 320px) {
+    form#maxInputForm, form#maxInputFormNotAuthenticated {
+        margin-left: 15px;
+        margin-right: auto;
+        padding-left: 0;
+        padding-right: 0;
+        width: 90%
+    }
+    label#lblMax {
+        display: inline;
+    }
 }

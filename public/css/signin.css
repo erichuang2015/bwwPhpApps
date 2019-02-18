@@ -98,29 +98,33 @@ span.forgot-pw a {
 /* Firefox Browser styles begin */
 
 @-moz-document url-prefix() {
-    img {
-      max-height: 395px;
-      width: 100%;
-    }
-    div.login.container {
-      margin-top: -4em;
-      height: auto;
-      max-height: 680px;
-      margin-bottom: 1em;
-    }
+  img {
+    max-height: 395px;
+    width: 100%;
+  }
+  div.login.container {
+    margin-top: -4em;
+    height: auto;
+    max-height: 680px;
+    margin-bottom: 1em;
+  }
 }
+
 /* Firefox Browser styles end */
 
 /*iPhone6 Plus*/
+
 @media (max-width: 415px) {
   div.login.container {
     margin-top: 15px;
     margin-bottom: 15px;
   }
 }
+
 /*/////////////////////////*/
 
 /*iPhone 5/SE*/
+
 @media (max-width: 320px) {
   div.login.container {
     margin-top: 5em;

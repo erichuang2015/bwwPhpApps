@@ -104,7 +104,7 @@
 </form>
 
 <?php else: ?>
-<form action="" method="post" class="container needs-validation" autocomplete="off" novalidate>
+<form id="maxInputFormNotAuthenticated" action="" method="post" class="container needs-validation" autocomplete="off" novalidate>
     <div class="row mb-3">
         <div id="col-xs-12 col-sm-9 col-md-3 col-lg-4">
             <label for="maxNotLogged">Enter your 1RM:</label>

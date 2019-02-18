@@ -150,7 +150,7 @@
         <ul>
             <li>
                 <label for="inputHeightFt" class="bmi-ft-lbl">Feet:</label>
-                <input id="inputHeightFt" class="form-control col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2" type="number"
+                <input id="inputHeightFt" class="form-control col-xl-1 col-lg-1 col-md-2 col-sm-2 col-3" type="number"
                     min="1" max="7" value="5" maxlength="1" autofocus required />
                 <div class="invalid-feedback col-12"><span id="inputHeightFtError"></span></div>
             </li>
