@@ -2,3 +2,4 @@ bwwlocaldb.sql
 .vscode/*
 vendor/*
 public/uploads/*
+tokens/*
