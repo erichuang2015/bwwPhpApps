@@ -39,7 +39,7 @@ class EntryPoint
 
 		$authentication = $this->routes->getAuthentication();
 
-		if (isset($routes[$this->route]['login']) && isset($routes[$this->route]['login']) && !$authentication->isLoggedIn()) {
+		if (isset($routes[$this->route]['login']) && !$authentication->isLoggedIn()) {
 			// print_r("hello"); die;
 			header('location: /login/error');
 		} else {

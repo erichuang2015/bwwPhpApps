@@ -12,7 +12,13 @@
         "phpmailer/phpmailer": "^6.0",
         "league/oauth2-google": "^3.0",
         "stevenmaguire/oauth2-microsoft": "^2.2",
-        "php-http/curl-client": "^1.7"
+        "php-http/curl-client": "^1.7",
+        "paragonie/random_compat": "2.*",
+        "birke/rememberme": "^2.0",
+        "ircmaxell/random-lib": "^1.2"
+    },
+    "replace": {
+        "paragonie/random_compat": "2.*"
     },
     "license": "MIT",
     "authors": [

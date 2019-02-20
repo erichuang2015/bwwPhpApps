@@ -32,10 +32,6 @@ $(document).ready(function () {
         passwordStatus = validateEntries(passwordInput);
         toggleSignInBtn(emailStatus, passwordStatus);
     });
-
-
-
-
 });
 
 function validateEntries(inputElement) {

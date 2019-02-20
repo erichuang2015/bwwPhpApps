@@ -66,6 +66,7 @@ class ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285
         'B' => 
         array (
             'BwwClasses\\' => 11,
+            'Birke\\Rememberme\\' => 17,
         ),
     );
 
@@ -164,6 +165,27 @@ class ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285
         array (
             0 => __DIR__ . '/../..' . '/classes/BwwClasses',
         ),
+        'Birke\\Rememberme\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/birke/rememberme/src',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'S' => 
+        array (
+            'SecurityLib' => 
+            array (
+                0 => __DIR__ . '/..' . '/ircmaxell/security-lib/lib',
+            ),
+        ),
+        'R' => 
+        array (
+            'RandomLib' => 
+            array (
+                0 => __DIR__ . '/..' . '/ircmaxell/random-lib/lib',
+            ),
+        ),
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -171,6 +193,7 @@ class ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit03aeb8a472eef5c303f990a6ae9b0285::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

@@ -29,4 +29,5 @@ return array(
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
     'Clue\\StreamFilter\\' => array($vendorDir . '/clue/stream-filter/src'),
     'BwwClasses\\' => array($baseDir . '/classes/BwwClasses'),
+    'Birke\\Rememberme\\' => array($vendorDir . '/birke/rememberme/src'),
 );
