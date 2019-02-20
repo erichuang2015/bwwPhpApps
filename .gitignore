@@ -2,4 +2,7 @@ bwwlocaldb.sql
 .vscode/*
 vendor/*
 public/uploads/*
+# exclude everything
 tokens/*
+# exception to the rule
+!tokens/.gitkeep
