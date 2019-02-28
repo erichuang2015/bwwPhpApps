@@ -86,13 +86,11 @@ class Pyramid
 
     private function saveNewExercise($newExerciseName){
         $user = $this->authentication->getUser();
-        $loggedIn = $this->authentication->isLoggedIn();
         $userId = (int)$user['id'];
         $newExerciseData = [];
         $newExerciseData['exercise_name'] = $newExerciseName;
         $newExerciseData['author_id'] = $userId;
         $this->exerciseTypesTable->save($newExerciseData);
-        // $this->render();
         header('location: /pyramid');
     }
 

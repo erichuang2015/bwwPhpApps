@@ -29,7 +29,7 @@ class Photos
 
         if (isset($_POST['delete'])) {
             // print_r($_POST['delete']); die;
-            $this->deletePhoto($_POST['id'], $_POST['userid']);
+            $this->deletePhoto($_POST['id']);
         } else if (isset($_POST['rotate'])) {
             // print_r($_POST['rotate']);die;
             $this->rotatePhoto($_POST['id']);
@@ -55,7 +55,7 @@ class Photos
                 'variables' => [
                     'loggedIn' => $loggedIn,
                     'photos' => $photos,
-                ],
+                ]
             ];
         } else {
             return [
@@ -63,7 +63,7 @@ class Photos
                 'title' => 'Photo Gallery',
                 'variables' => [
                     'loggedIn' => $loggedIn,
-                ],
+                ]
             ];
         }
     }
@@ -155,7 +155,7 @@ class Photos
         }
     }
 
-    private function deletePhoto($id, $userId)
+    private function deletePhoto($id)
     {
         $user = $this->authentication->getUser();
 

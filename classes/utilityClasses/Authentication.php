@@ -89,7 +89,7 @@ class Authentication
 
         $user = $this->users->find($this->usernameColumn, strtolower($_SESSION['username']));
 
-        if (!empty($user) && $user[0][$this->passwordColumn] === $_SESSION['password']) {
+        if (!empty($user) && $user[0][$this->passwordColumn] === $_SESSION['password']) {//getting error for undefined index password here
             return true;
         } else {
             return false;

@@ -46,6 +46,7 @@
                                 aria-haspopup="true" aria-expanded="false">Utility Apps</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownUtilities">
                                 <a class="dropdown-item" href="/photos">Photo Viewer</a>
+                                <a class="dropdown-item" href="/shoppinglist">Shopping List</a>
                                 <!-- <a class="dropdown-item" href="/">To Do List</a>
 							<a class="dropdown-item" href="/">Shopping List</a>
 							<a class="dropdown-item" href="/">Calendar</a>

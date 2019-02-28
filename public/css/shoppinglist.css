@@ -1,0 +1,38 @@
+li {
+    list-style-type: none;
+}
+
+button.btn-new-item, button.btn-new-item:focus, button.btn-new-item:hover {
+    font-weight: bolder;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+button#btnNewItemBack {
+    font-size: 1em;
+}
+
+ul.shopping-categories{
+    list-style-type: none;
+}
+
+span.btn-txt {
+    font-size: 75%;
+}
+
+h2 button.btn.btn-link.btn-new-item.btn-symbol {
+    font-size: 1em;
+}
+
+.no-display{
+    display:none!important;
+}
+
+.form-control.new-category{
+    width:70%;
+    display:inline;
+}
+
+.deleted{
+    text-decoration: line-through;
+}
