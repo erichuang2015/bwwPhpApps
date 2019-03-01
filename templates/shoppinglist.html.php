@@ -39,8 +39,8 @@
                         <h2><input type="checkbox" name="shopcategory[<?=$category["id"]?>]" value="false" /><?=$category["category"]?><input type="submit" id="confirmDelete<?=$value?>" value="confirm" class="btn btn-danger no-display" />
 
                             <button id="btnNewItem<?=$category["id"]?>" data-catid="<?=$category["id"]?>" class="btn btn-link btn-new-item btn-symbol text-success">+ <span class="new-item btn-txt"> Add new <?=$category["category"]?> item</span></button>
-                            <button id="btnNewItemBack<?=$category["id"]?>" data-catid="<?=$category["id"]?>" type="button" class="btn btn-link btn-new-item text-danger" style="display:none!important"><span class="btn-symbol"><span class="btn-symbol">
-                                        <- </span> </button> </h2> <input type="hidden" name="itemcategoryid[]" value="" />
+                            <button id="btnNewItemBack<?=$category["id"]?>" data-catid="<?=$category["id"]?>" type="button" class="btn btn-link btn-new-item text-danger d-block" style="display:none!important"><span class="btn-symbol"><span class="btn-symbol">
+                                        <- </span><span class="new-item btn-txt">Nevermind</span> </button> </h2> <input type="hidden" name="itemcategoryid[]" value="" />
                                         <input type="text" id="newItem<?=$category["id"]?>" name="newitem[]" data-categoryid="<?=$category["id"]?>" text="" class="form-control new-category no-display" placeholder="Fancy New Item Name (e.g. dish detergent)" />
                                         <input type="submit" id="btnSaveNewItem<?=$category["id"]?>" value="Save" class="btn btn-success no-display" />
                                         <div class="invalid-feedback">

@@ -12,7 +12,7 @@ button#btnNewItemBack {
     font-size: 1em;
 }
 
-ul.shopping-categories{
+ul.shopping-categories {
     list-style-type: none;
 }
 
@@ -20,32 +20,73 @@ span.btn-txt {
     font-size: 1em;
 }
 
-span.btn-symbol{
-    font-size:2em;
+span.btn-symbol {
+    font-size: 2em;
 }
 
 button[id^="btnNewItemBack"] span.btn-symbol, button#btnNewCategoryBack span.btn-symbol {
-    font-size:1em;
+    font-size: 1em;
 }
 
-span.new-item.btn-txt{
-    font-size:0.5em;
+span.new-item.btn-txt {
+    font-size: 0.5em;
 }
 
 h2 button.btn.btn-link.btn-new-item.btn-symbol {
     font-size: 1em;
-    display:block;
+    display: block;
 }
 
-.no-display{
-    display:none!important;
+.no-display {
+    display: none!important;
 }
 
-.form-control.new-category{
-    width:70%;
-    display:inline;
+.form-control.new-category {
+    width: 70%;
+    display: inline;
 }
 
-.deleted{
+.deleted {
     text-decoration: line-through;
 }
+
+/* Edge Browser styles begin */
+
+@supports (-ms-ime-align: auto) {}
+
+/* Edge Browser styles end */
+
+/* Firefox Browser styles begin */
+
+@-moz-document url-prefix() {}
+
+/* Firefox Browser styles end */
+
+/*iPad*/
+
+@media (max-width: 769px) {}
+
+/*/////////////////////////*/
+
+/*iPhone6 Plus*/
+
+@media (max-width: 415px) {}
+
+/*/////////////////////////*/
+
+/*iPhone6*/
+
+@media (max-width: 376px) {}
+
+/*/////////////////////////*/
+
+/*iPhone 5/SE*/
+
+@media (max-width: 320px) {
+    ul.shopping-categories {
+        list-style-type: none;
+        padding-left: 5px;
+    }
+}
+
+/*/////////////////////////*/
