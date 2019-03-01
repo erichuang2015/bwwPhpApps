@@ -17,11 +17,24 @@ ul.shopping-categories{
 }
 
 span.btn-txt {
-    font-size: 75%;
+    font-size: 1em;
+}
+
+span.btn-symbol{
+    font-size:2em;
+}
+
+button[id^="btnNewItemBack"] span.btn-symbol, button#btnNewCategoryBack span.btn-symbol {
+    font-size:1em;
+}
+
+span.new-item.btn-txt{
+    font-size:0.5em;
 }
 
 h2 button.btn.btn-link.btn-new-item.btn-symbol {
     font-size: 1em;
+    display:block;
 }
 
 .no-display{

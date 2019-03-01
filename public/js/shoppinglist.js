@@ -26,6 +26,7 @@ $(document).ready(function () {
             $("#btnNewCategory").hide();
             $("#btnNewCategoryBack").show();
             $("#newCategory").removeClass("no-display");
+            $("#btnSaveNewCategory").removeClass("no-display");
         }
     });
 
@@ -35,6 +36,7 @@ $(document).ready(function () {
             e.stopPropagation();
             $("#btnNewCategoryBack").hide();
             $("#newCategory").addClass("no-display");
+            $("#btnSaveNewCategory").addClass("no-display");
             $("#btnNewCategory").show();
         }
     });
@@ -75,6 +77,9 @@ $(document).ready(function () {
             $("#" + btnIdNumRemoved + "Back" + idNum).removeClass("no-display");
             $("#newItem" + idNum).removeClass("no-display");
             $("#newItem" + idNum).prev("input").val(idNum);
+            $("#btnSaveNewItem" + idNum).removeClass("no-display");
+            // $("#newItem" + idNum).prev("input").val(idNum);
+
         }
     });
 
@@ -89,6 +94,7 @@ $(document).ready(function () {
             $("#btnNewItem" + idNum).show();
             $("#newItem" + idNum).addClass("no-display");
             $("#newItem" + idNum).prev("input").val("");
+            $("#btnSaveNewItem" + idNum).addClass("no-display");
             $("#" + btnIdNumRemoved + idNum).show();
         }
     });
