@@ -18,6 +18,15 @@
 
 $(document).ready(function () {
     "use strict";
+    if ($("span[id^='addNewCatTxt']")) {
+        var addNewCategorySpanArray = $("span[id^='addNewCatTxt']");
+        $(addNewCategorySpanArray).each(function () {
+            var text = $(this).text().toLowerCase();
+            $(this).text(text);
+        });
+    }
+
+
 
     $("#btnNewCategory").on("keyup click", function (e) {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {

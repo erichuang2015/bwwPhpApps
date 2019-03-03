@@ -75,14 +75,19 @@ class ShoppingList
         $newItemNames = [];
         $newItemArray = [];
 
-        foreach ($_POST['itemcategoryid'] as $key => $value) {
-            if (!empty($value)) {
-                $newItemCategoryIds[] = $value;
+        if (isset($_POST['itemcategoryid'])) {
+            foreach ($_POST['itemcategoryid'] as $key => $value) {
+                if (!empty($value)) {
+                    $newItemCategoryIds[] = $value;
+                }
             }
         }
-        foreach ($_POST['newitem'] as $key => $value) {
-            if (!empty($value)) {
-                $newItemNames[] = $value;
+
+        if (isset($_POST['newitem'])) {
+            foreach ($_POST['newitem'] as $key => $value) {
+                if (!empty($value)) {
+                    $newItemNames[] = $value;
+                }
             }
         }
 
