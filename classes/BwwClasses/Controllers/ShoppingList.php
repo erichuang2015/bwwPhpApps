@@ -27,7 +27,7 @@ class ShoppingList
             $categories = $this->shoppingCategoriesTable->findAll();
             $shopItems = $this->shoppingItemsTable->findAll();
             foreach ($categories as $category) {
-                if ($user['id'] != $category['author_id'] && $category['author_id'] != 5) {
+                if ($user['id'] != $category['author_id']) {
                     continue;
                 }
                 $shoppingCategories[] = [
@@ -38,7 +38,7 @@ class ShoppingList
             $_SESSION['shoppingCategories'] = $shoppingCategories ?? null;
 
             foreach ($shopItems as $shopItem) {
-                if ($user['id'] != $shopItem['author_id'] && $shopItem['author_id'] != 5) {
+                if ($user['id'] != $shopItem['author_id']) {
                     continue;
                 }
                 $shoppingItems[] = [
