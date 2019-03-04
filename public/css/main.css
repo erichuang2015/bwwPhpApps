@@ -83,6 +83,13 @@ blockquote form {  display: table-cell; width: 10%;}
    padding-left: 15px;
  }
 
+ .jumbotron {
+   padding-top: 4rem;
+   padding-bottom: 2rem;
+   padding-left: 2rem;
+   padding-right: 2rem;
+ }
+
  /* Edge Browser styles begin */
 
  @supports (-ms-ime-align: auto) {}
@@ -141,11 +148,11 @@ blockquote form {  display: table-cell; width: 10%;}
      font-size: 3.8rem;
    }
    .jumbotron {
-    padding-top: 5rem;
-    padding-bottom: 2rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
+     padding-top: 5rem;
+     padding-bottom: 2rem;
+     padding-left: 1rem;
+     padding-right: 1rem;
+   }
  }
 
  /*/////////////////////////*/

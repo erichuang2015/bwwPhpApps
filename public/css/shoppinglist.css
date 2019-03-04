@@ -28,6 +28,10 @@ button[id^="btnNewItemBack"] span.btn-symbol, button#btnNewCategoryBack span.btn
     font-size: 1em;
 }
 
+button[id^="btnNewItem"] {
+    line-height: 1rem;
+}
+
 span.new-item.btn-txt {
     font-size: 0.5em;
 }
@@ -74,9 +78,29 @@ h2 button.btn.btn-link.btn-new-item.btn-symbol {
 
 /*/////////////////////////*/
 
+/*Pixel 2*/
+
+@media (max-width: 411px) {
+    button[id^="btnNewItem"] {
+        line-height: 1rem;
+    }
+}
+
+/*/////////////////////////*/
+
 /*iPhone6*/
 
 @media (max-width: 376px) {}
+
+/*/////////////////////////*/
+
+/*Galaxy S5*/
+
+@media (max-width: 360px) {
+    button[id^="btnNewItem"] {
+        line-height: 1rem;
+    }
+}
 
 /*/////////////////////////*/
 
