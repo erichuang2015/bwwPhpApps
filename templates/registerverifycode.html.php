@@ -5,8 +5,7 @@
     <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         <h2>Register an account</h2>
-        <p class="lead">We just emailed your account activation code to you at <?=$email?>. Please input your activation code below to activate
-            your account. If you don't see the email in your inbox check you junk mail folder.</p>
+        <p class="lead">Your account activation code has been emailed to you at <?=$email?>.  The email is from brian.w.worsham@gmail.com and the subject is "Activation Code For bwwapps.com." If you don't see the emaili in your inbox please check you junk mail folder.  Once you have found the email please input your activation code below to activate your account.</p>
     </div>
 
     <div class="row">
