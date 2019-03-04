@@ -28,76 +28,173 @@ blockquote form {  display: table-cell; width: 10%;}
 
 .errors {padding: 1em; border: 1px solid red; background-color: lightyellow; color: red; margin-bottom: 1em; overflow: auto;}
 .errors ul {margin-left: 1em;} */
-/* Sticky footer styles
+
+ /* Sticky footer styles
 -------------------------------------------------- */
-html {
-    position: relative;
-    min-height: 100%;
-  }
-  body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
-  }
-  .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 60px;
-    line-height: 60px; /* Vertically center the text there */
-    background-color: #f5f5f5;
-  }
 
+ html {
+   position: relative;
+   min-height: 100%;
+ }
 
-  /* Custom page CSS
+ body {
+   /* Margin bottom by footer height */
+   margin-bottom: 60px;
+ }
+
+ .footer {
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+   /* Set the fixed height of the footer here */
+   height: 60px;
+   line-height: 60px;
+   /* Vertically center the text there */
+   background-color: #f5f5f5;
+ }
+
+ /* Custom page CSS
   -------------------------------------------------- */
-  /* Not required for template or sticky footer method. */
 
-  body > .container {
-    padding: 60px 15px 0;
-  }
+ /* Not required for template or sticky footer method. */
 
-  .footer > .container {
-    padding-right: 15px;
-    padding-left: 15px;
-  }
+ body>.container {
+   padding: 60px 15px 0;
+ }
 
-  code {
-    font-size: 80%;
-  }
+ .footer>.container {
+   padding-right: 15px;
+   padding-left: 15px;
+ }
 
-  .hidden {
-    display: none !important;
+ code {
+   font-size: 80%;
+ }
+
+ .hidden {
+   display: none !important;
+ }
+
+ table.xdebug-error {
+   margin-top: 3em;
+ }
+
+ .modal-content {
+   padding-left: 15px;
+ }
+
+ /* Edge Browser styles begin */
+
+ @supports (-ms-ime-align: auto) {}
+
+ /* Edge Browser styles end */
+
+ /* Firefox Browser styles begin */
+
+ @-moz-document url-prefix() {}
+
+ /* Firefox Browser styles end */
+
+ /*iPad Pro*/
+
+ @media (max-width: 1024px) {
+   .jumbotron {
+     padding-top: 4rem;
+     padding-bottom: 2rem;
+     padding-left: 2rem;
+     padding-right: 2rem;
+   }
+ }
+
+ /*/////////////////////////*/
+
+ /*iPad*/
+
+ @media (max-width: 769px) {
+   .jumbotron {
+     padding-top: 4rem;
+     padding-bottom: 2rem;
+     padding-left: 2rem;
+     padding-right: 2rem;
+   }
+ }
+
+ /*/////////////////////////*/
+
+ /*iPhone6 Plus*/
+
+ @media (max-width: 415px) {
+   div.jumbotron {
+     padding-top: 5rem
+   }
+   h1.display-3 {
+     font-size: 3.5rem;
+   }
+ }
+
+ /*/////////////////////////*/
+
+ /*Pixel 2*/
+
+ @media (max-width: 411px) {
+   h1.display-3 {
+     font-size: 3.8rem;
+   }
+   .jumbotron {
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
+ }
 
-table.xdebug-error{
-  margin-top: 3em;
-}
+ /*/////////////////////////*/
 
-.modal-content{
-  padding-left: 15px;
-}
+ /*iPhone6*/
 
+ @media (max-width: 376px) {
+   div.jumbotron {
+     padding-top: 5rem
+   }
+   h1.display-3 {
+     font-size: 3.1rem;
+   }
+ }
 
-/*iPhone6 Plus*/
-@media (max-width: 415px) {
-  div.jumbotron{
-      padding-top:5rem
-  }
-}
-/*/////////////////////////*/
+ /*/////////////////////////*/
 
+ /*Galaxy S5*/
 
-/*iPhone6*/
-@media (max-width: 376px) {
-  div.jumbotron{
-      padding-top:5rem
-  }
-}
-/*/////////////////////////*/
+ @media (max-width: 360px) {
+   h1.display-3 {
+     font-size: 3.3rem;
+   }
+ }
 
+ /*/////////////////////////*/
 
-.resolutionSizeCheck {float:left;}
-@media only screen and (max-width: 767px){
-	.resolutionSizeCheck {float:none;}
-}
+ /*iPhone 5/SE*/
+
+ @media (max-width: 320px) {
+   h1.display-3 {
+     font-size: 2.85rem;
+   }
+   .jumbotron {
+     padding-top: 4rem;
+     padding-bottom: 2rem;
+     padding-left: 1rem;
+     padding-right: 1rem;
+   }
+ }
+
+ /*/////////////////////////*/
+
+ .resolutionSizeCheck {
+   float: left;
+ }
+
+ @media only screen and (max-width: 767px) {
+   .resolutionSizeCheck {
+     float: none;
+   }
+ }

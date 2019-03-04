@@ -67,16 +67,6 @@
     </form>
 </div> <!-- /container -->
 
-<hr>
-
-<div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row">
-
-        </div><!-- /row -->
-    </div><!-- /container -->
-</div><!-- /album py-5 bg-light -->
-
 <?php endif;?>
 
 <script type="text/javascript" src="/js/shoppinglist.js"></script>
