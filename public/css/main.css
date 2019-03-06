@@ -90,6 +90,127 @@ blockquote form {  display: table-cell; width: 10%;}
    padding-right: 2rem;
  }
 
+ /* Icon Styles begin */
+
+ .icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+/* ==========================================
+Single-colored icons can be modified like so:
+.icon-name {
+  font-size: 32px;
+  color: red;
+}
+========================================== */
+
+.icon-images {
+  width: 1.125em;
+}
+
+.icon-plus7 {
+  width: 0.7857142857142857em;
+}
+
+.icon-question2 {
+  width: 0.62em;
+}
+
+.icon-minus8 {
+  width: 0.7857142857142857em;
+}
+
+.icon-home9 {
+  width: 0.9285714285714285em;
+}
+
+.icon-check-square-o {
+  width: 0.9324999999999999em;
+}
+
+.icon-check-circle1 {
+  width: 0.8571428571428571em;
+}
+
+.icon-info-circle {
+  width: 0.8571428571428571em;
+}
+
+.icon-times-circle-o {
+  width: 0.8571428571428571em;
+}
+
+.icon-check-circle-o {
+  width: 0.8571428571428571em;
+}
+
+.icon-ban {
+  width: 0.8571428571428571em;
+}
+
+.icon-rotate-left {
+  width: 0.8571428571428571em;
+}
+
+.icon-calendar-o {
+  width: 0.9285714285714285em;
+}
+
+.icon-apple2 {
+  width: 0.7773571428571427em;
+}
+
+.icon-windows4 {
+  width: 0.9285714285714285em;
+}
+
+.icon-android4 {
+  width: 0.7857142857142857em;
+}
+
+.icon-linux1 {
+  width: 0.8939999999999999em;
+}
+
+.icon-file-image-o {
+  width: 0.8571428571428571em;
+}
+
+.icon-bell-slash {
+  width: 1.1428571428571428em;
+}
+
+.icon-bell-slash-o {
+  width: 1.1428571428571428em;
+}
+
+.icon-trash4 {
+  width: 0.7857142857142857em;
+}
+
+.icon-copyright1 {
+  width: 0.8571428571428571em;
+}
+
+.icon-at2 {
+  width: 0.8571428571428571em;
+}
+
+.icon-venus {
+  width: 0.63em;
+}
+
+.icon-mars {
+  width: 0.8571428571428571em;
+}
+
+ /* Icon Styles end */
+
  /* Edge Browser styles begin */
 
  @supports (-ms-ime-align: auto) {}

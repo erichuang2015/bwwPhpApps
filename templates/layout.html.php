@@ -15,6 +15,8 @@
     </head>
 
     <body>
+    <?php include_once("../public/css/vendor/open-iconic-master/sprite/sprite.min.svg"); ?>
+    <?php include_once("../public/css/vendor/icomoon/symbol-defs.svg"); ?>
         <header>
             <!-- Fixed navbar -->
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
