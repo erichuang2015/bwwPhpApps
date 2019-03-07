@@ -26,8 +26,6 @@ $(document).ready(function () {
         });
     }
 
-
-
     $("#btnNewCategory").on("keyup click", function (e) {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
             e.preventDefault();
@@ -54,7 +52,7 @@ $(document).ready(function () {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
             var checked = e.currentTarget.checked;
             var checkbox = e.currentTarget;
-            var confirmBtn = $(checkbox).next("input[type='submit']");
+            var confirmBtn = $(checkbox).nextAll("input[type='submit']");
             var li = $(checkbox).closest("li");
             if(checked){
                 e.currentTarget.value = "true";
