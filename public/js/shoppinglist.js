@@ -53,10 +53,12 @@ $(document).ready(function () {
             var checked = e.currentTarget.checked;
             var checkbox = e.currentTarget;
             var confirmBtn = $(checkbox).nextAll("input[type='submit']");
+            var categoryH2 = $(checkbox).next("label");
             var li = $(checkbox).closest("li");
             if(checked){
                 e.currentTarget.value = "true";
                 $(li).addClass("deleted text-muted");
+                $(categoryH2).addClass("deleted text-muted");
                 $(confirmBtn).removeClass("no-display");
                 if($(checkbox).hasClass("shop-item")){
                     $(checkbox).prev("input").val($(checkbox).attr("data-id").toString());
@@ -64,6 +66,7 @@ $(document).ready(function () {
             }else{
                 e.currentTarget.value = "true";
                 $(li).removeClass("deleted text-muted");
+                $(categoryH2).removeClass("deleted text-muted");
                 $(confirmBtn).addClass("no-display");
                 if($(checkbox).hasClass("shop-item")){
                     $(checkbox).prev("input").val("");
