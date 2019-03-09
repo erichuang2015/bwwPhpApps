@@ -54,6 +54,19 @@ h2 button.btn.btn-link.btn-new-item.btn-symbol {
     text-decoration: line-through;
 }
 
+.custom-control-input:checked~.custom-control-label::before {
+    border-color: #6c757d!important;
+    background-color: #6c757d!important;
+}
+
+.custom-control-label::before {
+    top: 0.7rem;
+}
+
+.custom-control-label::after {
+    top: .7rem;
+}
+
 /* Edge Browser styles begin */
 
 @supports (-ms-ime-align: auto) {}
