@@ -88,6 +88,10 @@ ul.shopping-items .btn-danger{
     margin-bottom: .1rem;
 }
 
+.btn-success {
+    margin-bottom: 0.3rem;
+}
+
 /* Edge Browser styles begin */
 
 @supports (-ms-ime-align: auto) {}
