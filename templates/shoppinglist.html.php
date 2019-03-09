@@ -41,47 +41,41 @@
                     <?php $value = 1;?>
                     <?php foreach ($shoppingCategories as $category): ?>
                     <li value="<?=$value?>" data-id="<?=$category["id"]?>">
-                        <!-- <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
-                        </div> -->
-
-                        <h2><div class="custom-control custom-checkbox">
-
-                        <input type="checkbox" name="shopcategory[<?=$category["id"]?>]" id="shopcategory<?=$category["id"]?>" value="false" class="custom-control-input" />
-
-                        <label class="custom-control-label" for="shopcategory<?=$category["id"]?>"><?=$category["category"]?></label>
-
-
-                        <input type="submit" id="confirmDelete<?=$value?>" value="confirm" class="btn btn-danger no-display" />
-
-                            <button id="btnNewItem<?=$category["id"]?>" data-catid="<?=$category["id"]?>" class="btn btn-link btn-new-item btn-symbol text-success">
-                                <span class="new-item btn-txt"><svg class="icon icon-add-solid">
-                                        <use xlink:href="#icon-add-solid"></use>
-                                    </svg></span>
-                                <span class="new-item btn-txt"> Add a new <span id="addNewCatTxt<?=$value?>"><?=$category["category"]?></span> item</span></button>
-                            <button id="btnNewItemBack<?=$category["id"]?>" data-catid="<?=$category["id"]?>" type="button" class="btn btn-link btn-new-item text-danger d-block" style="display:none!important">
-                                <!-- <span class="btn-symbol"> -->
-                                <span class="new-item btn-txt"><svg class="icon icon-undo21">
-                                        <use xlink:href="#icon-undo21"></use>
-                                    </svg></span>
-                                <span class="new-item btn-txt">Nevermind </span>
-                            </button> </div>
+                        <h2>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="shopcategory[<?=$category["id"]?>]" id="shopcategory<?=$category["id"]?>" value="false" class="custom-control-input" />
+                                <label class="custom-control-label" for="shopcategory<?=$category["id"]?>"><?=$category["category"]?></label>
+                                <input type="submit" id="confirmDelete<?=$value?>" value="Confirm" class="btn btn-danger no-display" />
+                                <button id="btnNewItem<?=$category["id"]?>" data-catid="<?=$category["id"]?>" class="btn btn-link btn-new-item btn-symbol text-success">
+                                    <span class="new-item btn-txt"><svg class="icon icon-add-solid">
+                                            <use xlink:href="#icon-add-solid"></use>
+                                        </svg></span>
+                                    <span class="new-item btn-txt"> Add a new <span id="addNewCatTxt<?=$value?>"><?=$category["category"]?></span> item</span></button>
+                                <button id="btnNewItemBack<?=$category["id"]?>" data-catid="<?=$category["id"]?>" type="button" class="btn btn-link btn-new-item text-danger d-block" style="display:none!important">
+                                    <!-- <span class="btn-symbol"> -->
+                                    <span class="new-item btn-txt"><svg class="icon icon-undo21">
+                                            <use xlink:href="#icon-undo21"></use>
+                                        </svg></span>
+                                    <span class="new-item btn-txt">Nevermind </span>
+                                </button>
+                            </div>
                         </h2> <input type="hidden" name="itemcategoryid[]" value="" />
                         <input type="text" id="newItem<?=$category["id"]?>" name="newitem[]" data-categoryid="<?=$category["id"]?>" text="" class="form-control new-category no-display" placeholder="Fancy New Item Name (e.g. dish detergent)" />
                         <input type="submit" id="btnSaveNewItem<?=$category["id"]?>" value="Save" class="btn btn-success no-display" />
                         <div class="invalid-feedback">
                             Please insert a new item
                         </div><!-- /invalid-feedback -->
-                        <ul>
+                        <ul class="shopping-items">
                             <?php $itemIndex = 1;?>
                             <?php foreach ($shoppingItems as $item): ?>
                             <?php if ($item["category_id"] == $category["id"]): ?>
                             <li>
                                 <input type="hidden" name="hiddenInputshopitem[<?=$item["id"]?>]" value="" />
-                                <input type="checkbox" name="shopitem[<?=$item["item_name"]?>]" data-id="<?=$item["id"]?>" class="shop-item" value="false" />
-                                <?=$item["item_name"]?>
-                                <input type="submit" id="confirmDeleteItem<?=$itemIndex?>" value="confirm" class="btn btn-danger no-display" />
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" id="shopitem<?=$item["id"]?>" name="shopitem[<?=$item["item_name"]?>]" data-id="<?=$item["id"]?>" class="custom-control-input shop-item" value="false" />
+                                    <label class="custom-control-label" for="shopitem<?=$item["id"]?>"><?=$item["item_name"]?></label>
+                                    <input type="submit" id="confirmDeleteItem<?=$itemIndex?>" value="Confirm" class="btn btn-danger no-display" />
+                                </div>
                             </li>
                             <?php $itemIndex = $itemIndex + 1;?>
                             <?php endif;?>

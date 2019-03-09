@@ -30,6 +30,8 @@ button[id^="btnNewItemBack"] span.btn-symbol, button#btnNewCategoryBack span.btn
 
 button[id^="btnNewItem"] {
     line-height: 1rem;
+    padding-left: 0;
+    text-align: left;
 }
 
 span.new-item.btn-txt {
@@ -65,6 +67,25 @@ h2 button.btn.btn-link.btn-new-item.btn-symbol {
 
 .custom-control-label::after {
     top: .7rem;
+}
+
+ul.shopping-items .custom-control-label::before {
+    top: 0.25rem;
+}
+
+ul.shopping-items .custom-control-label::after {
+    top: .25rem;
+}
+
+.btn-danger{
+    position: relative;
+    bottom: 0.1rem;
+}
+
+ul.shopping-items .btn-danger{
+    position: relative;
+    bottom: 0.45rem;
+    margin-bottom: .1rem;
 }
 
 /* Edge Browser styles begin */
