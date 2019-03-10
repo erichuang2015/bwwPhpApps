@@ -55,10 +55,15 @@ $(document).ready(function () {
             var confirmBtn = $(checkbox).nextAll("input[type='submit']");
             var categoryH2 = $(checkbox).next("label");
             var li = $(checkbox).closest("li");
+            var parentCategory = $(checkbox).parents("li");
+            var shoppingItems = $(parentCategory).find("ul.shopping-items li");
+            var shoppingItemsLabel = $(shoppingItems).find("label");
+
             if(checked){
                 e.currentTarget.value = "true";
                 $(li).addClass("deleted text-muted");
                 $(categoryH2).addClass("deleted text-muted");
+                $(shoppingItemsLabel).addClass("deleted text-muted");
                 $(confirmBtn).removeClass("no-display");
                 if($(checkbox).hasClass("shop-item")){
                     $(checkbox).prev("input").val($(checkbox).attr("data-id").toString());
@@ -67,6 +72,7 @@ $(document).ready(function () {
                 e.currentTarget.value = "true";
                 $(li).removeClass("deleted text-muted");
                 $(categoryH2).removeClass("deleted text-muted");
+                $(shoppingItemsLabel).removeClass("deleted text-muted");
                 $(confirmBtn).addClass("no-display");
                 if($(checkbox).hasClass("shop-item")){
                     $(checkbox).prev("input").val("");

@@ -53,7 +53,7 @@ h2 button.btn.btn-link.btn-new-item.btn-symbol {
 }
 
 .deleted {
-    text-decoration: line-through;
+    text-decoration: line-through!important;
 }
 
 .custom-control-input:checked~.custom-control-label::before {
