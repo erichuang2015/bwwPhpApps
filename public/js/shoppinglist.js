@@ -48,33 +48,39 @@ $(document).ready(function () {
         }
     });
 
-    $("input[type='checkbox']").on("keyup click", function(e){
+    $("input[type='checkbox']").on("keyup click", function (e) {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
             var checked = e.currentTarget.checked;
             var checkbox = e.currentTarget;
             var confirmBtn = $(checkbox).nextAll("input[type='submit']");
             var categoryH2 = $(checkbox).next("label");
             var li = $(checkbox).closest("li");
-            var parentCategory = $(checkbox).parents("li");
-            var shoppingItems = $(parentCategory).find("ul.shopping-items li");
-            var shoppingItemsLabel = $(shoppingItems).find("label");
-
-            if(checked){
+            var shoppingItemsLabel = null;
+            if ($(checkbox).hasClass("checkbox-category")) {
+                var parentCategory = $(checkbox).parents("li");
+                var shoppingItems = $(parentCategory).find("ul.shopping-items li");
+                shoppingItemsLabel = $(shoppingItems).find("label");
+            }
+            if (checked) {
                 e.currentTarget.value = "true";
                 $(li).addClass("deleted text-muted");
                 $(categoryH2).addClass("deleted text-muted");
-                $(shoppingItemsLabel).addClass("deleted text-muted");
+                if(shoppingItemsLabel){
+                    $(shoppingItemsLabel).addClass("deleted text-muted");
+                }
                 $(confirmBtn).removeClass("no-display");
-                if($(checkbox).hasClass("shop-item")){
+                if ($(checkbox).hasClass("shop-item")) {
                     $(checkbox).prev("input").val($(checkbox).attr("data-id").toString());
                 }
-            }else{
+            } else {
                 e.currentTarget.value = "true";
                 $(li).removeClass("deleted text-muted");
                 $(categoryH2).removeClass("deleted text-muted");
-                $(shoppingItemsLabel).removeClass("deleted text-muted");
+                if(shoppingItemsLabel){
+                    $(shoppingItemsLabel).removeClass("deleted text-muted");
+                }
                 $(confirmBtn).addClass("no-display");
-                if($(checkbox).hasClass("shop-item")){
+                if ($(checkbox).hasClass("shop-item")) {
                     $(checkbox).prev("input").val("");
                 }
             }
@@ -88,7 +94,7 @@ $(document).ready(function () {
             var thisBtnID = $(this).attr("id");
             $("#" + thisBtnID).hide();
             var idNum = $(this).attr("data-catid");
-            var btnIdNumRemoved = thisBtnID.substr(0, thisBtnID.length-idNum.length);
+            var btnIdNumRemoved = thisBtnID.substr(0, thisBtnID.length - idNum.length);
             $("#" + btnIdNumRemoved + "Back" + idNum).show();
             $("#" + btnIdNumRemoved + "Back" + idNum).removeClass("no-display");
             $("#newItem" + idNum).removeClass("no-display");
@@ -106,7 +112,7 @@ $(document).ready(function () {
             var thisBtnID = $(this).attr("id");
             $("#" + thisBtnID).addClass("no-display");
             var idNum = $(this).attr("data-catid");
-            var btnIdNumRemoved = thisBtnID.substr(0, thisBtnID.length-idNum.length);
+            var btnIdNumRemoved = thisBtnID.substr(0, thisBtnID.length - idNum.length);
             $("#btnNewItem" + idNum).show();
             $("#newItem" + idNum).addClass("no-display");
             $("#newItem" + idNum).prev("input").val("");

@@ -43,7 +43,7 @@
                     <li value="<?=$value?>" data-id="<?=$category["id"]?>">
                         <h2>
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" name="shopcategory[<?=$category["id"]?>]" id="shopcategory<?=$category["id"]?>" value="false" class="custom-control-input" />
+                                <input type="checkbox" name="shopcategory[<?=$category["id"]?>]" id="shopcategory<?=$category["id"]?>" value="false" class="custom-control-input checkbox-category" />
                                 <label class="custom-control-label" for="shopcategory<?=$category["id"]?>"><?=$category["category"]?></label>
                                 <input type="submit" id="confirmDelete<?=$value?>" value="Confirm" class="btn btn-danger no-display" />
                                 <button id="btnNewItem<?=$category["id"]?>" data-catid="<?=$category["id"]?>" class="btn btn-link btn-new-item btn-symbol text-success">
@@ -70,8 +70,8 @@
                             <?php foreach ($shoppingItems as $item): ?>
                             <?php if ($item["category_id"] == $category["id"]): ?>
                             <li>
-                                <input type="hidden" name="hiddenInputshopitem[<?=$item["id"]?>]" value="" />
                                 <div class="custom-control custom-checkbox">
+                                    <input type="hidden" name="hiddenInputshopitem[<?=$item['id']?>]" value="" />
                                     <input type="checkbox" id="shopitem<?=$item["id"]?>" name="shopitem[<?=$item["item_name"]?>]" data-id="<?=$item["id"]?>" class="custom-control-input shop-item" value="false" />
                                     <label class="custom-control-label" for="shopitem<?=$item["id"]?>"><?=$item["item_name"]?></label>
                                     <input type="submit" id="confirmDeleteItem<?=$itemIndex?>" value="Confirm" class="btn btn-danger no-display" />

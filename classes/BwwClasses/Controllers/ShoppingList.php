@@ -70,6 +70,7 @@ class ShoppingList
 
     public function processUserRequest()
     {
+        // print_r("processUserRequest has been called");die;
         $newCategoryName = "";
         $newItemCategoryIds = [];
         $newItemNames = [];
@@ -107,9 +108,9 @@ class ShoppingList
                 $this->deleteShoppingCategory($shopCatIds[$id]);
             }
         } else if (isset($_POST['shopitem'])) {
-            // print_r("Going down delete shopping item route");
+            // print_r("Going down delete shopping item route");die;
             $shopItemIdsArray = [];
-
+            // print_r($_POST['hiddenInputshopitem']);die;
             // foreach loop to extract new item category id's and names
             foreach ($_POST['hiddenInputshopitem'] as $key => $value) {
                 if (!empty($value)) {
@@ -117,15 +118,18 @@ class ShoppingList
                 }
             }
             $shopItemIdsLength = sizeof($shopItemIdsArray, 0);
+            // print_r($shopItemIdsArray);die;
+            // print_r($shopItemIdsLength);die;
             for ($shopItem = 0; $shopItem < $shopItemIdsLength; $shopItem++) {
                 $this->deleteShoppingItem($shopItemIdsArray[$shopItem]);
             }
         } else if (isset($newItemNames) && !empty($newItemNames)) {
-            // print_r("Going down save new item item route");
+            // print_r("Going down save new item route");die;
             for ($i = 0; $i < sizeof($newItemNames, 0); $i++) {
                 $this->saveNewItem($newItemCategoryIds[$i], $newItemNames[$i]);
             }
         } else {
+            // print_r("Going down default route");die;
             header('location: /shoppinglist');
         }
     }
