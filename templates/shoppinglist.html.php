@@ -17,7 +17,7 @@
     <form action="" method="post">
         <div class="row">
             <div class="col-md-12 mb-3">
-                <button id="btnNewCategory" type="button" class="btn btn-link btn-new-item text-success">
+                <button id="btnNewCategory" type="button" class="btn btn-link btn-new-item text-success" data-disabled="false">
                     <svg class="icon icon-add-solid">
                         <use xlink:href="#icon-add-solid"></use>
                     </svg> <span class="btn-txt">Add a new shopping category</span></button>
@@ -46,7 +46,7 @@
                                 <input type="checkbox" name="shopcategory[<?=$category["id"]?>]" id="shopcategory<?=$category["id"]?>" value="false" class="custom-control-input checkbox-category" />
                                 <label class="custom-control-label" for="shopcategory<?=$category["id"]?>"><?=$category["category"]?></label>
                                 <input type="submit" id="confirmDelete<?=$value?>" value="Confirm" class="btn btn-danger no-display" />
-                                <button id="btnNewItem<?=$category["id"]?>" data-catid="<?=$category["id"]?>" class="btn btn-link btn-new-item btn-symbol text-success">
+                                <button id="btnNewItem<?=$category["id"]?>" data-catid="<?=$category["id"]?>" class="btn btn-link btn-new-item btn-symbol text-success" data-disabled="false">
                                     <span class="new-item btn-txt"><svg class="icon icon-add-solid">
                                             <use xlink:href="#icon-add-solid"></use>
                                         </svg></span>

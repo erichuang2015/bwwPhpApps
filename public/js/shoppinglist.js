@@ -18,6 +18,9 @@
 
 $(document).ready(function () {
     "use strict";
+    var newItemBtns = [];
+    newItemBtns = $("button[id^='btnNewItem']");
+
     if ($("span[id^='addNewCatTxt']")) {
         var addNewCategorySpanArray = $("span[id^='addNewCatTxt']");
         $(addNewCategorySpanArray).each(function () {
@@ -30,10 +33,20 @@ $(document).ready(function () {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
             e.preventDefault();
             e.stopPropagation();
+            var btnDisabled = $("#btnNewCategory").attr("data-disabled");
+            if(btnDisabled == "true"){
+                return;
+            }
+            for(var button = 0; button < newItemBtns.length; button++){
+                $(newItemBtns[button]).attr("data-disabled", "true");
+            }
             $("#btnNewCategory").hide();
             $("#btnNewCategoryBack").show();
             $("#newCategory").removeClass("no-display");
             $("#btnSaveNewCategory").removeClass("no-display");
+            $("input").attr("disabled", "true");
+            $("#newCategory").removeAttr("disabled");
+            $("#btnSaveNewCategory").removeAttr("disabled");
         }
     });
 
@@ -41,10 +54,14 @@ $(document).ready(function () {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
             e.preventDefault();
             e.stopPropagation();
+            for(var button = 0; button < newItemBtns.length; button++){
+                $(newItemBtns[button]).attr("data-disabled", "false");
+            }
             $("#btnNewCategoryBack").hide();
             $("#newCategory").addClass("no-display");
             $("#btnSaveNewCategory").addClass("no-display");
             $("#btnNewCategory").show();
+            $("input").removeAttr("disabled");
         }
     });
 
@@ -56,10 +73,10 @@ $(document).ready(function () {
             var categoryH2 = $(checkbox).next("label");
             var li = $(checkbox).closest("li");
             var shoppingItemsLabel = null;
-            if ($(checkbox).hasClass("checkbox-category")) {
+            if ($(checkbox).hasClass("checkbox-category")) {// the whole purpose of this if clause is to get the shoppingItemsLabel
                 var parentCategory = $(checkbox).parents("li");
                 var shoppingItems = $(parentCategory).find("ul.shopping-items li");
-                shoppingItemsLabel = $(shoppingItems).find("label");
+                shoppingItemsLabel = $(shoppingItems).find("label");//getting the shoppingItemsLabel so we it can be toggled with the deleted text-muted classes when the item's respective parent category has be selected for deletion.
             }
             if (checked) {
                 e.currentTarget.value = "true";
@@ -91,6 +108,15 @@ $(document).ready(function () {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
             e.preventDefault();
             e.stopPropagation();
+            var btnDisabled = $(this).attr("data-disabled");
+            if(btnDisabled == "true"){
+                return;
+            }
+            for(var button = 0; button < newItemBtns.length; button++){
+                $(newItemBtns[button]).attr("data-disabled", "true");
+            }
+            $("#btnNewCategory").attr("data-disabled", "true");
+            $(this).attr("data-disabled", "false");
             var thisBtnID = $(this).attr("id");
             $("#" + thisBtnID).hide();
             var idNum = $(this).attr("data-catid");
@@ -100,8 +126,6 @@ $(document).ready(function () {
             $("#newItem" + idNum).removeClass("no-display");
             $("#newItem" + idNum).prev("input").val(idNum);
             $("#btnSaveNewItem" + idNum).removeClass("no-display");
-            // $("#newItem" + idNum).prev("input").val(idNum);
-
         }
     });
 
@@ -109,6 +133,10 @@ $(document).ready(function () {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
             e.preventDefault();
             e.stopPropagation();
+            for(var button = 0; button < newItemBtns.length; button++){
+                $(newItemBtns[button]).attr("data-disabled", "false");
+            }
+            $("#btnNewCategory").attr("data-disabled", "false");
             var thisBtnID = $(this).attr("id");
             $("#" + thisBtnID).addClass("no-display");
             var idNum = $(this).attr("data-catid");
