@@ -73,12 +73,24 @@ $(document).ready(function () {
             var categoryH2 = $(checkbox).next("label");
             var li = $(checkbox).closest("li");
             var shoppingItemsLabel = null;
+            var parentCategory = null;
+            var shoppingItems = null;
+            var shoppingCheckboxesInCategory = null;
             if ($(checkbox).hasClass("checkbox-category")) {// the whole purpose of this if clause is to get the shoppingItemsLabel
-                var parentCategory = $(checkbox).parents("li");
-                var shoppingItems = $(parentCategory).find("ul.shopping-items li");
+                parentCategory = $(checkbox).parents("li");
+                shoppingItems = $(parentCategory).find("ul.shopping-items li");
                 shoppingItemsLabel = $(shoppingItems).find("label");//getting the shoppingItemsLabel so we it can be toggled with the deleted text-muted classes when the item's respective parent category has be selected for deletion.
             }
             if (checked) {
+                if ($(checkbox).hasClass("checkbox-category")) {
+                    shoppingCheckboxesInCategory = $(shoppingItems).find("input[type='checkbox']");
+                    if(shoppingCheckboxesInCategory){
+                        // $(shoppingCheckboxesInCategory).attr("checked", "true");
+                        $(shoppingCheckboxesInCategory).click();
+                    }
+                }
+
+                $("button").attr("disabled", "true");
                 e.currentTarget.value = "true";
                 $(li).addClass("deleted text-muted");
                 $(categoryH2).addClass("deleted text-muted");
@@ -90,6 +102,7 @@ $(document).ready(function () {
                     $(checkbox).prev("input").val($(checkbox).attr("data-id").toString());
                 }
             } else {
+                $("button").removeAttr("disabled");
                 e.currentTarget.value = "true";
                 $(li).removeClass("deleted text-muted");
                 $(categoryH2).removeClass("deleted text-muted");
@@ -101,6 +114,7 @@ $(document).ready(function () {
                     $(checkbox).prev("input").val("");
                 }
             }
+
         }
     });
 
@@ -126,6 +140,13 @@ $(document).ready(function () {
             $("#newItem" + idNum).removeClass("no-display");
             $("#newItem" + idNum).prev("input").val(idNum);
             $("#btnSaveNewItem" + idNum).removeClass("no-display");
+            $("input").attr("disabled", "true");
+            var newItemCategoryId = $(this).attr("data-catid");
+            var newItemTextInputId = "#newItem" + newItemCategoryId;
+            $(newItemTextInputId).removeAttr("disabled");
+            var newItemSubmitInputId = "#btnSaveNewItem" + newItemCategoryId;
+            $(newItemSubmitInputId).removeAttr("disabled");
+            $("input[type=hidden]").removeAttr("disabled");
         }
     });
 
@@ -146,6 +167,7 @@ $(document).ready(function () {
             $("#newItem" + idNum).prev("input").val("");
             $("#btnSaveNewItem" + idNum).addClass("no-display");
             $("#" + btnIdNumRemoved + idNum).show();
+            $("input").removeAttr("disabled");
         }
     });
 });
