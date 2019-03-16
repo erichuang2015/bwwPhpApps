@@ -70,51 +70,73 @@ $(document).ready(function () {
             var checked = e.currentTarget.checked;
             var checkbox = e.currentTarget;
             var confirmBtn = $(checkbox).nextAll("input[type='submit']");
-            var categoryH2 = $(checkbox).next("label");
+            var shoppingItemLabel = null;
             var li = $(checkbox).closest("li");
             var shoppingItemsLabel = null;
-            var parentCategory = null;
+            var categoryParentLi = null;
             var shoppingItems = null;
             var shoppingCheckboxesInCategory = null;
-            if ($(checkbox).hasClass("checkbox-category")) {// the whole purpose of this if clause is to get the shoppingItemsLabel
-                parentCategory = $(checkbox).parents("li");
-                shoppingItems = $(parentCategory).find("ul.shopping-items li");
+            var shoppingItemParentLi = null;
+            if ($(checkbox).hasClass("checkbox-category")) {
+                // The checkbox is a category item
+
+                categoryParentLi = $(checkbox).parents("li");
+                shoppingItems = $(categoryParentLi).find("ul.shopping-items li");
                 shoppingItemsLabel = $(shoppingItems).find("label");//getting the shoppingItemsLabel so we it can be toggled with the deleted text-muted classes when the item's respective parent category has be selected for deletion.
-            }
-            if (checked) {
-                if ($(checkbox).hasClass("checkbox-category")) {
-                    shoppingCheckboxesInCategory = $(shoppingItems).find("input[type='checkbox']");
+                shoppingCheckboxesInCategory = $(shoppingItems).find("input[type='checkbox']");
+                if(checked){
+                    $(confirmBtn).removeClass("no-display");
                     if(shoppingCheckboxesInCategory){
-                        // $(shoppingCheckboxesInCategory).attr("checked", "true");
                         $(shoppingCheckboxesInCategory).click();
+                        $(shoppingCheckboxesInCategory).attr("disabled", "true");
+                        $("input[id^='confirmDeleteItem']").addClass("no-display");
+                    }
+                }else{
+                    $(confirmBtn).addClass("no-display");
+                    if(shoppingCheckboxesInCategory){
+                        $(shoppingCheckboxesInCategory).removeAttr("disabled");
+                        $(shoppingCheckboxesInCategory).click();
+                        // $("input[id^='confirmDeleteItem']").removeClass("no-display");
                     }
                 }
+            }else{
+                // the checkbox is a shopping list item
+                shoppingItemLabel = $(checkbox).next("label");
+                var parentCategoryLiDataId = $(checkbox).closest("ul").attr("data-categoryid");
+                var categoryli = $("#categoryli" + parentCategoryLiDataId);
+                var parentCategoryCheckbox = $(categoryli).find("input[type='checkbox']").first();
 
-                $("button").attr("disabled", "true");
-                e.currentTarget.value = "true";
-                $(li).addClass("deleted text-muted");
-                $(categoryH2).addClass("deleted text-muted");
-                if(shoppingItemsLabel){
-                    $(shoppingItemsLabel).addClass("deleted text-muted");
-                }
-                $(confirmBtn).removeClass("no-display");
-                if ($(checkbox).hasClass("shop-item")) {
-                    $(checkbox).prev("input").val($(checkbox).attr("data-id").toString());
-                }
-            } else {
-                $("button").removeAttr("disabled");
-                e.currentTarget.value = "true";
-                $(li).removeClass("deleted text-muted");
-                $(categoryH2).removeClass("deleted text-muted");
-                if(shoppingItemsLabel){
-                    $(shoppingItemsLabel).removeClass("deleted text-muted");
-                }
-                $(confirmBtn).addClass("no-display");
-                if ($(checkbox).hasClass("shop-item")) {
-                    $(checkbox).prev("input").val("");
+                if (checked) {
+                    $(parentCategoryCheckbox).attr("disabled", "true");
+                    $(shoppingItemParentLi).attr("disabled", "true");
+                    $("button").attr("disabled", "true");
+                    e.currentTarget.value = "true";
+                    $(li).addClass("deleted text-muted");
+                    $(shoppingItemLabel).addClass("deleted text-muted");
+                    if(shoppingItemsLabel){
+                        $(shoppingItemsLabel).addClass("deleted text-muted");
+                    }
+                    $(confirmBtn).removeClass("no-display");
+                    if ($(checkbox).hasClass("shop-item")) {
+                        $(checkbox).prev("input").val($(checkbox).attr("data-id").toString());
+                    }
+                } else {
+                    // the shoppinglist item checkbox is not checked
+                    $(parentCategoryCheckbox).removeAttr("disabled"); //add logic so this does not get disabled unless all shopping items are not checked
+                    $(shoppingItemParentLi).removeAttr("disabled");
+                    $("button").removeAttr("disabled");
+                    e.currentTarget.value = "true";
+                    $(li).removeClass("deleted text-muted");
+                    $(shoppingItemLabel).removeClass("deleted text-muted");
+                    if(shoppingItemsLabel){
+                        $(shoppingItemsLabel).removeClass("deleted text-muted");
+                    }
+                    $(confirmBtn).addClass("no-display");
+                    if ($(checkbox).hasClass("shop-item")) {
+                        $(checkbox).prev("input").val("");
+                    }
                 }
             }
-
         }
     });
 

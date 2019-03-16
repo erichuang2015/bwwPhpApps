@@ -40,7 +40,7 @@
                 <ul class="shopping-categories">
                     <?php $value = 1;?>
                     <?php foreach ($shoppingCategories as $category): ?>
-                    <li value="<?=$value?>" data-id="<?=$category["id"]?>">
+                    <li id="categoryli<?=$category["id"]?>" value="<?=$value?>" data-id="<?=$category["id"]?>">
                         <h2>
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" name="shopcategory[<?=$category["id"]?>]" id="shopcategory<?=$category["id"]?>" value="false" class="custom-control-input checkbox-category" />
@@ -65,7 +65,7 @@
                         <div class="invalid-feedback">
                             Please insert a new item
                         </div><!-- /invalid-feedback -->
-                        <ul class="shopping-items">
+                        <ul class="shopping-items" data-categoryid="<?=$category["id"]?>">
                             <?php $itemIndex = 1;?>
                             <?php foreach ($shoppingItems as $item): ?>
                             <?php if ($item["category_id"] == $category["id"]): ?>
