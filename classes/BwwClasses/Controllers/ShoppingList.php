@@ -74,7 +74,6 @@ class ShoppingList
         $newCategoryName = "";
         $newItemCategoryIds = [];
         $newItemNames = [];
-        $newItemArray = [];
 
         if (isset($_POST['itemcategoryid'])) {
             foreach ($_POST['itemcategoryid'] as $key => $value) {
@@ -110,7 +109,6 @@ class ShoppingList
         } else if (isset($_POST['shopitem'])) {
             // print_r("Going down delete shopping item route");die;
             $shopItemIdsArray = [];
-            // print_r($_POST['hiddenInputshopitem']);die;
             // foreach loop to extract new item category id's and names
             foreach ($_POST['hiddenInputshopitem'] as $key => $value) {
                 if (!empty($value)) {
@@ -118,8 +116,6 @@ class ShoppingList
                 }
             }
             $shopItemIdsLength = sizeof($shopItemIdsArray, 0);
-            // print_r($shopItemIdsArray);die;
-            // print_r($shopItemIdsLength);die;
             for ($shopItem = 0; $shopItem < $shopItemIdsLength; $shopItem++) {
                 $this->deleteShoppingItem($shopItemIdsArray[$shopItem]);
             }

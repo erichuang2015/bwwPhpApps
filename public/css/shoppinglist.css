@@ -47,7 +47,7 @@ h2 button.btn.btn-link.btn-new-item.btn-symbol {
     display: none!important;
 }
 
-.form-control.new-category {
+.form-control.new-category, .form-control.new-item {
     width: 70%;
     display: inline;
 }

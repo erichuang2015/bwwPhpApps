@@ -14,7 +14,7 @@
 
 <div class="container">
     <?php if ($loggedIn): ?>
-    <form action="" method="post">
+    <form action="" method="post" class="needs-validation" autocomplete="off" novalidate>
         <div class="row">
             <div class="col-md-12 mb-3">
                 <button id="btnNewCategory" type="button" class="btn btn-link btn-new-item text-success" data-disabled="false">
@@ -28,10 +28,10 @@
                     </svg>
                     <span class="btn-txt">Nevermind</span>
                 </button>
-                <input type="text" id="newCategory" name="newcategory" text="" class="form-control new-category no-display" placeholder="Fancy New Category Name (e.g. Clothes)" />
+                <input type="text" id="newCategory" name="newcategory" class="form-control new-category no-display" placeholder="Fancy New Category Name (e.g. Clothes)" />
                 <input type="submit" id="btnSaveNewCategory" value="Save" class="btn btn-success no-display" />
                 <div class="invalid-feedback">
-                    Please insert a new category
+                    <span id="categoryInputError"></span>
                 </div><!-- /invalid-feedback -->
             </div><!-- /col-md-4 mb-3 -->
         </div><!-- /row -->
@@ -60,10 +60,10 @@
                                 </button>
                             </div>
                         </h2> <input type="hidden" name="itemcategoryid[]" value="" />
-                        <input type="text" id="newItem<?=$category["id"]?>" name="newitem[]" data-categoryid="<?=$category["id"]?>" text="" class="form-control new-category no-display" placeholder="Fancy New Item Name (e.g. dish detergent)" />
+                        <input type="text" id="newItem<?=$category["id"]?>" name="newitem[]" data-categoryid="<?=$category["id"]?>" text="" class="form-control new-item no-display" placeholder="Fancy New Item Name (e.g. dish detergent)" />
                         <input type="submit" id="btnSaveNewItem<?=$category["id"]?>" value="Save" class="btn btn-success no-display" />
                         <div class="invalid-feedback">
-                            Please insert a new item
+                            <span id="itemInputError"></span>
                         </div><!-- /invalid-feedback -->
                         <ul id="shoppingItemsList<?=$category["id"]?>" class="shopping-items" data-categoryid="<?=$category["id"]?>">
                             <?php $itemIndex = 1;?>

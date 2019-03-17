@@ -34,10 +34,10 @@ $(document).ready(function () {
             e.preventDefault();
             e.stopPropagation();
             var btnDisabled = $("#btnNewCategory").attr("data-disabled");
-            if(btnDisabled == "true"){
+            if (btnDisabled == "true") {
                 return;
             }
-            for(var button = 0; button < newItemBtns.length; button++){
+            for (var button = 0; button < newItemBtns.length; button++) {
                 $(newItemBtns[button]).attr("data-disabled", "true");
             }
             $("#btnNewCategory").hide();
@@ -54,11 +54,12 @@ $(document).ready(function () {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
             e.preventDefault();
             e.stopPropagation();
-            for(var button = 0; button < newItemBtns.length; button++){
+            for (var button = 0; button < newItemBtns.length; button++) {
                 $(newItemBtns[button]).attr("data-disabled", "false");
             }
             $("#btnNewCategoryBack").hide();
             $("#newCategory").addClass("no-display");
+            $("#newCategory").val("");
             $("#btnSaveNewCategory").addClass("no-display");
             $("#btnNewCategory").show();
             $("input").removeAttr("disabled");
@@ -83,22 +84,22 @@ $(document).ready(function () {
                 shoppingItems = $(categoryParentLi).find("ul.shopping-items li");
                 shoppingItemsLabel = $(shoppingItems).find("label");//getting the shoppingItemsLabel so we it can be toggled with the deleted text-muted classes when the item's respective parent category has be selected for deletion.
                 shoppingCheckboxesInCategory = $(shoppingItems).find("input[type='checkbox']");
-                if(checked){
+                if (checked) {
                     $(confirmBtn).removeClass("no-display");
-                    if(shoppingCheckboxesInCategory){
+                    if (shoppingCheckboxesInCategory) {
                         $(shoppingCheckboxesInCategory).click();
                         $(shoppingCheckboxesInCategory).attr("disabled", "true");
                         $("input[id^='confirmDeleteItem']").addClass("no-display");
                     }
-                }else{
+                } else {
                     $(confirmBtn).addClass("no-display");
-                    if(shoppingCheckboxesInCategory){
+                    if (shoppingCheckboxesInCategory) {
                         $(shoppingCheckboxesInCategory).removeAttr("disabled");
                         $(shoppingCheckboxesInCategory).click();
                         // $("input[id^='confirmDeleteItem']").removeClass("no-display");
                     }
                 }
-            }else{
+            } else {
                 // the checkbox is a shopping list item
                 shoppingItemLabel = $(checkbox).next("label");
                 var parentCategoryLiDataId = $(checkbox).closest("ul").attr("data-categoryid");
@@ -106,7 +107,7 @@ $(document).ready(function () {
                 var parentCategoryCheckbox = $(categoryli).find("input[type='checkbox']").first();
 
                 if (checked) {
-                    if(parentCategoryCheckbox[0].checked == false){
+                    if (parentCategoryCheckbox[0].checked == false) {
                         $(parentCategoryCheckbox).attr("disabled", "true");
                     }
                     $(shoppingItemParentLi).attr("disabled", "true");
@@ -114,7 +115,7 @@ $(document).ready(function () {
                     e.currentTarget.value = "true";
                     $(li).addClass("deleted text-muted");
                     $(shoppingItemLabel).addClass("deleted text-muted");
-                    if(shoppingItemsLabel){
+                    if (shoppingItemsLabel) {
                         $(shoppingItemsLabel).addClass("deleted text-muted");
                     }
                     $(confirmBtn).removeClass("no-display");
@@ -124,16 +125,16 @@ $(document).ready(function () {
                 } else {
                     // the shoppinglist item checkbox is not checked
                     var shoppingItemCheckboxes = [];
-                    shoppingItemCheckboxes = $("#shoppingItemsList"+parentCategoryLiDataId).find("input[type='checkbox']");
+                    shoppingItemCheckboxes = $("#shoppingItemsList" + parentCategoryLiDataId).find("input[type='checkbox']");
                     var allItemBoxesUnchecked = true;
-                    for(var itemCheckbox = 0; itemCheckbox < shoppingItemCheckboxes.length; itemCheckbox++){
-                        if(shoppingItemCheckboxes[itemCheckbox].checked == true){
+                    for (var itemCheckbox = 0; itemCheckbox < shoppingItemCheckboxes.length; itemCheckbox++) {
+                        if (shoppingItemCheckboxes[itemCheckbox].checked == true) {
                             allItemBoxesUnchecked = false;
                             break;
                         }
                     }
 
-                    if(allItemBoxesUnchecked){
+                    if (allItemBoxesUnchecked) {
                         $(parentCategoryCheckbox).removeAttr("disabled"); //add logic so this does not get removed unless all shopping items in this category are not checked
                     }
                     $(shoppingItemParentLi).removeAttr("disabled");
@@ -141,7 +142,7 @@ $(document).ready(function () {
                     e.currentTarget.value = "true";
                     $(li).removeClass("deleted text-muted");
                     $(shoppingItemLabel).removeClass("deleted text-muted");
-                    if(shoppingItemsLabel){
+                    if (shoppingItemsLabel) {
                         $(shoppingItemsLabel).removeClass("deleted text-muted");
                     }
                     $(confirmBtn).addClass("no-display");
@@ -158,10 +159,10 @@ $(document).ready(function () {
             e.preventDefault();
             e.stopPropagation();
             var btnDisabled = $(this).attr("data-disabled");
-            if(btnDisabled == "true"){
+            if (btnDisabled == "true") {
                 return;
             }
-            for(var button = 0; button < newItemBtns.length; button++){
+            for (var button = 0; button < newItemBtns.length; button++) {
                 $(newItemBtns[button]).attr("data-disabled", "true");
             }
             $("#btnNewCategory").attr("data-disabled", "true");
@@ -185,11 +186,18 @@ $(document).ready(function () {
         }
     });
 
+    $("input[id^='newItem']").on("keyup change", function (e) {
+        var itemSubmitBtn = $(this).next();
+        if (e.keycode == 13 || e.which == 13) {
+            $(itemSubmitBtn).click();
+        }
+    });
+
     $("button[id^='btnNewItemBack']").on("keyup click", function (e) {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
             e.preventDefault();
             e.stopPropagation();
-            for(var button = 0; button < newItemBtns.length; button++){
+            for (var button = 0; button < newItemBtns.length; button++) {
                 $(newItemBtns[button]).attr("data-disabled", "false");
             }
             $("#btnNewCategory").attr("data-disabled", "false");
@@ -199,10 +207,57 @@ $(document).ready(function () {
             var btnIdNumRemoved = thisBtnID.substr(0, thisBtnID.length - idNum.length);
             $("#btnNewItem" + idNum).show();
             $("#newItem" + idNum).addClass("no-display");
+            $("#newItem" + idNum).val("");
             $("#newItem" + idNum).prev("input").val("");
             $("#btnSaveNewItem" + idNum).addClass("no-display");
             $("#" + btnIdNumRemoved + idNum).show();
             $("input").removeAttr("disabled");
         }
     });
+
+    $("input[type='text']").on("keyup change", function (e) {
+        if ($(this).hasClass("new-category")) {
+            if (ValidateCategory($(this).val())) {
+                $("#categoryInputError").text("");
+                $("#newCategory").removeClass("is-invalid");
+                $("#newCategory").addClass("is-valid");
+            } else {
+                $("#categoryInputError").text("Error: Enter a valid category. The number of characters must be greater than 1 or more and 45 or less.");
+                $("#newCategory").removeClass("is-valid");
+                $("#newCategory").addClass("is-invalid");
+            }
+        }
+        else if ($(this).hasClass("new-item")) {
+            if (ValidateItem($(this).val())) {
+                $("#itemInputError").text("");
+                $(this).removeClass("is-invalid");
+                $(this).addClass("is-valid");
+            } else {
+                $("#itemInputError").text("Error: Enter a valid shopping item. The number of characters must be greater than 1 or more and 120 or less.");
+                $(this).removeClass("is-valid");
+                $(this).addClass("is-invalid");
+            }
+        }
+
+    });
 });
+
+function ValidateCategory(category) {
+    'use strict';
+    if (category.length >= 1 && category.length <= 45 && category.indexOf(" ") != 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function ValidateItem(item) {
+    'use strict';
+    if (item.length >= 1 && item.length <= 120 && item.indexOf(" ") != 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
