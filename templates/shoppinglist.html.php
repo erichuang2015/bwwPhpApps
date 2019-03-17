@@ -65,7 +65,7 @@
                         <div class="invalid-feedback">
                             Please insert a new item
                         </div><!-- /invalid-feedback -->
-                        <ul class="shopping-items" data-categoryid="<?=$category["id"]?>">
+                        <ul id="shoppingItemsList<?=$category["id"]?>" class="shopping-items" data-categoryid="<?=$category["id"]?>">
                             <?php $itemIndex = 1;?>
                             <?php foreach ($shoppingItems as $item): ?>
                             <?php if ($item["category_id"] == $category["id"]): ?>

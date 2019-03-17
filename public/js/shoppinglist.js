@@ -79,7 +79,6 @@ $(document).ready(function () {
             var shoppingItemParentLi = null;
             if ($(checkbox).hasClass("checkbox-category")) {
                 // The checkbox is a category item
-
                 categoryParentLi = $(checkbox).parents("li");
                 shoppingItems = $(categoryParentLi).find("ul.shopping-items li");
                 shoppingItemsLabel = $(shoppingItems).find("label");//getting the shoppingItemsLabel so we it can be toggled with the deleted text-muted classes when the item's respective parent category has be selected for deletion.
@@ -107,7 +106,9 @@ $(document).ready(function () {
                 var parentCategoryCheckbox = $(categoryli).find("input[type='checkbox']").first();
 
                 if (checked) {
-                    $(parentCategoryCheckbox).attr("disabled", "true");
+                    if(parentCategoryCheckbox[0].checked == false){
+                        $(parentCategoryCheckbox).attr("disabled", "true");
+                    }
                     $(shoppingItemParentLi).attr("disabled", "true");
                     $("button").attr("disabled", "true");
                     e.currentTarget.value = "true";
@@ -122,7 +123,19 @@ $(document).ready(function () {
                     }
                 } else {
                     // the shoppinglist item checkbox is not checked
-                    $(parentCategoryCheckbox).removeAttr("disabled"); //add logic so this does not get disabled unless all shopping items are not checked
+                    var shoppingItemCheckboxes = [];
+                    shoppingItemCheckboxes = $("#shoppingItemsList"+parentCategoryLiDataId).find("input[type='checkbox']");
+                    var allItemBoxesUnchecked = true;
+                    for(var itemCheckbox = 0; itemCheckbox < shoppingItemCheckboxes.length; itemCheckbox++){
+                        if(shoppingItemCheckboxes[itemCheckbox].checked == true){
+                            allItemBoxesUnchecked = false;
+                            break;
+                        }
+                    }
+
+                    if(allItemBoxesUnchecked){
+                        $(parentCategoryCheckbox).removeAttr("disabled"); //add logic so this does not get removed unless all shopping items in this category are not checked
+                    }
                     $(shoppingItemParentLi).removeAttr("disabled");
                     $("button").removeAttr("disabled");
                     e.currentTarget.value = "true";
