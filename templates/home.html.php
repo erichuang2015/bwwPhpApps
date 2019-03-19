@@ -22,7 +22,7 @@
           </div>
           <div class="col-md-4">
             <h2>Utility Apps</h2>
-             <p>These apps are meant to help you get things done, and enjoy a better quality of life. The photo viewer is a simple photo gallery which allows you to upload and view your photos.  The Shopping List app does exactly what you would infer by its names. <!-- The To Do List, Shopping List, Calendar, and Calculator apps all do exactly what you would infer by their respective names. The notes app is a tool where you can store your notes in the cloud and have them available with you wherever you go as long as you have a browser and an internet connection.--></p>
+             <p>These apps are meant to help you get things done, and enjoy a better quality of life. The photo viewer is a simple photo gallery which allows you to upload and view your photos.  The Shopping List app does exactly what you would infer by its name. <!-- The To Do List, Shopping List, Calendar, and Calculator apps all do exactly what you would infer by their respective names. The notes app is a tool where you can store your notes in the cloud and have them available with you wherever you go as long as you have a browser and an internet connection.--></p>
           </div>
           <div class="col-md-4">
             <h2>Practice Apps</h2>

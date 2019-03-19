@@ -34,8 +34,8 @@ function getMilesPerHour() {
     var minutesVal = $("#runMinutes").val();
     var secondsVal = $("#runSeconds").val();
     var mph = runSpeedDistCalculator(distanceVal, minutesVal, secondsVal);
-    $('#mphParagraph').removeAttr('hidden').show();
-    $("#mphParagraph").text("You must run " + mph + " mph to acheive your goal.");
+    $('#mphAlert').removeAttr('hidden').show();
+    $("#mphAlert h2").text("You must run " + mph + " mph to acheive your goal.");
 }
 
 
