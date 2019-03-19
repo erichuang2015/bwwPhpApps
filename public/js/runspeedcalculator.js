@@ -17,9 +17,59 @@
     }, false);
 })();
 
+var isMilesValid = false;
+var isMinutesValid = false;
+var isSecondsValid = false;
+
 $(document).ready(function () {
     "use strict";
-    $("#btnSubmitRunSpeed").on("keyup click", function(e){
+
+    $("#distance").on("keyup change", function (e) {
+        if (ValidateDistance($(this).val())) {
+            $("#distanceError").text("");
+            $("#distance").removeClass("is-invalid");
+            $("#distance").addClass("is-valid");
+            isMilesValid = true;
+        } else {
+            $("#distanceError").text("Error: Enter a valid distance.");
+            $("#distance").removeClass("is-valid");
+            $("#distance").addClass("is-invalid");
+            isMilesValid = false;
+        }
+        EnableSubmitIfValid();
+    });
+
+    $("#runMinutes").on("keyup change", function (e) {
+        if (ValidateMinutes($(this).val())) {
+            $("#runMinutesError").text("");
+            $("#runMinutes").removeClass("is-invalid");
+            $("#runMinutes").addClass("is-valid");
+            isMinutesValid = true;
+        } else {
+            $("#runMinutesError").text("Error: Enter a valid quantity of minutes.");
+            $("#runMinutes").removeClass("is-valid");
+            $("#runMinutes").addClass("is-invalid");
+            isMinutesValid = false;
+        }
+        EnableSubmitIfValid();
+    });
+
+    $("#runSeconds").on("keyup change", function (e) {
+        if (ValidateSeconds($(this).val())) {
+            $("#runSecondsError").text("");
+            $("#runSeconds").removeClass("is-invalid");
+            $("#runSeconds").addClass("is-valid");
+            isSecondsValid = true;
+        } else {
+            $("#runSecondsError").text("Error: Enter a valid quantity of seconds.");
+            $("#runSeconds").removeClass("is-valid");
+            $("#runSeconds").addClass("is-invalid");
+            isSecondsValid = false;
+        }
+        EnableSubmitIfValid();
+    });
+
+    $("#btnSubmitRunSpeed").on("keyup click", function (e) {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
             e.preventDefault();
             e.stopPropagation();
@@ -39,8 +89,7 @@ function getMilesPerHour() {
 }
 
 
-function runSpeedDistCalculator(dist, m, s)
-{
+function runSpeedDistCalculator(dist, m, s) {
     "use strict";
     dist = parseFloat(dist);
     m = parseFloat(m);
@@ -54,4 +103,60 @@ function runSpeedDistCalculator(dist, m, s)
     let milesPerHour = hour / mpm;
     milesPerHour = milesPerHour.toFixed(2);
     return milesPerHour;
+}
+
+function ValidateDistance(distance) {
+    "use strict";
+    if (isNaN(distance)) {
+        return false;
+    }
+    else {
+        distance = parseFloat(distance);
+        if (distance >= 1 && distance <= 24) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
+
+function ValidateMinutes(minutes) {
+    "use strict";
+    if (isNaN(minutes)) {
+        return false;
+    }
+    else {
+        minutes = parseFloat(minutes);
+        if (minutes >= 1 && minutes <= 300) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
+
+function ValidateSeconds(seconds) {
+    "use strict";
+    if (isNaN(seconds)) {
+        return false;
+    }
+    else {
+        seconds = parseFloat(seconds);
+        if (seconds >= 0 && seconds <= 59) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
+
+function EnableSubmitIfValid() {
+    if (isMilesValid && isMinutesValid && isSecondsValid) {
+        $("#btnSubmitRunSpeed").removeAttr("disabled");
+    }else{
+        $("#btnSubmitRunSpeed").attr("disabled", "true");
+    }
 }

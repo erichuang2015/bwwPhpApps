@@ -17,8 +17,9 @@
                     </div>
                     <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                         <input type="number" min="1" max="24" value="3" id="distance" step="0.01" class="form-control" required autofocus>
+                        <div class="invalid-feedback"><span id="distanceError"></span></div>
                     </div>
-                    <div class="invalid-feedback col-12"><span id="distanceError"></span></div>
+
                 </li>
                 <li>
                     <p class="run-time">How much time will you spend running?</p>
@@ -43,7 +44,7 @@
             </div>
 
             <!-- <p hidden id="mphParagraph"></p> -->
-            <button id="btnSubmitRunSpeed" name="btnsubmitrunspeed" class="btn btn-primary">Submit</button>
+            <button id="btnSubmitRunSpeed" name="btnsubmitrunspeed" class="btn btn-primary" disabled>Submit</button>
         </div>
     </form>
 </div>
