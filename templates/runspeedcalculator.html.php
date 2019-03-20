@@ -12,12 +12,12 @@
             <ol class="run-speed-ol">
                 <li>
                     <p class="run-speed">How far do you want to run?</p>
-                    <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <div class="col-7 col-sm-7 col-md-3 col-lg-3 col-xl-3">
                         <label for="distance">Miles</label>
                         <span class="sr-only">Information about input options for miles</span>
                         <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about input options for miles" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content='Valid input options for "miles" include any number that is one or greater and 24 or less.'>
                     </div>
-                    <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                    <div class="col-11 col-sm-9 col-md-5 col-lg-4 col-xl-3">
                         <input type="number" min="1" max="24" value="3" id="distance" step="0.01" class="form-control" required autofocus>
                         <div class="invalid-feedback"><span id="distanceError"></span></div>
                     </div>
@@ -28,7 +28,7 @@
                     <label for="runMinutes">Minutes</label>
                     <span class="sr-only">Information about input options for minutes</span>
                     <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about input options for minutes" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content='Valid input options for "minutes" include any number that is one or greater and 300 or less.'>
-                    <div class="col-4 col-sm-2 col-md-2 col-lg-2">
+                    <div class="col-11 col-sm-9 col-md-5 col-lg-4 col-xl-3">
                         <input type="number" min="1" max="300" value="60" id="runMinutes" step="1" class="form-control" required>
                         <div class="invalid-feedback"><span id="runMinutesError"></span></div>
                     </div>
@@ -36,7 +36,7 @@
                     <label class="run-seconds" for="runSeconds">Seconds</label>
                     <span class="sr-only">Information about input options for seconds</span>
                     <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about input options for seconds" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content='Valid input options for "seconds" include any number that is zero or greater and 59 or less.'>
-                    <div class="col-4 col-sm-2 col-md-2 col-lg-2">
+                    <div class="col-11 col-sm-9 col-md-5 col-lg-4 col-xl-3">
                         <input type="number" min="0" max="59" value="00" id="runSeconds" step="1" class="form-control" required>
                         <div class="invalid-feedback"><span id="runSecondsError"></span></div>
                     </div>
