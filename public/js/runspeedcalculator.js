@@ -24,6 +24,14 @@ var isSecondsValid = false;
 $(document).ready(function () {
     "use strict";
 
+    $(function () {
+        $('[data-toggle="popover"]').popover({
+            trigger: "hover click",
+            html: true,
+            title: ""
+        });
+    });
+
     $("#distance").on("keyup change", function (e) {
         if (ValidateDistance($(this).val())) {
             $("#distanceError").text("");
