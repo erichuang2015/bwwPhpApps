@@ -110,26 +110,38 @@ $(document).ready(function () {
 
     $("input[id^='datetimepickerNoIcon']").on("hide.datetimepicker", function (e) {
         var hiddenInput = "#" + $(this).attr("data-hidden");
+        var input = this;
         var newDate = $(this).val();
         if (newDate) {
             $(hiddenInput).val(newDate);
             toggleEditBtns();
+            var todoId = $(input).attr("data-todoid");
+            var currentRow = $(input).closest("tr");
+            var hiddenIdInput = $(currentRow).find("input[type=hidden]:first");
+            hiddenIdInput.val(todoId);
         }
     });
 
-    $(".progress").on("keyup click", function(e){
+    $(".progress").on("keyup click", function (e) {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
             var progressDiv = this;
             var numInput = $(progressDiv).prev("input[type=number]");
             $(progressDiv).hide();
             $(numInput).removeAttr("hidden");
             $(numInput).show();
+
         }
     });
 
     var progressBars = [];
     progressBars = $(".progress-bar");
     setProgressBarColors(progressBars);
+
+    $(".form-control").on("blur change keyup", function(){
+        var progressBars = [];
+        progressBars = $(".progress-bar");
+        setProgressBarColors(progressBars);
+    });
 });
 
 function setSelectedIndexes(selectInputs) {
@@ -156,17 +168,17 @@ function toggleEditBtns() {
     $("#btnNewTask").hide();
 }
 
-function setProgressBarColors(progressBars){
+function setProgressBarColors(progressBars) {
     "use strict";
-    for(var bar = 0; bar < progressBars.length; bar++){
+    for (var bar = 0; bar < progressBars.length; bar++) {
         var progressValue = $(progressBars[bar]).attr("aria-valuenow");
-        if(progressValue >= 0 && progressValue <= 24){
+        if (progressValue >= 0 && progressValue <= 24) {
             $(progressBars[bar]).addClass("bg-danger text-dark");
         }
-        else if(progressValue >= 25 && progressValue <= 74){
+        else if (progressValue >= 25 && progressValue <= 74) {
             $(progressBars[bar]).addClass("bg-warning text-dark");
         }
-        else if(progressValue >= 75 && progressValue <= 100){
+        else if (progressValue >= 75 && progressValue <= 100) {
             $(progressBars[bar]).addClass("bg-success text-white");
         }
     }
