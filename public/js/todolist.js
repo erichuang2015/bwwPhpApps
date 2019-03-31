@@ -116,9 +116,24 @@ $(document).ready(function () {
             toggleEditBtns();
         }
     });
+
+    $(".progress").on("keyup click", function(e){
+        if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
+            var progressDiv = this;
+            var numInput = $(progressDiv).prev("input[type=number]");
+            $(progressDiv).hide();
+            $(numInput).removeAttr("hidden");
+            $(numInput).show();
+        }
+    });
+
+    var progressBars = [];
+    progressBars = $(".progress-bar");
+    setProgressBarColors(progressBars);
 });
 
 function setSelectedIndexes(selectInputs) {
+    "use strict";
     var selectedIndex = 0;
     for (var sInput = 0; sInput < selectInputs.length; sInput++) {
         selectedIndex = $(selectInputs[sInput]).attr("data-selectedIndex");
@@ -130,6 +145,7 @@ function setSelectedIndexes(selectInputs) {
 }
 
 function toggleEditBtns() {
+    "use strict";
     $("#saveChanges").removeAttr("hidden");
     $("#btnDiscardEdits").removeAttr("hidden");
     $("#saveChanges").show();
@@ -138,4 +154,20 @@ function toggleEditBtns() {
     $("#btnDiscardEdits").removeAttr("disabled");
     $("#btnNewTask").attr("disabled", "true");
     $("#btnNewTask").hide();
+}
+
+function setProgressBarColors(progressBars){
+    "use strict";
+    for(var bar = 0; bar < progressBars.length; bar++){
+        var progressValue = $(progressBars[bar]).attr("aria-valuenow");
+        if(progressValue >= 0 && progressValue <= 24){
+            $(progressBars[bar]).addClass("bg-danger text-dark");
+        }
+        else if(progressValue >= 25 && progressValue <= 74){
+            $(progressBars[bar]).addClass("bg-warning text-dark");
+        }
+        else if(progressValue >= 75 && progressValue <= 100){
+            $(progressBars[bar]).addClass("bg-success text-white");
+        }
+    }
 }
