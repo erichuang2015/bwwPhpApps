@@ -126,7 +126,7 @@ class TodoList
                 if(!empty($edittodostatuses[$id])){
                     $editTodo['todo_status'] = (int)$edittodostatuses[$id];
                 }
-                if(!empty($editpercentcompletes[$id])){
+                if(!empty($editpercentcompletes[$id]) || (int)$editpercentcompletes[$id] == 0){
                     $editTodo['percent_complete'] = (int)$editpercentcompletes[$id];
                 }
                 if(!empty($editusersnotes[$id])){
