@@ -123,7 +123,7 @@
                         </select>
                     </td>
                     <td>
-                        <input type="number" id="percentComplete<?=$value?>" name="editpercentcomplete[<?=$value?>]" class="form-control" placeholder="<?=$todo['percent_complete']?>" autocomplete="off" min="0" max="100" data-todoid="<?=$todo['id']?>" hidden>
+                        <input type="number" id="percentComplete<?=$value?>" name="editpercentcomplete[<?=$value?>]" class="form-control" value="<?=$todo['percent_complete']?>" autocomplete="off" min="0" max="100" data-todoid="<?=$todo['id']?>" hidden>
 
                         <div class="progress" style="height: 2.25rem;">
                             <div class="progress-bar" role="progressbar" style="width: <?=$todo['percent_complete']?>%;" aria-valuenow="<?=$todo['percent_complete']?>" aria-valuemin="0" aria-valuemax="100"><?=$todo['percent_complete']?>%</div>
