@@ -12,6 +12,9 @@ class BwwRoutes implements \utilityClasses\Routes
     private $mailTable;
     private $shoppingCategoriesTable;
     private $shoppingItemsTable;
+    private $todoPriorityTable;
+    private $todoStatusTable;
+    private $todoTable;
     private $authentication;
 
     public function __construct()
@@ -27,6 +30,9 @@ class BwwRoutes implements \utilityClasses\Routes
         $this->mailTable = new \utilityClasses\DatabaseTable($pdo, 'mail', 'id');
         $this->shoppingCategoriesTable = new \utilityClasses\DatabaseTable($pdo, 'shopping_categories', 'id');
         $this->shoppingItemsTable = new \utilityClasses\DatabaseTable($pdo, 'shopping_items', 'id');
+        $this->todoPriorityTable = new \utilityClasses\DatabaseTable($pdo, 'todo_priority', 'priority_id');
+        $this->todoStatusTable = new \utilityClasses\DatabaseTable($pdo, 'todo_status', 'todo_status_id');
+        $this->todoTable = new \utilityClasses\DatabaseTable($pdo, 'todos', 'id');
 
         $this->authentication = new \utilityClasses\Authentication($this->usersTable, 'email', 'password');
     }
@@ -40,11 +46,11 @@ class BwwRoutes implements \utilityClasses\Routes
         $runSpeedCalculatorController = new \BwwClasses\Controllers\RunSpeedCalculator();
         $fitnessCalculatorController = new \BwwClasses\Controllers\FitnessCalculator();
         $distanceconverterController = new \BwwClasses\Controllers\DistanceConverter();
-        // print_r(); die;
         $pyramidController = new \BwwClasses\Controllers\Pyramid($this->usersTable, $this->pyramidUserMaxTable, $this->exerciseTypesTable, $this->authentication);
         $photosController = new \BwwClasses\Controllers\Photos($this->usersTable, $this->photosTable, $this->authentication);
         $myaccountController = new \BwwClasses\Controllers\MyAccount($this->usersTable, $this->authentication);
         $shoppingListController = new \BwwClasses\Controllers\ShoppingList($this->shoppingCategoriesTable, $this->shoppingItemsTable, $this->authentication);
+        $todoListController = new \BwwClasses\Controllers\TodoList($this->todoPriorityTable, $this->todoStatusTable, $this->todoTable, $this->authentication);
 
         $routes = [
             'user/register' => [
@@ -231,6 +237,17 @@ class BwwRoutes implements \utilityClasses\Routes
                 ],
                 'POST' => [
                     'controller' => $shoppingListController,
+                    'action' => 'processUserRequest',
+                ],
+                'login' => true,
+            ],
+            'todolist' => [
+                'GET' => [
+                    'controller' => $todoListController,
+                    'action' => 'render',
+                ],
+                'POST' => [
+                    'controller' => $todoListController,
                     'action' => 'processUserRequest',
                 ],
                 'login' => true,

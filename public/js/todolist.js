@@ -1,0 +1,141 @@
+/*jshint esversion: 6 */
+(function () {
+    'use strict';
+    window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+            }, false);
+        });
+    }, false);
+})();
+
+$(document).ready(function () {
+    "use strict";
+
+    $(function () {
+        $('[data-toggle="popover"]').popover({
+            trigger: "hover click",
+            html: true,
+            title: ""
+        });
+    });
+
+    $(function () {
+        $('#datetimepicker4').datetimepicker({
+            format: 'L'
+        });
+        var dtPickersNoIcon = [];
+        dtPickersNoIcon = $("input[id^='datetimepickerNoIcon']");
+        for (var picker = 0; picker < dtPickersNoIcon.length; picker++) {
+            $(dtPickersNoIcon[picker]).datetimepicker({
+                format: 'L'
+            });
+        }
+    });
+
+    var prioritySelectInputs = [];
+    prioritySelectInputs = $("select[id^='usersPriorityLevel']");
+    setSelectedIndexes(prioritySelectInputs);
+
+    var statusSelectInputs = [];
+    statusSelectInputs = $("select[id^='todoStatus']");
+    setSelectedIndexes(statusSelectInputs);
+
+    $("#btnNewTask").on("keyup click", function (e) {
+        if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
+            e.preventDefault();
+            e.stopPropagation();
+            $(".bootstrap-table").hide();
+            $(this).hide();
+            $("#btnCancelNewTask").removeAttr("hidden");
+            $("#taskInputContainer").removeAttr("hidden");
+            $("#btnCancelNewTask").show();
+            $("#taskInputContainer").show();
+        }
+    });
+
+    $("#btnCancelNewTask").on("keyup click", function (e) {
+        if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
+            e.preventDefault();
+            e.stopPropagation();
+            $(this).hide();
+            $("#taskInputContainer").hide();
+            $(".bootstrap-table").show();
+            $("#btnNewTask").show();
+        }
+    });
+
+    $("input[type='checkbox']").on("keyup click", function (e) {
+        if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
+            // console.log("checkbox clicked");
+            var checked = e.currentTarget.checked;
+            var checkbox = this;
+            var hiddenInput = $("#deleteToDoId");
+            // console.log(hiddenInput);
+            var todoIdToDelete = $(checkbox).attr("data-todoid");
+            // console.log(todoIdToDelete);
+            if (checked) {
+                $(hiddenInput).val(todoIdToDelete);
+                $("#btnNewTask").attr("disabled", "true");
+                $("#btnNewTask").hide();
+                $("#confirmDelete").removeAttr("hidden");
+                $("#confirmDelete").show();
+                $("#confirmDelete").removeAttr("disabled");
+            }
+            else {
+                $(hiddenInput).val("");
+                $("#btnNewTask").removeAttr("disabled");
+                $("#btnNewTask").show();
+                $("#confirmDelete").hide();
+                $("#confirmDelete").attr("disabled", "true");
+            }
+        }
+    });
+
+    $("input[id^='usersTaskName'], select[id^=usersPriorityLevel], select[id^='todoStatus'], input[id^='percentComplete'], input[id^='usersNotes'] ").on("change", function (e) {
+        var input = this;
+        toggleEditBtns();
+        var todoId = $(input).attr("data-todoid");
+        var currentRow = $(input).closest("tr");
+        var hiddenInput = $(currentRow).find("input[type=hidden]:first");
+        hiddenInput.val(todoId);
+    });
+
+    $("input[id^='datetimepickerNoIcon']").on("hide.datetimepicker", function (e) {
+        var hiddenInput = "#" + $(this).attr("data-hidden");
+        var newDate = $(this).val();
+        if (newDate) {
+            $(hiddenInput).val(newDate);
+            toggleEditBtns();
+        }
+    });
+});
+
+function setSelectedIndexes(selectInputs) {
+    var selectedIndex = 0;
+    for (var sInput = 0; sInput < selectInputs.length; sInput++) {
+        selectedIndex = $(selectInputs[sInput]).attr("data-selectedIndex");
+        selectedIndex = parseInt(selectedIndex, 10);
+        if (selectedIndex > 0) {
+            selectInputs[sInput].selectedIndex = selectedIndex.toString();
+        }
+    }
+}
+
+function toggleEditBtns() {
+    $("#saveChanges").removeAttr("hidden");
+    $("#btnDiscardEdits").removeAttr("hidden");
+    $("#saveChanges").show();
+    $("#btnDiscardEdits").show();
+    $("#saveChanges").removeAttr("disabled");
+    $("#btnDiscardEdits").removeAttr("disabled");
+    $("#btnNewTask").attr("disabled", "true");
+    $("#btnNewTask").hide();
+}
