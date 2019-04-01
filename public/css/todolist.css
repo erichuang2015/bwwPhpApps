@@ -55,7 +55,58 @@ textarea {
 
 /*iPhone6 Plus*/
 
-@media (max-width: 415px) {}
+@media (max-width: 415px) {
+    html{
+        font-size: 10px;
+    }
+
+    tbody .form-control {
+        padding: 0;
+    }
+
+    .table td, .table th{
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .bootstrap-table .fixed-table-container .table thead th .th-inner{
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .bootstrap-table .fixed-table-container .table input[type=radio], .bootstrap-table .fixed-table-container .table input[type=checkbox] {
+        height: 1rem;
+        width: 1rem;
+    }
+
+    th.col-checkbox {
+        width: 1rem;
+    }
+
+    th.col-due-date {
+        width: 11.5rem;
+    }
+
+    th.col-task-title {
+        width: 25rem;
+    }
+
+    th.col-priority {
+        width: 6rem;
+    }
+
+    th.col-status {
+        width: 9.38rem;
+    }
+
+    th.col-percent {
+        width: 0.5rem;
+    }
+
+    th.col-notes {
+        width: 25rem;
+    }
+}
 
 /*/////////////////////////*/
 
