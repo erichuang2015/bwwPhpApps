@@ -62,7 +62,7 @@
                         <label for="notesInput">Notes</label>
                         <span class="sr-only">Information about "Notes"</span>
                         <img src="/css/vendor/open-iconic-master/svg/info.svg" alt='Information about "Notes"' width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Provide any additional details about your task.  The maximum characters allowed for this field is 255.">
-                        <input type="text" id="notesInput" name="newtask[notesinput]" class="form-control" value="" autocomplete="off" maxlength="255" required>
+                        <input type="text" id="notesInput" name="newtask[notesinput]" class="form-control" value="" autocomplete="off" maxlength="255">
                         <div class="invalid-feedback"><span id="notesInputError">Enter valid notes.</span></div>
                     </div>
 
