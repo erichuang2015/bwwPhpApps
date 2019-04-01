@@ -69,6 +69,7 @@ class TodoList
         // print_r($_POST);die;
         if (isset($_POST['newtask'])) // Add new task
         {
+            // print_r($_POST['newtask']);die;
             $this->saveNewTask($_POST['newtask'], $user);
         }
         else if(isset($_POST['editid'])){// Edit task
@@ -88,13 +89,15 @@ class TodoList
 
     public function saveNewTask($inputData, $user)
     {
-        $newTaskData['due_date'] = date_create($inputData['date']);
+        $format = "n/j/y";
+        $newTaskData['due_date'] = date_create_from_format($format, $inputData['date']);
         $newTaskData['title'] = (string)$inputData['taskname'];
         $newTaskData['todo_priority'] = (int)$inputData['prioritylevel'];
         $newTaskData['todo_status'] = 1;
         $newTaskData['percent_complete'] = 0;
         $newTaskData['notes'] = (string)$inputData['notesinput'];
         $newTaskData['user_id'] = (int)$user['id'];
+        // print_r($newTaskData);die;
         $this->todoTable->save($newTaskData);
         header('location: /todolist');
     }

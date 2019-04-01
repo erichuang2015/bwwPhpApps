@@ -29,7 +29,7 @@ $(document).ready(function () {
 
     $(function () {
         $('#datetimepicker4').datetimepicker({
-            format: 'M, D, YY'
+            format: 'M/D/YY'
         });
         var dtPickersNoIcon = [];
         dtPickersNoIcon = $("input[id^='datetimepickerNoIcon']");
