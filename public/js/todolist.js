@@ -99,7 +99,7 @@ $(document).ready(function () {
         }
     });
 
-    $("input[id^='usersTaskName'], select[id^=usersPriorityLevel], select[id^='todoStatus'], input[id^='percentComplete'], input[id^='usersNotes'] ").on("change", function (e) {
+    $("input[id^='usersTaskName'], select[id^=usersPriorityLevel], select[id^='todoStatus'], input[id^='percentComplete'], input[id^='usersNotes'], textarea").on("change", function (e) {
         var input = this;
         toggleEditBtns();
         var todoId = $(input).attr("data-todoid");
@@ -129,7 +129,6 @@ $(document).ready(function () {
             $(progressDiv).hide();
             $(numInput).removeAttr("hidden");
             $(numInput).show();
-
         }
     });
 
@@ -141,6 +140,13 @@ $(document).ready(function () {
         var progressBars = [];
         progressBars = $(".progress-bar");
         setProgressBarColors(progressBars);
+    });
+
+    $("textarea").on("change", function(){
+        var textArea = $(this);
+        var notesInputControl = $(textArea).next("input[type=hidden]");
+        var userInput = $(textArea).val();
+        notesInputControl.val(userInput);
     });
 });
 

@@ -10,3 +10,27 @@ tbody .form-control {
     background: none;
     border: none;
 }
+
+th.col-checkbox{
+    width:2rem;
+}
+
+th.col-priority{
+    width:8.28rem;
+}
+
+th.col-status{
+    width:9.38rem;
+}
+
+th.col-percent{
+    width:7rem;
+}
+
+th.col-due-date{
+    width: 8.15rem;
+}
+
+textarea{
+    height: auto;
+}

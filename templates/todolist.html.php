@@ -80,16 +80,16 @@
     <form action="" method="post" name="formTable" class="needs-validation" autocomplete="off" novalidate>
         <input type="submit" id="saveChanges" name="btnsave" value="Save Changes" class="btn btn-primary" hidden disabled />
         <button id="btnDiscardEdits" class="btn btn-secondary" hidden disabled>Discard Changes</button>
-        <table data-toggle="table" data-pagination="true" data-search="true" class="table table-bordered table-hover table-striped">
+        <table data-toggle="table" data-search="true" class="table table-bordered table-hover table-striped">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col"></th>
-                    <th data-sortable="true" scope="col">Due Date</th>
-                    <th data-sortable="true" scope="col">Task</th>
-                    <th data-sortable="true" scope="col">Priority</th>
-                    <th data-sortable="true" scope="col">Status</th>
-                    <th data-sortable="true" scope="col">% Complete</th>
-                    <th data-sortable="true" scope="col">Notes</th>
+                    <th scope="col" class="col-checkbox"></th>
+                    <th scope="col" class="col-due-date">Due Date</th>
+                    <th scope="col">Task</th>
+                    <th scope="col" class="col-priority">Priority</th>
+                    <th scope="col" class="col-status">Status</th>
+                    <th scope="col" class="col-percent">% Complete</th>
+                    <th scope="col">Notes</th>
                 </tr>
             </thead>
             <tbody>
@@ -103,7 +103,12 @@
                         <input type="hidden" name="editduedate[<?=$value?>]" id="hiddenDateTimePicker<?=$value?>">
                     </td>
                     <td>
-                        <input type="text" id="usersTaskName<?=$value?>" name="edittask[<?=$value?>]" class="form-control" placeholder="<?=$todo['title']?>" autocomplete="off" value="" maxlength="45" data-todoid="<?=$todo['id']?>">
+
+                        <textarea form="formTable" maxlength="45" class="form-control"  data-todoid="<?=$todo['id']?>"><?=$todo['title']?></textarea>
+                        <input type="hidden" id="usersTaskName<?=$value?>" name="edittask[<?=$value?>]"  data-todoid="<?=$todo['id']?>">
+
+
+                        <!-- <input type="text" id="usersTaskName<?=$value?>" name="edittask[<?=$value?>]" class="form-control" placeholder="<?=$todo['title']?>" autocomplete="off" value="" maxlength="45" data-todoid="<?=$todo['id']?>"> -->
 
                     </td>
                     <td>
@@ -130,7 +135,10 @@
                         </div>
 
                     </td>
-                    <td><input type="text" id="usersNotes<?=$value?>" name="editusersnotes[<?=$value?>]" class="form-control" placeholder="<?=$todo['notes']?>" autocomplete="off" maxlength="255" data-todoid="<?=$todo['id']?>"></td>
+                    <td>
+                        <textarea form="formTable" maxlength="255" class="form-control" data-todoid="<?=$todo['id']?>"><?=$todo['notes']?></textarea>
+                        <input type="hidden" id="usersNotes<?=$value?>" name="editusersnotes[<?=$value?>]" data-todoid="<?=$todo['id']?>">
+                    </td>
                 </tr>
                 <?php $value = $value + 1;?>
                 <?php endforeach;?>
