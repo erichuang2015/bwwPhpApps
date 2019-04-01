@@ -12,11 +12,11 @@
     </div>
 </div>
 
-<div class="container">
+<div id="todoContainer" class="container">
     <?php if ($loggedIn): ?>
     <form action="" method="post" name="formNewTask" class="needs-validation" autocomplete="off" novalidate>
         <button id="btnNewTask" class="btn btn-primary">+ New Task</button>
-        <div class="mb-3">
+        <div id="divNevermind" class="mb-3">
             <button id="btnCancelNewTask" class="btn btn-secondary" hidden>
                 <- Nevermind</button> </div> <div id="taskInputContainer" class="container" hidden>
                     <div class="mb-3">
@@ -85,11 +85,11 @@
                 <tr>
                     <th scope="col" class="col-checkbox"></th>
                     <th scope="col" class="col-due-date">Due Date</th>
-                    <th scope="col">Task</th>
+                    <th scope="col" class="col-task-title">Task</th>
                     <th scope="col" class="col-priority">Priority</th>
                     <th scope="col" class="col-status">Status</th>
                     <th scope="col" class="col-percent">% Complete</th>
-                    <th scope="col">Notes</th>
+                    <th scope="col" class="col-notes">Notes</th>
                 </tr>
             </thead>
             <tbody>

@@ -29,16 +29,26 @@ $(document).ready(function () {
 
     $(function () {
         $('#datetimepicker4').datetimepicker({
-            format: 'L'
+            format: 'M, D, YY'
         });
         var dtPickersNoIcon = [];
         dtPickersNoIcon = $("input[id^='datetimepickerNoIcon']");
         for (var picker = 0; picker < dtPickersNoIcon.length; picker++) {
             $(dtPickersNoIcon[picker]).datetimepicker({
-                format: 'L'
+                format: 'M/D/YY'
             });
         }
     });
+
+    if (window.matchMedia("(max-width: 320px)").matches) {
+        /* The viewport is less than, or equal to, 320 pixels wide */
+        $(".col-due-date .th-inner").text("Date");
+        $(".col-percent .th-inner").text("%");
+    } else {
+        /* The viewport is greater than 320 pixels wide */
+        $(".col-due-date .th-inner").text("Due Date");
+        $(".col-percent .th-inner").text("% Complete");
+    }
 
     var prioritySelectInputs = [];
     prioritySelectInputs = $("select[id^='usersPriorityLevel']");
@@ -55,6 +65,7 @@ $(document).ready(function () {
             $(".bootstrap-table").hide();
             $(this).hide();
             $("#btnCancelNewTask").removeAttr("hidden");
+            $("#divNevermind").addClass("mb-3");
             $("#taskInputContainer").removeAttr("hidden");
             $("#btnCancelNewTask").show();
             $("#taskInputContainer").show();
@@ -66,6 +77,7 @@ $(document).ready(function () {
             e.preventDefault();
             e.stopPropagation();
             $(this).hide();
+            $("#divNevermind").removeClass("mb-3");
             $("#taskInputContainer").hide();
             $(".bootstrap-table").show();
             $("#btnNewTask").show();
@@ -136,13 +148,13 @@ $(document).ready(function () {
     progressBars = $(".progress-bar");
     setProgressBarColors(progressBars);
 
-    $(".form-control").on("blur change keyup", function(){
+    $(".form-control").on("blur change keyup", function () {
         var progressBars = [];
         progressBars = $(".progress-bar");
         setProgressBarColors(progressBars);
     });
 
-    $("textarea").on("change", function(){
+    $("textarea").on("change", function () {
         var textArea = $(this);
         var notesInputControl = $(textArea).next("input[type=hidden]");
         var userInput = $(textArea).val();

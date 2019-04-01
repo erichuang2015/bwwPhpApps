@@ -32,7 +32,7 @@ class TodoList
                     continue;
                 }
                 $dueDate = date_create($todo['due_date']);
-                $stringDueDate = date_format($dueDate,"m/d/Y");
+                $stringDueDate = date_format($dueDate,"n/j/y");
                 // print_r($stringDueDate);die;
                 $currentUserTodos[] = [
                     'id' => (int) $todo['id'],

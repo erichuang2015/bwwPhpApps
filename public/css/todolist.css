@@ -11,26 +11,128 @@ tbody .form-control {
     border: none;
 }
 
-th.col-checkbox{
-    width:2rem;
+th.col-checkbox {
+    width: 2rem;
 }
 
-th.col-priority{
-    width:8.28rem;
+th.col-priority {
+    width: 8.28rem;
 }
 
-th.col-status{
-    width:9.38rem;
+th.col-status {
+    width: 9.38rem;
 }
 
-th.col-percent{
-    width:7rem;
+th.col-percent {
+    width: 7rem;
 }
 
-th.col-due-date{
+th.col-due-date {
     width: 8.15rem;
 }
 
-textarea{
+textarea {
     height: auto;
 }
+
+/* Edge Browser styles begin */
+
+@supports (-ms-ime-align: auto) {}
+
+/* Edge Browser styles end */
+
+/* Firefox Browser styles begin */
+
+@-moz-document url-prefix() {}
+
+/* Firefox Browser styles end */
+
+/*iPad*/
+
+@media (max-width: 769px) {}
+
+/*/////////////////////////*/
+
+/*iPhone6 Plus*/
+
+@media (max-width: 415px) {}
+
+/*/////////////////////////*/
+
+/*Pixel 2*/
+
+@media (max-width: 411px) {}
+
+/*/////////////////////////*/
+
+/*iPhone6*/
+
+@media (max-width: 376px) {}
+
+/*/////////////////////////*/
+
+/*Galaxy S5*/
+
+@media (max-width: 360px) {}
+
+/*/////////////////////////*/
+
+/*iPhone 5/SE*/
+
+@media (max-width: 320px) {
+    /* #todoContainer{
+        font-size: 0.5rem;
+    } */
+    html{
+        font-size: 10px;
+    }
+
+    tbody .form-control {
+        padding: 0;
+    }
+
+    .table td, .table th{
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .bootstrap-table .fixed-table-container .table thead th .th-inner{
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .bootstrap-table .fixed-table-container .table input[type=radio], .bootstrap-table .fixed-table-container .table input[type=checkbox] {
+        height: 1rem;
+        width: 1rem;
+    }
+
+    th.col-checkbox {
+        width: 1rem;
+    }
+
+    th.col-due-date {
+        width: 11.5rem;
+    }
+
+    th.col-task-title {
+        width: 25rem;
+    }
+
+    th.col-priority {
+        width: 6rem;
+    }
+
+    th.col-status {
+        width: 9.38rem;
+    }
+
+    th.col-percent {
+        width: 0.5rem;
+    }
+
+    th.col-notes {
+        width: 25rem;
+    }
+}
+
+/*/////////////////////////*/
