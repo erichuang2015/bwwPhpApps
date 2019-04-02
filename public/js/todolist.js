@@ -40,7 +40,7 @@ $(document).ready(function () {
         }
     });
 
-    if (window.matchMedia("(max-width: 320px)").matches) {
+    if (window.matchMedia("(max-width: 415px)").matches) {
         /* The viewport is less than, or equal to, 320 pixels wide */
         $(".col-due-date .th-inner").text("Date");
         $(".col-percent .th-inner").text("%");

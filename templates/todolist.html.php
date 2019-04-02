@@ -16,7 +16,7 @@
     <?php if ($loggedIn): ?>
     <form action="" method="post" name="formNewTask" class="needs-validation" autocomplete="off" novalidate>
         <button id="btnNewTask" class="btn btn-primary">+ New Task</button>
-        <div id="divNevermind" class="mb-3">
+        <div id="divNevermind">
             <button id="btnCancelNewTask" class="btn btn-secondary" hidden>
                 <- Nevermind</button> </div> <div id="taskInputContainer" class="container" hidden>
                     <div class="mb-3">
@@ -78,8 +78,11 @@
     </form>
 
     <form action="" method="post" name="formTable" class="needs-validation" autocomplete="off" novalidate>
-        <input type="submit" id="saveChanges" name="btnsave" value="Save Changes" class="btn btn-primary" hidden disabled />
-        <button id="btnDiscardEdits" class="btn btn-secondary" hidden disabled>Discard Changes</button>
+        <div id="divChanges">
+            <input type="submit" id="saveChanges" name="btnsave" value="Save Changes" class="btn btn-primary" hidden disabled />
+            <button id="btnDiscardEdits" class="btn btn-secondary" hidden disabled>Discard Changes</button>
+        </div>
+
         <table data-toggle="table" data-search="true" class="table table-bordered table-hover table-striped">
             <thead class="thead-dark">
                 <tr>
@@ -104,8 +107,8 @@
                     </td>
                     <td>
 
-                        <textarea form="formTable" maxlength="45" class="form-control"  data-todoid="<?=$todo['id']?>"><?=$todo['title']?></textarea>
-                        <input type="hidden" id="usersTaskName<?=$value?>" name="edittask[<?=$value?>]"  data-todoid="<?=$todo['id']?>">
+                        <textarea form="formTable" maxlength="45" class="form-control" data-todoid="<?=$todo['id']?>"><?=$todo['title']?></textarea>
+                        <input type="hidden" id="usersTaskName<?=$value?>" name="edittask[<?=$value?>]" data-todoid="<?=$todo['id']?>">
 
 
                         <!-- <input type="text" id="usersTaskName<?=$value?>" name="edittask[<?=$value?>]" class="form-control" placeholder="<?=$todo['title']?>" autocomplete="off" value="" maxlength="45" data-todoid="<?=$todo['id']?>"> -->

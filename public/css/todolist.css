@@ -35,6 +35,20 @@ textarea.form-control {
     height: auto!important;
 }
 
+#btnNewTask {
+    position: relative;
+    top: 3rem;
+}
+
+#divChanges {
+    position: relative;
+    top: 3rem;
+}
+
+div#todoContainer.container {
+    padding-bottom: 1rem;
+}
+
 /* Edge Browser styles begin */
 
 @supports (-ms-ime-align: auto) {}
@@ -47,62 +61,135 @@ textarea.form-control {
 
 /* Firefox Browser styles end */
 
+/*iPad Pro*/
+@media (max-width: 1024px) {
+    html {
+        font-size: 10px;
+    }
+    tbody .form-control {
+        padding: 0;
+    }
+    .table td, .table th {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .bootstrap-table .fixed-table-container .table thead th .th-inner {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .bootstrap-table .fixed-table-container .table input[type=radio], .bootstrap-table .fixed-table-container .table input[type=checkbox] {
+        height: 1rem;
+        width: 1rem;
+    }
+    th.col-checkbox {
+        width: 1rem;
+    }
+    th.col-due-date {
+        width: 4rem;
+    }
+    th.col-task-title {
+        width: 25rem;
+    }
+    th.col-priority {
+        width: 6.2rem;
+    }
+    th.col-status {
+        width: 7.9rem;
+    }
+    th.col-percent {
+        width: 0.5rem;
+    }
+    th.col-notes {
+        width: 25rem;
+    }
+}
+/*/////////////////////////*/
+
 /*iPad*/
 
-@media (max-width: 769px) {}
+@media (max-width: 769px) {
+    html {
+        font-size: 10px;
+    }
+    tbody .form-control {
+        padding: 0;
+    }
+    .table td, .table th {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .bootstrap-table .fixed-table-container .table thead th .th-inner {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .bootstrap-table .fixed-table-container .table input[type=radio], .bootstrap-table .fixed-table-container .table input[type=checkbox] {
+        height: 1rem;
+        width: 1rem;
+    }
+    th.col-checkbox {
+        width: 1rem;
+    }
+    th.col-due-date {
+        width: 4rem;
+    }
+    th.col-task-title {
+        width: 25rem;
+    }
+    th.col-priority {
+        width: 6.2rem;
+    }
+    th.col-status {
+        width: 7.9rem;
+    }
+    th.col-percent {
+        width: 0.5rem;
+    }
+    th.col-notes {
+        width: 25rem;
+    }
+}
 
 /*/////////////////////////*/
 
 /*iPhone6 Plus*/
 
 @media (max-width: 415px) {
-    html{
+    html {
         font-size: 10px;
     }
-
     tbody .form-control {
         padding: 0;
     }
-
-    .table td, .table th{
+    .table td, .table th {
         padding-left: 0;
         padding-right: 0;
     }
-
-    .bootstrap-table .fixed-table-container .table thead th .th-inner{
+    .bootstrap-table .fixed-table-container .table thead th .th-inner {
         padding-left: 0;
         padding-right: 0;
     }
-
     .bootstrap-table .fixed-table-container .table input[type=radio], .bootstrap-table .fixed-table-container .table input[type=checkbox] {
         height: 1rem;
         width: 1rem;
     }
-
     th.col-checkbox {
         width: 1rem;
     }
-
     th.col-due-date {
-        width: 11.5rem;
+        width: 7.5rem;
     }
-
     th.col-task-title {
         width: 25rem;
     }
-
     th.col-priority {
         width: 6rem;
     }
-
     th.col-status {
-        width: 9.38rem;
+        width: 15.9rem;
     }
-
     th.col-percent {
         width: 0.5rem;
     }
-
     th.col-notes {
         width: 25rem;
     }
@@ -112,75 +199,77 @@ textarea.form-control {
 
 /*Pixel 2*/
 
-@media (max-width: 411px) {}
+@media (max-width: 411px) {
+    th.col-due-date {
+        width: 8rem;
+    }
+
+    th.col-status {
+        width: 16.7rem;
+    }
+}
 
 /*/////////////////////////*/
 
 /*iPhone6*/
 
-@media (max-width: 376px) {}
+@media (max-width: 376px) {
+    th.col-due-date {
+        width: 8.3rem;
+    }
+}
 
 /*/////////////////////////*/
 
 /*Galaxy S5*/
 
-@media (max-width: 360px) {}
+@media (max-width: 360px) {
+    th.col-due-date {
+        width: 9rem;
+    }
+}
 
 /*/////////////////////////*/
 
 /*iPhone 5/SE*/
 
 @media (max-width: 320px) {
-    /* #todoContainer{
-        font-size: 0.5rem;
-    } */
-    html{
+    html {
         font-size: 10px;
     }
-
     tbody .form-control {
         padding: 0;
     }
-
-    .table td, .table th{
+    .table td, .table th {
         padding-left: 0;
         padding-right: 0;
     }
-
-    .bootstrap-table .fixed-table-container .table thead th .th-inner{
+    .bootstrap-table .fixed-table-container .table thead th .th-inner {
         padding-left: 0;
         padding-right: 0;
     }
-
     .bootstrap-table .fixed-table-container .table input[type=radio], .bootstrap-table .fixed-table-container .table input[type=checkbox] {
         height: 1rem;
         width: 1rem;
     }
-
     th.col-checkbox {
         width: 1rem;
     }
-
     th.col-due-date {
         width: 11.5rem;
     }
-
     th.col-task-title {
         width: 25rem;
     }
-
     th.col-priority {
         width: 6rem;
     }
-
     th.col-status {
         width: 9.38rem;
     }
-
     th.col-percent {
         width: 0.5rem;
     }
-
     th.col-notes {
         width: 25rem;
     }
