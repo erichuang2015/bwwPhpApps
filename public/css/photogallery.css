@@ -31,6 +31,10 @@ div#captionDiv {
     padding: 0;
 }
 
+#userfile{
+    padding-top:0;
+}
+
 /*iPad*/
 @media (max-width: 769px) {
     div.jumbotron{

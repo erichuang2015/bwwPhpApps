@@ -23,7 +23,7 @@ img {
 }
 
 div.login.container {
-  margin-top: 15px;
+  margin-top: 1rem;
 }
 
 .form-signin {
@@ -71,6 +71,10 @@ span.forgot-pw a {
 
 .container.fill-height {
   margin-top: 4%;
+}
+
+.footer{
+  bottom:-1rem;
 }
 
 /* .box.flex {
