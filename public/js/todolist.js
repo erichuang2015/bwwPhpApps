@@ -163,21 +163,8 @@ $(document).ready(function () {
             e.stopPropagation();
             //get value of the attr data-colname
             var colToSort = $(this).attr("data-colname");
-            var direction = $(this).attr("data-direction");
             // store it in hidden input #colToSort
             $("#colToSort").val(colToSort);
-            if(direction){
-                if(direction == "DESC"){
-                    $("#directionToSort").val(direction);
-                    $(this).attr("data-direction", "ASC");
-                }else{
-                    $("#directionToSort").val(direction);
-                    $(this).attr("data-direction", "DESC");
-                }
-            }else{
-                $(this).attr("data-direction", "DESC");
-                $("#directionToSort").val("DESC");
-            }
             // call click on #saveChanges to submit the changes for processing in the controller
             $("#saveChanges").click();
         }

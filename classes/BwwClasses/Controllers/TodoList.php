@@ -86,7 +86,7 @@ class TodoList
         {
             // print_r("new task");die;
             $this->saveNewTask($_POST['newtask'], $user);
-        } else if (isset($_POST['coltosort']) && !empty($_POST['coltosort']) && isset($_POST['directiontosort']) && !empty($_POST['directiontosort'])) { // Sort task
+        } else if (isset($_POST['coltosort']) && !empty($_POST['coltosort'])) { // Sort task
             // print_r("sorting");die;
             $sortedPage = $this->sort($_POST['coltosort'], $user);
             return $sortedPage;

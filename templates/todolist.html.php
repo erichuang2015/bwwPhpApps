@@ -88,26 +88,24 @@
                 <tr>
                     <th scope="col" class="col-checkbox">
                         <input type="hidden" name="coltosort" id="colToSort">
-                        <input type="hidden" name="directiontosort" id="directionToSort" data-direction="">
-                        <!--ASC DESC -->
                     </th>
                     <th scope="col" class="col-due-date">
-                        <button id="btnSortDate" name="sortdate" data-colname="due_date" data-direction="">Due Date</button>
+                        <button id="btnSortDate" name="sortdate" data-colname="due_date">Due Date</button>
                     </th>
                     <th scope="col" class="col-task-title">
-                        <button name="sorttitle" data-colname="title" data-direction="">Task</button>
+                        <button name="sorttitle" data-colname="title">Task</button>
                     </th>
                     <th scope="col" class="col-priority">
-                        <button name="sortpriority" data-colname="todo_priority" data-direction="">Priority</button>
+                        <button name="sortpriority" data-colname="todo_priority">Priority</button>
                     </th>
                     <th scope="col" class="col-status">
-                        <button name="sortstatus" data-colname="todo_status" data-direction="">Status</button>
+                        <button name="sortstatus" data-colname="todo_status">Status</button>
                     </th>
                     <th scope="col" class="col-percent">
-                        <button id="btnPercentComplete" name="sortcompletionpercent" data-colname="percent_complete" data-direction="">% Complete</button>
+                        <button id="btnPercentComplete" name="sortcompletionpercent" data-colname="percent_complete">% Complete</button>
                     </th>
                     <th scope="col" class="col-notes">
-                        <button name="sortnotes" data-colname="notes" data-direction="">Notes</button>
+                        <button name="sortnotes" data-colname="notes">Notes</button>
                     </th>
                 </tr>
             </thead>
