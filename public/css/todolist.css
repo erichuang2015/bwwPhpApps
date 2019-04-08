@@ -56,6 +56,10 @@ table button {
     font-weight: bold;
 }
 
+table button:active, table button:hover {
+	text-decoration: underline;
+}
+
 /* Edge Browser styles begin */
 
 @supports (-ms-ime-align: auto) {}

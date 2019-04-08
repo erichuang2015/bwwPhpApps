@@ -29,10 +29,20 @@ class TodoList
             $currentUserTodos = [];
             $args = func_get_args();
             $todos = null;
-            if (func_num_args() == 2) {
+            if (func_num_args() == 2) { // if the sort method has been called these args will exist
                 $todos = $this->todoTable->findAllSorted($args[0], $args[1]);
             } else {
-                $todos = $this->todoTable->findAll();
+                //if the user has sorted in the past then their last preference is saved - use it
+                $userIdCol = "user_id_num";
+                $userIdNum = (int) $user['id'];
+                $userSort = $this->todoSortTable->find($userIdCol, $userIdNum);
+                if (!empty($userSort)) {
+                    $sortColumn = $userSort[0]['column'];
+                    $sortDirection = (string) $userSort[0]['direction'];
+                    $todos = $this->todoTable->findAllSorted($sortColumn, $sortDirection);
+                } else {
+                    $todos = $this->todoTable->findAll();
+                }
             }
             foreach ($todos as $todo) {
                 if ($todo['user_id'] != $user['id']) {
