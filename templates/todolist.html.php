@@ -90,22 +90,40 @@
                         <input type="hidden" name="coltosort" id="colToSort">
                     </th>
                     <th scope="col" class="col-due-date">
-                        <button id="btnSortDate" name="sortdate" data-colname="due_date">Due Date</button>
+                        <button id="btnSortDate" name="sortdate" data-colname="due_date">
+                            <img src="/css/vendor/open-iconic-master/svg/elevator.svg" alt="Click to sort this column" width="12rem" height="12rem" fill="#fff">
+                            <span id="dueDateHeader">Due Date</span>
+                        </button>
                     </th>
                     <th scope="col" class="col-task-title">
-                        <button name="sorttitle" data-colname="title">Task</button>
+                        <button name="sorttitle" data-colname="title">
+                            <img src="/css/vendor/open-iconic-master/svg/elevator.svg" alt="Click to sort this column" width="12rem" height="12rem" fill="#fff">
+                            Task
+                        </button>
                     </th>
                     <th scope="col" class="col-priority">
-                        <button name="sortpriority" data-colname="todo_priority">Priority</button>
+                        <button name="sortpriority" data-colname="todo_priority">
+                            <img src="/css/vendor/open-iconic-master/svg/elevator.svg" alt="Click to sort this column" width="12rem" height="12rem" fill="#fff">
+                            Priority
+                        </button>
                     </th>
                     <th scope="col" class="col-status">
-                        <button name="sortstatus" data-colname="todo_status">Status</button>
+                        <button name="sortstatus" data-colname="todo_status">
+                            <img src="/css/vendor/open-iconic-master/svg/elevator.svg" alt="Click to sort this column" width="12rem" height="12rem" fill="#fff">
+                            Status
+                        </button>
                     </th>
                     <th scope="col" class="col-percent">
-                        <button id="btnPercentComplete" name="sortcompletionpercent" data-colname="percent_complete">% Complete</button>
+                        <button id="btnPercentComplete" name="sortcompletionpercent" data-colname="percent_complete">
+                            <img src="/css/vendor/open-iconic-master/svg/elevator.svg" alt="Click to sort this column" width="12rem" height="12rem" fill="#fff">
+                            <span id="percentCompleteHeader">% Complete</span>
+                        </button>
                     </th>
                     <th scope="col" class="col-notes">
-                        <button name="sortnotes" data-colname="notes">Notes</button>
+                        <button name="sortnotes" data-colname="notes">
+                            <img src="/css/vendor/open-iconic-master/svg/elevator.svg" alt="Click to sort this column" width="12rem" height="12rem" fill="#fff">
+                            Notes
+                        </button>
                     </th>
                 </tr>
             </thead>

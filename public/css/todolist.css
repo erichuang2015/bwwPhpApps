@@ -49,11 +49,22 @@ div#todoContainer.container {
     padding-bottom: 1rem;
 }
 
-table button {
+table th button {
     background: none;
     border: none;
     color: #fff;
     font-weight: bold;
+    /* background-image: url(/css/vendor/open-iconic-master/svg/sort-ascending.svg);
+    background-size:1rem;
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 1.2rem;
+    fill:#fff; */
+}
+
+table img{
+    color: white;
+    background-color: white;
 }
 
 table button:active, table button:hover {

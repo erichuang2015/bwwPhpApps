@@ -42,12 +42,12 @@ $(document).ready(function () {
 
     if (window.matchMedia("(max-width: 415px)").matches) {
         /* The viewport is less than, or equal to, 415 pixels wide */
-        $("#btnSortDate").text("Date");
-        $("#btnPercentComplete").text("%");
+        $("#dueDateHeader").text("Date");
+        $("#percentCompleteHeader").text("%");
     } else {
         /* The viewport is greater than 415 pixels wide */
-        $("#btnSortDate").text("Due Date");
-        $("#btnPercentComplete").text("% Complete");
+        $("#dueDateHeader").text("Due Date");
+        $("#percentCompleteHeader").text("% Complete");
     }
 
     var prioritySelectInputs = [];
