@@ -49,6 +49,13 @@ div#todoContainer.container {
     padding-bottom: 1rem;
 }
 
+table button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+}
+
 /* Edge Browser styles begin */
 
 @supports (-ms-ime-align: auto) {}
@@ -62,6 +69,7 @@ div#todoContainer.container {
 /* Firefox Browser styles end */
 
 /*iPad Pro*/
+
 @media (max-width: 1024px) {
     html {
         font-size: 10px;
@@ -103,6 +111,7 @@ div#todoContainer.container {
         width: 25rem;
     }
 }
+
 /*/////////////////////////*/
 
 /*iPad*/
@@ -203,7 +212,6 @@ div#todoContainer.container {
     th.col-due-date {
         width: 8rem;
     }
-
     th.col-status {
         width: 16.7rem;
     }

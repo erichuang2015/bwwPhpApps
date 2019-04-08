@@ -10,8 +10,9 @@
             "type": "php",
             "request": "launch",
             "port": 9000,
-            "localSourceRoot": "/myGit/VM/noviceToNinja",
-            "serverSourceRoot": "/home/vagrant/Code"
+            "pathMappings": {
+                "/home/vagrant/Code": "/myGit/VM/noviceToNinja"
+            }
         },
         {
             "name": "Launch currently open script",

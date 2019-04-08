@@ -86,13 +86,29 @@
         <table data-toggle="table" data-search="true" class="table table-bordered table-hover table-striped">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col" class="col-checkbox"></th>
-                    <th scope="col" class="col-due-date">Due Date</th>
-                    <th scope="col" class="col-task-title">Task</th>
-                    <th scope="col" class="col-priority">Priority</th>
-                    <th scope="col" class="col-status">Status</th>
-                    <th scope="col" class="col-percent">% Complete</th>
-                    <th scope="col" class="col-notes">Notes</th>
+                    <th scope="col" class="col-checkbox">
+                        <input type="hidden" name="coltosort" id="colToSort">
+                        <input type="hidden" name="directiontosort" id="directionToSort" data-direction="">
+                        <!--ASC DESC -->
+                    </th>
+                    <th scope="col" class="col-due-date">
+                        <button id="btnSortDate" name="sortdate" data-colname="due_date" data-direction="">Due Date</button>
+                    </th>
+                    <th scope="col" class="col-task-title">
+                        <button name="sorttitle" data-colname="title" data-direction="">Task</button>
+                    </th>
+                    <th scope="col" class="col-priority">
+                        <button name="sortpriority" data-colname="todo_priority" data-direction="">Priority</button>
+                    </th>
+                    <th scope="col" class="col-status">
+                        <button name="sortstatus" data-colname="todo_status" data-direction="">Status</button>
+                    </th>
+                    <th scope="col" class="col-percent">
+                        <button id="btnPercentComplete" name="sortcompletionpercent" data-colname="percent_complete" data-direction="">% Complete</button>
+                    </th>
+                    <th scope="col" class="col-notes">
+                        <button name="sortnotes" data-colname="notes" data-direction="">Notes</button>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -106,13 +122,8 @@
                         <input type="hidden" name="editduedate[<?=$value?>]" id="hiddenDateTimePicker<?=$value?>">
                     </td>
                     <td>
-
                         <textarea form="formTable" maxlength="45" class="form-control" data-todoid="<?=$todo['id']?>"><?=$todo['title']?></textarea>
                         <input type="hidden" id="usersTaskName<?=$value?>" name="edittask[<?=$value?>]" data-todoid="<?=$todo['id']?>">
-
-
-                        <!-- <input type="text" id="usersTaskName<?=$value?>" name="edittask[<?=$value?>]" class="form-control" placeholder="<?=$todo['title']?>" autocomplete="off" value="" maxlength="45" data-todoid="<?=$todo['id']?>"> -->
-
                     </td>
                     <td>
                         <select class="form-control d-block w-100" id="usersPriorityLevel<?=$value?>" name="editprioritylevel[<?=$value?>]" data-selectedIndex="<?=$todo['todo_priority'] ?? '0'?>" data-todoid="<?=$todo['id']?>">

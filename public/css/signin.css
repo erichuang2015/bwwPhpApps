@@ -89,10 +89,12 @@ span.forgot-pw a {
     max-height: 395px;
     width: 100%;
   }
+  main{
+    height: 100%;
+  }
   div.login.container {
-    margin-top: -4em;
-    height: auto;
-    max-height: 680px;
+    margin-top: 2rem;
+    height: 100%;
     margin-bottom: 1em;
   }
 }

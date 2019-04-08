@@ -41,13 +41,13 @@ $(document).ready(function () {
     });
 
     if (window.matchMedia("(max-width: 415px)").matches) {
-        /* The viewport is less than, or equal to, 320 pixels wide */
-        $(".col-due-date .th-inner").text("Date");
-        $(".col-percent .th-inner").text("%");
+        /* The viewport is less than, or equal to, 415 pixels wide */
+        $("#btnSortDate").text("Date");
+        $("#btnPercentComplete").text("%");
     } else {
-        /* The viewport is greater than 320 pixels wide */
-        $(".col-due-date .th-inner").text("Due Date");
-        $(".col-percent .th-inner").text("% Complete");
+        /* The viewport is greater than 415 pixels wide */
+        $("#btnSortDate").text("Due Date");
+        $("#btnPercentComplete").text("% Complete");
     }
 
     var prioritySelectInputs = [];
@@ -86,13 +86,10 @@ $(document).ready(function () {
 
     $("input[type='checkbox']").on("keyup click", function (e) {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
-            // console.log("checkbox clicked");
             var checked = e.currentTarget.checked;
             var checkbox = this;
             var hiddenInput = $("#deleteToDoId");
-            // console.log(hiddenInput);
             var todoIdToDelete = $(checkbox).attr("data-todoid");
-            // console.log(todoIdToDelete);
             if (checked) {
                 $(hiddenInput).val(todoIdToDelete);
                 $("#btnNewTask").attr("disabled", "true");
@@ -159,6 +156,31 @@ $(document).ready(function () {
         var notesInputControl = $(textArea).next("input[type=hidden]");
         var userInput = $(textArea).val();
         notesInputControl.val(userInput);
+    });
+
+    $("thead button").on("click keyup", function(e){
+        if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
+            e.stopPropagation();
+            //get value of the attr data-colname
+            var colToSort = $(this).attr("data-colname");
+            var direction = $(this).attr("data-direction");
+            // store it in hidden input #colToSort
+            $("#colToSort").val(colToSort);
+            if(direction){
+                if(direction == "DESC"){
+                    $("#directionToSort").val(direction);
+                    $(this).attr("data-direction", "ASC");
+                }else{
+                    $("#directionToSort").val(direction);
+                    $(this).attr("data-direction", "DESC");
+                }
+            }else{
+                $(this).attr("data-direction", "DESC");
+                $("#directionToSort").val("DESC");
+            }
+            // call click on #saveChanges to submit the changes for processing in the controller
+            $("#saveChanges").click();
+        }
     });
 });
 
