@@ -169,6 +169,14 @@ $(document).ready(function () {
             $("#saveChanges").click();
         }
     });
+
+    $("#btnDiscardEdits").on("keyup click", function (e) {
+        if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.reload(false);
+        }
+    });
 });
 
 function setSelectedIndexes(selectInputs) {
