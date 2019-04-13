@@ -31,10 +31,6 @@ th.col-due-date {
     width: 8.15rem;
 }
 
-textarea.form-control {
-    height: auto!important;
-}
-
 #btnNewTask {
     position: relative;
     top: 3rem;
@@ -69,6 +65,10 @@ table img{
 
 table button:active, table button:hover {
 	text-decoration: underline;
+}
+
+td.col-notes{
+    height: auto;
 }
 
 /* .custom-control-input:checked {
