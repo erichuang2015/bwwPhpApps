@@ -71,6 +71,20 @@ table button:active, table button:hover {
 	text-decoration: underline;
 }
 
+/* .custom-control-input:checked {
+    border-color: #6c757d!important;
+    background-color: #6c757d!important;
+} */
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before
+{
+    background-color: #6c757d!important;
+}
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    background-color: #6c757d!important;
+}
+
 /* Edge Browser styles begin */
 
 @supports (-ms-ime-align: auto) {}

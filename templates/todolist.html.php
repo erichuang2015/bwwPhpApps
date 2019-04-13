@@ -132,7 +132,13 @@
                 <?php foreach ($currentUserTodos as $todo): ?>
 
                 <tr>
-                    <td><input type="checkbox" data-todoid="<?=$todo['id']?>"><input type="hidden" name="editid[<?=$value?>]" id="editId<?=$value?>"></td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input id="cb<?=$value?>" type="checkbox" data-todoid="<?=$todo['id']?>" class="custom-control-input" />
+                            <label class="custom-control-label text-hide" for="cb<?=$value?>">Toggle me</label>
+                            <input type="hidden" name="editid[<?=$value?>]" id="editId<?=$value?>" />
+                        </div>
+                    </td>
                     <td>
                         <input type="text" class="form-control datetimepicker-input" id="datetimepickerNoIcon<?=$value?>" data-toggle="datetimepicker" data-target="#datetimepickerNoIcon<?=$value?>" placeholder="<?=$todo['due_date']?>" data-todoid="<?=$todo['id']?>" data-hidden="hiddenDateTimePicker<?=$value?>" />
                         <input type="hidden" name="editduedate[<?=$value?>]" id="hiddenDateTimePicker<?=$value?>">
