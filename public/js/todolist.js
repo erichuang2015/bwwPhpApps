@@ -151,6 +151,13 @@ $(document).ready(function () {
         setProgressBarColors(progressBars);
     });
 
+    var textAreas = [];
+
+    textAreas = $("textarea");
+    for(var tArea = 0; tArea < textAreas.length; tArea++){
+        textAreas[tArea].style.height = textAreas[tArea].scrollHeight + "px";
+    }
+
     $("textarea").on("change", function () {
         var textArea = $(this);
         var notesInputControl = $(textArea).next("input[type=hidden]");
