@@ -191,9 +191,7 @@ $(document).ready(function () {
     for(var dateInput = 0;dateInput < dateInputs.length;dateInput++){
         var datePlaceholder = $(dateInputs[dateInput]).attr("placeholder");
         overDue = compareDates(datePlaceholder);
-        console.log(overDue);
         if(overDue){
-            console.log("overdue");
             $(dateInputs[dateInput]).addClass("over-due");
         }
     }
