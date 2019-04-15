@@ -184,6 +184,19 @@ $(document).ready(function () {
             window.location.reload(false);
         }
     });
+
+    var dateInputs = [];
+    dateInputs = $("input[id^='datetimepickerNoIcon']");
+    var overDue = false;
+    for(var dateInput = 0;dateInput < dateInputs.length;dateInput++){
+        var datePlaceholder = $(dateInputs[dateInput]).attr("placeholder");
+        overDue = compareDates(datePlaceholder);
+        console.log(overDue);
+        if(overDue){
+            console.log("overdue");
+            $(dateInputs[dateInput]).addClass("over-due");
+        }
+    }
 });
 
 function setSelectedIndexes(selectInputs) {
@@ -224,4 +237,11 @@ function setProgressBarColors(progressBars) {
             $(progressBars[bar]).addClass("bg-success text-white");
         }
     }
+}
+
+function compareDates(date){
+    "use strict";
+    var today = new Date();
+    date = new Date(date);
+    return (today > date) ? true: false;
 }

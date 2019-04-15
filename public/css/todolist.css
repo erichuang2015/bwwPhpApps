@@ -67,6 +67,13 @@ table button:active, table button:hover {
 	text-decoration: underline;
 }
 
+.over-due{
+    border-color: red !important;
+    /* in order: x offset, y offset, blur size, spread size, color */
+    /* blur size and spread size are optional (they default to 0) */
+    box-shadow: 0px 0px 20px 5px red !important;
+}
+
 /* Edge Browser styles begin */
 
 @supports (-ms-ime-align: auto) {}
