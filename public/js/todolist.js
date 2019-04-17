@@ -90,6 +90,12 @@ $(document).ready(function () {
             var checkbox = this;
             var hiddenInput = $("#deleteToDoId");
             var todoIdToDelete = $(checkbox).attr("data-todoid");
+            var row = $(checkbox).closest("tr");
+            var textAreas = [];
+            textAreas = $(row).find("textarea");
+            var datePicker = $(row).find(".datetimepicker-input");
+            var selects = [];
+            selects = $(row).find("select");
             if (checked) {
                 $(hiddenInput).val(todoIdToDelete);
                 $("#btnNewTask").attr("disabled", "true");
@@ -97,6 +103,10 @@ $(document).ready(function () {
                 $("#confirmDelete").removeAttr("hidden");
                 $("#confirmDelete").show();
                 $("#confirmDelete").removeAttr("disabled");
+                $(row).addClass("deleted text-muted");
+                $(textAreas).addClass("deleted text-muted");
+                $(datePicker).addClass("deleted text-muted");
+                $(selects).addClass("deleted text-muted");
             }
             else {
                 $(hiddenInput).val("");
@@ -104,6 +114,10 @@ $(document).ready(function () {
                 $("#btnNewTask").show();
                 $("#confirmDelete").hide();
                 $("#confirmDelete").attr("disabled", "true");
+                $(row).removeClass("deleted text-muted");
+                $(textAreas).removeClass("deleted text-muted");
+                $(datePicker).removeClass("deleted text-muted");
+                $(selects).removeClass("deleted text-muted");
             }
         }
     });

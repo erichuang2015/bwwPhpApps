@@ -74,6 +74,15 @@ table button:active, table button:hover {
     box-shadow: 0px 0px 20px 5px red !important;
 }
 
+.deleted {
+    text-decoration: line-through!important;
+}
+
+tbody tr.deleted.text-muted, tbody tr td.deleted.text-muted, tbody tr textarea.deleted.text-muted, tbody tr select.deleted.text-muted{
+    text-decoration: line-through!important;
+    color: #6c757d !important;
+}
+
 /* Edge Browser styles begin */
 
 @supports (-ms-ime-align: auto) {}
