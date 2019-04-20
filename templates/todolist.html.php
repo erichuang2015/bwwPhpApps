@@ -4,9 +4,6 @@
     <div class="container fill-height">
         <h1 class="display-3">To Do List</h1>
         <!-- if not logged in display the below: -->
-        <!-- <p>
-      This app allows you to upload your photos and view them in a slide show.
-    </p> -->
         <?php if (!$loggedIn): ?>
         <span class="alert alert-warning" role="alert">You must be logged in to be able to use this app.</span>
         <?php endif;?>
@@ -34,14 +31,7 @@
                                 <label for="dueDate">Due Date</label>
                                 <span class="sr-only">Information about "Due Date"</span>
                                 <img src="/css/vendor/open-iconic-master/svg/info.svg" alt='Information about "Due Date"' width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Input the current date or a future date below to indicate the no later than date in which this task must be completed by.  The date must be formatted as MM/DD/YYYY.">
-                                <!-- <div class="form-group"> -->
-                                    <!-- <div class="input-group date" > -->
-                                        <input name="newtask[date]" id="datetimepicker4" class="datetimepicker-input" required />
-                                        <!-- <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        </div> -->
-                                    <!-- </div> -->
-                                <!-- </div> -->
+                                <input name="newtask[date]" id="datetimepicker4" class="datetimepicker-input" required />
                             </div>
                         </div>
                     </div>

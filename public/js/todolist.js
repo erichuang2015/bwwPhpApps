@@ -35,14 +35,6 @@ $(document).ready(function () {
                 rightIcon: '<i class="fas fa-calendar"></i>'
             }
         });
-        // $('#datetimepicker4').datetimepicker({
-        //     format: 'M/D/YY',
-        //     widgetPositioning: {
-        //         horizontal: "right",
-        //         vertical: "bottom"
-        //     },
-        //     widgetParent: "#datetimepicker4"
-        // });
         var dtPickersNoIcon = [];
         dtPickersNoIcon = $("input[id^='datetimepickerNoIcon']");
         for (var picker = 0; picker < dtPickersNoIcon.length; picker++) {
@@ -51,14 +43,6 @@ $(document).ready(function () {
                 showOnFocus: true,
                 showRightIcon: false
             });
-            // $(dtPickersNoIcon[picker]).datetimepicker({
-            //     format: 'M/D/YY',
-            //     widgetPositioning: {
-            //         horizontal: "right",
-            //         vertical: "bottom"
-            //     },
-            //     widgetParent: $(dtPickersNoIcon[picker])
-            // });
         }
     });
 
