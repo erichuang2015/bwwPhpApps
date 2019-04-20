@@ -105,7 +105,7 @@ class TodoList
 
     public function saveNewTask($inputData, $user)
     {
-        $format = "n/j/y";
+        $format = "m/d/Y";
         $newTaskData['due_date'] = date_create_from_format($format, $inputData['date']);
         $newTaskData['title'] = (string) $inputData['taskname'];
         $newTaskData['todo_priority'] = (int) $inputData['prioritylevel'];

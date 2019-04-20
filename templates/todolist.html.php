@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/vendor/gijgo.min.css">
 <link rel="stylesheet" href="/css/todolist.css">
 <div class="jumbotron fill-height">
     <div class="container fill-height">
@@ -33,14 +34,14 @@
                                 <label for="dueDate">Due Date</label>
                                 <span class="sr-only">Information about "Due Date"</span>
                                 <img src="/css/vendor/open-iconic-master/svg/info.svg" alt='Information about "Due Date"' width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Input the current date or a future date below to indicate the no later than date in which this task must be completed by.  The date must be formatted as MM/DD/YYYY.">
-                                <div class="form-group">
-                                    <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
-                                        <input name="newtask[date]" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" required />
-                                        <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                                <!-- <div class="form-group"> -->
+                                    <!-- <div class="input-group date" > -->
+                                        <input name="newtask[date]" id="datetimepicker4" class="datetimepicker-input" required />
+                                        <!-- <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        </div> -->
+                                    <!-- </div> -->
+                                <!-- </div> -->
                             </div>
                         </div>
                     </div>
@@ -140,7 +141,7 @@
                         </div>
                     </td>
                     <td>
-                        <input type="text" class="form-control datetimepicker-input" id="datetimepickerNoIcon<?=$value?>" data-toggle="datetimepicker" data-target="#datetimepickerNoIcon<?=$value?>" placeholder="<?=$todo['due_date']?>" data-todoid="<?=$todo['id']?>" data-hidden="hiddenDateTimePicker<?=$value?>" />
+                        <input type="text" class="form-control datetimepicker-input" id="datetimepickerNoIcon<?=$value?>" placeholder="<?=$todo['due_date']?>" data-todoid="<?=$todo['id']?>" data-hidden="hiddenDateTimePicker<?=$value?>" />
                         <input type="hidden" name="editduedate[<?=$value?>]" id="hiddenDateTimePicker<?=$value?>">
                     </td>
                     <td>
@@ -182,11 +183,9 @@
         </table>
     </form>
 
-
-
-
 </div> <!-- /container -->
 
 <?php endif;?>
 
+<script type="text/javascript" src="/js/vendor/gijgo/gijgo.min.js"></script>
 <script type="text/javascript" src="/js/todolist.js"></script>

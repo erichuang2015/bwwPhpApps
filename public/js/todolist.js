@@ -28,15 +28,37 @@ $(document).ready(function () {
     });
 
     $(function () {
-        $('#datetimepicker4').datetimepicker({
-            format: 'M/D/YY'
+        $('#datetimepicker4').datepicker({
+            uiLibrary: 'bootstrap4',
+            iconsLibrary: 'fontawesome',
+            icons: {
+                rightIcon: '<i class="fas fa-calendar"></i>'
+            }
         });
+        // $('#datetimepicker4').datetimepicker({
+        //     format: 'M/D/YY',
+        //     widgetPositioning: {
+        //         horizontal: "right",
+        //         vertical: "bottom"
+        //     },
+        //     widgetParent: "#datetimepicker4"
+        // });
         var dtPickersNoIcon = [];
         dtPickersNoIcon = $("input[id^='datetimepickerNoIcon']");
         for (var picker = 0; picker < dtPickersNoIcon.length; picker++) {
-            $(dtPickersNoIcon[picker]).datetimepicker({
-                format: 'M/D/YY'
+            $(dtPickersNoIcon[picker]).datepicker({
+                uiLibrary: 'bootstrap4',
+                showOnFocus: true,
+                showRightIcon: false
             });
+            // $(dtPickersNoIcon[picker]).datetimepicker({
+            //     format: 'M/D/YY',
+            //     widgetPositioning: {
+            //         horizontal: "right",
+            //         vertical: "bottom"
+            //     },
+            //     widgetParent: $(dtPickersNoIcon[picker])
+            // });
         }
     });
 
@@ -131,7 +153,7 @@ $(document).ready(function () {
         hiddenInput.val(todoId);
     });
 
-    $("input[id^='datetimepickerNoIcon']").on("hide.datetimepicker", function (e) {
+    $("input[id^='datetimepickerNoIcon']").on("change", function (e) {
         var hiddenInput = "#" + $(this).attr("data-hidden");
         var input = this;
         var newDate = $(this).val();

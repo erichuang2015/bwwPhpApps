@@ -6,9 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="/css/vendor/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"> -->
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
         <link rel="stylesheet" href="/css/main.css">
         <script type="text/javascript" src="/js/vendor/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="/js/vendor/moment-develop/moment.js"></script>
@@ -16,15 +14,14 @@
         <script type="text/javascript" src="/js/vendor/jquery-ui-1.12.1/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/js/vendor/bootstrap.bundle.min.js"></script>
         <script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
         <script type="text/javascript" src="/js/vendor/modernizr-custom.js"></script>
         <script type="text/javascript" src="/js/Utils.js"></script>
         <title><?=$title?></title>
     </head>
 
     <body>
-        <?php include_once("../public/css/vendor/open-iconic-master/sprite/sprite.min.svg"); ?>
-        <?php include_once("../public/css/vendor/icomoon/symbol-defs.svg"); ?>
+        <?php include_once "../public/css/vendor/open-iconic-master/sprite/sprite.min.svg";?>
+        <?php include_once "../public/css/vendor/icomoon/symbol-defs.svg";?>
         <header>
             <!-- Fixed navbar -->
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
