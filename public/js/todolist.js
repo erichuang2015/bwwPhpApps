@@ -28,20 +28,25 @@ $(document).ready(function () {
     });
 
     $(function () {
+        var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
         $('#datetimepicker4').datepicker({
+            format: 'm/d/yy',
             uiLibrary: 'bootstrap4',
             iconsLibrary: 'fontawesome',
             icons: {
                 rightIcon: '<i class="fas fa-calendar"></i>'
-            }
+            },
+            minDate: today
         });
         var dtPickersNoIcon = [];
         dtPickersNoIcon = $("input[id^='datetimepickerNoIcon']");
         for (var picker = 0; picker < dtPickersNoIcon.length; picker++) {
             $(dtPickersNoIcon[picker]).datepicker({
+                format: 'm/d/yy',
                 uiLibrary: 'bootstrap4',
                 showOnFocus: true,
-                showRightIcon: false
+                showRightIcon: false,
+                minDate: today
             });
         }
     });
@@ -174,7 +179,10 @@ $(document).ready(function () {
     var textAreas = [];
 
     textAreas = $("textarea");
-    for(var tArea = 0; tArea < textAreas.length; tArea++){
+    for (var tArea = 0; tArea < textAreas.length; tArea++) {
+        if($(textAreas[tArea]).text().toString().trim() == "empty"){
+            $(textAreas[tArea]).text("");
+        }
         textAreas[tArea].style.height = textAreas[tArea].scrollHeight + "px";
     }
 
@@ -182,10 +190,15 @@ $(document).ready(function () {
         var textArea = $(this);
         var notesInputControl = $(textArea).next("input[type=hidden]");
         var userInput = $(textArea).val();
-        notesInputControl.val(userInput);
+        if(userInput.toString().trim() != ""){
+            notesInputControl.val(userInput);
+        }else{
+            notesInputControl.val("empty");
+        }
+
     });
 
-    $("thead button").on("click keyup", function(e){
+    $("thead button").on("click keyup", function (e) {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
             e.stopPropagation();
             //get value of the attr data-colname
@@ -208,10 +221,10 @@ $(document).ready(function () {
     var dateInputs = [];
     dateInputs = $("input[id^='datetimepickerNoIcon']");
     var overDue = false;
-    for(var dateInput = 0;dateInput < dateInputs.length;dateInput++){
+    for (var dateInput = 0; dateInput < dateInputs.length; dateInput++) {
         var datePlaceholder = $(dateInputs[dateInput]).attr("placeholder");
         overDue = compareDates(datePlaceholder);
-        if(overDue){
+        if (overDue) {
             $(dateInputs[dateInput]).addClass("over-due");
         }
     }
@@ -257,9 +270,9 @@ function setProgressBarColors(progressBars) {
     }
 }
 
-function compareDates(date){
+function compareDates(date) {
     "use strict";
     var today = new Date();
     date = new Date(date);
-    return (today > date) ? true: false;
+    return (today > date) ? true : false;
 }

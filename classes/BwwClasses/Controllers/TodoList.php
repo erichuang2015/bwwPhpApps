@@ -125,6 +125,7 @@ class TodoList
 
     public function editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $edittodostatuses, $editpercentcompletes, $editusersnotes)
     {
+        // print_r($editusersnotes);die;
         for ($id = 0; $id < sizeOf($editIds); $id++) {
             $editTodo = null;
             if (!empty($editIds[$id])) {
