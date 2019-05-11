@@ -77,7 +77,7 @@ tbody tr.deleted.text-muted, tbody tr td.deleted.text-muted, tbody tr textarea.d
     color: #6c757d !important;
 }
 
-input[id^='datetimepickerNoIcon'], #datetimepicker4{
+input[id^='datetimepickerNoIcon'], #datePicker{
     position: relative;
 }
 

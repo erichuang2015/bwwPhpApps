@@ -11,19 +11,24 @@ class TodoList
     private $todoStatusTable;
     private $todoSortTable;
     private $todoTable;
-    public function __construct(DatabaseTable $todoPriorityTable, DatabaseTable $todoStatusTable, DatabaseTable $todoSortTable, DatabaseTable $todoTable, Authentication $authentication)
+    private $buildingLevelsTable;
+    private $buildingUnitsAllowedTable;
+    private $mainUnitsTable;
+    public function __construct(DatabaseTable $todoPriorityTable, DatabaseTable $todoStatusTable, DatabaseTable $todoSortTable, DatabaseTable $todoTable, Authentication $authentication, DatabaseTable $buildingLevelsTable, DatabaseTable $buildingUnitsAllowedTable, DatabaseTable $mainUnitsTable)
     {
         $this->todoPriorityTable = $todoPriorityTable;
         $this->todoStatusTable = $todoStatusTable;
         $this->todoSortTable = $todoSortTable;
         $this->todoTable = $todoTable;
         $this->authentication = $authentication;
+        $this->buildingLevelsTable = $buildingLevelsTable;
+        $this->buildingUnitsAllowedTable = $buildingUnitsAllowedTable;
+        $this->mainUnitsTable = $mainUnitsTable;
     }
 
     public function render()
     {
         $loggedIn = $this->authentication->isLoggedIn();
-
         if ($loggedIn) {
             $user = $this->authentication->getUser();
             $currentUserTodos = [];
@@ -34,11 +39,11 @@ class TodoList
             } else {
                 //if the user has sorted in the past then their last preference is saved - use it
                 $userIdCol = "user_id_num";
-                $userIdNum = (int) $user['id'];
+                $userIdNum = (int)$user['id'];
                 $userSort = $this->todoSortTable->find($userIdCol, $userIdNum);
                 if (!empty($userSort)) {
                     $sortColumn = $userSort[0]['column'];
-                    $sortDirection = (string) $userSort[0]['direction'];
+                    $sortDirection = (string)$userSort[0]['direction'];
                     $todos = $this->todoTable->findAllSorted($sortColumn, $sortDirection);
                 } else {
                     $todos = $this->todoTable->findAll();
@@ -51,16 +56,15 @@ class TodoList
                 $dueDate = date_create($todo['due_date']);
                 $stringDueDate = date_format($dueDate, "n/j/y");
                 $currentUserTodos[] = [
-                    'id' => (int) $todo['id'],
-                    'due_date' => (string) $stringDueDate,
-                    'title' => (string) $todo['title'],
-                    'todo_priority' => (int) $todo['todo_priority'],
-                    'todo_status' => (int) $todo['todo_status'],
-                    'percent_complete' => (int) $todo['percent_complete'],
-                    'notes' => (string) $todo['notes'],
+                    'id' => (int)$todo['id'],
+                    'due_date' => (string)$stringDueDate,
+                    'title' => (string)$todo['title'],
+                    'todo_priority' => (int)$todo['todo_priority'],
+                    'todo_status' => (int)$todo['todo_status'],
+                    'percent_complete' => (int)$todo['percent_complete'],
+                    'notes' => (string)$todo['notes'],
                 ];
             }
-
             return [
                 'template' => 'todolist.html.php',
                 'title' => 'To Do List',
@@ -82,12 +86,14 @@ class TodoList
     public function processUserRequest()
     {
         $user = $this->authentication->getUser();
+
         if (isset($_POST['newtask'])) // Add new task
         {
             // print_r("new task");die;
             $this->saveNewTask($_POST['newtask'], $user);
         } else if (isset($_POST['coltosort']) && !empty($_POST['coltosort'])) { // Sort task
             // print_r("sorting");die;
+            // $this->updateBuildingUnitsAllowed();
             $sortedPage = $this->sort($_POST['coltosort'], $user);
             return $sortedPage;
         } else if (isset($_POST['editid']) && !empty($_POST['editid'])) { // Edit task
@@ -100,19 +106,18 @@ class TodoList
             // print_r("No methods have been called");die;
             header('location: /todolist');
         }
-
     }
 
     public function saveNewTask($inputData, $user)
     {
         $format = "m/d/Y";
         $newTaskData['due_date'] = date_create_from_format($format, $inputData['date']);
-        $newTaskData['title'] = (string) $inputData['taskname'];
-        $newTaskData['todo_priority'] = (int) $inputData['prioritylevel'];
+        $newTaskData['title'] = (string)$inputData['taskname'];
+        $newTaskData['todo_priority'] = (int)$inputData['prioritylevel'];
         $newTaskData['todo_status'] = 1;
         $newTaskData['percent_complete'] = 0;
-        $newTaskData['notes'] = (string) $inputData['notesinput'];
-        $newTaskData['user_id'] = (int) $user['id'];
+        $newTaskData['notes'] = (string)$inputData['notesinput'];
+        $newTaskData['user_id'] = (int)$user['id'];
         $this->todoTable->save($newTaskData);
         header('location: /todolist');
     }
@@ -130,24 +135,24 @@ class TodoList
             $editTodo = null;
             if (!empty($editIds[$id])) {
                 $editTodo = [];
-                $editTodo['id'] = (int) $editIds[$id];
+                $editTodo['id'] = (int)$editIds[$id];
                 if (!empty($editduedates[$id])) {
                     $editTodo['due_date'] = date_create($editduedates[$id]);
                 }
                 if (!empty($edittasks[$id])) {
-                    $editTodo['title'] = (string) $edittasks[$id];
+                    $editTodo['title'] = (string)$edittasks[$id];
                 }
                 if (!empty($editprioritylevels[$id])) {
-                    $editTodo['todo_priority'] = (int) $editprioritylevels[$id];
+                    $editTodo['todo_priority'] = (int)$editprioritylevels[$id];
                 }
                 if (!empty($edittodostatuses[$id])) {
-                    $editTodo['todo_status'] = (int) $edittodostatuses[$id];
+                    $editTodo['todo_status'] = (int)$edittodostatuses[$id];
                 }
-                if (!empty($editpercentcompletes[$id]) || (int) $editpercentcompletes[$id] == 0) {
-                    $editTodo['percent_complete'] = (int) $editpercentcompletes[$id];
+                if (!empty($editpercentcompletes[$id]) || (int)$editpercentcompletes[$id] == 0) {
+                    $editTodo['percent_complete'] = (int)$editpercentcompletes[$id];
                 }
                 if (!empty($editusersnotes[$id])) {
-                    $editTodo['notes'] = (string) $editusersnotes[$id];
+                    $editTodo['notes'] = (string)$editusersnotes[$id];
                 }
                 $this->todoTable->save($editTodo);
             }
@@ -157,16 +162,16 @@ class TodoList
 
     public function sort($colToSort, $user)
     {
-        $colToSort = (string) $colToSort;
+        $colToSort = (string)$colToSort;
         $userIdCol = "user_id_num";
-        $userIdNum = (int) $user['id'];
+        $userIdNum = (int)$user['id'];
         $userSort = $this->todoSortTable->find($userIdCol, $userIdNum);
         $sortData = [];
         //If the user has sorted before we will get their sort state and toggle based on it
         if (!empty($userSort)) {
-            $sortData['id'] = (int) $userSort[0]['id'];
+            $sortData['id'] = (int)$userSort[0]['id'];
             $sortData['column'] = $colToSort;
-            $sortData['direction'] = ((string) $userSort[0]['direction'] == 'ASC' && $userSort[0]['column'] == $colToSort) ? 'DESC' : 'ASC'; //if the col to sort is already sorted as 'ASC' then toggle else set
+            $sortData['direction'] = ((string)$userSort[0]['direction'] == 'ASC' && $userSort[0]['column'] == $colToSort) ? 'DESC' : 'ASC'; //if the col to sort is already sorted as 'ASC' then toggle else set
             $sortData['user_id_num'] = $userIdNum;
             $this->todoSortTable->save($sortData);
         } else {
@@ -177,7 +182,30 @@ class TodoList
         }
 
         $sorted = $this->render($colToSort, $sortData['direction']);
+
         return $sorted;
     }
 
+    public function updateBuildingUnitsAllowed()
+    {
+        // print_r($buildingUnitsAllowedData);die;
+        $buildingLevels = $this->buildingLevelsTable->findAll();
+        $mainUnitsData = $this->mainUnitsTable->findAll();
+        $id = 780529;
+        for ($level = 0; $level < sizeOf($buildingLevels); $level++) {
+            $buildingUnitsAllowedData = [];
+            foreach ($mainUnitsData as $mainUnit) {
+                $buildingUnitsAllowedData['id'] = $id;
+                $buildingUnitsAllowedData['building'] = $buildingLevels[$level]['LevelName'];
+                $buildingUnitsAllowedData['unit'] = $mainUnit['Unit_Key'];
+                $buildingUnitsAllowedData['xp'] = (int)$buildingLevels[$level]['Level'];
+                $buildingUnitsAllowedData['conditions'] = '';
+                $buildingUnitsAllowedData['faction'] = '';
+                $buildingUnitsAllowedData['enabled'] = 'false';
+                $this->buildingUnitsAllowedTable->save($buildingUnitsAllowedData);
+                $id++;
+            }
+        }
+        return;
+    }
 }

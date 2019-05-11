@@ -16,6 +16,9 @@ class BwwRoutes implements \utilityClasses\Routes
     private $todoStatusTable;
     private $todoSortTable;
     private $todoTable;
+    private $buildingLevelsTable;
+    private $buildingUnitsAllowedTable;
+    private $mainUnitsTable;
     private $authentication;
 
     public function __construct()
@@ -35,6 +38,9 @@ class BwwRoutes implements \utilityClasses\Routes
         $this->todoStatusTable = new \utilityClasses\DatabaseTable($pdo, 'todo_status', 'todo_status_id');
         $this->todoSortTable = new \utilityClasses\DatabaseTable($pdo, 'todo_sort', 'id');
         $this->todoTable = new \utilityClasses\DatabaseTable($pdo, 'todos', 'id');
+        $this->buildingLevelsTable = new \utilityClasses\DatabaseTable($pdo, 'building_levels', 'LevelName');
+        $this->buildingUnitsAllowedTable = new \utilityClasses\DatabaseTable($pdo, 'building_units_allowed', 'id');
+        $this->mainUnitsTable = new \utilityClasses\DatabaseTable($pdo, 'main_units', 'Unit_Key');
 
         $this->authentication = new \utilityClasses\Authentication($this->usersTable, 'email', 'password');
     }
@@ -52,7 +58,7 @@ class BwwRoutes implements \utilityClasses\Routes
         $photosController = new \BwwClasses\Controllers\Photos($this->usersTable, $this->photosTable, $this->authentication);
         $myaccountController = new \BwwClasses\Controllers\MyAccount($this->usersTable, $this->authentication);
         $shoppingListController = new \BwwClasses\Controllers\ShoppingList($this->shoppingCategoriesTable, $this->shoppingItemsTable, $this->authentication);
-        $todoListController = new \BwwClasses\Controllers\TodoList($this->todoPriorityTable, $this->todoStatusTable, $this->todoSortTable, $this->todoTable, $this->authentication);
+        $todoListController = new \BwwClasses\Controllers\TodoList($this->todoPriorityTable, $this->todoStatusTable, $this->todoSortTable, $this->todoTable, $this->authentication, $this->buildingLevelsTable, $this->buildingUnitsAllowedTable, $this->mainUnitsTable);
 
         $routes = [
             'user/register' => [
@@ -269,5 +275,4 @@ class BwwRoutes implements \utilityClasses\Routes
     {
         return $this->authentication;
     }
-
 }

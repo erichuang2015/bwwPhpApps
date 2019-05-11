@@ -5,6 +5,7 @@
     "version": "0.2.0",
     "configurations": [
 
+
         {
             "name": "Listen for XDebug",
             "type": "php",
@@ -29,6 +30,14 @@
             "pathMappings": {
                 "/home/vagrant/Code": "/myGit/VM/noviceToNinja"
             },
+            "port": 9000
+        },
+        {
+            "name": "Launch localhost on chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://bww.phpapps/",
+            "webRoot": "/myGit/VM/noviceToNinja",
             "port": 9000
         }
     ]

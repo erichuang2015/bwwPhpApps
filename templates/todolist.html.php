@@ -4,14 +4,14 @@
     <div class="container fill-height">
         <h1 class="display-3">To Do List</h1>
         <!-- if not logged in display the below: -->
-        <?php if (!$loggedIn): ?>
+        <?php if (!$loggedIn) : ?>
         <span class="alert alert-warning" role="alert">You must be logged in to be able to use this app.</span>
-        <?php endif;?>
+        <?php endif; ?>
     </div>
 </div>
 
 <div id="todoContainer" class="container">
-    <?php if ($loggedIn): ?>
+    <?php if ($loggedIn) : ?>
     <form action="" method="post" name="formNewTask" class="needs-validation" autocomplete="off" novalidate>
         <button id="btnNewTask" class="btn btn-primary">+ New Task</button>
         <div id="divNevermind">
@@ -22,7 +22,7 @@
                         <span class="sr-only">Information about "Task Title"</span>
                         <img src="/css/vendor/open-iconic-master/svg/info.svg" alt='Information about "Task Title"' width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Provide a short, maximum of 45 characters, but descriptive name for your task so that you can remember what you need to accomplish.">
                         <input type="text" id="taskName" name="newtask[taskname]" class="form-control" value="" autocomplete="off" value="" maxlength="45" required autofocus>
-                        <div class="invalid-feedback"><span id="taskNameInputError">Enter a valid task name.</span></div>
+                        <div class="invalid-feedback"><span id="taskNameInputError"></span></div>
                     </div>
 
                     <div class="mb-3">
@@ -30,8 +30,9 @@
                             <div class='col-sm-6'>
                                 <label for="dueDate">Due Date</label>
                                 <span class="sr-only">Information about "Due Date"</span>
-                                <img src="/css/vendor/open-iconic-master/svg/info.svg" alt='Information about "Due Date"' width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Input the current date or a future date below to indicate the no later than date in which this task must be completed by.  The date must be formatted as MM/DD/YYYY.">
-                                <input name="newtask[date]" id="datetimepicker4" class="datetimepicker-input" required />
+                                <img src="/css/vendor/open-iconic-master/svg/info.svg" alt='Information about "Due Date"' width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Input the current date or a future date below to indicate the no later than date in which this task must be completed by.  The date must be formatted as MM/DD/YY.">
+                                <input name="newtask[date]" id="datePicker" class="datetimepicker-input" required />
+                                <div class="invalid-feedback"><span id="datePickerInputError"></span></div>
                             </div>
                         </div>
                     </div>
@@ -46,7 +47,7 @@
                             <option value="2">Medium</option>
                             <option value="3">High</option>
                         </select>
-                        <div class="invalid-feedback"><span id="priorityLevel"></span></div>
+                        <div class="invalid-feedback"><span id="priorityLevelInputError"></span></div>
                     </div>
 
                     <div class="mb-3">
@@ -54,11 +55,10 @@
                         <span class="sr-only">Information about "Notes"</span>
                         <img src="/css/vendor/open-iconic-master/svg/info.svg" alt='Information about "Notes"' width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Provide any additional details about your task.  The maximum characters allowed for this field is 255.">
                         <input type="text" id="notesInput" name="newtask[notesinput]" class="form-control" value="" autocomplete="off" maxlength="255">
-                        <div class="invalid-feedback"><span id="notesInputError">Enter valid notes.</span></div>
                     </div>
 
                     <div class="mb-3">
-                        <input id="submitNewTask" name="submitnewtask" type="submit" class="btn btn-primary">
+                        <input id="submitNewTask" name="submitnewtask" type="submit" class="btn btn-primary" value="Submit" disabled>
                     </div>
         </div>
     </form>
@@ -119,27 +119,26 @@
                 </tr>
             </thead>
             <tbody>
-                <?php $value = 0;?>
-                <?php foreach ($currentUserTodos as $todo): ?>
-
+                <?php $value = 0; ?>
+                <?php foreach ($currentUserTodos as $todo) : ?>
                 <tr>
                     <td>
                         <div class="custom-control custom-checkbox">
-                            <input id="cb<?=$value?>" type="checkbox" data-todoid="<?=$todo['id']?>" class="custom-control-input" />
-                            <label class="custom-control-label text-hide" for="cb<?=$value?>">Toggle me</label>
-                            <input type="hidden" name="editid[<?=$value?>]" id="editId<?=$value?>" />
+                            <input id="cb<?= $value ?>" type="checkbox" data-todoid="<?= $todo['id'] ?>" class="custom-control-input" />
+                            <label class="custom-control-label text-hide" for="cb<?= $value ?>">Toggle me</label>
+                            <input type="hidden" name="editid[<?= $value ?>]" id="editId<?= $value ?>" />
                         </div>
                     </td>
                     <td>
-                        <input type="text" class="form-control datetimepicker-input" id="datetimepickerNoIcon<?=$value?>" placeholder="<?=$todo['due_date']?>" data-todoid="<?=$todo['id']?>" data-hidden="hiddenDateTimePicker<?=$value?>" />
-                        <input type="hidden" name="editduedate[<?=$value?>]" id="hiddenDateTimePicker<?=$value?>">
+                        <input type="text" class="form-control datetimepicker-input" id="datetimepickerNoIcon<?= $value ?>" placeholder="<?= $todo['due_date'] ?>" data-todoid="<?= $todo['id'] ?>" data-hidden="hiddenDateTimePicker<?= $value ?>" />
+                        <input type="hidden" name="editduedate[<?= $value ?>]" id="hiddenDateTimePicker<?= $value ?>">
                     </td>
                     <td>
-                        <textarea form="formTable" maxlength="45" class="form-control" data-todoid="<?=$todo['id']?>"><?=$todo['title']?></textarea>
-                        <input type="hidden" id="usersTaskName<?=$value?>" name="edittask[<?=$value?>]" data-todoid="<?=$todo['id']?>">
+                        <textarea form="formTable" maxlength="45" class="form-control" data-todoid="<?= $todo['id'] ?>"><?= $todo['title'] ?></textarea>
+                        <input type="hidden" id="usersTaskName<?= $value ?>" name="edittask[<?= $value ?>]" data-todoid="<?= $todo['id'] ?>">
                     </td>
                     <td>
-                        <select class="form-control d-block w-100" id="usersPriorityLevel<?=$value?>" name="editprioritylevel[<?=$value?>]" data-selectedIndex="<?=$todo['todo_priority'] ?? '0'?>" data-todoid="<?=$todo['id']?>">
+                        <select class="form-control d-block w-100" id="usersPriorityLevel<?= $value ?>" name="editprioritylevel[<?= $value ?>]" data-selectedIndex="<?= $todo['todo_priority'] ?? '0' ?>" data-todoid="<?= $todo['id'] ?>">
                             <option value="">Choose...</option>
                             <option value="1">Low</option>
                             <option value="2">Medium</option>
@@ -147,7 +146,7 @@
                         </select>
                     </td>
                     <td>
-                        <select class="form-control d-block w-100" id="todoStatus<?=$value?>" name="edittodostatus[<?=$value?>]" data-selectedIndex="<?=$todo['todo_status'] ?? '0'?>" data-todoid="<?=$todo['id']?>">
+                        <select class="form-control d-block w-100" id="todoStatus<?= $value ?>" name="edittodostatus[<?= $value ?>]" data-selectedIndex="<?= $todo['todo_status'] ?? '0' ?>" data-todoid="<?= $todo['id'] ?>">
                             <option value="">Choose...</option>
                             <option value="1">Not Started</option>
                             <option value="2">In progress</option>
@@ -155,27 +154,27 @@
                         </select>
                     </td>
                     <td>
-                        <input type="number" id="percentComplete<?=$value?>" name="editpercentcomplete[<?=$value?>]" class="form-control" value="<?=$todo['percent_complete']?>" autocomplete="off" min="0" max="100" data-todoid="<?=$todo['id']?>" hidden>
+                        <input type="number" id="percentComplete<?= $value ?>" name="editpercentcomplete[<?= $value ?>]" class="form-control" value="<?= $todo['percent_complete'] ?>" autocomplete="off" min="0" max="100" data-todoid="<?= $todo['id'] ?>" hidden>
 
                         <div class="progress" style="height: 2.25rem;">
-                            <div class="progress-bar" role="progressbar" style="width: <?=$todo['percent_complete']?>%;" aria-valuenow="<?=$todo['percent_complete']?>" aria-valuemin="0" aria-valuemax="100"><?=$todo['percent_complete']?>%</div>
+                            <div class="progress-bar" role="progressbar" style="width: <?= $todo['percent_complete'] ?>%;" aria-valuenow="<?= $todo['percent_complete'] ?>" aria-valuemin="0" aria-valuemax="100"><?= $todo['percent_complete'] ?>%</div>
                         </div>
 
                     </td>
                     <td>
-                        <textarea form="formTable" maxlength="255" class="form-control" data-todoid="<?=$todo['id']?>"><?=$todo['notes']?></textarea>
-                        <input type="hidden" id="usersNotes<?=$value?>" name="editusersnotes[<?=$value?>]" data-todoid="<?=$todo['id']?>">
+                        <textarea form="formTable" maxlength="255" class="form-control" data-todoid="<?= $todo['id'] ?>"><?= $todo['notes'] ?></textarea>
+                        <input type="hidden" id="usersNotes<?= $value ?>" name="editusersnotes[<?= $value ?>]" data-todoid="<?= $todo['id'] ?>">
                     </td>
                 </tr>
-                <?php $value = $value + 1;?>
-                <?php endforeach;?>
+                <?php $value = $value + 1; ?>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </form>
 
 </div> <!-- /container -->
 
-<?php endif;?>
+<?php endif; ?>
 
 <script type="text/javascript" src="/js/vendor/gijgo/gijgo.min.js"></script>
 <script type="text/javascript" src="/js/todolist.js"></script>

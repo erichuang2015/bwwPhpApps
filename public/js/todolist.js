@@ -19,6 +19,82 @@
 $(document).ready(function () {
     "use strict";
 
+    $("#taskName, #datePicker, #priorityLevel").on("keyup blur change", function () {
+        var date = $("#datePicker").val();
+        var priorityLevel = $("#priorityLevel").val();
+        var taskName = $("#taskName").val();
+        taskName = taskName.trim();
+        date = date.toString().trim();
+        priorityLevel = priorityLevel.toString().trim();
+
+        var datePickerStatus = false;
+        var priorityLevelStatus = false;
+        var taskNameStatus = false;
+
+        datePickerStatus = (validateDate(date)) ? true : false;
+        priorityLevelStatus = (validatePriorityLevel(priorityLevel)) ? true : false;
+        taskNameStatus = (validateTaskName(taskName)) ? true : false;
+        if (taskNameStatus && datePickerStatus && priorityLevelStatus) {
+            $("#submitNewTask").removeAttr("disabled");
+        }
+        else {
+            $("#submitNewTask").attr("disabled", "true");
+        }
+    });
+
+    $("#taskName").on("keyup blur change", function (e) {
+        if (e.keycode != 9 && e.which != 9 && e.type != "tab") {
+            var taskName = $("#taskName").val();
+            taskName = taskName.trim();
+            if (validateTaskName(taskName)) {
+                $("#taskNameInputError").text("");
+                $("#taskName").removeClass("is-invalid");
+                $("#taskName").addClass("is-valid");
+            }
+            else {
+                $("#taskNameInputError").text("Error: Enter a valid task name");
+                $("#taskName").removeClass("is-valid");
+                $("#taskName").addClass("is-invalid");
+            }
+        }
+    });
+
+    $("#datePicker").on("keyup blur change", function (e) {
+        if (e.keycode != 9 && e.which != 9 && e.type != "tab") {
+            var date = $("#datePicker").val();
+            date = date.trim();
+            if (validateDate(date)) {
+                $("#datePickerInputError").text("");
+                $("#datePickerInputError").parent().css("display", "none");
+                $("#datePicker").removeClass("is-invalid");
+                $("#datePicker").addClass("is-valid");
+            }
+            else {
+                $("#datePickerInputError").text("Error: Enter a valid date");
+                $("#datePickerInputError").parent().css("display", "block");
+                $("#datePicker").removeClass("is-valid");
+                $("#datePicker").addClass("is-invalid");
+            }
+        }
+    });
+
+    $("#priorityLevel").on("keyup blur change", function (e) {
+        if (e.keycode != 9 && e.which != 9 && e.type != "tab") {
+            var priorityLevel = $("#priorityLevel").val();
+            priorityLevel = priorityLevel.trim();
+            if (validatePriorityLevel(priorityLevel)) {
+                $("#priorityLevelInputError").text("");
+                $("#priorityLevel").removeClass("is-invalid");
+                $("#priorityLevel").addClass("is-valid");
+            }
+            else {
+                $("#priorityLevelInputError").text("Error: Select a priority level from the dropdown list");
+                $("#priorityLevel").removeClass("is-valid");
+                $("#priorityLevel").addClass("is-invalid");
+            }
+        }
+    });
+
     $(function () {
         $('[data-toggle="popover"]').popover({
             trigger: "hover click",
@@ -29,7 +105,7 @@ $(document).ready(function () {
 
     $(function () {
         var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-        $('#datetimepicker4').datepicker({
+        $('#datePicker').datepicker({
             format: 'm/d/yy',
             uiLibrary: 'bootstrap4',
             iconsLibrary: 'fontawesome',
@@ -180,7 +256,7 @@ $(document).ready(function () {
 
     textAreas = $("textarea");
     for (var tArea = 0; tArea < textAreas.length; tArea++) {
-        if($(textAreas[tArea]).text().toString().trim() == "empty"){
+        if ($(textAreas[tArea]).text().toString().trim() == "empty") {
             $(textAreas[tArea]).text("");
         }
         textAreas[tArea].style.height = textAreas[tArea].scrollHeight + "px";
@@ -190,9 +266,9 @@ $(document).ready(function () {
         var textArea = $(this);
         var notesInputControl = $(textArea).next("input[type=hidden]");
         var userInput = $(textArea).val();
-        if(userInput.toString().trim() != ""){
+        if (userInput.toString().trim() != "") {
             notesInputControl.val(userInput);
-        }else{
+        } else {
             notesInputControl.val("empty");
         }
 
@@ -229,7 +305,12 @@ $(document).ready(function () {
         }
     }
 });
-
+/**
+ * Name: setSelectedIndexes
+ * Purpose: On document ready it sets the front end select index to match what is in the DB as the user's prior selection
+ * @param  {} selectInputs: These are the select inputs from within the todo list table
+ * Return: none
+ */
 function setSelectedIndexes(selectInputs) {
     "use strict";
     var selectedIndex = 0;
@@ -241,7 +322,12 @@ function setSelectedIndexes(selectInputs) {
         }
     }
 }
-
+/**
+ * Name: toggleEditBtns
+ * Purpose: Toggles the buttons that allow updating, deleting, and saving of table data
+ * @param  none
+ * Return: none
+ */
 function toggleEditBtns() {
     "use strict";
     $("#saveChanges").removeAttr("hidden");
@@ -253,7 +339,12 @@ function toggleEditBtns() {
     $("#btnNewTask").attr("disabled", "true");
     $("#btnNewTask").hide();
 }
-
+/**
+ * Name: setProgressBarColors
+ * Purpose: set the color of text in the progress bars to indicate their status. (Greed, Amber, Red)
+ * @param  {} progressBars: these are the progress bars from within the todo list table.
+ * Return: none
+ */
 function setProgressBarColors(progressBars) {
     "use strict";
     for (var bar = 0; bar < progressBars.length; bar++) {
@@ -269,10 +360,91 @@ function setProgressBarColors(progressBars) {
         }
     }
 }
-
+/**
+ * Name compareDates
+ * Purpose: Used to determine if a task is overdue or not
+ * @param  {} date:
+ * Return: true if the date param is in the past or false if it is the current date or a future date
+ */
 function compareDates(date) {
     "use strict";
     var today = new Date();
     date = new Date(date);
     return (today > date) ? true : false;
+}
+
+/**
+ * Name validateTaskName
+ * Purpose: Accept input as long as there is input that contains text other than whitespace
+ * @param  {} taskName
+ * Return: True if valid or false if invalid input
+ */
+function validateTaskName(taskName) {
+    'use strict';
+    if (taskName.length > 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+/**
+ * Name: validateDate
+ * Purpose: Determine if the date input was in correct format MM/DD/YY and that it is a current or future date
+ * @param  {} date: this is the date input from the user
+ * Return: True if a valid date or false if invalid
+ */
+function validateDate(date) {
+    "use strict";
+    // Did the user not provide any input?
+    if (!date) {
+        return false;
+    }
+    date = new Date(date);
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var qtyDaysInMonth = daysInMonth(month, year);
+    var day = date.getDate();
+    var today = new Date();
+    var thisYear = today.getFullYear();
+    // Is the day within the proper range of the specified month?
+    if (day < 1 || day > qtyDaysInMonth) {
+        return false;
+    }
+    else if (month < 1 || month > 12) {
+        return false;
+    }
+    // Is the input year a year from the past?
+    else if (year < thisYear) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+/**
+ * Name: daysInMonth
+ * Purpose: Use the paramerters to determine how many days are in the provided month.
+ * @param  {} month
+ * @param  {} year
+ * Return: The number of days in the month
+ */
+function daysInMonth(month, year) {
+    "use strict";
+    return new Date(year, month, 0).getDate();
+}
+/**
+ * Name: validatePriorityLevel
+ * Purpose: Verify that either low (1), medium (2) or high (3) priority was selected by the user.
+ * @param  {} priorityLevel:
+ */
+function validatePriorityLevel(priorityLevel) {
+    "use strict";
+    if (!priorityLevel) {
+        return false;
+    }
+    priorityLevel = parseInt(priorityLevel, 10);
+    if (priorityLevel > 0 && priorityLevel < 4) {
+        return true;
+    }
 }
