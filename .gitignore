@@ -1,5 +1,4 @@
 bwwlocaldb.sql
-.vscode/*
 vendor/*
 public/uploads/*
 # exclude everything
