@@ -407,6 +407,9 @@ function validateDate(date) {
     var day = date.getDate();
     var today = new Date();
     var thisYear = today.getFullYear();
+    var thisMonth = today.getMonth() + 1;
+    var thisDay = today.getDate();
+
     // Is the day within the proper range of the specified month?
     if (day < 1 || day > qtyDaysInMonth) {
         return false;
@@ -416,6 +419,14 @@ function validateDate(date) {
     }
     // Is the input year a year from the past?
     else if (year < thisYear) {
+        return false;
+    }
+    // Is the year current, but the month in the past?
+    else if (year == thisYear && month < thisMonth ) {
+        return false;
+    }
+    // Is the year and month current, but the day is in the past?
+    else if (year == thisYear && month == thisMonth && day < thisDay) {
         return false;
     }
     else {
