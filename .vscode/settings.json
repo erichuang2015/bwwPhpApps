@@ -1,4 +1,73 @@
 {
+    "editor.accessibilitySupport": "off",
+    "git.autofetch": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.formatOnPaste": false,
+    "files.autoSave": "onFocusChange",
     "editor.renderWhitespace": "all",
+    "editor.wordWrap": "on",
+    "editor.detectIndentation": true,
+    "editor.tabCompletion": "on",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "emmet.excludeLanguages": [
+        "markdown",
+        "php"
+    ],
+    "editor.formatOnSave": false,
+    "[php]": {
+        "editor.formatOnSave": true
+    },
     "files.trimTrailingWhitespace": true,
+    "html.format.indentInnerHtml": true,
+    "jshint.lintHTML": true,
+    "emmet.showSuggestionsAsSnippets": true,
+    "php.suggest.basic": false,
+    "php-cs-fixer.executablePath": "${extensionPath}\\php-cs-fixer.phar",
+    "php-cs-fixer.lastDownload": 1557456435408,
+    "html.format.wrapLineLength": 0,
+    "editor.wordWrapColumn": 105,
+    "workbench.colorTheme": "Dracula",
+    "sync.gist": "549359eef92c201803bb257c1df49d019ad42af9",
+    "editor.largeFileOptimizations": false,
+    "better-comments.highlightPlainText": true,
+    "better-comments.tags": [
+        {
+            "tag": "!",
+            "color": "#FF2D00",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "Purpose:",
+            "color": "#ffffff",
+            "strikethrough": false,
+            "backgroundColor": "#000000"
+        },
+        {
+            "tag": "todo",
+            "color": "#FF8C00",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "--",
+            "color": "#ffffff",
+            "strikethrough": true,
+            "backgroundColor": "#000000"
+        },
+        {
+            "tag": "",
+            "color": "#ffffff",
+            "strikethrough": false,
+            "backgroundColor": "#000000"
+        },
+        {
+            "tag": "*",
+            "color": "#ffffff",
+            "strikethrough": false,
+            "backgroundColor": "#000000"
+        }
+    ],
+    "window.zoomLevel": 1
 }
