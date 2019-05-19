@@ -400,6 +400,11 @@ function validateDate(date) {
     if (!date) {
         return false;
     }
+    var optionalLeadingZerosRegex = /^(?:(1[0-2]|0?[1-9])\/(3[01]|[12][0-9]|0?[1-9])|(3[01]|[12][0-9]|0?[1-9])\/(1[0-2]|0?[1-9]))\/(?:[0-9]{2})?[0-9]{2}$/;
+
+    if (!optionalLeadingZerosRegex.test(date)) {
+        return false;
+    }
     date = new Date(date);
     var year = date.getFullYear();
     var month = date.getMonth() + 1;
