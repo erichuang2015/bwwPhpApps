@@ -47,14 +47,13 @@ class EntryPoint
             $controller = $routes[$this->route][$this->method]['controller'];
             $action = $routes[$this->route][$this->method]['action'];
 
-            $page = $controller->$action(); //this is throwing an exception
+            $page = $controller->$action();
 
             $title = $page['title'];
             $loggedIn = $authentication->isLoggedIn();
 
             if (isset($page['variables'])) {
                 $output = $this->loadTemplate($page['template'], $page['variables']);
-
             } else {
                 $output = $this->loadTemplate($page['template']);
             }

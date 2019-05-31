@@ -1,11 +1,37 @@
 <link rel="stylesheet" href="/css/vendor/gijgo.min.css">
 <link rel="stylesheet" href="/css/todolist.css">
+
 <div class="jumbotron fill-height">
     <div class="container fill-height">
         <h1 class="display-3">To Do List</h1>
         <!-- if not logged in display the below: -->
         <?php if (!$loggedIn) : ?>
         <span class="alert alert-warning" role="alert">You must be logged in to be able to use this app.</span>
+        <?php endif; ?>
+
+        <?php if (!empty($errors)) : ?>
+        <div class="alert alert-danger" role="alert">
+            <!-- Todo: Replace this css errors class with bootstrap version -->
+            <p>There was a problem with your task input. Please check the following:</p>
+            <ul>
+                <?php foreach ($errors as $error) : ?>
+                <?php if ($error != 'new task') : ?>
+                <li>
+                    <h2><?= $error ?></h2>
+                </li>
+                <?php else : ?>
+                <script type="text/javascript">
+                $(document).ready(function() {
+                    setTimeout(function() {
+                        $("#btnNewTask").click();
+                    }, 50);
+                });
+                </script>
+                <?php endif ?>
+
+                <?php endforeach; ?>
+            </ul>
+        </div>
         <?php endif; ?>
     </div>
 </div>

@@ -41,11 +41,11 @@ class Photos
             $userImages = $this->photosTable->find('userid', $user['id']); // get all of this user's images
             foreach ($userImages as $photo) {
                 $photos[] = [
-                    'id' => (int) $photo['id'],
-                    'userid' => (int) $photo['userid'],
-                    'caption' => (string) $photo['caption'],
-                    'name' => (string) $photo['name'],
-                    'directory' => (string) $photo['img_dir'],
+                    'id' => (int)$photo['id'],
+                    'userid' => (int)$photo['userid'],
+                    'caption' => (string)$photo['caption'],
+                    'name' => (string)$photo['name'],
+                    'directory' => (string)$photo['img_dir'],
                 ];
             }
 
@@ -71,7 +71,7 @@ class Photos
     public function processUserRequest()
     {
         if (isset($_POST['choice'])) {
-            switch ((int) $_POST['choice']) {
+            switch ((int)$_POST['choice']) {
                 case 1:
                     header("location: /photos/upload");
                     break;
@@ -103,10 +103,10 @@ class Photos
         // print_r($_FILES['userfile']['size'][0]); die; // print the file size
         //print_r($_SERVER['DOCUMENT_ROOT']); die; // prints out as: /home/vagrant/Code/bwwPhpApps/public
 
-        if(empty($_FILES['userfile']['tmp_name'][0]))
-        {
+        if (empty($_FILES['userfile']['tmp_name'][0])) {
             $error = "You did not select a file.  Please try again.";
-            return ['template' => 'photosupload.html.php',
+            return [
+                'template' => 'photosupload.html.php',
                 'title' => "Photo Gallery Upload - Error",
                 'variables' => [
                     'error' => $error
@@ -120,7 +120,8 @@ class Photos
         // Pick a file extension
         if ($ext != '.jpg' && $ext != '.jpeg' && $ext != '.png') {
             $error = "Please upload only jpg or png files.  Other file types are not supported.";
-            return ['template' => 'photosupload.html.php',
+            return [
+                'template' => 'photosupload.html.php',
                 'title' => "Photo Gallery Upload - Error",
                 'variables' => [
                     'error' => $error
@@ -132,11 +133,12 @@ class Photos
 
         // The complete path/filename
         $filename = __DIR__ . '/../../../public/uploads/' . $name;
-        $check = (int) $_FILES['userfile']['size'][0]; // get file size
+        $check = (int)$_FILES['userfile']['size'][0]; // get file size
         // Copy the file (if it is deemed safe) All this function (is_uploaded_file) does is return TRUE if the filename it’s passed as a parameter ($_FILES['userfile']['tmp_name'] in this case) was in fact uploaded as part of a form submission.
         if ((!is_uploaded_file($_FILES['userfile']['tmp_name'][0])) || $check <= 0 || $check > 4194304) {
             $error = "File size cannot exceed 4MB!";
-            return ['template' => 'photosupload.html.php',
+            return [
+                'template' => 'photosupload.html.php',
                 'title' => "Photo Gallery Upload - Error",
                 'variables' => [
                     'error' => $error
@@ -145,8 +147,8 @@ class Photos
         } else {
             $user = $this->authentication->getUser();
             $photoData = [];
-            $photoData['userid'] = (int) $user['id'];
-            $photoData['caption'] = $_POST['caption'];// add some logic to prevent user input from exceeding 100 chars for caption.
+            $photoData['userid'] = (int)$user['id'];
+            $photoData['caption'] = $_POST['caption']; // Todo: add some logic to prevent user input from exceeding 100 chars for caption.
             $photoData['name'] = $name;
             $photoData['img_dir'] = $filename;
             $this->photosTable->save($photoData);
@@ -166,7 +168,7 @@ class Photos
         }
 
         $this->photosTable->delete($id);
-        unlink($photo['img_dir']); // add an error message for if this fails
+        unlink($photo['img_dir']); // Todo: add an error message for if this fails
         header('location: /photos');
     }
 
@@ -193,7 +195,7 @@ class Photos
         //update the DB
         $photoData = [];
         $photoData['id'] = (int)$photo['id'];
-        $photoData['userid'] = (int) $user['id'];
+        $photoData['userid'] = (int)$user['id'];
         $photoData['caption'] = $photo['caption'];
         $photoData['name'] = $newName;
         $photoData['img_dir'] = $newDirName;
@@ -230,11 +232,11 @@ class Photos
             $userImages = $this->photosTable->find('userid', $user['id']); // get all of this user's images
             foreach ($userImages as $photo) {
                 $photos[] = [
-                    'id' => (int) $photo['id'],
-                    'userid' => (int) $photo['userid'],
-                    'caption' => (string) $photo['caption'],
-                    'name' => (string) $photo['name'],
-                    'directory' => (string) $photo['img_dir'],
+                    'id' => (int)$photo['id'],
+                    'userid' => (int)$photo['userid'],
+                    'caption' => (string)$photo['caption'],
+                    'name' => (string)$photo['name'],
+                    'directory' => (string)$photo['img_dir'],
                 ];
             }
             return [
@@ -255,5 +257,4 @@ class Photos
             ];
         }
     }
-// Todos: add methods for delete and slideshow below:
 }

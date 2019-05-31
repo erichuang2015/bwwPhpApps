@@ -32,8 +32,12 @@ class TodoList
         if ($loggedIn) {
             $user = $this->authentication->getUser();
             $currentUserTodos = [];
+            $errors = null;
             $args = func_get_args();
             $todos = null;
+            if (func_num_args() == 1) {
+                $errors = $args[0];
+            }
             if (func_num_args() == 2) { // if the sort method has been called these args will exist
                 $todos = $this->todoTable->findAllSorted($args[0], $args[1]);
             } else {
@@ -71,6 +75,7 @@ class TodoList
                 'variables' => [
                     'loggedIn' => $loggedIn,
                     'currentUserTodos' => $currentUserTodos ?? null,
+                    'errors' => $errors
                 ],
             ];
         }
@@ -87,39 +92,55 @@ class TodoList
     {
         $user = $this->authentication->getUser();
 
-        if (isset($_POST['newtask'])) // Add new task
-        {
-            // print_r("new task");die;
-            $this->saveNewTask($_POST['newtask'], $user);
-        } else if (isset($_POST['coltosort']) && !empty($_POST['coltosort'])) { // Sort task
-            // print_r("sorting");die;
+        if (isset($_POST['newtask'])) { // Add new task
+            $pageWithNewTasks = $this->saveNewTask($_POST['newtask'], $user);
+            return $pageWithNewTasks;
+        } elseif (isset($_POST['coltosort']) && !empty($_POST['coltosort'])) { // Sort task
             // $this->updateBuildingUnitsAllowed();
             $sortedPage = $this->sort($_POST['coltosort'], $user);
             return $sortedPage;
-        } else if (isset($_POST['editid']) && !empty($_POST['editid'])) { // Edit task
-            // print_r("editing");die;
-            $this->editTask($_POST['editid'], $_POST['editduedate'], $_POST['edittask'], $_POST['editprioritylevel'], $_POST['edittodostatus'], $_POST['editpercentcomplete'], $_POST['editusersnotes']);
-        } else if (isset($_POST['deletetodoid']) && !empty($_POST['deletetodoid'])) { // Delete task
-            // print_r("deleting");die;
+        } elseif (isset($_POST['editid']) && !empty($_POST['editid'])) { // Edit task
+            $pageWithEdits = $this->editTask($_POST['editid'], $_POST['editduedate'], $_POST['edittask'], $_POST['editprioritylevel'], $_POST['edittodostatus'], $_POST['editpercentcomplete'], $_POST['editusersnotes']);
+            return $pageWithEdits;
+        } elseif (isset($_POST['deletetodoid']) && !empty($_POST['deletetodoid'])) { // Delete task
             $this->deleteTask($_POST['deletetodoid']);
         } else {
-            // print_r("No methods have been called");die;
+            // The user submitted the form without manipulating it
             header('location: /todolist');
         }
     }
 
     public function saveNewTask($inputData, $user)
     {
+        $errors = [];
         $format = "m/d/Y";
-        $newTaskData['due_date'] = date_create_from_format($format, $inputData['date']);
-        $newTaskData['title'] = (string)$inputData['taskname'];
-        $newTaskData['todo_priority'] = (int)$inputData['prioritylevel'];
-        $newTaskData['todo_status'] = 1;
-        $newTaskData['percent_complete'] = 0;
-        $newTaskData['notes'] = (string)$inputData['notesinput'];
-        $newTaskData['user_id'] = (int)$user['id'];
-        $this->todoTable->save($newTaskData);
-        header('location: /todolist');
+        $validDate = $this->processDate($inputData['date']);
+        $validTaskName = $this->validateTaskName((string)$inputData['taskname']);
+        $validPriorityLevel = $this->validatePriorityLevel($inputData['prioritylevel']);
+        if (!$validDate) {
+            $errors[] = 'Enter a valid date';
+        }
+        if (!$validTaskName) {
+            $errors[] = 'Enter a valid task title';
+        }
+        if (!$validPriorityLevel) {
+            $errors[] = 'Select a priority level';
+        }
+        if ($errors) {
+            $errors[] = 'new task';  // find this 'new task' string in the errors on the front end to tell the app that the new task form should be displayed
+            $pageWithErrors = $this->render($errors);
+            return $pageWithErrors;
+        } else {
+            $newTaskData['due_date'] = date_create_from_format($format, $inputData['date']);
+            $newTaskData['title'] = (string)$inputData['taskname'];
+            $newTaskData['todo_priority'] = (int)$inputData['prioritylevel'];
+            $newTaskData['todo_status'] = 1;
+            $newTaskData['percent_complete'] = 0;
+            $newTaskData['notes'] = (string)$inputData['notesinput'];
+            $newTaskData['user_id'] = (int)$user['id'];
+            $this->todoTable->save($newTaskData);
+            header('location: /todolist');
+        }
     }
 
     public function deleteTask($deleteTodoId)
@@ -130,34 +151,58 @@ class TodoList
 
     public function editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $edittodostatuses, $editpercentcompletes, $editusersnotes)
     {
-        // print_r($editusersnotes);die;
-        for ($id = 0; $id < sizeOf($editIds); $id++) {
+        $errors = [];
+        for ($index = 0; $index < sizeOf($editIds); $index++) {
             $editTodo = null;
-            if (!empty($editIds[$id])) {
+            //If the editIds array isn't empty then edits have been submitted
+            if (!empty($editIds[$index])) {
                 $editTodo = [];
-                $editTodo['id'] = (int)$editIds[$id];
-                if (!empty($editduedates[$id])) {
-                    $editTodo['due_date'] = date_create($editduedates[$id]);
+                $editTodo['id'] = (int)$editIds[$index];
+                $editedTodo = $this->todoTable->findById($editIds[$index]); // retrieve this todo from the DB so we can compare the data to user input
+                if (!empty($editduedates[$index])) {
+                    $validDate = $this->processDate($editduedates[$index]);
+                    if ($validDate) {
+                        $editTodo['due_date'] = date_create($editduedates[$index]);
+                    } else {
+                        $editTodo['due_date'] = date_create($editedTodo['due_date']);
+                        $errors[] = 'Enter a valid date';
+                    }
                 }
-                if (!empty($edittasks[$id])) {
-                    $editTodo['title'] = (string)$edittasks[$id];
+                if (!empty($edittasks[$index])) {
+                    $validTaskName = $this->validateTaskName((string)$edittasks[$index]);
+                    if ($validTaskName) {
+                        $editTodo['title'] = (string)$edittasks[$index];
+                    } else {
+                        $errors[] = 'Task title cannot be left blank';
+                    }
                 }
-                if (!empty($editprioritylevels[$id])) {
-                    $editTodo['todo_priority'] = (int)$editprioritylevels[$id];
+                //Todo: if you don't check if the editprioritylevels var is empty before you run the below validation it will always prove false even if it wasn't edited
+                $validPriorityLevel = $this->validatePriorityLevel($editprioritylevels[$index]);
+
+                if ($validPriorityLevel) {
+                    $editTodo['todo_priority'] = (int)$editprioritylevels[$index];
+                } else {
+                    $errors[] = 'Select a priority level';
                 }
-                if (!empty($edittodostatuses[$id])) {
-                    $editTodo['todo_status'] = (int)$edittodostatuses[$id];
+
+                if (!empty($edittodostatuses[$index])) {
+                    $editTodo['todo_status'] = (int)$edittodostatuses[$index];
                 }
-                if (!empty($editpercentcompletes[$id]) || (int)$editpercentcompletes[$id] == 0) {
-                    $editTodo['percent_complete'] = (int)$editpercentcompletes[$id];
+                if (!empty($editpercentcompletes[$index]) || (int)$editpercentcompletes[$index] == 0) {
+                    $editTodo['percent_complete'] = (int)$editpercentcompletes[$index];
                 }
-                if (!empty($editusersnotes[$id])) {
-                    $editTodo['notes'] = (string)$editusersnotes[$id];
+                if (!empty($editusersnotes[$index])) {
+                    $editTodo['notes'] = (string)$editusersnotes[$index];
                 }
                 $this->todoTable->save($editTodo);
             }
         }
-        header('location: /todolist');
+        if ($errors) {
+            $pageWithErrors = $this->render($errors);
+            return $pageWithErrors;
+        } else {
+            header('location: /todolist');
+        }
     }
 
     public function sort($colToSort, $user)
@@ -207,5 +252,49 @@ class TodoList
             }
         }
         return;
+    }
+
+    private function processDate($date)
+    {
+        $inputDateArray = [];
+        //extract the month, day, and year from user input to check the values int he checkdate method below
+        $inputDate = strtok($date, '/');
+        while ($inputDate !== false) {
+            $inputDateArray[] = $inputDate;
+            $inputDate = strtok("/");
+        }
+        if (isset($inputDateArray[0]) && isset($inputDateArray[1]) && isset($inputDateArray[2]) && is_numeric($inputDateArray[0]) && is_numeric($inputDateArray[1]) && is_numeric($inputDateArray[2])) {
+            $isValidDate = checkdate($inputDateArray[0], $inputDateArray[1], $inputDateArray[2]);
+        } else {
+            $isValidDate = 0;
+        }
+        return $isValidDate;
+    }
+
+    private function validateTaskName($taskName)
+    {
+        if (!empty($taskName) && strlen($taskName) > 0 && strtolower($taskName) != "empty") {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * Name: validatePriorityLevel
+     * Purpose: Verify that either low (1), medium (2) or high (3) priority was selected by the user.
+     * @param  {} priorityLevel:
+     */
+    private function validatePriorityLevel($priorityLevel)
+    {
+        if (!$priorityLevel) {
+            return false;
+        }
+        $priorityLevel = (int)$priorityLevel;
+        if ($priorityLevel > 0 && $priorityLevel < 4) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

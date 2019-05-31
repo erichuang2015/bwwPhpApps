@@ -13,48 +13,50 @@ class Register
 
     public function __construct(DatabaseTable $usersTable, DatabaseTable $usersVerifyTable, DatabaseTable $mailTable)
     {
-		$this->usersTable = $usersTable;
+        $this->usersTable = $usersTable;
         $this->usersVerifyTable = $usersVerifyTable;
         $this->mailTable = $mailTable;
     }
 
     public function registrationForm()
     {
-        return ['template' => 'register.html.php',
-            'title' => 'Register an account'];
+        return [
+            'template' => 'register.html.php',
+            'title' => 'Register an account'
+        ];
     }
 
     public function success()
     {
-        return ['template' => 'registersuccess.html.php',
-            'title' => 'Registration Successful'];
+        return [
+            'template' => 'registersuccess.html.php',
+            'title' => 'Registration Successful'
+        ];
     }
 
     public function storeUserData()
     {
         $user = $_POST['user'];
-		// print_r($user); die;
+        // print_r($user); die;
         //Assume the data is valid to begin with
         $valid = true;
-		$errors = [];
-		$userData = [];
-		$userData['id'] = '';
+        $errors = [];
+        $userData = [];
+        $userData['id'] = '';
         //But if any of the fields have been left blank, set $valid to false
         if (empty($user['fname'])) {
             $valid = false;
             $errors[] = 'First name cannot be blank';
-		}
-		else{
-			$userData['fname'] = $user['fname'];
-		}
+        } else {
+            $userData['fname'] = $user['fname'];
+        }
 
         if (empty($user['lname'])) {
             $valid = false;
             $errors[] = 'Last name cannot be blank';
-		}
-		else{
-			$userData['lname'] = $user['lname'];
-		}
+        } else {
+            $userData['lname'] = $user['lname'];
+        }
 
         if (empty($user['email'])) {
             $valid = false;
@@ -111,14 +113,14 @@ class Register
             $userData['thirdanswer'] = password_hash($user['thirdanswer'], PASSWORD_DEFAULT);
 
             $code = substr(md5(mt_rand()), 0, 15); // generate a random code to send user so they can validate their email address before registering
-            $userData['verifycode'] = (string) $code;
+            $userData['verifycode'] = (string)$code;
             //When submitted, the $user variable now contains a lowercase value for email and recover question answers
-			//and a hashed password and recovery question answers
+            //and a hashed password and recovery question answers
             // print_r($userData); die;
 
             $this->usersVerifyTable->save($userData);
-			$to = (string) $userData['email'];
-			$subject = "Activation Code For bwwapps.com";
+            $to = (string)$userData['email'];
+            $subject = "Activation Code For bwwapps.com";
             $message = "Your Activation Code is " . $code . "";
             $id = 1;
             $apiVal = $this->mailTable->findById($id);
@@ -141,13 +143,13 @@ class Register
 
             $mail->Send();
 
-			$_SESSION['email'] = $to;
-			// $_SESSION['message'] = $message;
-			header('Location: /user/registerverifycode');
-
+            $_SESSION['email'] = $to;
+            // $_SESSION['message'] = $message;
+            header('Location: /user/registerverifycode');
         } else {
             //If the data is not valid, show the form again
-            return ['template' => 'register.html.php',
+            return [
+                'template' => 'register.html.php',
                 'title' => 'Register an account',
                 'variables' => [
                     'errors' => $errors,
@@ -159,20 +161,21 @@ class Register
 
     public function renderVerifyCode()
     {
-		// print_r('renderVerifyCode called'); die;
-		// print_r($message); die;
-        return ['template' => 'registerverifycode.html.php',
+        // print_r('renderVerifyCode called'); die;
+        // print_r($message); die;
+        return [
+            'template' => 'registerverifycode.html.php',
             'title' => 'Register - Verification Code',
             'variables' => [
-				'email' => $_SESSION['email']
+                'email' => $_SESSION['email']
             ],
         ];
     }
 
     public function registerUser()
     {
-		$activationCode = $_POST['activationCode'];
-		// print_r($activationCode); die;
+        $activationCode = $_POST['activationCode'];
+        // print_r($activationCode); die;
         //Assume the data is valid to begin with
         $valid = true;
         $errors = [];
@@ -182,15 +185,15 @@ class Register
             $valid = false;
             $errors[] = 'The activation code cannot be blank';
 
-            return ['template' => 'registerverifycode.html.php',
+            return [
+                'template' => 'registerverifycode.html.php',
                 'title' => 'Register an account',
                 'variables' => [
                     'errors' => $errors,
                 ],
             ];
         } else {
-			$verifyData = $this->usersVerifyTable->find('email', $_SESSION['email']);
-			// print_r($verifyData['verifycode']); die;
+            $verifyData = $this->usersVerifyTable->find('email', $_SESSION['email']);
             $user = [];
             if ($verifyData[0]['verifycode'] == $activationCode) {
                 $user['fname'] = $verifyData[0]['fname'];
@@ -202,8 +205,6 @@ class Register
                 $user['thirdanswer'] = $verifyData[0]['thirdanswer'];
                 $this->usersTable->save($user);
                 $this->usersVerifyTable->delete($verifyData[0]['id']);
-				// $_SESSION['email'] = null;
-				// $_SESSION['message'] = null;
                 header('Location: /user/registersuccess');
             }
         }
