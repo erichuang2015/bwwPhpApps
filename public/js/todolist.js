@@ -151,11 +151,12 @@ $(document).ready(function () {
             e.stopPropagation();
             $(".bootstrap-table").hide();
             $(this).hide();
-            $("#btnCancelNewTask").removeAttr("hidden");
+            $("#btnCancelNewTask").removeClass("d-none");
             $("#divNevermind").addClass("mb-3");
-            $("#taskInputContainer").removeAttr("hidden");
+            $("#taskInputContainer").removeClass("d-none");
             $("#btnCancelNewTask").show();
             $("#taskInputContainer").show();
+            $("#navPagination").hide();
         }
     });
 
@@ -168,6 +169,7 @@ $(document).ready(function () {
             $("#taskInputContainer").hide();
             $(".bootstrap-table").show();
             $("#btnNewTask").show();
+            $("#navPagination").show();
         }
     });
 
@@ -187,7 +189,7 @@ $(document).ready(function () {
                 $(hiddenInput).val(todoIdToDelete);
                 $("#btnNewTask").attr("disabled", "true");
                 $("#btnNewTask").hide();
-                $("#confirmDelete").removeAttr("hidden");
+                $("#confirmDelete").removeClass("d-none");
                 $("#confirmDelete").show();
                 $("#confirmDelete").removeAttr("disabled");
                 $(row).addClass("deleted text-muted");
@@ -237,7 +239,7 @@ $(document).ready(function () {
             var progressDiv = this;
             var numInput = $(progressDiv).prev("input[type=number]");
             $(progressDiv).hide();
-            $(numInput).removeAttr("hidden");
+            $(numInput).removeClass("d-none");
             $(numInput).show();
         }
     });
@@ -252,15 +254,7 @@ $(document).ready(function () {
         setProgressBarColors(progressBars);
     });
 
-    var textAreas = [];
-
-    textAreas = $("textarea");
-    for (var tArea = 0; tArea < textAreas.length; tArea++) {
-        if ($(textAreas[tArea]).text().toString().trim() == "empty") {
-            $(textAreas[tArea]).text("");
-        }
-        textAreas[tArea].style.height = textAreas[tArea].scrollHeight + "px";
-    }
+    adjustTextAreaHeight();
 
     $("textarea").on("change", function () {
         var textArea = $(this);
@@ -291,6 +285,14 @@ $(document).ready(function () {
             e.preventDefault();
             e.stopPropagation();
             window.location.reload(false);
+        }
+    });
+
+    $("button.page-link").on("keyup click", function (e) {
+        if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
+            e.preventDefault();
+            e.stopPropagation();
+            paginate(e);
         }
     });
 
@@ -330,8 +332,8 @@ function setSelectedIndexes(selectInputs) {
  */
 function toggleEditBtns() {
     "use strict";
-    $("#saveChanges").removeAttr("hidden");
-    $("#btnDiscardEdits").removeAttr("hidden");
+    $("#saveChanges").removeClass("d-none");
+    $("#btnDiscardEdits").removeClass("d-none");
     $("#saveChanges").show();
     $("#btnDiscardEdits").show();
     $("#saveChanges").removeAttr("disabled");
@@ -427,7 +429,7 @@ function validateDate(date) {
         return false;
     }
     // Is the year current, but the month in the past?
-    else if (year == thisYear && month < thisMonth ) {
+    else if (year == thisYear && month < thisMonth) {
         return false;
     }
     // Is the year and month current, but the day is in the past?
@@ -453,6 +455,7 @@ function daysInMonth(month, year) {
  * Name: validatePriorityLevel
  * Purpose: Verify that either low (1), medium (2) or high (3) priority was selected by the user.
  * @param  {} priorityLevel:
+ * Returns: false if not a valid priority level and true otherwise
  */
 function validatePriorityLevel(priorityLevel) {
     "use strict";
@@ -462,5 +465,61 @@ function validatePriorityLevel(priorityLevel) {
     priorityLevel = parseInt(priorityLevel, 10);
     if (priorityLevel > 0 && priorityLevel < 4) {
         return true;
+    }
+}
+/**
+ * Name: paginate
+ * Purpose: Event handler for pagination buttons.  Toggles visibility of 10 table rows at a time
+ * @param  {} e
+ * Returns: None
+ */
+function paginate(e) {
+    let srSpan = $("li.page-item.active span.sr-only");
+    console.log(srSpan);
+    $("li.page-item.active span.sr-only").remove();
+    console.log(srSpan);
+    $("li.page-item").removeClass("active disabled");
+    let targetBtn = e.currentTarget;
+    if (!$(targetBtn).attr("data-stub")) {
+        $(targetBtn).parent().addClass("active");
+        $(targetBtn).parent().append(srSpan);
+    } else {
+        if ($(targetBtn).attr("data-stub") == "first") {
+            $(targetBtn).parent().next().addClass("active");
+            $(targetBtn).parent().next().append(srSpan);
+            $(targetBtn).parent().addClass("disabled");
+        } else {
+            $(targetBtn).parent().prev().addClass("active");
+            $(targetBtn).parent().prev().append(srSpan);
+            $(targetBtn).parent().addClass("disabled");
+        }
+    }
+    let listItems = $("ul.pagination li.page-item");
+    if ($(listItems[1]).hasClass("active")) {
+        $(listItems[1]).prev().addClass("disabled");
+    } else if ($(listItems[listItems.length - 2]).hasClass("active")) {
+        $(listItems[listItems.length - 2]).next().addClass("disabled");
+    }
+    let rows = $("tbody tr");
+    rows.addClass("d-none");
+    let activeLiTxt = $("li.page-item.active button").text().trim();
+    activeLiTxt = activeLiTxt + "0";
+    let startRow = activeLiTxt - 10;
+    while (startRow < rows.length && startRow < activeLiTxt) {
+        $(rows[startRow]).removeClass("d-none");
+        startRow++;
+    }
+    adjustTextAreaHeight();
+}
+
+function adjustTextAreaHeight() {
+    var textAreas = [];
+
+    textAreas = $("textarea");
+    for (var tArea = 0; tArea < textAreas.length; tArea++) {
+        if ($(textAreas[tArea]).text().toString().trim() == "empty") {
+            $(textAreas[tArea]).text("");
+        }
+        textAreas[tArea].style.height = textAreas[tArea].scrollHeight + "px";
     }
 }

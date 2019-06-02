@@ -41,8 +41,8 @@
     <form action="" method="post" name="formNewTask" class="needs-validation" autocomplete="off" novalidate>
         <button id="btnNewTask" class="btn btn-primary">+ New Task</button>
         <div id="divNevermind">
-            <button id="btnCancelNewTask" class="btn btn-secondary" hidden>
-                <- Nevermind</button> </div> <div id="taskInputContainer" class="container" hidden>
+            <button id="btnCancelNewTask" class="btn btn-secondary d-none">
+                <- Nevermind</button> </div> <div id="taskInputContainer" class="container d-none">
                     <div class="mb-3">
                         <label for="taskName">Task Title</label>
                         <span class="sr-only">Information about "Task Title"</span>
@@ -91,15 +91,14 @@
 
     <form action="" method="post" name="formDelete" class="needs-validation" autocomplete="off" novalidate>
         <input type="hidden" id="deleteToDoId" name="deletetodoid">
-        <input type="submit" id="confirmDelete" name="btndelete" value="Confirm Task Delete" class="btn btn-danger" hidden disabled />
+        <input type="submit" id="confirmDelete" name="btndelete" value="Confirm Task Delete" class="btn btn-danger d-none" disabled />
     </form>
 
     <form action="" method="post" name="formTable" class="needs-validation" autocomplete="off" novalidate>
         <div id="divChanges">
-            <input type="submit" id="saveChanges" name="btnsave" value="Save Changes" class="btn btn-primary" hidden disabled />
-            <button id="btnDiscardEdits" class="btn btn-secondary" hidden disabled>Discard Changes</button>
+            <input type="submit" id="saveChanges" name="btnsave" value="Save Changes" class="btn btn-primary d-none" disabled />
+            <button id="btnDiscardEdits" class="btn btn-secondary d-none" disabled>Discard Changes</button>
         </div>
-
         <table data-toggle="table" data-search="true" class="table table-bordered table-hover table-striped">
             <thead class="thead-dark">
                 <tr>
@@ -146,8 +145,14 @@
             </thead>
             <tbody>
                 <?php $value = 0; ?>
+                <?php $numBtns = 0; ?>
                 <?php foreach ($currentUserTodos as $todo) : ?>
+
+                <?php if ($value > 9) : ?>
+                <tr class="d-none">
+                    <?php else : ?>
                 <tr>
+                    <?php endif ?>
                     <td>
                         <div class="custom-control custom-checkbox">
                             <input id="cb<?= $value ?>" type="checkbox" data-todoid="<?= $todo['id'] ?>" class="custom-control-input" />
@@ -180,7 +185,7 @@
                         </select>
                     </td>
                     <td>
-                        <input type="number" id="percentComplete<?= $value ?>" name="editpercentcomplete[<?= $value ?>]" class="form-control" value="<?= $todo['percent_complete'] ?>" autocomplete="off" min="0" max="100" data-todoid="<?= $todo['id'] ?>" hidden>
+                        <input type="number" id="percentComplete<?= $value ?>" name="editpercentcomplete[<?= $value ?>]" class="form-control d-none" value="<?= $todo['percent_complete'] ?>" autocomplete="off" min="0" max="100" data-todoid="<?= $todo['id'] ?>">
 
                         <div class="progress" style="height: 2.25rem;">
                             <div class="progress-bar" role="progressbar" style="width: <?= $todo['percent_complete'] ?>%;" aria-valuenow="<?= $todo['percent_complete'] ?>" aria-valuemin="0" aria-valuemax="100"><?= $todo['percent_complete'] ?>%</div>
@@ -193,9 +198,33 @@
                     </td>
                 </tr>
                 <?php $value = $value + 1; ?>
+                <?php $numBtns = $value / 10; ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <?php if ($value > 9) : ?>
+        <nav id="navPagination" aria-label="Todo List navigation">
+            <ul class="pagination justify-content-end">
+                <?php if ($numBtns > 1) : ?>
+                <li class="page-item disabled">
+                    <button class="page-link" aria-disabled="true" data-stub="first">Previous</button>
+                </li>
+                <?php for ($button = 0; $button < $numBtns; $button++) : ?>
+                <?php if ($button == 0) : ?>
+                <li class="page-item active"><button class="page-link">
+                        <?php echo ($button + 1) ?> </button><span class="sr-only"> current</span></li>
+                <?php else : ?>
+                <li class="page-item"><button class="page-link">
+                        <?php echo ($button + 1) ?> </button></li>
+                <?php endif ?>
+                <?php endfor; ?>
+                <li class="page-item">
+                    <button class="page-link" data-stub="last">Next</button>
+                </li>
+                <?php endif ?>
+            </ul>
+        </nav>
+        <?php endif ?>
     </form>
 
 </div> <!-- /container -->
