@@ -19,6 +19,9 @@
 $(document).ready(function () {
     "use strict";
 
+    $("#panelFrequency").hide();
+    $("#panelEndDate").hide();
+
     $("#taskName, #datePicker, #priorityLevel").on("keyup blur change", function () {
         var date = $("#datePicker").val();
         var priorityLevel = $("#priorityLevel").val();
@@ -114,6 +117,15 @@ $(document).ready(function () {
             },
             minDate: today
         });
+        $('#endDatePicker').datepicker({
+            format: 'm/d/yy',
+            uiLibrary: 'bootstrap4',
+            iconsLibrary: 'fontawesome',
+            icons: {
+                rightIcon: '<i class="fas fa-calendar"></i>'
+            },
+            minDate: today
+        });
         var dtPickersNoIcon = [];
         dtPickersNoIcon = $("input[id^='datetimepickerNoIcon']");
         for (var picker = 0; picker < dtPickersNoIcon.length; picker++) {
@@ -140,10 +152,6 @@ $(document).ready(function () {
     var prioritySelectInputs = [];
     prioritySelectInputs = $("select[id^='usersPriorityLevel']");
     setSelectedIndexes(prioritySelectInputs);
-
-    var statusSelectInputs = [];
-    statusSelectInputs = $("select[id^='todoStatus']");
-    setSelectedIndexes(statusSelectInputs);
 
     $("#btnNewTask").on("keyup click", function (e) {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
@@ -173,17 +181,17 @@ $(document).ready(function () {
         }
     });
 
-    $("input[type='checkbox']").on("keyup click", function (e) {
+    $("input[type='checkbox'].cb-delete").on("keyup click", function (e) {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
-            var checked = e.currentTarget.checked;
-            var checkbox = this;
-            var hiddenInput = $("#deleteToDoId");
-            var todoIdToDelete = $(checkbox).attr("data-todoid");
-            var row = $(checkbox).closest("tr");
-            var textAreas = [];
+            let checked = e.currentTarget.checked;
+            let checkbox = this;
+            let hiddenInput = $("#deleteToDoId");
+            let todoIdToDelete = $(checkbox).attr("data-todoid");
+            let row = $(checkbox).closest("tr");
+            let textAreas = [];
             textAreas = $(row).find("textarea");
-            var datePicker = $(row).find(".datetimepicker-input");
-            var selects = [];
+            let datePicker = $(row).find(".datetimepicker-input");
+            let selects = [];
             selects = $(row).find("select");
             if (checked) {
                 $(hiddenInput).val(todoIdToDelete);
@@ -211,7 +219,38 @@ $(document).ready(function () {
         }
     });
 
-    $("input[id^='usersTaskName'], select[id^=usersPriorityLevel], select[id^='todoStatus'], input[id^='percentComplete'], input[id^='usersNotes'], textarea").on("change", function (e) {
+    $("#cbRecurringTask").on("keyup click", function (e) {
+        if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
+            let checked = e.currentTarget.checked;
+            let checkbox = this;
+            if (checked) {
+                $("#panelFrequency").show(500);
+            } else {
+                $("#panelFrequency").hide(500);
+            }
+        }
+    });
+
+    $("#frequency").on("change", function (e) {
+        //Todo: Save selected frequency. Reset duedate everyday at midnight.  Show a end date date selector for the user to (optionally) decide the end date.
+        //Todo: If weekly was selected create the task for every 7 days until end date.  Allow the user the option to specify the day of week it should occur on.  Show a end date date selector for the user to (optionally) decide the end date.
+        //Todo: If bi-weekly was selected create the task for every 14 days until end date.  Allow the user to specify the day of the week it should occur on.  Show a end date date selector for the user to (optionally) decide the end date.
+        //Todo: If Monthly was selected create the task for every 30 days until end date.  Show a end date date selector for the user to (optionally) decide the end date.
+        //Todo: If Semi-annually was selected create the task for every 180 days until end date.  Show a end date date selector for the user to (optionally) decide the end date.
+        //Todo: If Annually was selected create the task for every 365 days until end date.  Show a end date date selector for the user to (optionally) decide the end date.
+        //Todo: If the user deletes a recurring task give them the option to delete that specific day's task or all future tasks associated with the recurring task
+        //Todo: In the DB maintain how often the task should occur.
+        //Todo: In PHP if the user has marked a recurring task as 100% or completed treat it as if it were delted and determine how many days out until it is supposed to re-occur and then automatically create a new task for that date.
+        var input = this;
+        console.log(input.selectedIndex);
+        if (input.selectedIndex > 0 && input.selectedIndex < 7) {
+            $("#panelEndDate").show(500);
+        } else {
+            $("#panelEndDate").hide(500);
+        }
+    });
+
+    $("input[id^='usersTaskName'], select[id^=usersPriorityLevel], input[id^='percentComplete'], input[id^='usersNotes'], textarea").on("change", function (e) {
         var input = this;
         toggleEditBtns();
         var todoId = $(input).attr("data-todoid");
@@ -265,7 +304,6 @@ $(document).ready(function () {
         } else {
             notesInputControl.val("empty");
         }
-
     });
 
     $("thead button").on("click keyup", function (e) {
@@ -514,7 +552,6 @@ function paginate(e) {
 
 function adjustTextAreaHeight() {
     var textAreas = [];
-
     textAreas = $("textarea");
     for (var tArea = 0; tArea < textAreas.length; tArea++) {
         if ($(textAreas[tArea]).text().toString().trim() == "empty") {

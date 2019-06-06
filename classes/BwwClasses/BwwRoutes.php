@@ -13,7 +13,6 @@ class BwwRoutes implements \utilityClasses\Routes
     private $shoppingCategoriesTable;
     private $shoppingItemsTable;
     private $todoPriorityTable;
-    private $todoStatusTable;
     private $todoSortTable;
     private $todoTable;
     private $buildingLevelsTable;
@@ -35,7 +34,6 @@ class BwwRoutes implements \utilityClasses\Routes
         $this->shoppingCategoriesTable = new \utilityClasses\DatabaseTable($pdo, 'shopping_categories', 'id');
         $this->shoppingItemsTable = new \utilityClasses\DatabaseTable($pdo, 'shopping_items', 'id');
         $this->todoPriorityTable = new \utilityClasses\DatabaseTable($pdo, 'todo_priority', 'priority_id');
-        $this->todoStatusTable = new \utilityClasses\DatabaseTable($pdo, 'todo_status', 'todo_status_id');
         $this->todoSortTable = new \utilityClasses\DatabaseTable($pdo, 'todo_sort', 'id');
         $this->todoTable = new \utilityClasses\DatabaseTable($pdo, 'todos', 'id');
         $this->buildingLevelsTable = new \utilityClasses\DatabaseTable($pdo, 'building_levels', 'LevelName');
@@ -58,7 +56,7 @@ class BwwRoutes implements \utilityClasses\Routes
         $photosController = new \BwwClasses\Controllers\Photos($this->usersTable, $this->photosTable, $this->authentication);
         $myaccountController = new \BwwClasses\Controllers\MyAccount($this->usersTable, $this->authentication);
         $shoppingListController = new \BwwClasses\Controllers\ShoppingList($this->shoppingCategoriesTable, $this->shoppingItemsTable, $this->authentication);
-        $todoListController = new \BwwClasses\Controllers\TodoList($this->todoPriorityTable, $this->todoStatusTable, $this->todoSortTable, $this->todoTable, $this->authentication, $this->buildingLevelsTable, $this->buildingUnitsAllowedTable, $this->mainUnitsTable);
+        $todoListController = new \BwwClasses\Controllers\TodoList($this->todoPriorityTable, $this->todoSortTable, $this->todoTable, $this->authentication, $this->buildingLevelsTable, $this->buildingUnitsAllowedTable, $this->mainUnitsTable);
 
         $routes = [
             'user/register' => [

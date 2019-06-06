@@ -54,11 +54,44 @@
                     <div class="mb-3">
                         <div class="row">
                             <div class='col-sm-6'>
-                                <label for="dueDate">Due Date</label>
+                                <label for="datePicker">Due Date</label>
                                 <span class="sr-only">Information about "Due Date"</span>
                                 <img src="/css/vendor/open-iconic-master/svg/info.svg" alt='Information about "Due Date"' width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Input the current date or a future date below to indicate the no later than date in which this task must be completed by.  The date must be formatted as MM/DD/YY.">
                                 <input name="newtask[date]" id="datePicker" class="datetimepicker-input" required />
                                 <div class="invalid-feedback"><span id="datePickerInputError"></span></div>
+                            </div>
+                            <div class='col-sm-3 cb-recurring-col'>
+                                <div class="custom-control custom-checkbox">
+                                    <input id="cbRecurringTask" type="checkbox" class="custom-control-input" />
+                                    <label class="custom-control-label" for="cbRecurringTask">Make this a recurring task</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="panelFrequency" class="mb-3">
+                        <label for="frequency">Frequency</label>
+                        <span class="sr-only">Information about Frequency options</span>
+                        <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about Frequency options" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Choose how often you wish to complete this task.  Options include daily, weekly, bi-weekly, monthly, semi-annually, or annually">
+                        <select class="form-control d-block w-100" id="frequency" name="newtask[frequency]" required>
+                            <option value="">Choose...</option>
+                            <option value="1">Daily</option>
+                            <option value="2">Weekly</option>
+                            <option value="3">Bi-weekly</option>
+                            <option value="4">Monthly</option>
+                            <option value="5">Semi-annually</option>
+                            <option value="6">Annually</option>
+                        </select>
+                    </div>
+
+                    <div id="panelEndDate" class="mb-3">
+                        <div class="row">
+                            <div class='col-sm-6'>
+                                <label for="endDatePicker">End Date</label>
+                                <span class="sr-only">Information about "End Date"</span>
+                                <img src="/css/vendor/open-iconic-master/svg/info.svg" alt='Information about "End Date"' width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Input the future date in which you would like for this task to end.  This is an optional input.  The date must be formatted as MM/DD/YY.">
+                                <input name="newtask[enddate]" id="endDatePicker" class="datetimepicker-input" />
+                                <div class="invalid-feedback"><span id="endDatePickerInputError"></span></div>
                             </div>
                         </div>
                     </div>
@@ -123,12 +156,6 @@
                             Priority
                         </button>
                     </th>
-                    <th scope="col" class="col-status">
-                        <button name="sortstatus" data-colname="todo_status">
-                            <img src="/css/vendor/open-iconic-master/svg/elevator.svg" alt="Click to sort this column" width="12rem" height="12rem" fill="#fff">
-                            Status
-                        </button>
-                    </th>
                     <th scope="col" class="col-percent">
                         <button id="btnPercentComplete" name="sortcompletionpercent" data-colname="percent_complete">
                             <img src="/css/vendor/open-iconic-master/svg/elevator.svg" alt="Click to sort this column" width="12rem" height="12rem" fill="#fff">
@@ -155,7 +182,7 @@
                     <?php endif ?>
                     <td>
                         <div class="custom-control custom-checkbox">
-                            <input id="cb<?= $value ?>" type="checkbox" data-todoid="<?= $todo['id'] ?>" class="custom-control-input" />
+                            <input id="cb<?= $value ?>" type="checkbox" data-todoid="<?= $todo['id'] ?>" class="custom-control-input cb-delete" />
                             <label class="custom-control-label text-hide" for="cb<?= $value ?>">Toggle me</label>
                             <input type="hidden" name="editid[<?= $value ?>]" id="editId<?= $value ?>" />
                         </div>
@@ -174,14 +201,6 @@
                             <option value="1">Low</option>
                             <option value="2">Medium</option>
                             <option value="3">High</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select class="form-control d-block w-100" id="todoStatus<?= $value ?>" name="edittodostatus[<?= $value ?>]" data-selectedIndex="<?= $todo['todo_status'] ?? '0' ?>" data-todoid="<?= $todo['id'] ?>">
-                            <option value="">Choose...</option>
-                            <option value="1">Not Started</option>
-                            <option value="2">In progress</option>
-                            <option value="3">Complete</option>
                         </select>
                     </td>
                     <td>

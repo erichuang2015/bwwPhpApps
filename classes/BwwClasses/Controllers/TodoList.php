@@ -8,16 +8,14 @@ class TodoList
 {
     private $authentication;
     private $todoPriorityTable;
-    private $todoStatusTable;
     private $todoSortTable;
     private $todoTable;
     private $buildingLevelsTable;
     private $buildingUnitsAllowedTable;
     private $mainUnitsTable;
-    public function __construct(DatabaseTable $todoPriorityTable, DatabaseTable $todoStatusTable, DatabaseTable $todoSortTable, DatabaseTable $todoTable, Authentication $authentication, DatabaseTable $buildingLevelsTable, DatabaseTable $buildingUnitsAllowedTable, DatabaseTable $mainUnitsTable)
+    public function __construct(DatabaseTable $todoPriorityTable, DatabaseTable $todoSortTable, DatabaseTable $todoTable, Authentication $authentication, DatabaseTable $buildingLevelsTable, DatabaseTable $buildingUnitsAllowedTable, DatabaseTable $mainUnitsTable)
     {
         $this->todoPriorityTable = $todoPriorityTable;
-        $this->todoStatusTable = $todoStatusTable;
         $this->todoSortTable = $todoSortTable;
         $this->todoTable = $todoTable;
         $this->authentication = $authentication;
@@ -64,7 +62,6 @@ class TodoList
                     'due_date' => (string)$stringDueDate,
                     'title' => (string)$todo['title'],
                     'todo_priority' => (int)$todo['todo_priority'],
-                    'todo_status' => (int)$todo['todo_status'],
                     'percent_complete' => (int)$todo['percent_complete'],
                     'notes' => (string)$todo['notes'],
                 ];
@@ -100,7 +97,7 @@ class TodoList
             $sortedPage = $this->sort($_POST['coltosort'], $user);
             return $sortedPage;
         } elseif (isset($_POST['editid']) && !empty($_POST['editid'])) { // Edit task
-            $pageWithEdits = $this->editTask($_POST['editid'], $_POST['editduedate'], $_POST['edittask'], $_POST['editprioritylevel'], $_POST['edittodostatus'], $_POST['editpercentcomplete'], $_POST['editusersnotes']);
+            $pageWithEdits = $this->editTask($_POST['editid'], $_POST['editduedate'], $_POST['edittask'], $_POST['editprioritylevel'], $_POST['editpercentcomplete'], $_POST['editusersnotes']);
             return $pageWithEdits;
         } elseif (isset($_POST['deletetodoid']) && !empty($_POST['deletetodoid'])) { // Delete task
             $this->deleteTask($_POST['deletetodoid']);
@@ -134,7 +131,6 @@ class TodoList
             $newTaskData['due_date'] = date_create_from_format($format, $inputData['date']);
             $newTaskData['title'] = (string)$inputData['taskname'];
             $newTaskData['todo_priority'] = (int)$inputData['prioritylevel'];
-            $newTaskData['todo_status'] = 1;
             $newTaskData['percent_complete'] = 0;
             $newTaskData['notes'] = (string)$inputData['notesinput'];
             $newTaskData['user_id'] = (int)$user['id'];
@@ -149,7 +145,7 @@ class TodoList
         header('location: /todolist');
     }
 
-    public function editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $edittodostatuses, $editpercentcompletes, $editusersnotes)
+    public function editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes)
     {
         $errors = [];
         for ($index = 0; $index < sizeOf($editIds); $index++) {
@@ -176,17 +172,11 @@ class TodoList
                         $errors[] = 'Task title cannot be left blank';
                     }
                 }
-                //Todo: if you don't check if the editprioritylevels var is empty before you run the below validation it will always prove false even if it wasn't edited
                 $validPriorityLevel = $this->validatePriorityLevel($editprioritylevels[$index]);
-
                 if ($validPriorityLevel) {
                     $editTodo['todo_priority'] = (int)$editprioritylevels[$index];
                 } else {
                     $errors[] = 'Select a priority level';
-                }
-
-                if (!empty($edittodostatuses[$index])) {
-                    $editTodo['todo_status'] = (int)$edittodostatuses[$index];
                 }
                 if (!empty($editpercentcompletes[$index]) || (int)$editpercentcompletes[$index] == 0) {
                     $editTodo['percent_complete'] = (int)$editpercentcompletes[$index];

@@ -81,6 +81,11 @@ input[id^='datetimepickerNoIcon'], #datePicker{
     position: relative;
 }
 
+div.cb-recurring-col{
+    position: relative;
+    top:2.3rem;
+}
+
 
 /* Edge Browser styles begin */
 
