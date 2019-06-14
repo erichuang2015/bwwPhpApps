@@ -95,7 +95,6 @@ class DatabaseTable
         $fields['primaryKey'] = $fields['id'];
 
         $fields = $this->processDates($fields);
-
         $this->query($query, $fields);
     }
 

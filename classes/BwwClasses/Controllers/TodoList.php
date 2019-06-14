@@ -8,14 +8,17 @@ class TodoList
 {
     private $authentication;
     private $todoPriorityTable;
+    private $todoFrequencyTable;
     private $todoSortTable;
     private $todoTable;
     private $buildingLevelsTable;
     private $buildingUnitsAllowedTable;
     private $mainUnitsTable;
-    public function __construct(DatabaseTable $todoPriorityTable, DatabaseTable $todoSortTable, DatabaseTable $todoTable, Authentication $authentication, DatabaseTable $buildingLevelsTable, DatabaseTable $buildingUnitsAllowedTable, DatabaseTable $mainUnitsTable)
+
+    public function __construct(DatabaseTable $todoPriorityTable, DatabaseTable $todoSortTable, DatabaseTable $todoTable, Authentication $authentication, DatabaseTable $buildingLevelsTable, DatabaseTable $buildingUnitsAllowedTable, DatabaseTable $mainUnitsTable, DatabaseTable $todoFrequencyTable)
     {
         $this->todoPriorityTable = $todoPriorityTable;
+        $this->todoFrequencyTable = $todoFrequencyTable;
         $this->todoSortTable = $todoSortTable;
         $this->todoTable = $todoTable;
         $this->authentication = $authentication;
@@ -64,6 +67,7 @@ class TodoList
                     'todo_priority' => (int)$todo['todo_priority'],
                     'percent_complete' => (int)$todo['percent_complete'],
                     'notes' => (string)$todo['notes'],
+                    'todo_frequency' => (int)$todo['frequency']
                 ];
             }
             return [
@@ -97,7 +101,7 @@ class TodoList
             $sortedPage = $this->sort($_POST['coltosort'], $user);
             return $sortedPage;
         } elseif (isset($_POST['editid']) && !empty($_POST['editid'])) { // Edit task
-            $pageWithEdits = $this->editTask($_POST['editid'], $_POST['editduedate'], $_POST['edittask'], $_POST['editprioritylevel'], $_POST['editpercentcomplete'], $_POST['editusersnotes']);
+            $pageWithEdits = $this->editTask($_POST['editid'], $_POST['editduedate'], $_POST['edittask'], $_POST['editprioritylevel'], $_POST['editpercentcomplete'], $_POST['editusersnotes'], $_POST['editfrequencylevel']);
             return $pageWithEdits;
         } elseif (isset($_POST['deletetodoid']) && !empty($_POST['deletetodoid'])) { // Delete task
             $this->deleteTask($_POST['deletetodoid']);
@@ -134,6 +138,7 @@ class TodoList
             $newTaskData['percent_complete'] = 0;
             $newTaskData['notes'] = (string)$inputData['notesinput'];
             $newTaskData['user_id'] = (int)$user['id'];
+            $newTaskData['frequency'] = (int)$inputData['frequency'];
             $this->todoTable->save($newTaskData);
             header('location: /todolist');
         }
@@ -141,22 +146,85 @@ class TodoList
 
     public function deleteTask($deleteTodoId)
     {
-        $this->todoTable->delete($deleteTodoId);
+        $format = "m/d/Y";
+        $deleteTodo = $this->todoTable->findById($deleteTodoId);
+        $newDate = date_create($deleteTodo['due_date']);
+        $editIds = [];
+        $editduedates = [];
+        $edittasks = [];
+        $editprioritylevels = [];
+        $editpercentcompletes = [];
+        $editusersnotes = [];
+        $editfrequencylevels = [];
+
+        $editIds[] = (int)$deleteTodo['id'];
+        $edittasks[] = (string)$deleteTodo['title'];
+        $editprioritylevels[] = (int)$deleteTodo['todo_priority'];
+        $editpercentcompletes[] = (int)$deleteTodo['percent_complete'];
+        $editusersnotes[] = (string)$deleteTodo['notes'];
+        $editfrequencylevels[] = (int)$deleteTodo['frequency'];
+
+        switch ((int)$deleteTodo['frequency']) {
+            case 1:
+                $this->todoTable->delete($deleteTodoId);
+                break;
+            case 2:
+                $newDate = date_add($newDate, date_interval_create_from_date_string('1 day'));
+                $strDate = $newDate->format($format); //Todo: move this repetitive code into a new function and call it
+                $editduedates[] = $strDate;
+                $this->editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes, $editfrequencylevels);
+                break;
+            case 3:
+                $newDate = date_add($newDate, date_interval_create_from_date_string('1 week'));
+                $strDate = $newDate->format($format);
+                $editduedates[] = $strDate;
+                $this->editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes, $editfrequencylevels);
+                break;
+            case 4:
+                $newDate = date_add($newDate, date_interval_create_from_date_string('2 weeks'));
+                $strDate = $newDate->format($format);
+                $editduedates[] = $strDate;
+                $this->editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes, $editfrequencylevels);
+                break;
+            case 5:
+                $newDate = date_add($newDate, date_interval_create_from_date_string('1 month'));
+                $strDate = $newDate->format($format);
+                $editduedates[] = $strDate;
+                $this->editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes, $editfrequencylevels);
+                break;
+            case 6:
+                $newDate = date_add($newDate, date_interval_create_from_date_string('6 months'));
+                $strDate = $newDate->format($format);
+                $editduedates[] = $strDate;
+                $this->editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes, $editfrequencylevels);
+                break;
+            case 7:
+                $newDate = date_add($newDate, date_interval_create_from_date_string('1 year'));
+                $strDate = $newDate->format($format);
+                $editduedates[] = $strDate;
+                $this->editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes, $editfrequencylevels);
+                break;
+        }
         header('location: /todolist');
     }
 
-    public function editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes)
+    public function editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes, $editfrequencylevels)
     {
         $errors = [];
+
         for ($index = 0; $index < sizeOf($editIds); $index++) {
             $editTodo = null;
             //If the editIds array isn't empty then edits have been submitted
             if (!empty($editIds[$index])) {
+
                 $editTodo = [];
                 $editTodo['id'] = (int)$editIds[$index];
+
                 $editedTodo = $this->todoTable->findById($editIds[$index]); // retrieve this todo from the DB so we can compare the data to user input
+
                 if (!empty($editduedates[$index])) {
                     $validDate = $this->processDate($editduedates[$index]);
+
                     if ($validDate) {
                         $editTodo['due_date'] = date_create($editduedates[$index]);
                     } else {
@@ -183,6 +251,9 @@ class TodoList
                 }
                 if (!empty($editusersnotes[$index])) {
                     $editTodo['notes'] = (string)$editusersnotes[$index];
+                }
+                if (!empty($editfrequencylevels[$index])) {
+                    $editTodo['frequency'] = (int)$editfrequencylevels[$index];
                 }
                 $this->todoTable->save($editTodo);
             }

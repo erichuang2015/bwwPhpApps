@@ -22,6 +22,7 @@ $(document).ready(function () {
     $("#panelFrequency").hide();
     $("#panelEndDate").hide();
 
+    //Validate required input for task name, date, and priority level
     $("#taskName, #datePicker, #priorityLevel").on("keyup blur change", function () {
         var date = $("#datePicker").val();
         var priorityLevel = $("#priorityLevel").val();
@@ -81,6 +82,7 @@ $(document).ready(function () {
         }
     });
 
+    //Toggle error messaging for priority level
     $("#priorityLevel").on("keyup blur change", function (e) {
         if (e.keycode != 9 && e.which != 9 && e.type != "tab") {
             var priorityLevel = $("#priorityLevel").val();
@@ -152,6 +154,10 @@ $(document).ready(function () {
     var prioritySelectInputs = [];
     prioritySelectInputs = $("select[id^='usersPriorityLevel']");
     setSelectedIndexes(prioritySelectInputs);
+
+    var frequencySelectInputs = [];
+    frequencySelectInputs = $("select[id^='usersFrequencyLevel']");
+    setSelectedIndexes(frequencySelectInputs);
 
     $("#btnNewTask").on("keyup click", function (e) {
         if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
@@ -232,17 +238,8 @@ $(document).ready(function () {
     });
 
     $("#frequency").on("change", function (e) {
-        //Todo: Save selected frequency. Reset duedate everyday at midnight.  Show a end date date selector for the user to (optionally) decide the end date.
-        //Todo: If weekly was selected create the task for every 7 days until end date.  Allow the user the option to specify the day of week it should occur on.  Show a end date date selector for the user to (optionally) decide the end date.
-        //Todo: If bi-weekly was selected create the task for every 14 days until end date.  Allow the user to specify the day of the week it should occur on.  Show a end date date selector for the user to (optionally) decide the end date.
-        //Todo: If Monthly was selected create the task for every 30 days until end date.  Show a end date date selector for the user to (optionally) decide the end date.
-        //Todo: If Semi-annually was selected create the task for every 180 days until end date.  Show a end date date selector for the user to (optionally) decide the end date.
-        //Todo: If Annually was selected create the task for every 365 days until end date.  Show a end date date selector for the user to (optionally) decide the end date.
-        //Todo: If the user deletes a recurring task give them the option to delete that specific day's task or all future tasks associated with the recurring task
-        //Todo: In the DB maintain how often the task should occur.
-        //Todo: In PHP if the user has marked a recurring task as 100% or completed treat it as if it were delted and determine how many days out until it is supposed to re-occur and then automatically create a new task for that date.
+        //Todo: In PHP if the user has marked a recurring task as 100% treat it as if it were deleted and determine how many days out until it is supposed to re-occur and then automatically create a new task for that date.
         var input = this;
-        console.log(input.selectedIndex);
         if (input.selectedIndex > 0 && input.selectedIndex < 7) {
             $("#panelEndDate").show(500);
         } else {
@@ -250,7 +247,8 @@ $(document).ready(function () {
         }
     });
 
-    $("input[id^='usersTaskName'], select[id^=usersPriorityLevel], input[id^='percentComplete'], input[id^='usersNotes'], textarea").on("change", function (e) {
+    //Store the todoId that was edited in the row's hidden input so that the server can quickly determine which todos have been edited
+    $("input[id^='usersTaskName'], select[id^=usersPriorityLevel], input[id^='percentComplete'], input[id^='usersNotes'], textarea, select[id^=usersFrequencyLevel]").on("change", function (e) {
         var input = this;
         toggleEditBtns();
         var todoId = $(input).attr("data-todoid");

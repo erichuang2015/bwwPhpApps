@@ -75,12 +75,13 @@
                         <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about Frequency options" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Choose how often you wish to complete this task.  Options include daily, weekly, bi-weekly, monthly, semi-annually, or annually">
                         <select class="form-control d-block w-100" id="frequency" name="newtask[frequency]" required>
                             <option value="">Choose...</option>
-                            <option value="1">Daily</option>
-                            <option value="2">Weekly</option>
-                            <option value="3">Bi-weekly</option>
-                            <option value="4">Monthly</option>
-                            <option value="5">Semi-annually</option>
-                            <option value="6">Annually</option>
+                            <option value="1">Once only</option>
+                            <option value="2">Daily</option>
+                            <option value="3">Weekly</option>
+                            <option value="4">Bi-weekly</option>
+                            <option value="5">Monthly</option>
+                            <option value="6">Semi-annually</option>
+                            <option value="7">Annually</option>
                         </select>
                     </div>
 
@@ -168,6 +169,12 @@
                             Notes
                         </button>
                     </th>
+                    <th scope="col" class="col-frequency">
+                        <button name="sortfrequency" data-colname="frequency">
+                            <img src="/css/vendor/open-iconic-master/svg/elevator.svg" alt="Click to sort this column" width="12rem" height="12rem" fill="#fff">
+                            Recurrence
+                        </button>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -214,6 +221,17 @@
                     <td>
                         <textarea form="formTable" maxlength="255" class="form-control" data-todoid="<?= $todo['id'] ?>"><?= $todo['notes'] ?></textarea>
                         <input type="hidden" id="usersNotes<?= $value ?>" name="editusersnotes[<?= $value ?>]" data-todoid="<?= $todo['id'] ?>">
+                    </td>
+                    <td>
+                        <select class="form-control d-block w-100" id="usersFrequencyLevel<?= $value ?>" name="editfrequencylevel[<?= $value ?>]" data-selectedIndex="<?= ($todo['todo_frequency'] - 1) ?? '1' ?>" data-todoid="<?= $todo['id'] ?>">
+                            <option value="1">Once only</option>
+                            <option value="2">Daily</option>
+                            <option value="3">Weekly</option>
+                            <option value="4">Bi-weekly</option>
+                            <option value="5">Monthly</option>
+                            <option value="6">Semi-annually</option>
+                            <option value="7">Annually</option>
+                        </select>
                     </td>
                 </tr>
                 <?php $value = $value + 1; ?>
