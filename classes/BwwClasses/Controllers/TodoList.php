@@ -247,7 +247,12 @@ class TodoList
                     $errors[] = 'Select a priority level';
                 }
                 if (!empty($editpercentcompletes[$index]) || (int)$editpercentcompletes[$index] == 0) {
-                    $editTodo['percent_complete'] = (int)$editpercentcompletes[$index];
+                    if ((int)$editpercentcompletes[$index] == 100) {
+                        $editTodo['percent_complete'] = 0;
+                        $this->deleteTask($editTodo['id']);
+                    } else {
+                        $editTodo['percent_complete'] = (int)$editpercentcompletes[$index];
+                    }
                 }
                 if (!empty($editusersnotes[$index])) {
                     $editTodo['notes'] = (string)$editusersnotes[$index];

@@ -238,7 +238,7 @@ $(document).ready(function () {
     });
 
     $("#frequency").on("change", function (e) {
-        //Todo: In PHP if the user has marked a recurring task as 100% treat it as if it were deleted and determine how many days out until it is supposed to re-occur and then automatically create a new task for that date.
+        //Todo: If the user selected an end date for a recurring task make sure that is saved to the db and then when the end date is reached delete the task permanently
         var input = this;
         if (input.selectedIndex > 0 && input.selectedIndex < 7) {
             $("#panelEndDate").show(500);
