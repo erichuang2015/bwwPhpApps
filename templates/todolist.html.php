@@ -73,7 +73,7 @@
                         <label for="frequency">Frequency</label>
                         <span class="sr-only">Information about Frequency options</span>
                         <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about Frequency options" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Choose how often you wish to complete this task.  Options include daily, weekly, bi-weekly, monthly, semi-annually, or annually">
-                        <select class="form-control d-block w-100" id="frequency" name="newtask[frequency]" required>
+                        <select class="form-control d-block w-100" id="frequency" name="newtask[frequency]">
                             <option value="">Choose...</option>
                             <option value="1">Once only</option>
                             <option value="2">Daily</option>
