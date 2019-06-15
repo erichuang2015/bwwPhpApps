@@ -146,63 +146,34 @@ class TodoList
 
     public function deleteTask($deleteTodoId)
     {
-        $format = "m/d/Y";
         $deleteTodo = $this->todoTable->findById($deleteTodoId);
-        $newDate = date_create($deleteTodo['due_date']);
-        $editIds = [];
-        $editduedates = [];
-        $edittasks = [];
-        $editprioritylevels = [];
-        $editpercentcompletes = [];
-        $editusersnotes = [];
-        $editfrequencylevels = [];
-
-        $editIds[] = (int)$deleteTodo['id'];
-        $edittasks[] = (string)$deleteTodo['title'];
-        $editprioritylevels[] = (int)$deleteTodo['todo_priority'];
-        $editpercentcompletes[] = (int)$deleteTodo['percent_complete'];
-        $editusersnotes[] = (string)$deleteTodo['notes'];
-        $editfrequencylevels[] = (int)$deleteTodo['frequency'];
-
         switch ((int)$deleteTodo['frequency']) {
             case 1:
                 $this->todoTable->delete($deleteTodoId);
                 break;
             case 2:
-                $newDate = date_add($newDate, date_interval_create_from_date_string('1 day'));
-                $strDate = $newDate->format($format); //Todo: move this repetitive code into a new function and call it
-                $editduedates[] = $strDate;
-                $this->editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes, $editfrequencylevels);
+                $timeSpan = '1 day';
+                $this->editRecurringTaskDate($timeSpan, $deleteTodo);
                 break;
             case 3:
-                $newDate = date_add($newDate, date_interval_create_from_date_string('1 week'));
-                $strDate = $newDate->format($format);
-                $editduedates[] = $strDate;
-                $this->editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes, $editfrequencylevels);
+                $timeSpan = '1 week';
+                $this->editRecurringTaskDate($timeSpan, $deleteTodo);
                 break;
             case 4:
-                $newDate = date_add($newDate, date_interval_create_from_date_string('2 weeks'));
-                $strDate = $newDate->format($format);
-                $editduedates[] = $strDate;
-                $this->editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes, $editfrequencylevels);
+                $timeSpan = '2 weeks';
+                $this->editRecurringTaskDate($timeSpan, $deleteTodo);
                 break;
             case 5:
-                $newDate = date_add($newDate, date_interval_create_from_date_string('1 month'));
-                $strDate = $newDate->format($format);
-                $editduedates[] = $strDate;
-                $this->editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes, $editfrequencylevels);
+                $timeSpan = '1 month';
+                $this->editRecurringTaskDate($timeSpan, $deleteTodo);
                 break;
             case 6:
-                $newDate = date_add($newDate, date_interval_create_from_date_string('6 months'));
-                $strDate = $newDate->format($format);
-                $editduedates[] = $strDate;
-                $this->editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes, $editfrequencylevels);
+                $timeSpan = '6 months';
+                $this->editRecurringTaskDate($timeSpan, $deleteTodo);
                 break;
             case 7:
-                $newDate = date_add($newDate, date_interval_create_from_date_string('1 year'));
-                $strDate = $newDate->format($format);
-                $editduedates[] = $strDate;
-                $this->editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes, $editfrequencylevels);
+                $timeSpan = '1 year';
+                $this->editRecurringTaskDate($timeSpan, $deleteTodo);
                 break;
         }
         header('location: /todolist');
@@ -362,5 +333,33 @@ class TodoList
         } else {
             return false;
         }
+    }
+
+    /**
+     * Name: editRecurringTaskDate
+     * Purpose: Resets the due date for a recurring task
+     * @param  {} $timeSpan: this is a string indicating the amount of time in the future for when the new date should be set
+     */
+    private function editRecurringTaskDate($timeSpan, $deleteTodo)
+    {
+        $format = "m/d/Y";
+        $editIds = [];
+        $editduedates = [];
+        $edittasks = [];
+        $editprioritylevels = [];
+        $editpercentcompletes = [];
+        $editusersnotes = [];
+        $editfrequencylevels = [];
+        $editIds[] = (int)$deleteTodo['id'];
+        $edittasks[] = (string)$deleteTodo['title'];
+        $editprioritylevels[] = (int)$deleteTodo['todo_priority'];
+        $editpercentcompletes[] = (int)$deleteTodo['percent_complete'];
+        $editusersnotes[] = (string)$deleteTodo['notes'];
+        $editfrequencylevels[] = (int)$deleteTodo['frequency'];
+        $newDate = date_create($deleteTodo['due_date']);
+        $newDate = date_add($newDate, date_interval_create_from_date_string($timeSpan));
+        $strDate = $newDate->format($format);
+        $editduedates[] = $strDate;
+        $this->editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes, $editfrequencylevels);
     }
 }
