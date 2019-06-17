@@ -139,7 +139,7 @@ class TodoList
             $newTaskData['notes'] = (string)$inputData['notesinput'];
             $newTaskData['user_id'] = (int)$user['id'];
             $newTaskData['frequency'] = (int)$inputData['frequency'];
-            $newTaskData['end_date'] = date_create_from_format($format, $inputData['enddate']);
+            $newTaskData['end_date'] = (!empty($inputData['enddate'])) ? date_create_from_format($format, $inputData['enddate']) : null;
             $this->todoTable->save($newTaskData);
             header('location: /todolist');
         }
