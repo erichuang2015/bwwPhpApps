@@ -31,8 +31,8 @@ class ShoppingList
                     continue;
                 }
                 $shoppingCategories[] = [
-                    'id' => (int) $category['id'],
-                    'category' => (string) $category['category'],
+                    'id' => (int)$category['id'],
+                    'category' => (string)$category['category'],
                 ];
             }
             $_SESSION['shoppingCategories'] = $shoppingCategories ?? null;
@@ -42,9 +42,10 @@ class ShoppingList
                     continue;
                 }
                 $shoppingItems[] = [
-                    'id' => (int) $shopItem['id'],
-                    'category_id' => (int) $shopItem['category_id'],
-                    'item_name' => (string) $shopItem['item_name'],
+                    'id' => (int)$shopItem['id'],
+                    'category_id' => (int)$shopItem['category_id'],
+                    //Todo: add some code to search the below item_name for quotation marks.  If it has any escape them before sending to the page
+                    'item_name' => (string)$shopItem['item_name'],
                 ];
             }
             $_SESSION['shoppingCategories'] = $shoppingItems ?? null;
@@ -93,7 +94,7 @@ class ShoppingList
 
         if (isset($_POST['newcategory']) && !empty($_POST['newcategory'])) {
             // print_r("Going down save new category route");die;
-            $newCategoryName = (string) $_POST['newcategory'];
+            $newCategoryName = (string)$_POST['newcategory'];
             $this->saveNewCategory($newCategoryName);
         } else if (isset($_POST['shopcategory'])) {
             // print_r("Going down delete category route");die;
@@ -133,7 +134,7 @@ class ShoppingList
     private function saveNewCategory($newCategoryName)
     {
         $user = $this->authentication->getUser();
-        $userId = (int) $user['id'];
+        $userId = (int)$user['id'];
         $newCategoryData = [];
         $newCategoryData['category'] = $newCategoryName;
         $newCategoryData['author_id'] = $userId;
@@ -158,7 +159,7 @@ class ShoppingList
     private function saveNewItem($categoryId, $newItemName)
     {
         $user = $this->authentication->getUser();
-        $userId = (int) $user['id'];
+        $userId = (int)$user['id'];
         $newItemData = [];
         $newItemData['item_name'] = $newItemName;
         $newItemData['category_id'] = $categoryId;

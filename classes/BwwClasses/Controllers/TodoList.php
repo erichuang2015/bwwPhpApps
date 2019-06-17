@@ -139,6 +139,7 @@ class TodoList
             $newTaskData['notes'] = (string)$inputData['notesinput'];
             $newTaskData['user_id'] = (int)$user['id'];
             $newTaskData['frequency'] = (int)$inputData['frequency'];
+            $newTaskData['end_date'] = date_create_from_format($format, $inputData['enddate']);
             $this->todoTable->save($newTaskData);
             header('location: /todolist');
         }
@@ -147,6 +148,18 @@ class TodoList
     public function deleteTask($deleteTodoId)
     {
         $deleteTodo = $this->todoTable->findById($deleteTodoId);
+        $format = "m/d/Y";
+        $endDate = date_create($deleteTodo['end_date']);
+        $endDate = date_format($endDate, $format);
+        $dueDate = date_create($deleteTodo['due_date']);
+        $dueDate = date_format($dueDate, $format);
+        $today = date_create(null, timezone_open('America/Chicago'));
+        $today = date_format($today, $format);
+        if ($endDate) {
+            if ($today >= $endDate || $dueDate >= $endDate) {
+                $this->todoTable->delete($deleteTodoId);
+            }
+        }
         switch ((int)$deleteTodo['frequency']) {
             case 1:
                 $this->todoTable->delete($deleteTodoId);
