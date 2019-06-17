@@ -44,7 +44,6 @@ class ShoppingList
                 $shoppingItems[] = [
                     'id' => (int)$shopItem['id'],
                     'category_id' => (int)$shopItem['category_id'],
-                    //Todo: add some code to search the below item_name for quotation marks.  If it has any escape them before sending to the page
                     'item_name' => (string)$shopItem['item_name'],
                 ];
             }

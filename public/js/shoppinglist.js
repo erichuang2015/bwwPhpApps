@@ -238,8 +238,9 @@ $(document).ready(function () {
                 $(this).addClass("is-invalid");
             }
         }
-
     });
+
+    sanitizeNameAttributes();
 });
 
 function ValidateCategory(category) {
@@ -259,5 +260,20 @@ function ValidateItem(item) {
     }
     else {
         return false;
+    }
+}
+/**
+ * * Name: sanitizeNameAttributes
+ * Purpose: In scenarios where the shopping item's text contained a quotation mark the name attribute would break because it didn't properly escape the quotation marks.  This function cleans that problem up.
+ * @param  none
+ * Return: none
+ */
+function sanitizeNameAttributes() {
+    var labels = $("label[for^=shopitem]");
+    for (var label = 0; label < labels.length; label++) {
+        var labelTxt = $(labels[label]).text();
+        var cbInput = $(labels[label]).prev();
+        $(cbInput).attr("name", "");
+        $(cbInput).attr("name", "shopitem[" + labelTxt + "]");
     }
 }

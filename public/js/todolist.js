@@ -238,7 +238,6 @@ $(document).ready(function () {
     });
 
     $("#frequency").on("change", function (e) {
-        //Todo: If the user selected an end date for a recurring task make sure that is saved to the db and then when the end date is reached delete the task permanently
         var input = this;
         if (input.selectedIndex > 0 && input.selectedIndex < 7) {
             $("#panelEndDate").show(500);
