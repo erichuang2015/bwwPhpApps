@@ -115,6 +115,7 @@ class TodoList
     {
         $errors = [];
         $format = "m/d/Y";
+        $onceOnly = 1;
         $validDate = $this->processDate($inputData['date']);
         $validTaskName = $this->validateTaskName((string)$inputData['taskname']);
         $validPriorityLevel = $this->validatePriorityLevel($inputData['prioritylevel']);
@@ -138,7 +139,7 @@ class TodoList
             $newTaskData['percent_complete'] = 0;
             $newTaskData['notes'] = (string)$inputData['notesinput'];
             $newTaskData['user_id'] = (int)$user['id'];
-            $newTaskData['frequency'] = (int)$inputData['frequency'];
+            $newTaskData['frequency'] = (!empty($inputData['frequency'])) ? (int)$inputData['frequency'] : $onceOnly;
             $newTaskData['end_date'] = (!empty($inputData['enddate'])) ? date_create_from_format($format, $inputData['enddate']) : null;
             $this->todoTable->save($newTaskData);
             header('location: /todolist');
