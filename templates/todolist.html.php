@@ -53,14 +53,14 @@
 
                     <div class="mb-3">
                         <div class="row">
-                            <div class='col-sm-6'>
+                            <div class='col-6 col-sm-6'>
                                 <label for="datePicker">Due Date</label>
                                 <span class="sr-only">Information about "Due Date"</span>
                                 <img src="/css/vendor/open-iconic-master/svg/info.svg" alt='Information about "Due Date"' width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Input the current date or a future date below to indicate the no later than date in which this task must be completed by.  The date must be formatted as MM/DD/YY.">
                                 <input name="newtask[date]" id="datePicker" class="datetimepicker-input" required />
                                 <div class="invalid-feedback"><span id="datePickerInputError"></span></div>
                             </div>
-                            <div class='col-sm-3 cb-recurring-col'>
+                            <div class='col-6 col-sm-3 pl-0 cb-recurring-col'>
                                 <div class="custom-control custom-checkbox">
                                     <input id="cbRecurringTask" type="checkbox" class="custom-control-input" />
                                     <label class="custom-control-label" for="cbRecurringTask">Make this a recurring task</label>
