@@ -244,7 +244,7 @@
             <ul class="pagination justify-content-end">
                 <?php if ($numBtns > 1) : ?>
                 <li class="page-item disabled">
-                    <button class="page-link" aria-disabled="true" data-stub="first">Previous</button>
+                    <button class="page-link" aria-disabled="true" data-stub="previous">Previous</button>
                 </li>
                 <?php for ($button = 0; $button < $numBtns; $button++) : ?>
                 <?php if ($button == 0) : ?>
@@ -256,7 +256,7 @@
                 <?php endif ?>
                 <?php endfor; ?>
                 <li class="page-item">
-                    <button class="page-link" data-stub="last">Next</button>
+                    <button class="page-link" data-stub="next">Next</button>
                 </li>
                 <?php endif ?>
             </ul>

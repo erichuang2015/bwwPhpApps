@@ -510,23 +510,30 @@ function validatePriorityLevel(priorityLevel) {
  */
 function paginate(e) {
     let srSpan = $("li.page-item.active span.sr-only");
-    console.log(srSpan);
     $("li.page-item.active span.sr-only").remove();
-    console.log(srSpan);
+    let activeLi = $("li.active");
     $("li.page-item").removeClass("active disabled");
     let targetBtn = e.currentTarget;
+    //if the targetBtn isn't the "Previous" or the "Next" button
     if (!$(targetBtn).attr("data-stub")) {
         $(targetBtn).parent().addClass("active");
         $(targetBtn).parent().append(srSpan);
     } else {
-        if ($(targetBtn).attr("data-stub") == "first") {
-            $(targetBtn).parent().next().addClass("active");
-            $(targetBtn).parent().next().append(srSpan);
-            $(targetBtn).parent().addClass("disabled");
-        } else {
-            $(targetBtn).parent().prev().addClass("active");
-            $(targetBtn).parent().prev().append(srSpan);
-            $(targetBtn).parent().addClass("disabled");
+        // The targetBtn is the "Previous" button
+        if ($(targetBtn).attr("data-stub") == "previous") {
+            let prevLi = $(activeLi).prev("li.page-item");
+            // If the prevLi doesn't contain the "Previous" button
+            if (!$(prevLi).attr("data-stub")) {
+                $(prevLi).addClass("active");
+                $(prevLi).append(srSpan);
+            }
+        } else { // The targetBtn is the "Next" button
+            let nextLi = $(activeLi).next("li.page-item");
+            // If the nextLi doesn't contain the "Next" button
+            if (!$(nextLi).attr("data-stub")) {
+                $(nextLi).addClass("active");
+                $(nextLi).append(srSpan);
+            }
         }
     }
     let listItems = $("ul.pagination li.page-item");
