@@ -111,7 +111,7 @@ $(document).ready(function () {
     $(function () {
         var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
         $('#datePicker').datepicker({
-            format: 'm/d/yy',
+            format: 'm/d/yyyy',
             uiLibrary: 'bootstrap4',
             iconsLibrary: 'fontawesome',
             icons: {
@@ -120,7 +120,7 @@ $(document).ready(function () {
             minDate: today
         });
         $('#endDatePicker').datepicker({
-            format: 'm/d/yy',
+            format: 'm/d/yyyy',
             uiLibrary: 'bootstrap4',
             iconsLibrary: 'fontawesome',
             icons: {
@@ -132,7 +132,7 @@ $(document).ready(function () {
         dtPickersNoIcon = $("input[id^='datetimepickerNoIcon']");
         for (var picker = 0; picker < dtPickersNoIcon.length; picker++) {
             $(dtPickersNoIcon[picker]).datepicker({
-                format: 'm/d/yy',
+                format: 'm/d/yyyy',
                 uiLibrary: 'bootstrap4',
                 showOnFocus: true,
                 showRightIcon: false,
