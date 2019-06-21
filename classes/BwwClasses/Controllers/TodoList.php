@@ -196,6 +196,7 @@ class TodoList
     public function editTask($editIds, $editduedates, $edittasks, $editprioritylevels, $editpercentcompletes, $editusersnotes, $editfrequencylevels)
     {
         $errors = [];
+        $user = $this->authentication->getUser();
 
         for ($index = 0; $index < sizeOf($editIds); $index++) {
             $editTodo = null;
@@ -242,6 +243,7 @@ class TodoList
                 if (!empty($editusersnotes[$index])) {
                     $editTodo['notes'] = (string)$editusersnotes[$index];
                 }
+                $editTodo['user_id'] = (int)$user['id'];
                 if (!empty($editfrequencylevels[$index])) {
                     $editTodo['frequency'] = (int)$editfrequencylevels[$index];
                 }
@@ -353,6 +355,7 @@ class TodoList
      * Name: editRecurringTaskDate
      * Purpose: Resets the due date for a recurring task
      * @param  {} $timeSpan: this is a string indicating the amount of time in the future for when the new date should be set
+     * @Return: N/A
      */
     private function editRecurringTaskDate($timeSpan, $deleteTodo)
     {
