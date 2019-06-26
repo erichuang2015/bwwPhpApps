@@ -17,8 +17,7 @@
 
 <div class="container registration">
     <div class="text-center">
-        <!--  <img class="d-block mx-auto mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
-        <!--  <img class="d-block mx-auto mb-4" src="css/images/brand-logo-template.svg" alt="BWW Apps" width="72" height="72"> -->
+        <img class="d-block mx-auto mb-4" src="/css/images/brand-logo-template.svg" alt="BWW Apps" height="350">
         <h2>Register an account</h2>
         <p class="lead">Please fill out the below information to register for this site. By registering you will gain
             full access to all the apps on this site, and you will be able to save your data so it is available the
@@ -55,9 +54,9 @@
                     <div class="invalid-feedback"><span id="passwordInputError"></span></div>
                 </div>
 
-                <hr class="mb-4">
+                <!-- <hr class="mb-4"> -->
 
-                <h4 class="mb-3">Password Recovery Questions</h4>
+                <!-- <h4 class="mb-3">Password Recovery Questions</h4>
 
                 <div class="mb-3">
                     <label for="firstAnswer">When you were young, what did you want to be when you grew up?</label>
@@ -77,9 +76,9 @@
                     <div class="invalid-feedback"><span id="thirdAnswerInputError"></span></div>
                 </div>
 
-                <hr class="mb-4">
+                <hr class="mb-4"> -->
 
-                <div class="col-md-4">
+                <div class="col-md-4 pl-0">
                     <input class="btn btn-lg btn-primary btn-block" type="submit" id="submitBtn" name="submit" value="Register account" disabled>
                 </div>
 

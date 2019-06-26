@@ -79,7 +79,7 @@ class BwwRoutes implements \utilityClasses\Routes
             'user/registerverifycode' => [
                 'GET' => [
                     'controller' => $registerController,
-                    'action' => 'renderVerifyCode',
+                    'action' => 'renderConfirmationEmailNotification',
                 ],
                 'POST' => [
                     'controller' => $registerController,

@@ -28,16 +28,30 @@ class Register
 
     public function success()
     {
-        return [
-            'template' => 'registersuccess.html.php',
-            'title' => 'Registration Successful'
-        ];
+        $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $query = parse_url($url, PHP_URL_QUERY);
+        parse_str($query, $queryCode);
+        $verifyData = $this->usersVerifyTable->find('email', $_SESSION['email']);
+        $token = (string)$verifyData[0]['verifycode'];
+        if ($queryCode['verifycode'] == $token) {
+            $this->registerUser($verifyData);
+            return [
+                'template' => 'registersuccess.html.php',
+                'title' => 'Registration Successful'
+            ];
+        } else {
+            $errorTxt = 'Your account could not be validated';
+            return [
+                'template' => 'registersuccess.html.php',
+                'title' => 'Registration Successful',
+                'errors' => $errorTxt
+            ];
+        }
     }
 
     public function storeUserData()
     {
         $user = $_POST['user'];
-        // print_r($user); die;
         //Assume the data is valid to begin with
         $valid = true;
         $errors = [];
@@ -76,55 +90,34 @@ class Register
         }
 
         if (empty($user['password'])) {
+            //todo: add server side pw validation
+            //todo: Passwords must be more than 7 and less than 25 characters in length.  They must contain at lease one number, one uppercase and one lowercase alphabetical character, and may contain special characters.
             $valid = false;
             $errors[] = 'Password cannot be blank';
-        }
-
-        if (empty($user['firstanswer'])) {
-            $valid = false;
-            $errors[] = 'You must provide an answer for the first recovery question.';
-        } else {
-            //convert the answer to lowercase
-            $user['firstanswer'] = strtolower($user['firstanswer']);
-        }
-
-        if (empty($user['secondanswer'])) {
-            $valid = false;
-            $errors[] = 'You must provide an answer for the second recovery question.';
-        } else {
-            //convert the answer to lowercase
-            $user['secondanswer'] = strtolower($user['secondanswer']);
-        }
-
-        if (empty($user['thirdanswer'])) {
-            $valid = false;
-            $errors[] = 'You must provide an answer for the third recovery question.';
-        } else {
-            //convert the answer to lowercase
-            $user['thirdanswer'] = strtolower($user['thirdanswer']);
         }
 
         //If $valid is still true, no fields were blank and the data can be added
         if ($valid == true) {
             //Hash the password and recovery question answers before saving it in the database
             $userData['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
-            $userData['firstanswer'] = password_hash($user['firstanswer'], PASSWORD_DEFAULT);
-            $userData['secondanswer'] = password_hash($user['secondanswer'], PASSWORD_DEFAULT);
-            $userData['thirdanswer'] = password_hash($user['thirdanswer'], PASSWORD_DEFAULT);
 
             $code = substr(md5(mt_rand()), 0, 15); // generate a random code to send user so they can validate their email address before registering
             $userData['verifycode'] = (string)$code;
-            //When submitted, the $user variable now contains a lowercase value for email and recover question answers
-            //and a hashed password and recovery question answers
-            // print_r($userData); die;
+            //When submitted, the $user variable now contains a lowercase value for email
+            //and a hashed password
 
             $this->usersVerifyTable->save($userData);
             $to = (string)$userData['email'];
-            $subject = "Activation Code For bwwapps.com";
-            $message = "Your Activation Code is " . $code . "";
+            $subject = "Email account verfication for bwwapps.com";
+            ////////////// Beginning of url verify code extraction
+            $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+            $url = $url . "success?verifycode=" . $code;
+            $message = "<span>Click the following confirmation link to activate your bwwapps account: </span><a href='" . $url . "'>Confirm email</a>.  Or copy and paste the link into the <b>same browser</b> that you used to register your with.";
+            ////////////// END of url verify code extraction
+
             $id = 1;
             $apiVal = $this->mailTable->findById($id);
-            $apiData = $apiVal['api_val'];
+            $apiData = $apiVal['api_val']; //The api_val is required to be able to use PHPMailer with gmail below
 
             //using PHPMailer to send mail thru Gmail is limited to 99 emails per day.
             $mail = new PHPMailer();
@@ -144,7 +137,6 @@ class Register
             $mail->Send();
 
             $_SESSION['email'] = $to;
-            // $_SESSION['message'] = $message;
             header('Location: /user/registerverifycode');
         } else {
             //If the data is not valid, show the form again
@@ -159,10 +151,8 @@ class Register
         }
     }
 
-    public function renderVerifyCode()
+    public function renderConfirmationEmailNotification()
     {
-        // print_r('renderVerifyCode called'); die;
-        // print_r($message); die;
         return [
             'template' => 'registerverifycode.html.php',
             'title' => 'Register - Verification Code',
@@ -172,18 +162,16 @@ class Register
         ];
     }
 
-    public function registerUser()
+    public function registerUser($verifyData)
     {
-        $activationCode = $_POST['activationCode'];
-        // print_r($activationCode); die;
         //Assume the data is valid to begin with
         $valid = true;
         $errors = [];
 
         //But if any of the fields have been left blank, set $valid to false
-        if (empty($activationCode)) {
+        if (empty($verifyData)) {
             $valid = false;
-            $errors[] = 'The activation code cannot be blank';
+            $errors[] = 'Something went wrong.  Your account could not be validated.  Please try again.';
 
             return [
                 'template' => 'registerverifycode.html.php',
@@ -193,20 +181,14 @@ class Register
                 ],
             ];
         } else {
-            $verifyData = $this->usersVerifyTable->find('email', $_SESSION['email']);
             $user = [];
-            if ($verifyData[0]['verifycode'] == $activationCode) {
-                $user['fname'] = $verifyData[0]['fname'];
-                $user['lname'] = $verifyData[0]['lname'];
-                $user['email'] = $verifyData[0]['email'];
-                $user['password'] = $verifyData[0]['password'];
-                $user['firstanswer'] = $verifyData[0]['firstanswer'];
-                $user['secondanswer'] = $verifyData[0]['secondanswer'];
-                $user['thirdanswer'] = $verifyData[0]['thirdanswer'];
-                $this->usersTable->save($user);
-                $this->usersVerifyTable->delete($verifyData[0]['id']);
-                header('Location: /user/registersuccess');
-            }
+            $user['fname'] = $verifyData[0]['fname'];
+            $user['lname'] = $verifyData[0]['lname'];
+            $user['email'] = $verifyData[0]['email'];
+            $user['password'] = $verifyData[0]['password'];
+            $this->usersTable->save($user);
+            $this->usersVerifyTable->delete($verifyData[0]['id']);
+            header('Location: /user/registersuccess');
         }
     }
 }
