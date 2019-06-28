@@ -109,11 +109,9 @@ class Register
             $this->usersVerifyTable->save($userData);
             $to = (string)$userData['email'];
             $subject = "Email account verfication for bwwapps.com";
-            ////////////// Beginning of url verify code extraction
             $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             $url = $url . "success?verifycode=" . $code;
             $message = "<span>Click the following confirmation link to activate your bwwapps account: </span><a href='" . $url . "'>Confirm email</a>.  Or copy and paste the link into the <b>same browser</b> that you used to register your with.";
-            ////////////// END of url verify code extraction
 
             $id = 1;
             $apiVal = $this->mailTable->findById($id);
@@ -133,7 +131,6 @@ class Register
             $mail->Subject = $subject;
             $mail->Body = $message;
             $mail->AddAddress($to);
-
             $mail->Send();
 
             $_SESSION['email'] = $to;

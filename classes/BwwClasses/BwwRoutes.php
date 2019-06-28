@@ -41,7 +41,7 @@ class BwwRoutes implements \utilityClasses\Routes
         $this->buildingLevelsTable = new \utilityClasses\DatabaseTable($pdo, 'building_levels', 'LevelName');
         $this->buildingUnitsAllowedTable = new \utilityClasses\DatabaseTable($pdo, 'building_units_allowed', 'id');
         $this->mainUnitsTable = new \utilityClasses\DatabaseTable($pdo, 'main_units', 'Unit_Key');
-        $this->authentication = new \utilityClasses\Authentication($this->usersTable, 'email', 'password');
+        $this->authentication = new \utilityClasses\Authentication($this->usersTable, 'email', 'password', $this->usersVerifyTable, $this->mailTable);
     }
 
     public function getRoutes(): array
@@ -55,7 +55,7 @@ class BwwRoutes implements \utilityClasses\Routes
         $distanceconverterController = new \BwwClasses\Controllers\DistanceConverter();
         $pyramidController = new \BwwClasses\Controllers\Pyramid($this->usersTable, $this->pyramidUserMaxTable, $this->exerciseTypesTable, $this->authentication);
         $photosController = new \BwwClasses\Controllers\Photos($this->usersTable, $this->photosTable, $this->authentication);
-        $myaccountController = new \BwwClasses\Controllers\MyAccount($this->usersTable, $this->authentication);
+        $myaccountController = new \BwwClasses\Controllers\MyAccount($this->usersTable, $this->authentication, $this->usersVerifyTable);
         $shoppingListController = new \BwwClasses\Controllers\ShoppingList($this->shoppingCategoriesTable, $this->shoppingItemsTable, $this->authentication);
         $todoListController = new \BwwClasses\Controllers\TodoList($this->todoPriorityTable, $this->todoSortTable, $this->todoTable, $this->authentication, $this->buildingLevelsTable, $this->buildingUnitsAllowedTable, $this->mainUnitsTable, $this->todoFrequencyTable);
 
@@ -236,6 +236,16 @@ class BwwRoutes implements \utilityClasses\Routes
                     'controller' => $myaccountController,
                     'action' => 'recoverPassword',
                 ],
+            ],
+            'myaccount/passwordrecoveryreset' => [
+                'GET' => [
+                    'controller' => $myaccountController,
+                    'action' => 'renderReplaceLostPassword',
+                ],
+                'POST' => [
+                    'controller' => $myaccountController,
+                    'action' => 'createNewPassword',
+                ]
             ],
             'shoppinglist' => [
                 'GET' => [

@@ -3,10 +3,15 @@ namespace UtilityClasses;
 
 use Birke\Rememberme\Authenticator;
 use Birke\Rememberme\Storage\FileStorage;
+use \utilityClasses\DatabaseTable;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class Authentication
 {
     private $users; // $users is the users table
+    private $usersVerifyTable;
+    private $mailTable;
     private $usernameColumn;
     private $passwordColumn;
 
@@ -15,10 +20,12 @@ class Authentication
     private $rememberMe;
     private $loginResult;
 
-    public function __construct(DatabaseTable $users, $usernameColumn, $passwordColumn)
+    public function __construct(DatabaseTable $users, $usernameColumn, $passwordColumn, DatabaseTable $usersVerifyTable, DatabaseTable $mailTable)
     {
         session_start();
         $this->users = $users;
+        $this->usersVerifyTable = $usersVerifyTable;
+        $this->mailTable = $mailTable;
         $this->usernameColumn = $usernameColumn;
         $this->passwordColumn = $passwordColumn;
 
@@ -26,14 +33,11 @@ class Authentication
         $this->storagePath = dirname(__FILE__) . "/../../tokens/";
         // $newDirName = __DIR__ . '/../../../public/uploads/' . $newName;
         if (!is_writable($this->storagePath) || !is_dir($this->storagePath)) {
-            die(
-                "'$this->storagePath' does not exist or is not writable by the web server.\n" .
-                "To run the example, please create the directory and give it the correct permissions."
-            );
+            die("'$this->storagePath' does not exist or is not writable by the web server.\n" .
+                "To run the example, please create the directory and give it the correct permissions.");
         }
         $this->storage = new FileStorage($this->storagePath);
         $this->rememberMe = new Authenticator($this->storage);
-
     }
 
     public function login($username, $password)
@@ -89,7 +93,7 @@ class Authentication
 
         $user = $this->users->find($this->usernameColumn, strtolower($_SESSION['username']));
 
-        if (!empty($user) && $user[0][$this->passwordColumn] === $_SESSION['password']) {//getting error for undefined index password here
+        if (!empty($user) && $user[0][$this->passwordColumn] === $_SESSION['password']) { //getting error for undefined index password here
             return true;
         } else {
             return false;
@@ -106,38 +110,51 @@ class Authentication
         }
     }
 
-    public function recoverPassWord($email, $firstAnswer, $secondAnswer, $thirdAnswer)
+    public function recoverPassWord($email)
     {
         $email = strtolower($email);
-        $firstAnswer = strtolower($firstAnswer);
-        $secondAnswer = strtolower($secondAnswer);
-        $thirdAnswer = strtolower($thirdAnswer);
 
         $user = $this->users->find($this->usernameColumn, $email);
-        // print_r($user[0]['id']); die;
 
-        //Need to replace this if block with checking of the security answers
-        if (!empty($user) && password_verify($firstAnswer, $user[0]['firstanswer']) && password_verify($secondAnswer, $user[0]['secondanswer']) && password_verify($thirdAnswer, $user[0]['thirdanswer'])) {
-            // Generate a new temp password
-            $tempPassword = $this->random_password();
-            $tempPasswordHashed = password_hash($tempPassword, PASSWORD_DEFAULT);
-            // Update the db with the new $tempPassword
+        if (!empty($user)) { //If true then the user is in fact registered with the provided email
+            $token = substr(md5(mt_rand()), 0, 15); // generate a random tokencode to send with url so the user can click it and navigate to password reset page
+            $userData = [];
+            $userData['id'] = '';
+            $userData['fname'] = (string)$user[0]['fname'];
+            $userData['lname'] = (string)$user[0]['lname'];
+            $userData['email'] = strtolower($user[0]['email']);
+            $userData['password'] = (string)$user[0]['password'];
+            $userData['verifycode'] = (string)$token;
+            $this->usersVerifyTable->save($userData);
 
-            $accountInfo = $this->users->find('id', $user[0]['id']);
-            $accountData['id'] = (int) $user[0]['id'];
-            $accountData['fname'] = $accountInfo[0]['fname'];
-            $accountData['lname'] = $accountInfo[0]['lname'];
-            $accountData['email'] = $accountInfo[0]['email'];
-            $accountData['password'] = $tempPasswordHashed;
-            $accountData['firstanswer'] = $accountInfo[0]['firstanswer'];
-            $accountData['secondanswer'] = $accountInfo[0]['secondanswer'];
-            $accountData['thirdanswer'] = $accountInfo[0]['thirdanswer'];
-            $this->users->save($accountData);
 
-            session_regenerate_id();
-            $_SESSION['username'] = $email;
-            $_SESSION['password'] = $tempPasswordHashed;
-            return $tempPassword;
+            $to = (string)$email;
+            $subject = "Password Reset Request for bwwapps.com";
+            $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+            $url = $url . "reset?token=" . $token; // This is passwordrecoveryreset.html.php
+            $message = "<span><b>Attention: </b> You or someone on your behalf requested to reset your password for " . $_SERVER['HTTP_HOST'] . ".  If you did not request this you can safely disregard and delete this email.  However, if you do wish to reset your password please click the following link to be taken to password reset page: </span><a href='" . $url . "'>password reset</a>.";
+
+            $id = 1;
+            $apiVal = $this->mailTable->findById($id);
+            $apiData = $apiVal['api_val']; //The api_val is required to be able to use PHPMailer with gmail below
+
+            //using PHPMailer to send mail thru Gmail is limited to 99 emails per day.
+            $mail = new PHPMailer();
+            $mail->isSMTP();
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = '465';
+            $mail->isHTML();
+            $mail->Username = 'brian.w.worsham';
+            $mail->Password = $apiData;
+            $mail->SetFrom('no-reply@bwwapps.com');
+            $mail->Subject = $subject;
+            $mail->Body = $message;
+            $mail->AddAddress($to);
+            $mail->Send();
+
+            return true;
         } else {
             return false;
         }

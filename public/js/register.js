@@ -25,7 +25,7 @@ $(document).ready(function () {
             title: ""
         });
     });
-    $("#firstName, #lastName, #email, #password, #firstAnswer, #secondAnswer, #thirdAnswer").on("keyup blur change", function () {
+    $("#firstName, #lastName, #email, #password").on("keyup blur change", function () {
         var firstName = $("#firstName").val();
         var lastName = $("#lastName").val();
         var email = $("#email").val();
@@ -113,30 +113,9 @@ $(document).ready(function () {
     });
 });
 
-function ValidateEmail(mail) {
-    'use strict';
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
 function ValidateName(name) {
     'use strict';
     if (/^(?=.{1,45}$)[a-z]+(?:['_.\s][a-z]+)*$/i.test(name)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-//Must be at least one uppercase one lowercase and one number or symbol between 8-24 chars
-function ValidatePassword(password) {
-    'use strict';
-    if (/^(?=.*[\d\W])(?=.*[a-z])(?=.*[A-Z]).{8,24}$/.test(password)) {
         return true;
     }
     else {

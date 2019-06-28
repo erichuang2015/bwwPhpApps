@@ -7,11 +7,13 @@ use \utilityClasses\DatabaseTable;
 class MyAccount
 {
     private $usersTable;
+    private $usersVerifyTable;
     private $authentication;
 
-    public function __construct(DatabaseTable $usersTable, Authentication $authentication)
+    public function __construct(DatabaseTable $usersTable, Authentication $authentication, DatabaseTable $usersVerifyTable)
     {
         $this->usersTable = $usersTable;
+        $this->usersVerifyTable = $usersVerifyTable;
         $this->authentication = $authentication;
     }
 
@@ -20,7 +22,8 @@ class MyAccount
         $user = $this->authentication->getUser();
         $accountInfo = $this->usersTable->find('id', $user['id']);
         $loggedIn = $this->authentication->isLoggedIn();
-        return ['template' => 'myaccount.html.php',
+        return [
+            'template' => 'myaccount.html.php',
             'title' => $accountInfo[0]['fname'] . " " . $accountInfo[0]['lname'] . "'s Account",
             'variables' => [
                 'loggedIn' => $loggedIn,
@@ -35,8 +38,10 @@ class MyAccount
 
     public function success()
     {
-        return ['template' => 'registersuccess.html.php',
-            'title' => 'Registration Successful'];
+        return [
+            'template' => 'registersuccess.html.php',
+            'title' => 'Registration Successful'
+        ];
     }
 
     public function processUserRequest()
@@ -55,7 +60,8 @@ class MyAccount
         $user = $this->authentication->getUser();
         $accountInfo = $this->usersTable->find('id', $user['id']);
         $loggedIn = $this->authentication->isLoggedIn();
-        return ['template' => 'myaccount.html.php',
+        return [
+            'template' => 'myaccount.html.php',
             'title' => $accountInfo[0]['fname'] . ' ' . $accountInfo[0]['lname'] . "'s Account",
             'variables' => [
                 'loggedIn' => $loggedIn,
@@ -63,7 +69,8 @@ class MyAccount
                 'lname' => $accountInfo[0]['lname'],
                 'email' => $accountInfo[0]['email'],
                 'changePassword' => true,
-                'displayMainMenu' => false],
+                'displayMainMenu' => false
+            ],
         ];
     }
 
@@ -82,7 +89,8 @@ class MyAccount
             if ($isTheOldPwValid == false || $newPassword1 != $newPassword2) {
                 $errors[] = 'Invalid input.  Please try again.';
                 $valid = false;
-                return ['template' => 'myaccount.html.php',
+                return [
+                    'template' => 'myaccount.html.php',
                     'title' => $accountInfo[0]['fname'] . " " . $accountInfo[0]['lname'] . "'s Account - Change Password",
                     'variables' => [
                         'loggedIn' => $loggedIn,
@@ -97,29 +105,39 @@ class MyAccount
                 ];
             } else {
                 $newPassword1 = password_hash($newPassword1, PASSWORD_DEFAULT);
-                $accountData['id'] = (int) $user['id'];
+                $accountData['id'] = (int)$user['id'];
                 $accountData['fname'] = $accountInfo[0]['fname']; // update this to use lname and fname and pw recovery questions
                 $accountData['lname'] = $accountInfo[0]['lname'];
                 $accountData['email'] = $accountInfo[0]['email'];
                 $accountData['password'] = $newPassword1;
-                $accountData['firstanswer'] = $accountInfo[0]['firstanswer'];
-                $accountData['secondanswer'] = $accountInfo[0]['secondanswer'];
-                $accountData['thirdanswer'] = $accountInfo[0]['thirdanswer'];
                 $this->usersTable->save($accountData);
-                // $this->authentication->login($accountData['email'], $accountData['password']);
                 header('Location: /myaccount/passwordchangesuccess');
             }
         }
     }
 
-    private function changeEmail()
+    public function renderReplaceLostPassword()
     {
+        $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $query = parse_url($url, PHP_URL_QUERY);
+        parse_str($query, $queryCode);
 
-    }
-
-    private function changeUserName()
-    {
-
+        $verifyData = $this->usersVerifyTable->find('verifycode', $queryCode['token']);
+        $token = (string)$verifyData[0]['verifycode'];
+        if ($token) {
+            return [
+                'template' => 'passwordrecoveryreset.html.php',
+                'title' => 'Create your new password'
+            ];
+        } else {
+            //Todo: test this by inputting an invalid token, and make sure it renders as expected
+            $errorTxt = 'Your account could not be validated';
+            return [
+                'template' => 'passwordrecoveryreset.html.php',
+                'title' => 'Create your new password',
+                'errors' => $errorTxt
+            ];
+        }
     }
 
     public function renderPasswordChangeSuccess()
@@ -127,7 +145,8 @@ class MyAccount
         $user = $this->authentication->getUser();
         $accountInfo = $this->usersTable->find('id', $user['id']);
         $loggedIn = $this->authentication->isLoggedIn();
-        return ['template' => 'passwordchangesuccess.html.php',
+        return [
+            'template' => 'passwordchangesuccess.html.php',
             'title' => 'Password change successful',
             'variables' => [
                 'loggedIn' => $loggedIn,
@@ -137,26 +156,30 @@ class MyAccount
 
     public function renderPasswordRecovery()
     {
-        return ['template' => 'passwordrecovery.html.php',
+        return [
+            'template' => 'passwordrecovery.html.php',
             'title' => "Password recovery form",
         ];
     }
 
     public function recoverPassword()
     {
-        $user = $_POST['user'];
-        $tempPw = $this->authentication->recoverPassWord($user['email'], $user['firstanswer'], $user['secondanswer'], $user['thirdanswer']);
+        if (!empty($_POST['user'])) {
+            $user = $_POST['user']; // contains the user supplied email
+        }
+
+        $tempPw = $this->authentication->recoverPassWord($user['email']);
         if ($tempPw != false) {
-            //instead of redirecting to login/success render a page showing the new tempPw and telling the user to change it
-            // header('location: /login/success');
-            return ['template' => 'recoverpasswordsuccess.html.php',
-            'title' => 'Password recovery successful',
-            'variables' => [
-                'tempPw' => $tempPw,
-            ],
-        ];
+            return [
+                'template' => 'recoverpasswordemailsent.html.php',
+                'title' => 'Password recovery email sent',
+                'variables' => [
+                    'email' => $user['email'],
+                ],
+            ];
         } else {
-            return ['template' => 'passwordrecovery.html.php',
+            return [
+                'template' => 'passwordrecovery.html.php',
                 'title' => 'Password recovery form - Errors',
                 'variables' => [
                     'error' => 'One or more of your entries was incorrect.  Please try again.',
@@ -166,14 +189,61 @@ class MyAccount
     }
 
     public function home()
-	{
-		$title = "BWW Apps - home";
-		$loggedIn = $this->authentication->isLoggedIn();
-		return ['template' => 'home.html.php',
-		'title' => $title,
-		'variables' => [
-			'loggedIn' => $loggedIn
-		]
-	];
-	}
+    {
+        $title = "BWW Apps - home";
+        $loggedIn = $this->authentication->isLoggedIn();
+        return [
+            'template' => 'home.html.php',
+            'title' => $title,
+            'variables' => [
+                'loggedIn' => $loggedIn
+            ]
+        ];
+    }
+
+    //This function takes user input to create the replacement password after the user has requested to create a new password because they forgot their old one
+    public function createNewPassword()
+    {
+        $valid = true;
+        $loggedIn = $this->authentication->isLoggedIn();
+        $errors = [];
+        $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        if (empty($_POST['newpassword'])) {
+            //todo: add server side pw validation
+            //todo: Passwords must be more than 7 and less than 25 characters in length.  They must contain at lease one number, one uppercase and one lowercase alphabetical character, and may contain special characters.
+            $valid = false;
+            $errors[] = 'Please enter a valid password';
+        }
+        if ($valid) {
+            $newPassWord = password_hash($_POST['newpassword'], PASSWORD_DEFAULT);
+            $query = parse_url($url, PHP_URL_QUERY);
+            parse_str($query, $queryCode);
+            $verifyData = $this->usersVerifyTable->find('verifycode', $queryCode['token']);
+            $userData = $this->usersTable->find('email', $verifyData[0]['email']);
+            $user = [];
+            $user['id'] = $userData[0]['id'];
+            $user['fname'] = $userData[0]['fname'];
+            $user['lname'] = $userData[0]['lname'];
+            $user['email'] = $userData[0]['email'];
+            $user['password'] = $newPassWord;
+            $this->usersTable->save($user);
+            $this->usersVerifyTable->delete($verifyData[0]['id']);
+            return [
+                'template' => 'passwordresetsuccess.html.php',
+                'title' => 'Password Reset Successful',
+                'variables' => [
+                    'loggedIn' => $loggedIn
+                ]
+            ];
+        } else {
+            //return page with errors
+            return [
+                'template' => 'passwordrecoveryreset.html.php',
+                'title' => 'Password recovery form - Error',
+                'variables' => [
+                    'error' => 'Something went wrong.  Please try again.',
+                ]
+            ];
+        }
+    }
 }

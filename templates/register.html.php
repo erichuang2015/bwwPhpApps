@@ -54,30 +54,6 @@
                     <div class="invalid-feedback"><span id="passwordInputError"></span></div>
                 </div>
 
-                <!-- <hr class="mb-4"> -->
-
-                <!-- <h4 class="mb-3">Password Recovery Questions</h4>
-
-                <div class="mb-3">
-                    <label for="firstAnswer">When you were young, what did you want to be when you grew up?</label>
-                    <input type="text" id="firstAnswer" name="user[firstanswer]" class="form-control" value="" autocomplete="off" required>
-                    <div class="invalid-feedback"><span id="firstAnswerInputError"></span></div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="secondAnswer">Who was your childhood hero?</label>
-                    <input type="text" id="secondAnswer" name="user[secondanswer]" class="form-control" value="" autocomplete="off" required>
-                    <div class="invalid-feedback"><span id="secondAnswerInputError"></span></div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="thirdAnswer">Where was your best family vacation as a kid?</label>
-                    <input type="text" id="thirdAnswer" name="user[thirdanswer]" class="form-control" value="" autocomplete="off" required>
-                    <div class="invalid-feedback"><span id="thirdAnswerInputError"></span></div>
-                </div>
-
-                <hr class="mb-4"> -->
-
                 <div class="col-md-4 pl-0">
                     <input class="btn btn-lg btn-primary btn-block" type="submit" id="submitBtn" name="submit" value="Register account" disabled>
                 </div>
@@ -86,4 +62,5 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/js/Utils.js"></script>
 <script type="text/javascript" src="/js/register.js"></script>

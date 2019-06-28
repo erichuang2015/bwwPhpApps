@@ -32,3 +32,24 @@ function checkSize(){
         return largeScreen;
     }
 }
+
+function ValidateEmail(mail) {
+    'use strict';
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+//Must be at least one uppercase one lowercase and one number or symbol between 8-24 chars
+function ValidatePassword(password) {
+    'use strict';
+    if (/^(?=.*[\d\W])(?=.*[a-z])(?=.*[A-Z]).{8,24}$/.test(password)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
