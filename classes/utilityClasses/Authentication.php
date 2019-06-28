@@ -132,7 +132,7 @@ class Authentication
             $subject = "Password Reset Request for bwwapps.com";
             $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             $url = $url . "reset?token=" . $token; // This is passwordrecoveryreset.html.php
-            $message = "<span><b>Attention: </b> You or someone on your behalf requested to reset your password for " . $_SERVER['HTTP_HOST'] . ".  If you did not request this you can safely disregard and delete this email.  However, if you do wish to reset your password please click the following link to be taken to password reset page: </span><a href='" . $url . "'>password reset</a>.";
+            $message = "<span><b>Attention: </b> You or someone on your behalf requested to reset your password for " . $_SERVER['HTTP_HOST'] . ".  If you did not request this you can safely disregard and delete this email.  However, if you do wish to reset your password please click the following link to be taken to the password reset page: </span><a href='" . $url . "'>password reset</a>.";
 
             $id = 1;
             $apiVal = $this->mailTable->findById($id);
