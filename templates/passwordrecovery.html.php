@@ -11,8 +11,6 @@
 </div>
 <?php endif; ?>
 
-
-<!-- Todo: Replace this with an email that allows the user to reset their password -->
 <div class="container registration">
     <div class="py-5 text-center">
         <!-- <img class="d-block mx-auto mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->

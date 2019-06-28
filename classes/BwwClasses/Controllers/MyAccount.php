@@ -1,4 +1,5 @@
 <?php
+
 namespace BwwClasses\Controllers;
 
 use \utilityClasses\Authentication;
@@ -105,7 +106,7 @@ class MyAccount
                 ];
             } else {
                 $newPassword1 = password_hash($newPassword1, PASSWORD_DEFAULT);
-                $accountData['id'] = (int)$user['id'];
+                $accountData['id'] = (int) $user['id'];
                 $accountData['fname'] = $accountInfo[0]['fname']; // update this to use lname and fname and pw recovery questions
                 $accountData['lname'] = $accountInfo[0]['lname'];
                 $accountData['email'] = $accountInfo[0]['email'];
@@ -123,7 +124,7 @@ class MyAccount
         parse_str($query, $queryCode);
 
         $verifyData = $this->usersVerifyTable->find('verifycode', $queryCode['token']);
-        $token = (string)$verifyData[0]['verifycode'];
+        $token = (string) $verifyData[0]['verifycode'];
         if ($token) {
             return [
                 'template' => 'passwordrecoveryreset.html.php',
@@ -208,9 +209,11 @@ class MyAccount
         $loggedIn = $this->authentication->isLoggedIn();
         $errors = [];
         $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $pattern = '/^(?=.*[\d\W])(?=.*[a-z])(?=.*[A-Z]).{8,24}$/';
         if (empty($_POST['newpassword'])) {
-            //todo: add server side pw validation
-            //todo: Passwords must be more than 7 and less than 25 characters in length.  They must contain at lease one number, one uppercase and one lowercase alphabetical character, and may contain special characters.
+            $valid = false;
+            $errors[] = 'Please enter a valid password';
+        } else if (!preg_match($pattern, $_POST['newpassword'])) {
             $valid = false;
             $errors[] = 'Please enter a valid password';
         }
@@ -241,7 +244,7 @@ class MyAccount
                 'template' => 'passwordrecoveryreset.html.php',
                 'title' => 'Password recovery form - Error',
                 'variables' => [
-                    'error' => 'Something went wrong.  Please try again.',
+                    'errors' => $errors,
                 ]
             ];
         }

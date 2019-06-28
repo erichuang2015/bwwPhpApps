@@ -1,4 +1,5 @@
 <?php
+
 namespace BwwClasses\Controllers;
 
 use \utilityClasses\DatabaseTable;
@@ -32,7 +33,7 @@ class Register
         $query = parse_url($url, PHP_URL_QUERY);
         parse_str($query, $queryCode);
         $verifyData = $this->usersVerifyTable->find('email', $_SESSION['email']);
-        $token = (string)$verifyData[0]['verifycode'];
+        $token = (string) $verifyData[0]['verifycode'];
         if ($queryCode['verifycode'] == $token) {
             $this->registerUser($verifyData);
             return [
@@ -88,12 +89,13 @@ class Register
                 $errors[] = 'That email address is already registered';
             }
         }
-
+        $pattern = '/^(?=.*[\d\W])(?=.*[a-z])(?=.*[A-Z]).{8,24}$/';
         if (empty($user['password'])) {
-            //todo: add server side pw validation
-            //todo: Passwords must be more than 7 and less than 25 characters in length.  They must contain at lease one number, one uppercase and one lowercase alphabetical character, and may contain special characters.
             $valid = false;
             $errors[] = 'Password cannot be blank';
+        } else if (!preg_match($pattern, $user['password'])) {
+            $valid = false;
+            $errors[] = 'Please enter a valid password';
         }
 
         //If $valid is still true, no fields were blank and the data can be added
@@ -102,12 +104,12 @@ class Register
             $userData['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
 
             $code = substr(md5(mt_rand()), 0, 15); // generate a random code to send user so they can validate their email address before registering
-            $userData['verifycode'] = (string)$code;
+            $userData['verifycode'] = (string) $code;
             //When submitted, the $user variable now contains a lowercase value for email
             //and a hashed password
 
             $this->usersVerifyTable->save($userData);
-            $to = (string)$userData['email'];
+            $to = (string) $userData['email'];
             $subject = "Email account verfication for bwwapps.com";
             $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
             $url = $url . "success?verifycode=" . $code;
