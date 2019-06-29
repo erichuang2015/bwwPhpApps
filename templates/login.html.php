@@ -8,13 +8,13 @@
     </div>
 </div>
 <?php endif; ?>
-<div class="login container">
+<div class="login container mt-0">
     <div class="row">
         <div class="col-1"></div>
         <div class="col-10">
-            <form method="post" action="" id="loginForm" class="form-signin needs-validation" novalidate>
-                <img class="mb-4" src="/css/images/brand-logo-template.svg" alt="BWW Apps" height="400">
-                <h1 class="h3 mb-3 font-weight-normal text">Please sign in</h1>
+            <form method="post" action="" id="loginForm" class="form-signin needs-validation p-0" novalidate>
+                <img class="mb-2 logo" src="/css/images/brand-logo-template.svg" alt="BWW Apps">
+                <h1 class="h3 mb-2 font-weight-normal text">Please sign in</h1>
                 <div class="form-check">
                     <label for="email" class="sr-only form-check-label">Email address</label>
                     <input type="email" id="email" name="email" class="form-control text form-check-input" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Email address" required autofocus>
@@ -25,7 +25,7 @@
                     <input type="password" id="password" name="password" maxlength="24" class="form-control text form-check-input" placeholder="Password" required>
                     <div class="invalid-feedback"><span id="passwordInputError"></span></div>
                 </div>
-                <div class="checkbox mb-3">
+                <div class="checkbox mb-3 mt-2">
                     <label class="text">
                         <input name="rememberme" type="checkbox" value="remember-me"> Remember me
                     </label>

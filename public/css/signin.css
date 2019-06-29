@@ -7,23 +7,30 @@ body {
   display: flex;
   -ms-flex-align: center;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
   background-color: #f5f5f5;
   width: 100%;
+  margin-bottom: 0;
 }
 
 main {
   width: 100%;
 }
 
-img {
-  width: 100%;
-  max-height: 465px;
+img.logo {
+  height: 513px;
 }
 
 div.login.container {
   margin-top: 1rem;
+}
+
+div.form-check {
+  width: 53rem;
+}
+
+div.invalid-feedback {
+  position: relative;
+  right: 1rem;
 }
 
 .form-signin {
@@ -50,7 +57,6 @@ div.login.container {
 }
 
 .form-signin input[type="email"] {
-  margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -73,8 +79,8 @@ span.forgot-pw a {
   margin-top: 4%;
 }
 
-.footer{
-  bottom:-1rem;
+.footer {
+  bottom: -1rem;
 }
 
 /* .box.flex {
@@ -89,7 +95,7 @@ span.forgot-pw a {
     max-height: 395px;
     width: 100%;
   }
-  main{
+  main {
     height: 100%;
   }
   div.login.container {
@@ -118,12 +124,86 @@ span.forgot-pw a {
 
 /* Firefox Browser styles end */
 
+/*iPad Pro*/
+
+@media (max-width: 1024px) {
+  img.logo {
+    height: 477px;
+  }
+  div.form-check {
+    width: 49.25rem;
+  }
+  .footer {
+    bottom: 0;
+  }
+}
+
+/*/////////////////////////*/
+
+/*iPad*/
+
+@media (max-width: 768px) {
+  img.logo {
+    height: 350px;
+  }
+  div.form-check {
+    width: 36.8rem;
+  }
+  .footer {
+    bottom: 0;
+  }
+}
+
+/*/////////////////////////*/
+
 /*iPhone6 Plus*/
 
 @media (max-width: 415px) {
-  div.login.container {
-    margin-top: 15px;
-    margin-bottom: 15px;
+  img.logo {
+    height: 193px;
+  }
+  div.invalid-feedback {
+    position: relative;
+    right: 1rem;
+  }
+  .footer {
+    bottom: 0;
+  }
+  div.form-check {
+    width: 21rem;
+  }
+}
+
+/*/////////////////////////*/
+
+/*Pixel 2 XL*/
+
+@media (max-width: 411px) {
+  div.form-check {
+    width: 20.5rem;
+  }
+}
+
+/*/////////////////////////*/
+
+/*iPhone X*/
+
+@media (max-width: 375px) {
+  div.form-check {
+    width: 19rem;
+  }
+}
+
+/*/////////////////////////*/
+
+/*Galaxy S5*/
+
+@media (max-width: 360px) {
+  div.form-check {
+    width: 18rem;
+  }
+  .footer {
+    bottom: -1rem;
   }
 }
 
@@ -133,7 +213,20 @@ span.forgot-pw a {
 
 @media (max-width: 320px) {
   div.login.container {
-    margin-top: 5em;
+    margin-top: 5rem!important;
+  }
+  img.logo {
+    height: 146px;
+  }
+  div.invalid-feedback {
+    position: relative;
+    right: 1rem;
+  }
+  .footer {
+    bottom: -4rem;
+  }
+  div.form-check {
+    width: 16rem;
   }
 }
 
