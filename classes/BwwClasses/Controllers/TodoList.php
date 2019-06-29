@@ -1,4 +1,5 @@
 <?php
+
 namespace BwwClasses\Controllers;
 
 use \utilityClasses\Authentication;
@@ -44,11 +45,11 @@ class TodoList
             } else {
                 //if the user has sorted in the past then their last preference is saved - use it
                 $userIdCol = "user_id_num";
-                $userIdNum = (int)$user['id'];
+                $userIdNum = (int) $user['id'];
                 $userSort = $this->todoSortTable->find($userIdCol, $userIdNum);
                 if (!empty($userSort)) {
                     $sortColumn = $userSort[0]['column'];
-                    $sortDirection = (string)$userSort[0]['direction'];
+                    $sortDirection = (string) $userSort[0]['direction'];
                     $todos = $this->todoTable->findAllSorted($sortColumn, $sortDirection);
                 } else {
                     $todos = $this->todoTable->findAll();
@@ -61,13 +62,13 @@ class TodoList
                 $dueDate = date_create($todo['due_date']);
                 $stringDueDate = date_format($dueDate, "n/j/y");
                 $currentUserTodos[] = [
-                    'id' => (int)$todo['id'],
-                    'due_date' => (string)$stringDueDate,
-                    'title' => (string)$todo['title'],
-                    'todo_priority' => (int)$todo['todo_priority'],
-                    'percent_complete' => (int)$todo['percent_complete'],
-                    'notes' => (string)$todo['notes'],
-                    'todo_frequency' => (int)$todo['frequency']
+                    'id' => (int) $todo['id'],
+                    'due_date' => (string) $stringDueDate,
+                    'title' => (string) $todo['title'],
+                    'todo_priority' => (int) $todo['todo_priority'],
+                    'percent_complete' => (int) $todo['percent_complete'],
+                    'notes' => (string) $todo['notes'],
+                    'todo_frequency' => (int) $todo['frequency']
                 ];
             }
             return [
@@ -117,7 +118,7 @@ class TodoList
         $format = "m/d/Y";
         $onceOnly = 1;
         $validDate = $this->processDate($inputData['date']);
-        $validTaskName = $this->validateTaskName((string)$inputData['taskname']);
+        $validTaskName = $this->validateTaskName((string) $inputData['taskname']);
         $validPriorityLevel = $this->validatePriorityLevel($inputData['prioritylevel']);
         if (!$validDate) {
             $errors[] = 'Enter a valid date';
@@ -134,12 +135,12 @@ class TodoList
             return $pageWithErrors;
         } else {
             $newTaskData['due_date'] = date_create_from_format($format, $inputData['date']);
-            $newTaskData['title'] = (string)$inputData['taskname'];
-            $newTaskData['todo_priority'] = (int)$inputData['prioritylevel'];
+            $newTaskData['title'] = (string) $inputData['taskname'];
+            $newTaskData['todo_priority'] = (int) $inputData['prioritylevel'];
             $newTaskData['percent_complete'] = 0;
-            $newTaskData['notes'] = (string)$inputData['notesinput'];
-            $newTaskData['user_id'] = (int)$user['id'];
-            $newTaskData['frequency'] = (!empty($inputData['frequency'])) ? (int)$inputData['frequency'] : $onceOnly;
+            $newTaskData['notes'] = (string) $inputData['notesinput'];
+            $newTaskData['user_id'] = (int) $user['id'];
+            $newTaskData['frequency'] = (!empty($inputData['frequency'])) ? (int) $inputData['frequency'] : $onceOnly;
             $newTaskData['end_date'] = (!empty($inputData['enddate'])) ? date_create_from_format($format, $inputData['enddate']) : null;
             $this->todoTable->save($newTaskData);
             header('location: /todolist');
@@ -161,7 +162,7 @@ class TodoList
                 $this->todoTable->delete($deleteTodoId);
             }
         }
-        switch ((int)$deleteTodo['frequency']) {
+        switch ((int) $deleteTodo['frequency']) {
             case 1:
                 $this->todoTable->delete($deleteTodoId);
                 break;
@@ -204,7 +205,7 @@ class TodoList
             if (!empty($editIds[$index])) {
 
                 $editTodo = [];
-                $editTodo['id'] = (int)$editIds[$index];
+                $editTodo['id'] = (int) $editIds[$index];
 
                 $editedTodo = $this->todoTable->findById($editIds[$index]); // retrieve this todo from the DB so we can compare the data to user input
 
@@ -219,33 +220,33 @@ class TodoList
                     }
                 }
                 if (!empty($edittasks[$index])) {
-                    $validTaskName = $this->validateTaskName((string)$edittasks[$index]);
+                    $validTaskName = $this->validateTaskName((string) $edittasks[$index]);
                     if ($validTaskName) {
-                        $editTodo['title'] = (string)$edittasks[$index];
+                        $editTodo['title'] = (string) $edittasks[$index];
                     } else {
                         $errors[] = 'Task title cannot be left blank';
                     }
                 }
                 $validPriorityLevel = $this->validatePriorityLevel($editprioritylevels[$index]);
                 if ($validPriorityLevel) {
-                    $editTodo['todo_priority'] = (int)$editprioritylevels[$index];
+                    $editTodo['todo_priority'] = (int) $editprioritylevels[$index];
                 } else {
                     $errors[] = 'Select a priority level';
                 }
-                if (!empty($editpercentcompletes[$index]) || (int)$editpercentcompletes[$index] == 0) {
-                    if ((int)$editpercentcompletes[$index] == 100) {
+                if (!empty($editpercentcompletes[$index]) || (int) $editpercentcompletes[$index] == 0) {
+                    if ((int) $editpercentcompletes[$index] == 100) {
                         $editTodo['percent_complete'] = 0;
                         $this->deleteTask($editTodo['id']);
                     } else {
-                        $editTodo['percent_complete'] = (int)$editpercentcompletes[$index];
+                        $editTodo['percent_complete'] = (int) $editpercentcompletes[$index];
                     }
                 }
                 if (!empty($editusersnotes[$index])) {
-                    $editTodo['notes'] = (string)$editusersnotes[$index];
+                    $editTodo['notes'] = (string) $editusersnotes[$index];
                 }
-                $editTodo['user_id'] = (int)$user['id'];
+                $editTodo['user_id'] = (int) $user['id'];
                 if (!empty($editfrequencylevels[$index])) {
-                    $editTodo['frequency'] = (int)$editfrequencylevels[$index];
+                    $editTodo['frequency'] = (int) $editfrequencylevels[$index];
                 }
                 $this->todoTable->save($editTodo);
             }
@@ -260,16 +261,16 @@ class TodoList
 
     public function sort($colToSort, $user)
     {
-        $colToSort = (string)$colToSort;
+        $colToSort = (string) $colToSort;
         $userIdCol = "user_id_num";
-        $userIdNum = (int)$user['id'];
+        $userIdNum = (int) $user['id'];
         $userSort = $this->todoSortTable->find($userIdCol, $userIdNum);
         $sortData = [];
         //If the user has sorted before we will get their sort state and toggle based on it
         if (!empty($userSort)) {
-            $sortData['id'] = (int)$userSort[0]['id'];
+            $sortData['id'] = (int) $userSort[0]['id'];
             $sortData['column'] = $colToSort;
-            $sortData['direction'] = ((string)$userSort[0]['direction'] == 'ASC' && $userSort[0]['column'] == $colToSort) ? 'DESC' : 'ASC'; //if the col to sort is already sorted as 'ASC' then toggle else set
+            $sortData['direction'] = ((string) $userSort[0]['direction'] == 'ASC' && $userSort[0]['column'] == $colToSort) ? 'DESC' : 'ASC'; //if the col to sort is already sorted as 'ASC' then toggle else set
             $sortData['user_id_num'] = $userIdNum;
             $this->todoSortTable->save($sortData);
         } else {
@@ -296,7 +297,7 @@ class TodoList
                 $buildingUnitsAllowedData['id'] = $id;
                 $buildingUnitsAllowedData['building'] = $buildingLevels[$level]['LevelName'];
                 $buildingUnitsAllowedData['unit'] = $mainUnit['Unit_Key'];
-                $buildingUnitsAllowedData['xp'] = (int)$buildingLevels[$level]['Level'];
+                $buildingUnitsAllowedData['xp'] = (int) $buildingLevels[$level]['Level'];
                 $buildingUnitsAllowedData['conditions'] = '';
                 $buildingUnitsAllowedData['faction'] = '';
                 $buildingUnitsAllowedData['enabled'] = 'false';
@@ -343,7 +344,7 @@ class TodoList
         if (!$priorityLevel) {
             return false;
         }
-        $priorityLevel = (int)$priorityLevel;
+        $priorityLevel = (int) $priorityLevel;
         if ($priorityLevel > 0 && $priorityLevel < 4) {
             return true;
         } else {
@@ -367,12 +368,12 @@ class TodoList
         $editpercentcompletes = [];
         $editusersnotes = [];
         $editfrequencylevels = [];
-        $editIds[] = (int)$deleteTodo['id'];
-        $edittasks[] = (string)$deleteTodo['title'];
-        $editprioritylevels[] = (int)$deleteTodo['todo_priority'];
-        $editpercentcompletes[] = (int)$deleteTodo['percent_complete'];
-        $editusersnotes[] = (string)$deleteTodo['notes'];
-        $editfrequencylevels[] = (int)$deleteTodo['frequency'];
+        $editIds[] = (int) $deleteTodo['id'];
+        $edittasks[] = (string) $deleteTodo['title'];
+        $editprioritylevels[] = (int) $deleteTodo['todo_priority'];
+        $editpercentcompletes[] = 0;
+        $editusersnotes[] = (string) $deleteTodo['notes'];
+        $editfrequencylevels[] = (int) $deleteTodo['frequency'];
         $newDate = date_create($deleteTodo['due_date']);
         $newDate = date_add($newDate, date_interval_create_from_date_string($timeSpan));
         $strDate = $newDate->format($format);
