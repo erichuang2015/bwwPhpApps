@@ -2,7 +2,6 @@
 <?php if (!empty($errors)) : ?>
 <div class="container fill-height">
     <div class="alert alert-danger" role="alert">
-        <!--Need to replace this css errors class with bootstrap version -->
         <p>Your account could not be created, please check the following:</p>
         <ul>
             <?php foreach ($errors as $error) : ?>

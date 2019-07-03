@@ -11,7 +11,6 @@
 
         <?php if (!empty($errors)) : ?>
         <div class="alert alert-danger" role="alert">
-            <!-- Todo: Replace this css errors class with bootstrap version -->
             <p>There was a problem with your task input. Please check the following:</p>
             <ul>
                 <?php foreach ($errors as $error) : ?>

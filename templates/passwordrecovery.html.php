@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="/css/register.css">
 <?php if (!empty($errors)) : ?>
-<div class="errors">
-    <!--Need to replace this css errors class with bootstrap version -->
+<div class="alert alert-danger" role="alert">
     <p>Your password could not be recovered. Please check the following:</p>
     <ul>
         <?php foreach ($errors as $error) : ?>

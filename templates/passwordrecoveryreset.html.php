@@ -1,14 +1,13 @@
 <!-- <link rel="stylesheet" href="/css/myaccount.css"> -->
 <?php if (!empty($errors)) : ?>
-<div class="errors">
-    <!--Need to replace this css errors class with bootstrap version -->
-    <p>Your password could not be recovered. Please check the following:</p>
-    <ul>
-        <?php foreach ($errors as $error) : ?>
-        <li><?= $error ?></li>
-        <?php endforeach; ?>
-    </ul>
-</div>
+    <div class="alert alert-danger" role="alert">
+        <p>Your password could not be recovered. Please check the following:</p>
+        <ul>
+            <?php foreach ($errors as $error) : ?>
+                <li><?= $error ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
 <?php endif; ?>
 
 <!-- Main jumbotron for a primary marketing message or call to action -->
