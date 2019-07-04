@@ -12,7 +12,7 @@
             "request": "launch",
             "port": 9000,
             "pathMappings": {
-                "/home/vagrant/Code": "/myGit/VM/noviceToNinja"
+                "/home/vagrant/Code": "/myGit/VM/bwwapps"
             }
         },
         {
@@ -28,7 +28,7 @@
             "type": "php",
             "request": "launch",
             "pathMappings": {
-                "/home/vagrant/Code": "/myGit/VM/noviceToNinja"
+                "/home/vagrant/Code": "/myGit/VM/bwwapps"
             },
             "port": 9000
         },
@@ -37,7 +37,7 @@
             "type": "chrome",
             "request": "launch",
             "url": "http://bww.phpapps/",
-            "webRoot": "/myGit/VM/noviceToNinja",
+            "webRoot": "/myGit/VM/bwwapps",
             "port": 9000
         }
     ]
