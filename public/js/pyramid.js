@@ -26,6 +26,9 @@ $(document).ready(function () {
     var errorSelector = $("#maxNotLoggedError");
     var maxNotLogged = $("#maxNotLogged").val();
     var submitBtn = $("#submit");
+    if(!isNaN($(maxSelector).val())){
+        $(submitLoggedIn).removeAttr("disabled");
+    }
     validateMaxInput(selector, errorSelector, maxNotLogged, submitBtn);
 
     $("#maxInputForm").hide();

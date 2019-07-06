@@ -57,6 +57,7 @@ class EntryPoint
             } else {
                 $output = $this->loadTemplate($page['template']);
             }
+//            phpinfo();die;
             echo $this->loadTemplate('layout.html.php', [
                 'loggedIn' => $loggedIn,
                 'output' => $output,

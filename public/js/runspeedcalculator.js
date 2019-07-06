@@ -32,6 +32,13 @@ $(document).ready(function () {
         });
     });
 
+    isMilesValid = ValidateDistance($("#distance").val());
+    isMinutesValid = ValidateMinutes($("#runMinutes").val());
+    isSecondsValid = ValidateSeconds($("#runSeconds").val());
+    if(isMilesValid && isMinutesValid && isSecondsValid){
+        $("#btnSubmitRunSpeed").removeAttr("disabled");
+    }
+
     $("#distance").on("keyup change", function (e) {
         if (ValidateDistance($(this).val())) {
             $("#distanceError").text("");
