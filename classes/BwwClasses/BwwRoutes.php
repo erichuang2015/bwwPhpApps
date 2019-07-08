@@ -58,6 +58,7 @@ class BwwRoutes implements \utilityClasses\Routes
         $myaccountController = new \BwwClasses\Controllers\MyAccount($this->usersTable, $this->authentication, $this->usersVerifyTable);
         $shoppingListController = new \BwwClasses\Controllers\ShoppingList($this->shoppingCategoriesTable, $this->shoppingItemsTable, $this->authentication);
         $todoListController = new \BwwClasses\Controllers\TodoList($this->todoPriorityTable, $this->todoSortTable, $this->todoTable, $this->authentication, $this->buildingLevelsTable, $this->buildingUnitsAllowedTable, $this->mainUnitsTable, $this->todoFrequencyTable);
+        $aboutController = new \BwwClasses\Controllers\About();
 
         $routes = [
             'user/register' => [
@@ -268,6 +269,12 @@ class BwwRoutes implements \utilityClasses\Routes
                     'action' => 'processUserRequest',
                 ],
                 'login' => true,
+            ],
+            'about' => [
+                'GET' => [
+                    'controller' => $aboutController,
+                    'action' => 'render',
+                ],
             ],
             '' => [
                 'GET' => [

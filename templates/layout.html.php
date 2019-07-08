@@ -70,9 +70,7 @@
                             <a class="nav-link dropdown-toggle" href="" id="dropdownHelp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Help</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownHelp">
                                 <a class="dropdown-item" href="/myaccount">My Account</a>
-                                <!-- <a class="dropdown-item" href="/">Settings</a> -->
-                                <!-- <a class="dropdown-item" href="/">About</a>
-							<a class="dropdown-item" href="/">Credits</a> -->
+                                <a class="dropdown-item" href="/about">About</a>
                             </div>
                         </li>
 
