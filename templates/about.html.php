@@ -17,15 +17,15 @@
                 <dd>Used to provide a pre-packaged Vagrant box with all server already configured</dd>
                 <dt> <a href="https://www.virtualbox.org/" target="_blank">Virtual Box</a></dt>
                 <dd>Used to create a virtual machine where the server resides</dd>
-                <dt> <a href="https://www.php.net/" target="_blank">PHP7</a></dt>
+                <dt> <a href="https://www.php.net/" target="_blank">PHP7.3</a></dt>
                 <dd>Used to write the server code and interact with the database</dd>
-                <dt> <a href="https://www.vagrantup.com/" target="_blank">JavaScript ECMA6</a></dt>
+                <dt> <a href="https://www.ecma-international.org/ecma-262/6.0/" target="_blank">JavaScript ECMA6</a></dt>
                 <dd>Used to write all the front end code</dd>
-                <dt> <a href="https://www.vagrantup.com/" target="_blank">CSS3</a></dt>
+                <dt> <a href="https://www.w3.org/TR/CSS/#css" target="_blank">CSS3</a></dt>
                 <dd>Used to apply custum styling the pages</dd>
-                <dt> <a href="https://www.vagrantup.com/" target="_blank">HTML5</a></dt>
+                <dt> <a href="https://www.w3.org/TR/2017/REC-html52-20171214/" target="_blank">HTML5</a></dt>
                 <dd>Used to structure the web pages</dd>
-                <dt> <a href="https://www.vagrantup.com/" target="_blank">Bootstrap 4</a></dt>
+                <dt> <a href="https://getbootstrap.com/" target="_blank">Bootstrap 4</a></dt>
                 <dd>This is a rich styling library that greatly simplified the process styling this website</dd>
             </dl>
         </div>
@@ -38,7 +38,7 @@
             <p class="card-text">Software Developer by day, Fitness Fanatic by night. Brian is a hard working Texan who
                 enjoys developing high quality software programs.</p>
             <p class="card-text">When Brian isn't behind a keyboard churning out new software, you might find him
-                counting carbs and calories or working out at the <a href="https://thefieldhousegymtx.com/harker-heights-field-house/">Field House Gym</a> in Harker Heights, TX.</p>
+                counting carbs and calories or working out at the <a href="https://thefieldhousegymtx.com/harker-heights-field-house/" target="_blank">Field House Gym</a> in Harker Heights, TX.</p>
             <div class="row mb-3">
                 <div class="col-6">
                     <span class="font-weight-bold d-block">WORK</span>
