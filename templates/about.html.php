@@ -21,6 +21,10 @@
                 <dd>- Used to write the server code and interact with the database</dd>
                 <dt> <a href="https://www.ecma-international.org/ecma-262/6.0/" target="_blank">JavaScript ECMA6</a></dt>
                 <dd>- Used to write all the front end code</dd>
+                <dt> <a href="https://jquery.com/" target="_blank">jQuery</a></dt>
+                <dd>- This is a powerful javascript library which simplifies selecting elements within the document object model.</dd>
+                <dt> <a href="https://gijgo.com/datepicker" target="_blank">GIJGO</a></dt>
+                <dd>- Used their Datepicker plug-in for the front end calendar functionality.</dd>
                 <dt> <a href="https://www.w3.org/TR/CSS/#css" target="_blank">CSS3</a></dt>
                 <dd>- Used to apply custom styling to the pages</dd>
                 <dt> <a href="https://www.w3.org/TR/2017/REC-html52-20171214/" target="_blank">HTML5</a></dt>
@@ -31,7 +35,12 @@
                 <dd>- Used for version control</dd>
                 <dt> <a href="https://github.com/PHPMailer/PHPMailer" target="_blank">PHPMailer</a></dt>
                 <dd>- Used to create and send emails from the server</dd>
+                <dt> <a href="https://fontawesome.com/" target="_blank">Font Awesome</a></dt>
+                <dd>- Font awesome is where I got the calendar icons for the To Do List page</dd>
+                <dt> <a href="https://fontawesome.com/" target="_blank">Open Iconic</a></dt>
+                <dd><span>- Open Iconic is where I got the </span><img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information icon" width="12px" height="12px"> <span> tooltip icons used throughout the site</span></dd>
             </dl>
+            <p><span>If you would like to view the source code for this website you may do so here: </span><a href="https://github.com/brian-w-worsham/bwwPhpApps" target="_blank">My Github Repo</a></p>
         </div>
     </div>
     <div class="card">
