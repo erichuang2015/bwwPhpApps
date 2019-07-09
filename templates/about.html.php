@@ -36,11 +36,11 @@
                 <dt> <a href="https://github.com/PHPMailer/PHPMailer" target="_blank">PHPMailer</a></dt>
                 <dd>- Used to create and send emails from the server</dd>
                 <dt> <a href="https://fontawesome.com/" target="_blank">Font Awesome</a></dt>
-                <dd>- Font awesome is where I got the calendar icons for the To Do List page</dd>
+                <dd><span>- Font awesome is where I got the </span><i class="fas fa-calendar"></i><span class="sr-only">calendar</span> <span>icons for the To Do List page</span></dd>
                 <dt> <a href="https://fontawesome.com/" target="_blank">Open Iconic</a></dt>
-                <dd><span>- Open Iconic is where I got the </span><img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information icon" width="12px" height="12px"> <span> tooltip icons used throughout the site</span></dd>
+                <dd><span>- Open Iconic is where I got the </span><img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information icon" width="12px" height="12px"><span class="sr-only">information</span> <span> tooltip icons used throughout the site</span></dd>
             </dl>
-            <p><span>If you would like to view the source code for this website you may do so here: </span><a href="https://github.com/brian-w-worsham/bwwPhpApps" target="_blank">My Github Repo</a></p>
+            <p class="lead font-weight-bold"><span>If you would like to view the source code for this website you may do so here: </span><a href="https://github.com/brian-w-worsham/bwwPhpApps" target="_blank">My Github Repo</a></p>
         </div>
     </div>
     <div class="card">

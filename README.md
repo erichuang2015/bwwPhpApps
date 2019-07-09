@@ -1,2 +1,2 @@
 # bwwapps
-A website for learning and testing PHP web development techniques.
+An open source website for fitness and utilities.
