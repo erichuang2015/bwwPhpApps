@@ -14,7 +14,7 @@
                 <dt><a href="https://www.vagrantup.com/" target="_blank">Vagrant</a></dt>
                 <dd>- Used to provision and run a virtual private Linux Unbutu server</dd>
                 <dt> <a href="https://github.com/Swader/homestead_improved" target="_blank">Homestead Improved</a></dt>
-                <dd>- Used to provide a pre-packaged Vagrant box with all server already configured</dd>
+                <dd>- Used to provide a pre-packaged Vagrant box with the server already configured</dd>
                 <dt> <a href="https://www.virtualbox.org/" target="_blank">Virtual Box</a></dt>
                 <dd>- Used to create a virtual machine where the server resides</dd>
                 <dt> <a href="https://www.php.net/" target="_blank">PHP7.3</a></dt>
@@ -22,7 +22,7 @@
                 <dt> <a href="https://www.ecma-international.org/ecma-262/6.0/" target="_blank">JavaScript ECMA6</a></dt>
                 <dd>- Used to write all the front end code</dd>
                 <dt> <a href="https://www.w3.org/TR/CSS/#css" target="_blank">CSS3</a></dt>
-                <dd>- Used to apply custum styling the pages</dd>
+                <dd>- Used to apply custom styling to the pages</dd>
                 <dt> <a href="https://www.w3.org/TR/2017/REC-html52-20171214/" target="_blank">HTML5</a></dt>
                 <dd>- Used to structure the web pages</dd>
                 <dt> <a href="https://getbootstrap.com/" target="_blank">Bootstrap 4</a></dt>
