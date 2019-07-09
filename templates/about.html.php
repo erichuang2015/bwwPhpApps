@@ -19,6 +19,8 @@
                 <dd>- Used to create a virtual machine where the server resides</dd>
                 <dt> <a href="https://www.php.net/" target="_blank">PHP7.3</a></dt>
                 <dd>- Used to write the server code and interact with the database</dd>
+                <dt> <a href="https://www.mysql.com/" target="_blank">MySQL</a></dt>
+                <dd>- This is the SQL language used for the database</dd>
                 <dt> <a href="https://www.ecma-international.org/ecma-262/6.0/" target="_blank">JavaScript ECMA6</a></dt>
                 <dd>- Used to write all the front end code</dd>
                 <dt> <a href="https://jquery.com/" target="_blank">jQuery</a></dt>
