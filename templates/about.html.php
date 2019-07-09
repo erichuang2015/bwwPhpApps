@@ -40,7 +40,7 @@
                 <dt> <a href="https://fontawesome.com/" target="_blank">Open Iconic</a></dt>
                 <dd><span>- Open Iconic is where I got the </span><img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information icon" width="12px" height="12px"><span class="sr-only">information</span> <span> tooltip icons used throughout the site</span></dd>
             </dl>
-            <p class="lead font-weight-bold"><span>If you would like to view the source code for this website you may do so here: </span><a href="https://github.com/brian-w-worsham/bwwPhpApps" target="_blank">My Github Repo</a></p>
+            <p class="lead font-weight-bold"><span>If you would like to view the source code for this website you may do so at: </span><a href="https://github.com/brian-w-worsham/bwwPhpApps" target="_blank">My Github Repo</a></p>
         </div>
     </div>
     <div class="card">
