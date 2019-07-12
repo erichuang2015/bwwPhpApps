@@ -1,87 +1,87 @@
 html, body {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  background-color: #f5f5f5;
-  width: 100%;
-  margin-bottom: 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    width: 100%;
+    margin-bottom: 0;
 }
 
 main {
-  width: 100%;
+    width: 100%;
 }
 
 img.logo {
-  height: 513px;
+    height: 513px;
 }
 
-div.login.container {
-  margin-top: 1rem;
-}
+/*div.login.container {*/
+/*  margin-top: 1rem;*/
+/*}*/
 
 div.form-check {
-  width: 53rem;
+    width: 53rem;
 }
 
 div.invalid-feedback {
-  position: relative;
-  right: 1rem;
+    position: relative;
+    right: 1rem;
 }
 
 .form-signin {
-  width: 100%;
-  max-width: 830px;
-  padding: 15px;
-  margin: auto;
+    width: 100%;
+    max-width: 830px;
+    padding: 15px;
+    margin: auto;
 }
 
 .form-signin .checkbox {
-  font-weight: 400;
+    font-weight: 400;
 }
 
 .form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
 }
 
 .form-signin .form-control:focus {
-  z-index: 2;
+    z-index: 2;
 }
 
 .form-signin input[type="email"] {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 span.forgot-pw {
-  display: block;
+    display: block;
 }
 
 span.forgot-pw a {
-  display: inline;
+    display: inline;
 }
 
 .container.fill-height {
-  margin-top: 4%;
+    margin-top: 4%;
 }
 
-.footer {
-  bottom: -1rem;
-}
+/*.footer {*/
+/*  bottom: -1rem;*/
+/*}*/
 
 /* .box.flex {
   display: flex;
@@ -91,18 +91,20 @@ span.forgot-pw a {
 /* Edge Browser styles begin */
 
 @supports (-ms-ime-align: auto) {
-  img {
-    max-height: 395px;
-    width: 100%;
-  }
-  main {
-    height: 100%;
-  }
-  div.login.container {
-    margin-top: 2rem;
-    height: 100%;
-    margin-bottom: 1em;
-  }
+    img {
+        max-height: 395px;
+        width: 100%;
+    }
+
+    main {
+        height: 100%;
+    }
+
+    div.login.container {
+        /*margin-top: 2rem;*/
+        height: 100%;
+        margin-bottom: 1em;
+    }
 }
 
 /* Edge Browser styles end */
@@ -110,16 +112,16 @@ span.forgot-pw a {
 /* Firefox Browser styles begin */
 
 @-moz-document url-prefix() {
-  img {
-    max-height: 395px;
-    width: 100%;
-  }
-  div.login.container {
-    margin-top: -4em;
-    height: auto;
-    max-height: 680px;
-    margin-bottom: 1em;
-  }
+    img {
+        max-height: 395px;
+        width: 100%;
+    }
+    div.login.container {
+        /*margin-top: -4em;*/
+        height: auto;
+        max-height: 680px;
+        margin-bottom: 1em;
+    }
 }
 
 /* Firefox Browser styles end */
@@ -127,15 +129,22 @@ span.forgot-pw a {
 /*iPad Pro*/
 
 @media (max-width: 1024px) {
-  img.logo {
-    height: 477px;
-  }
-  div.form-check {
-    width: 49.25rem;
-  }
-  .footer {
-    bottom: 0;
-  }
+    img.logo {
+        height: 477px;
+    }
+
+    main {
+        position: relative;
+        top: -6rem;
+    }
+
+    div.form-check {
+        width: 49.25rem;
+    }
+
+    /*.footer {*/
+    /*  bottom: 0;*/
+    /*}*/
 }
 
 /*/////////////////////////*/
@@ -143,15 +152,22 @@ span.forgot-pw a {
 /*iPad*/
 
 @media (max-width: 768px) {
-  img.logo {
-    height: 350px;
-  }
-  div.form-check {
-    width: 36.8rem;
-  }
-  .footer {
-    bottom: 0;
-  }
+    img.logo {
+        height: 349px;
+    }
+
+    main {
+        position: relative;
+        top: -4rem;
+    }
+
+    div.form-check {
+        width: 36.8rem;
+    }
+
+    /*.footer {*/
+    /*  bottom: 0;*/
+    /*}*/
 }
 
 /*/////////////////////////*/
@@ -159,19 +175,26 @@ span.forgot-pw a {
 /*iPhone6 Plus*/
 
 @media (max-width: 415px) {
-  img.logo {
-    height: 193px;
-  }
-  div.invalid-feedback {
-    position: relative;
-    right: 1rem;
-  }
-  .footer {
-    bottom: 0;
-  }
-  div.form-check {
-    width: 21rem;
-  }
+    img.logo {
+        height: 195px;
+    }
+
+    div.invalid-feedback {
+        position: relative;
+        right: 1rem;
+    }
+
+    /*.footer {*/
+    /*  bottom: 0;*/
+    /*}*/
+    div.form-check {
+        width: 21rem;
+    }
+
+    main {
+        position: relative;
+        top: 0;
+    }
 }
 
 /*/////////////////////////*/
@@ -179,9 +202,14 @@ span.forgot-pw a {
 /*Pixel 2 XL*/
 
 @media (max-width: 411px) {
-  div.form-check {
-    width: 20.5rem;
-  }
+    div.form-check {
+        width: 20.5rem;
+    }
+
+    main {
+        position: relative;
+        top: 0;
+    }
 }
 
 /*/////////////////////////*/
@@ -189,9 +217,18 @@ span.forgot-pw a {
 /*iPhone X*/
 
 @media (max-width: 375px) {
-  div.form-check {
-    width: 19rem;
-  }
+    div.form-check {
+        width: 19rem;
+    }
+
+    main {
+        position: relative;
+        top: 0;
+    }
+
+    img.logo {
+        height: 175px;
+    }
 }
 
 /*/////////////////////////*/
@@ -199,12 +236,17 @@ span.forgot-pw a {
 /*Galaxy S5*/
 
 @media (max-width: 360px) {
-  div.form-check {
-    width: 18rem;
-  }
-  .footer {
-    bottom: -1rem;
-  }
+    div.form-check {
+        width: 18rem;
+    }
+
+    img.logo {
+        height: 165px;
+    }
+
+    /*.footer {*/
+    /*  bottom: -1rem;*/
+    /*}*/
 }
 
 /*/////////////////////////*/
@@ -212,22 +254,29 @@ span.forgot-pw a {
 /*iPhone 5/SE*/
 
 @media (max-width: 320px) {
-  div.login.container {
-    margin-top: 5rem!important;
-  }
-  img.logo {
-    height: 146px;
-  }
-  div.invalid-feedback {
-    position: relative;
-    right: 1rem;
-  }
-  .footer {
-    bottom: -4rem;
-  }
-  div.form-check {
-    width: 16rem;
-  }
+    /*div.login.container {*/
+    /*  margin-top: 5rem!important;*/
+    /*}*/
+    img.logo {
+        height: 146px;
+    }
+
+    div.invalid-feedback {
+        position: relative;
+        right: 1rem;
+    }
+
+    /*.footer {*/
+    /*  bottom: -4rem;*/
+    /*}*/
+    div.form-check {
+        width: 16rem;
+    }
+
+    main {
+        position: relative;
+        top: 2rem;
+    }
 }
 
 /*/////////////////////////*/

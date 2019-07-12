@@ -70,7 +70,7 @@
         <div class="col">********* </div>
     </div><!-- /row -->
     <div class="row">
-        <div class="col"><input name="changepassword" type="submit" value="Change your password" class="btn btn-link">
+        <div class="col"><input name="changepassword" type="submit" value="Change your password" class="btn btn-link pl-0">
         </div>
     </div><!-- /row -->
     <hr>

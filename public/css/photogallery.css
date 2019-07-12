@@ -1,28 +1,24 @@
-form.img-card{
+form.img-card {
     display: contents;
 }
 
-em.photo-limit{
+em.photo-limit {
     display: block;
-    margin-top:2%;
+    margin-top: 2%;
 }
 
 select#optionChoice {
     margin-bottom: 1em;
 }
 
-div.container{
-    margin-top:4em;
-}
-
-div.carousel-item img{
+div.carousel-item img {
     min-height: 750px;
     min-width: 1100px;
     max-height: 840px;
     max-width: 1150px;
 }
 
-form div.card{
+form div.card {
     height: 97%;
 }
 
@@ -31,14 +27,44 @@ div#captionDiv {
     padding: 0;
 }
 
-#userfile{
-    padding-top:0;
+#userfile {
+    padding-top: 0;
 }
+
+/*4K Descktop*/
+
+@media (max-width: 2560px) {
+    input#caption {
+        width: 53.1rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*HD Descktop*/
+
+@media (max-width: 1920px) {
+    input#caption {
+        width: 64.4rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPad Pro*/
+
+@media (max-width: 1024px) {
+    input#caption {
+        width: 53.1rem;
+    }
+}
+
+/*/////////////////////////*/
 
 /*iPad*/
 @media (max-width: 769px) {
-    div.jumbotron{
-        padding-top:1rem
+    input#caption {
+        width: 38.1rem;
     }
 
     div.carousel-item img {
@@ -47,13 +73,19 @@ div#captionDiv {
         min-height: auto;
         min-width: auto;
     }
-  }
+}
+
 /*/////////////////////////*/
 
 /*iPhone6 Plus*/
 @media (max-width: 415px) {
-    div.jumbotron{
-        padding-top:1rem
+    main{
+        position: relative;
+        top: 3.53rem;
+    }
+
+    input#caption {
+        width: 23.8rem;
     }
 
     div.carousel-item img {
@@ -62,14 +94,34 @@ div#captionDiv {
         min-height: auto;
         min-width: auto;
     }
-  }
-  /*/////////////////////////*/
+}
 
+/*/////////////////////////*/
 
-  /*iPhone6*/
-  @media (max-width: 376px) {
-    div.jumbotron{
-        padding-top:1rem
+/*Pixel 2*/
+
+@media (max-width: 411px) {
+    main{
+        position: relative;
+        top: 3.53rem;
+    }
+
+    input#caption {
+        width: 23.8rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPhone6*/
+@media (max-width: 376px) {
+    main{
+        position: relative;
+        top: 3.53rem;
+    }
+
+    input#caption {
+        width: 21.6rem;
     }
 
     div.carousel-item img {
@@ -78,5 +130,34 @@ div#captionDiv {
         min-height: auto;
         min-width: auto;
     }
-  }
-  /*/////////////////////////*/
+}
+
+/*/////////////////////////*/
+
+/*Galaxy S5*/
+
+@media (max-width: 360px) {
+    main{
+        position: relative;
+        top: 3.53rem;
+    }
+    input#caption {
+        width: 20.6rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPhone 5/SE*/
+
+@media (max-width: 320px) {
+    main{
+        position: relative;
+        top: 3.53rem;
+    }
+    input#caption {
+        width: 18.1rem;
+    }
+}
+
+/*/////////////////////////*/

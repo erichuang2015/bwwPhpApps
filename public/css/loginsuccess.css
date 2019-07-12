@@ -1,17 +1,10 @@
 /*iPhone6 Plus*/
 @media (max-width: 415px) {
-    div.jumbotron{
-        padding-top:5rem
-    }
 }
 /*/////////////////////////*/
 
 /*/////////////////////////*/
 
 /*iPhone6*/
-@media (max-width: 376px) {
-    div.jumbotron{
-        padding-top:5rem
-    }
-}
+@media (max-width: 376px) {}
 /*/////////////////////////*/

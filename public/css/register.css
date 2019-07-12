@@ -1,17 +1,99 @@
 .container {
-  max-width: 960px;
+    max-width: 960px;
 }
 
 .container.fill-height {
-  margin-top: 4%;
-  margin-bottom: -3%;
+    margin-top: 4%;
+    margin-bottom: -3%;
 }
 
 .container.registration {
-  padding-bottom: 1em;
-  margin-top:4%;
+    padding-bottom: 1em;
+    margin-top: 4%;
 }
 
 .lh-condensed {
-  line-height: 1.25;
+    line-height: 1.25;
 }
+
+main {
+    position: relative;
+    top: 3.5rem;
+}
+
+/*iPad Pro*/
+
+@media (max-width: 1024px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPad*/
+
+@media (max-width: 769px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPhone6 Plus*/
+
+@media (max-width: 415px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*Pixel 2*/
+
+@media (max-width: 411px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPhone6*/
+
+@media (max-width: 376px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*Galaxy S5*/
+
+@media (max-width: 360px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPhone 5/SE*/
+
+@media (max-width: 320px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/

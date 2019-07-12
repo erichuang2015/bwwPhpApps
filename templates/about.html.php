@@ -1,4 +1,4 @@
-<!--<link rel="stylesheet" href="/css/about.css">-->
+<link rel="stylesheet" href="/css/about.css">
 <div class="jumbotron">
     <div class="container">
         <h1 class="display-3">About</h1>

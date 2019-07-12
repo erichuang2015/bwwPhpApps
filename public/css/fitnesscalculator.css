@@ -1,45 +1,127 @@
-h2{
+h2 {
     margin-bottom: 1em;
 }
 
-aside{
-    padding-bottom:5em;
+aside {
+    padding-bottom: 5em;
 }
 
-ul{
+ul {
     list-style-type: none;
 }
 
-input#btnSubmitFitCalc{
-    display:block;
+input#btnSubmitFitCalc {
+    display: block;
 }
 
-input[type='number']{
+input[type='number'] {
     padding-left: 2px;
 }
 
-input#btnSubmitNumMM{
+input#btnSubmitNumMM {
     margin-bottom: 16px;
     margin-top: 16px;
 }
 
-input.bmi{
+input.bmi {
     border: black thin solid;
-    width:3rem;
+    width: 3rem;
 }
 
-label.radio-btn-male{
+label.radio-btn-male {
     display: block;
 }
 
-div.bmi-btns-row{
+div.bmi-btns-row {
     margin-top: 1rem;
 }
 
-label.bmi-ft-lbl{
-    margin-right:0.95rem;
+label.bmi-ft-lbl {
+    margin-right: 0.95rem;
 }
 
-#bmiResults{
+#bmiResults {
     margin-top: 15px;
 }
+
+main {
+    position: relative;
+    top: 3.5rem;
+}
+
+/*iPad Pro*/
+
+@media (max-width: 1024px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPad*/
+
+@media (max-width: 769px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPhone6 Plus*/
+
+@media (max-width: 415px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*Pixel 2*/
+
+@media (max-width: 411px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPhone6*/
+
+@media (max-width: 376px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*Galaxy S5*/
+
+@media (max-width: 360px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPhone 5/SE*/
+
+@media (max-width: 320px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/

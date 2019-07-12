@@ -86,6 +86,11 @@ div.cb-recurring-col{
     top:2.3rem;
 }
 
+main{
+    position: relative;
+    top: 3.5rem;
+}
+
 
 /* Edge Browser styles begin */
 
@@ -141,6 +146,10 @@ div.cb-recurring-col{
     th.col-notes {
         width: 25rem;
     }
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
 }
 
 /*/////////////////////////*/
@@ -186,6 +195,10 @@ div.cb-recurring-col{
     }
     th.col-notes {
         width: 25rem;
+    }
+    main{
+        position: relative;
+        top: 3.5rem;
     }
 }
 
@@ -233,6 +246,10 @@ div.cb-recurring-col{
     th.col-notes {
         width: 25rem;
     }
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
 }
 
 /*/////////////////////////*/
@@ -246,6 +263,10 @@ div.cb-recurring-col{
     th.col-status {
         width: 16.7rem;
     }
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
 }
 
 /*/////////////////////////*/
@@ -256,6 +277,10 @@ div.cb-recurring-col{
     th.col-due-date {
         width: 8.3rem;
     }
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
 }
 
 /*/////////////////////////*/
@@ -265,6 +290,10 @@ div.cb-recurring-col{
 @media (max-width: 360px) {
     th.col-due-date {
         width: 9rem;
+    }
+    main{
+        position: relative;
+        top: 3.5rem;
     }
 }
 
@@ -311,6 +340,10 @@ div.cb-recurring-col{
     }
     th.col-notes {
         width: 25rem;
+    }
+    main{
+        position: relative;
+        top: 3.5rem;
     }
 }
 

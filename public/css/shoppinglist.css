@@ -92,6 +92,11 @@ ul.shopping-items .btn-danger{
     margin-bottom: 0.3rem;
 }
 
+main{
+    position: relative;
+    top: 3.5rem;
+}
+
 /* Edge Browser styles begin */
 
 @supports (-ms-ime-align: auto) {}
@@ -104,15 +109,36 @@ ul.shopping-items .btn-danger{
 
 /* Firefox Browser styles end */
 
+/*iPad Pro*/
+
+@media (max-width: 1024px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
 /*iPad*/
 
-@media (max-width: 769px) {}
+@media (max-width: 769px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
+}
 
 /*/////////////////////////*/
 
 /*iPhone6 Plus*/
 
-@media (max-width: 415px) {}
+@media (max-width: 415px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
+}
 
 /*/////////////////////////*/
 
@@ -122,13 +148,22 @@ ul.shopping-items .btn-danger{
     button[id^="btnNewItem"] {
         line-height: 1rem;
     }
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
 }
 
 /*/////////////////////////*/
 
 /*iPhone6*/
 
-@media (max-width: 376px) {}
+@media (max-width: 376px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
+}
 
 /*/////////////////////////*/
 
@@ -137,6 +172,11 @@ ul.shopping-items .btn-danger{
 @media (max-width: 360px) {
     button[id^="btnNewItem"] {
         line-height: 1rem;
+    }
+
+    main{
+        position: relative;
+        top: 3.5rem;
     }
 }
 
@@ -148,6 +188,11 @@ ul.shopping-items .btn-danger{
     ul.shopping-categories {
         list-style-type: none;
         padding-left: 5px;
+    }
+
+    main{
+        position: relative;
+        top: 3.5rem;
     }
 }
 

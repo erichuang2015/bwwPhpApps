@@ -28,7 +28,7 @@
                     <div class="invalid-feedback">
                         Please select a valid option.
                     </div><!-- /invalid-feedback -->
-                    <input id="submit" name="submit" type="submit" class="btn btn-primary btn-lg" disabled>
+                    <input id="submit" name="submit" type="submit" class="btn btn-primary btn-lg" value="Submit" disabled>
                 </div><!-- /col-md-4 mb-3 -->
             </div><!-- /row -->
         </form>

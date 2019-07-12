@@ -1,4 +1,4 @@
- /* * {margin: 0; padding: 0; }
+/* * {margin: 0; padding: 0; }
 body {font-family: Arial, Helvetica, Sans-serif; }
 header {display: block;  background-color: #3cbc8d; padding: 20px; border-bottom: 5px solid #757575;}
 h1 {font-weight: normal; padding: 1.5em; color: white; text-shadow: 1px 1px 0px #444; width: 1000px; margin: auto;}
@@ -29,76 +29,80 @@ blockquote form {  display: table-cell; width: 10%;}
 .errors {padding: 1em; border: 1px solid red; background-color: lightyellow; color: red; margin-bottom: 1em; overflow: auto;}
 .errors ul {margin-left: 1em;} */
 
- /* Sticky footer styles
+/* Sticky footer styles
 -------------------------------------------------- */
 
- html {
-   position: relative;
-   min-height: 100%;
- }
+html {
+    position: relative;
+    min-height: 100%;
+}
 
- body {
-   /* Margin bottom by footer height */
-   margin-bottom: 60px;
- }
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
 
- .footer {
-   position: absolute;
-   bottom: 0;
-   width: 100%;
-   /* Set the fixed height of the footer here */
-   height: 60px;
-   line-height: 60px;
-   /* Vertically center the text there */
-   background-color: #f5f5f5;
- }
+main{
+    position: relative;
+    top: 3.53rem;
+}
 
- /* Custom page CSS
-  -------------------------------------------------- */
+.footer {
+    position: absolute;
+    bottom: -5.56rem;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px;
+    /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
 
- /* Not required for template or sticky footer method. */
+/* Custom page CSS
+ -------------------------------------------------- */
 
- body>.container {
-   padding: 60px 15px 0;
- }
+/* Not required for template or sticky footer method. */
 
- .footer>.container {
-   padding-right: 15px;
-   padding-left: 15px;
- }
+body > .container {
+    padding: 60px 15px 0;
+}
 
- code {
-   font-size: 80%;
- }
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
 
- .hidden {
-   display: none !important;
- }
+code {
+    font-size: 80%;
+}
 
- table.xdebug-error {
-   margin-top: 3em;
- }
+.hidden {
+    display: none !important;
+}
 
- .modal-content {
-   padding-left: 15px;
- }
+table.xdebug-error {
+    margin-top: 3em;
+}
 
- .jumbotron {
-   padding-top: 4rem;
-   padding-bottom: 2rem;
-   padding-left: 2rem;
-   padding-right: 2rem;
- }
+.modal-content {
+    padding-left: 15px;
+}
 
- /* Icon Styles begin */
+/*.jumbotron {*/
+/*    padding-bottom: 2rem;*/
+/*    padding-left: 2rem;*/
+/*    padding-right: 2rem;*/
+/*}*/
 
- .icon {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  stroke-width: 0;
-  stroke: currentColor;
-  fill: currentColor;
+/* Icon Styles begin */
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
 }
 
 /* ==========================================
@@ -110,219 +114,206 @@ Single-colored icons can be modified like so:
 ========================================== */
 
 .icon-images {
-  width: 1.125em;
+    width: 1.125em;
 }
 
 .icon-plus7 {
-  width: 0.7857142857142857em;
+    width: 0.7857142857142857em;
 }
 
 .icon-question2 {
-  width: 0.62em;
+    width: 0.62em;
 }
 
 .icon-minus8 {
-  width: 0.7857142857142857em;
+    width: 0.7857142857142857em;
 }
 
 .icon-home9 {
-  width: 0.9285714285714285em;
+    width: 0.9285714285714285em;
 }
 
 .icon-check-square-o {
-  width: 0.9324999999999999em;
+    width: 0.9324999999999999em;
 }
 
 .icon-check-circle1 {
-  width: 0.8571428571428571em;
+    width: 0.8571428571428571em;
 }
 
 .icon-info-circle {
-  width: 0.8571428571428571em;
+    width: 0.8571428571428571em;
 }
 
 .icon-times-circle-o {
-  width: 0.8571428571428571em;
+    width: 0.8571428571428571em;
 }
 
 .icon-check-circle-o {
-  width: 0.8571428571428571em;
+    width: 0.8571428571428571em;
 }
 
 .icon-ban {
-  width: 0.8571428571428571em;
+    width: 0.8571428571428571em;
 }
 
 .icon-rotate-left {
-  width: 0.8571428571428571em;
+    width: 0.8571428571428571em;
 }
 
 .icon-calendar-o {
-  width: 0.9285714285714285em;
+    width: 0.9285714285714285em;
 }
 
 .icon-apple2 {
-  width: 0.7773571428571427em;
+    width: 0.7773571428571427em;
 }
 
 .icon-windows4 {
-  width: 0.9285714285714285em;
+    width: 0.9285714285714285em;
 }
 
 .icon-android4 {
-  width: 0.7857142857142857em;
+    width: 0.7857142857142857em;
 }
 
 .icon-linux1 {
-  width: 0.8939999999999999em;
+    width: 0.8939999999999999em;
 }
 
 .icon-file-image-o {
-  width: 0.8571428571428571em;
+    width: 0.8571428571428571em;
 }
 
 .icon-bell-slash {
-  width: 1.1428571428571428em;
+    width: 1.1428571428571428em;
 }
 
 .icon-bell-slash-o {
-  width: 1.1428571428571428em;
+    width: 1.1428571428571428em;
 }
 
 .icon-trash4 {
-  width: 0.7857142857142857em;
+    width: 0.7857142857142857em;
 }
 
 .icon-copyright1 {
-  width: 0.8571428571428571em;
+    width: 0.8571428571428571em;
 }
 
 .icon-at2 {
-  width: 0.8571428571428571em;
+    width: 0.8571428571428571em;
 }
 
 .icon-venus {
-  width: 0.63em;
+    width: 0.63em;
 }
 
 .icon-mars {
-  width: 0.8571428571428571em;
+    width: 0.8571428571428571em;
 }
 
- /* Icon Styles end */
+/* Icon Styles end */
 
- /* Edge Browser styles begin */
+/* Edge Browser styles begin */
 
- @supports (-ms-ime-align: auto) {}
+@supports (-ms-ime-align: auto) {
+}
 
- /* Edge Browser styles end */
+/* Edge Browser styles end */
 
- /* Firefox Browser styles begin */
+/* Firefox Browser styles begin */
 
- @-moz-document url-prefix() {}
+@-moz-document url-prefix() {
+}
 
- /* Firefox Browser styles end */
+/* Firefox Browser styles end */
 
- /*iPad Pro*/
+/*iPad Pro*/
 
- @media (max-width: 1024px) {
-   .jumbotron {
-     padding-top: 4rem;
-     padding-bottom: 2rem;
-     padding-left: 2rem;
-     padding-right: 2rem;
-   }
- }
+@media (max-width: 1024px) {
+    /*.jumbotron {*/
+    /*    padding-bottom: 2rem;*/
+    /*    padding-left: 2rem;*/
+    /*    padding-right: 2rem;*/
+    /*}*/
+}
 
- /*/////////////////////////*/
+/*/////////////////////////*/
 
- /*iPad*/
+/*iPad*/
 
- @media (max-width: 769px) {
-   .jumbotron {
-     padding-top: 4rem;
-     padding-bottom: 2rem;
-     padding-left: 2rem;
-     padding-right: 2rem;
-   }
- }
+@media (max-width: 769px) {
+    /*.jumbotron {*/
+    /*    padding-bottom: 2rem;*/
+    /*    padding-left: 2rem;*/
+    /*    padding-right: 2rem;*/
+    /*}*/
+}
 
- /*/////////////////////////*/
+/*/////////////////////////*/
 
- /*iPhone6 Plus*/
+/*iPhone6 Plus*/
 
- @media (max-width: 415px) {
-   div.jumbotron {
-     padding-top: 5rem
-   }
-   h1.display-3 {
-     font-size: 3.5rem;
-   }
- }
+@media (max-width: 415px) {
+    h1.display-3 {
+        font-size: 3.5rem;
+    }
+}
 
- /*/////////////////////////*/
+/*/////////////////////////*/
 
- /*Pixel 2*/
+/*Pixel 2*/
 
- @media (max-width: 411px) {
-   h1.display-3 {
-     font-size: 3.8rem;
-   }
-   .jumbotron {
-     padding-top: 5rem;
-     padding-bottom: 2rem;
-     padding-left: 1rem;
-     padding-right: 1rem;
-   }
- }
+@media (max-width: 411px) {
+    h1.display-3 {
+        font-size: 3.8rem;
+    }
 
- /*/////////////////////////*/
+    main{
+        position: relative;
+        top: 0;
+    }
+}
 
- /*iPhone6*/
+/*/////////////////////////*/
 
- @media (max-width: 376px) {
-   div.jumbotron {
-     padding-top: 5rem
-   }
-   h1.display-3 {
-     font-size: 3.1rem;
-   }
- }
+/*iPhone6*/
 
- /*/////////////////////////*/
+@media (max-width: 376px) {
+    h1.display-3 {
+        font-size: 3.1rem;
+    }
+}
 
- /*Galaxy S5*/
+/*/////////////////////////*/
 
- @media (max-width: 360px) {
-   h1.display-3 {
-     font-size: 3.3rem;
-   }
- }
+/*Galaxy S5*/
 
- /*/////////////////////////*/
+@media (max-width: 360px) {
+    h1.display-3 {
+        font-size: 3.3rem;
+    }
+}
 
- /*iPhone 5/SE*/
+/*/////////////////////////*/
 
- @media (max-width: 320px) {
-   h1.display-3 {
-     font-size: 2.85rem;
-   }
-   .jumbotron {
-     padding-top: 4rem;
-     padding-bottom: 2rem;
-     padding-left: 1rem;
-     padding-right: 1rem;
-   }
- }
+/*iPhone 5/SE*/
 
- /*/////////////////////////*/
+@media (max-width: 320px) {
+    h1.display-3 {
+        font-size: 2.85rem;
+    }
+}
 
- .resolutionSizeCheck {
-   float: left;
- }
+/*/////////////////////////*/
 
- @media only screen and (max-width: 767px) {
-   .resolutionSizeCheck {
-     float: none;
-   }
- }
+.resolutionSizeCheck {
+    float: left;
+}
+
+@media only screen and (max-width: 767px) {
+    .resolutionSizeCheck {
+        float: none;
+    }
+}

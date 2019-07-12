@@ -19,3 +19,85 @@ input[type="password"]{
     margin-bottom: 15px;
     margin-top: -15px;
 }
+
+main{
+    position: relative;
+    top: 3.5rem;
+}
+
+/*iPad Pro*/
+
+@media (max-width: 1024px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPad*/
+
+@media (max-width: 769px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPhone6 Plus*/
+
+@media (max-width: 415px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*Pixel 2*/
+
+@media (max-width: 411px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPhone6*/
+
+@media (max-width: 376px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*Galaxy S5*/
+
+@media (max-width: 360px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPhone 5/SE*/
+
+@media (max-width: 320px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/

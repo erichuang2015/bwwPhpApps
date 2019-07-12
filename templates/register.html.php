@@ -16,7 +16,7 @@
 
 <div class="container registration">
     <div class="text-center">
-        <img class="d-block mx-auto mb-4" src="/css/images/brand-logo-template.svg" alt="BWW Apps" height="350">
+        <img class="d-block mx-auto mb-4" src="/css/images/brand-logo-template.svg" alt="BWW Apps">
         <h2>Register an account</h2>
         <p class="lead">Please fill out the below information to register for this site. By registering you will gain
             full access to all the apps on this site, and you will be able to save your data so it is available the

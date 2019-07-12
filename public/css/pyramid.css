@@ -12,11 +12,53 @@ input#submit {
     margin-top: 10%;
 }
 
+main{
+    position: relative;
+    top: 3.5rem;
+}
+
+/*iPad Pro*/
+
+@media (max-width: 1024px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
+/*iPad*/
+
+@media (max-width: 769px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
+}
+
+/*/////////////////////////*/
+
 /*iPhone6 Plus*/
 
 @media (max-width: 415px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
     form#maxInputForm, form#maxInputFormNotAuthenticated {
         margin-left: 15px;
+    }
+}
+
+/*/////////////////////////*/
+
+/*Pixel 2*/
+
+@media (max-width: 411px) {
+    main{
+        position: relative;
+        top: 3.5rem;
     }
 }
 
@@ -25,8 +67,23 @@ input#submit {
 /*iPhone6*/
 
 @media (max-width: 376px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
     form#maxInputForm, form#maxInputFormNotAuthenticated {
         margin-left: 15px;
+    }
+}
+
+/*/////////////////////////*/
+
+/*Galaxy S5*/
+
+@media (max-width: 360px) {
+    main{
+        position: relative;
+        top: 3.5rem;
     }
 }
 
@@ -35,6 +92,10 @@ input#submit {
 /*iPhone 5/SE*/
 
 @media (max-width: 320px) {
+    main{
+        position: relative;
+        top: 3.5rem;
+    }
     form#maxInputForm, form#maxInputFormNotAuthenticated {
         margin-left: 15px;
         margin-right: auto;

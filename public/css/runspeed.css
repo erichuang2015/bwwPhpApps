@@ -1,8 +1,8 @@
-p.run-time{
-    margin-top:1rem;
+p.run-time {
+    margin-top: 1rem;
 }
 
-.row{
+.row {
     margin-bottom: 10px;
 }
 
@@ -11,27 +11,41 @@ p.run-time{
     margin-bottom: 1rem;
 }
 
-label.run-seconds{
-    margin-top:1rem;
+label.run-seconds {
+    margin-top: 1rem;
 }
+
+main {
+    position: relative;
+    top: 3.5rem;
+}
+
 /* Edge Browser styles begin */
 
-@supports (-ms-ime-align: auto) {}
+@supports (-ms-ime-align: auto) {
+}
 
 /* Edge Browser styles end */
 
 /* Firefox Browser styles begin */
 
-@-moz-document url-prefix() {}
+@-moz-document url-prefix() {
+}
 
 /* Firefox Browser styles end */
 
 /*iPad Pro*/
 
 @media (max-width: 1024px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+
     h2 {
         font-size: 1.4rem;
     }
+
     .btn-primary {
         margin-left: 54px;
     }
@@ -42,9 +56,15 @@ label.run-seconds{
 /*iPad*/
 
 @media (max-width: 769px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+
     h2 {
         font-size: 1.4rem;
     }
+
     .btn-primary {
         margin-left: 54px;
     }
@@ -55,6 +75,11 @@ label.run-seconds{
 /*iPhone6 Plus*/
 
 @media (max-width: 415px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+
     .btn-primary {
         margin-left: 54px;
     }
@@ -65,6 +90,11 @@ label.run-seconds{
 /*Pixel 2*/
 
 @media (max-width: 411px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+
     .btn-primary {
         margin-left: 54px;
     }
@@ -75,6 +105,11 @@ label.run-seconds{
 /*iPhone6*/
 
 @media (max-width: 376px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+
     .btn-primary {
         margin-left: 54px;
     }
@@ -84,6 +119,11 @@ label.run-seconds{
 
 /*Galaxy S5*/
 @media (max-width: 360px) {
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+
     .btn-primary {
         margin-left: 54px;
     }
@@ -98,8 +138,13 @@ label.run-seconds{
         font-size: 1.1rem;
     }
 
-    div[class^="col"]{
-        padding:0;
+    main {
+        position: relative;
+        top: 3.5rem;
+    }
+
+    div[class^="col"] {
+        padding: 0;
     }
 
     .btn-primary {

@@ -12,7 +12,7 @@
             "request": "launch",
             "port": 9000,
             "pathMappings": {
-                "/home/vagrant/Code": "/myGit/VM/bwwapps"
+                "/home/vagrant/Code": "/myGit/VM/bwwapps/bwwPhpApps"
             }
         },
         {
@@ -28,7 +28,7 @@
             "type": "php",
             "request": "launch",
             "pathMappings": {
-                "/home/vagrant/Code": "/myGit/VM/bwwapps"
+                "/home/vagrant/Code": "/myGit/VM/bwwapps/bwwPhpApps"
             },
             "port": 9000
         },
@@ -37,7 +37,7 @@
             "type": "chrome",
             "request": "launch",
             "url": "http://bww.phpapps/",
-            "webRoot": "/myGit/VM/bwwapps",
+            "webRoot": "/myGit/VM/bwwapps/bwwPhpApps/public",
             "port": 9000
         },
         {
@@ -46,7 +46,8 @@
             "request": "launch",
             "reAttach": true,
             "url": "http://bww.phpapps/",
-            "webRoot": "/myGit/VM/bwwapps",
+            "webRoot": "/myGit/VM/bwwapps/bwwPhpApps",
+            "port": 9000
         }
     ]
 }
