@@ -31,6 +31,7 @@ class Register
     {
         $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         $query = parse_url($url, PHP_URL_QUERY);
+        $queryCode = [];
         parse_str($query, $queryCode);
         $verifyData = $this->usersVerifyTable->find('email', $_SESSION['email']);
         $token = (string) $verifyData[0]['verifycode'];
