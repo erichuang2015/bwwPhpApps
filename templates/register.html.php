@@ -53,7 +53,7 @@
                     <div class="invalid-feedback"><span id="passwordInputError"></span></div>
                 </div>
 
-                <div class="col-md-4 pl-0">
+                <div class="col-12 px-0">
                     <input class="btn btn-lg btn-primary btn-block" type="submit" id="submitBtn" name="submit" value="Register account" disabled>
                 </div>
 
