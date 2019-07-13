@@ -46,6 +46,23 @@
         </div>
     </div>
     <div class="card">
+        <img src="/css/images/markus-spiske-xekxE_VR0Ec-unsplash.jpg" class="img-fluid" alt="A picture of the site developer, Brian Worsham">
+        <div class="card-body">
+            <h5 class="card-title">Future Updates:</h5>
+            <p class="card-text">The following list details improvements coming to this site in the near future.</p>
+            <dl>
+                <dt>Spanish Translations:</dt>
+                <dd>- There will be a button users can toggle to view the site in Spanish or English</dd>
+                <dt>Help Page:</dt>
+                <dd>- This will be a page that allows the user to report defects or issues they are experiencing with the site</dd>
+                <dt>Section 508 Accessibility:</dt>
+                <dd>- Accessiblity concerns will be addressed across every page of the site</dd>
+                <dt>Search Engine Optimization (SEO):</dt>
+                <dd>- Bring this site to the public</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="card">
         <img src="/css/images/bworsham_profile.png" class="img-fluid" alt="A picture of the site developer, Brian Worsham">
         <div class="card-body">
             <h5 class="card-title">Site developer:</h5><span class="font-weight-bold">Brian Worsham</span>

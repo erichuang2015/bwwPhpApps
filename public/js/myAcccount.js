@@ -20,7 +20,7 @@ $(document).ready(function () {
     'use strict';
     $(function () {
         $('[data-toggle="popover"]').popover({
-            trigger: "hover click",
+            trigger: "hover click focus manual",
             html: true,
             title: ""
         });

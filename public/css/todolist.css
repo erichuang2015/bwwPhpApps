@@ -281,6 +281,10 @@ main{
         position: relative;
         top: 3.5rem;
     }
+    #todoContainer{
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 /*/////////////////////////*/

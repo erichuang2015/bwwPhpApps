@@ -65,7 +65,7 @@ $(document).ready(function () {
 
     $("#datePicker").on("keyup blur change", function (e) {
         if (e.keycode != 9 && e.which != 9 && e.type != "tab") {
-            var date = $("#datePicker").val();
+            let date = $("#datePicker").val();
             date = date.trim();
             if (validateDate(date)) {
                 $("#datePickerInputError").text("");
@@ -102,7 +102,7 @@ $(document).ready(function () {
 
     $(function () {
         $('[data-toggle="popover"]').popover({
-            trigger: "hover click",
+            trigger: "hover click focus manual",
             html: true,
             title: ""
         });
