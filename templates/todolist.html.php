@@ -39,7 +39,7 @@
     <?php if ($loggedIn) : ?>
     <form action="" method="post" name="formNewTask" class="needs-validation" autocomplete="off" novalidate>
         <button id="btnNewTask" class="btn btn-primary">+ New Task</button>
-        <div id="divNevermind">
+        <div id="divNevermind" class="pl-4">
             <button id="btnCancelNewTask" class="btn btn-secondary d-none">
                 <- Nevermind</button> </div> <div id="taskInputContainer" class="container d-none">
                     <div class="mb-3">

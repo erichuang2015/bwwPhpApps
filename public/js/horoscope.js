@@ -7,12 +7,14 @@ $(document).ready(function () {
     let textInputs = [];
     textInputs = $("input[type=text]");
     $("#btn-submit-horoscope").on("click keyup", function (e) {
-        e.preventDefault();
-        myHoroscopeGen.setHoroscopeData();
-        myHoroscopeGen.displayHoroscope();
-        $("#btn-submit-horoscope").hide();
-        $("#divHoroscopeResults").show();
-        $("#horoscope-heading2").focus();
+        if (e.keycode == 13 || e.which == 13 || e.keycode == 32 || e.which == 32 || e.type == "click") {
+            e.preventDefault();
+            myHoroscopeGen.setHoroscopeData();
+            myHoroscopeGen.displayHoroscope();
+            $("#btn-submit-horoscope").hide();
+            $("#divHoroscopeResults").show();
+            $("#horoscope-heading2").focus();
+        }
     });
 
     $("#btn-reset-horoscope").on("click keyup", function (e) {
