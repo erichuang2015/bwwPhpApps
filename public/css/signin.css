@@ -126,6 +126,16 @@ span.forgot-pw a {
 
 /* Firefox Browser styles end */
 
+/*Older HD Desktop*/
+
+@media (max-width: 1536px) {
+    .footer {
+        bottom: -6.56rem;
+    }
+}
+
+/*/////////////////////////*/
+
 /*iPad Pro*/
 
 @media (max-width: 1024px) {
