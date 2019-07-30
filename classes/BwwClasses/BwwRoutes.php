@@ -146,14 +146,22 @@ class BwwRoutes implements \utilityClasses\Routes
             'fitnesscalculator' => [
                 'GET' => [
                     'controller' => $fitnessCalculatorController,
-                    'action' => 'render',
+                    'action' => 'render'
                 ],
+                'POST' => [
+                    'controller' => $fitnessCalculatorController,
+                    'action' => 'changeLanguage'
+                ]
             ],
             'distanceconverter' => [
                 'GET' => [
                     'controller' => $distanceconverterController,
                     'action' => 'render',
                 ],
+                'POST' => [
+                    'controller' => $distanceconverterController,
+                    'action' => 'changeLanguage',
+                ]
             ],
             'pyramid' => [
                 'GET' => [
@@ -275,12 +283,20 @@ class BwwRoutes implements \utilityClasses\Routes
                     'controller' => $aboutController,
                     'action' => 'render',
                 ],
+                'POST' => [
+                    'controller' => $aboutController,
+                    'action' => 'changeLanguage',
+                ]
             ],
             '' => [
                 'GET' => [
                     'controller' => $myaccountController,
                     'action' => 'home',
                 ],
+                'POST' => [
+                    'controller' => $myaccountController,
+                    'action' => 'changeHomePageLanguage',
+                ]
             ],
         ];
 

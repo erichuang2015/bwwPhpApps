@@ -1,22 +1,4 @@
 /*jshint esversion: 6 */
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-    'use strict';
-    window.addEventListener('load', function () {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function (form) {
-            form.addEventListener('submit', function (event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }, false);
-})();
 
 $(document).ready(function () {
     let myFitnessCalculator;
@@ -47,7 +29,8 @@ $(document).ready(function () {
         if (ageInput.checkValidity() === false) {
             event.stopPropagation();
             $(ageSexForm).addClass('was-validated');
-            $("#ageInputError").text("You did not enter a number within the valid range.  The age must be greater than 17 and less than 141.  Please try again.");
+            let ageInputError = $("#ageInputErrorHidden").val();
+            $("#ageInputError").text(ageInputError);
             return; // bad input so return and don't process the data
         } else {
             $(ageSexForm).addClass('was-validated');
@@ -83,14 +66,15 @@ $(document).ready(function () {
         if (numMM1.checkValidity() === false || numMM2.checkValidity() === false) {
             e.stopPropagation();
             $(milimeterForm).addClass('was-validated');
+            let inputNumErrorHidden = $("#inputNumErrorHidden").val();
             if (numMM1.checkValidity() === false) {
-                $("#inputNumMM1Error").text("You did not enter a valid number within the range of 2 through 36.  Please try again.");
+                $("#inputNumMM1Error").text(inputNumErrorHidden);
             }
             else {
                 $("#inputNumMM1Error").text("");
             }
             if (numMM2.checkValidity() === false) {
-                $("#inputNumMM2Error").text("You did not enter a valid number within the range of 2 through 36.  Please try again.");
+                $("#inputNumMM2Error").text(inputNumErrorHidden);
             }
             else {
                 $("#inputNumMM2Error").text("");
@@ -98,9 +82,10 @@ $(document).ready(function () {
             $("#btnSubmitNumMM").prop('disabled', true);
         }
         else if(largerNum - smallerNum > 1){
+            let inputNumSecondErrorHidden = $("#inputNumSecondErrorHidden").val();
             $("#spanConsistentReq").addClass("text-danger");
             $("#btnSubmitNumMM").prop('disabled', true);
-            $("#inputNumMM2Error").text("The second reading cannot be greater than 1mm than the first reading.  Please try again.");
+            $("#inputNumMM2Error").text(inputNumSecondErrorHidden);
         }
         else {
             $(milimeterForm).addClass('was-validated');
@@ -126,7 +111,8 @@ $(document).ready(function () {
             myFitnessCalculator.calcBodyFat();
             $("#divCalInstructions").hide();
             let bodFat = myFitnessCalculator.getBodyFat;
-            $("#h2BodyFatResults").text("Your body fat is " + bodFat + "%.");
+            let bodyFatResultsHidden = $("#bodyFatResultsHidden").val();
+            $("#h2BodyFatResults").text(bodyFatResultsHidden + bodFat + "%.");
             $("#divbodFatResults").show();
         }
     });
@@ -156,19 +142,22 @@ $(document).ready(function () {
             e.stopPropagation();
             $(inputBMIForm).addClass('was-validated');
             if (inputHeightFt.checkValidity() === false) {
-                $("#inputHeightFtError").text("You did not enter a valid number between 1 and 7.  Please try again.");
+                let inputHeightFtErrorHidden = $("#inputHeightFtErrorHidden").val();
+                $("#inputHeightFtError").text(inputHeightFtErrorHidden);
             }
             else {
                 $("#inputHeightFtError").text("");
             }
             if (inputHeightIn.checkValidity() === false) {
-                $("#inputHeightInError").text("You did not enter a valid number between 0 and 11.  Please try again.");
+                let inputHeightInErrorHidden = $("#inputHeightInErrorHidden").val();
+                $("#inputHeightInError").text(inputHeightInErrorHidden);
             }
             else {
                 $("#inputHeightInError").text("");
             }
             if (inputWeight.checkValidity() === false) {
-                $("#inputWeightError").text("You did not enter a valid number between 10 and 800.  Please try again.");
+                let inputWeightErrorHidden = $("#inputWeightErrorHidden").val();
+                $("#inputWeightError").text(inputWeightErrorHidden);
             }
             else {
                 $("#inputWeightError").text("");
@@ -200,7 +189,8 @@ $(document).ready(function () {
             let meters = parseFloat(inches) * 0.025;
             let height = parseFloat(meters) * parseFloat(meters);
             let bmi = kilograms / height;
-            $("#bmiResults").text("Your BMI is: " + roundTwoDecimals(bmi) + ".");
+            let bmiResultsHidden = $("#bmiResultsHidden").val();
+            $("#bmiResults").text(bmiResultsHidden + roundTwoDecimals(bmi) + ".");
         }
     });
 

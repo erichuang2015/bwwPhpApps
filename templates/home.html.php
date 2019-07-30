@@ -1,41 +1,27 @@
 <link rel="stylesheet" href="/css/home.css">
+<input id="language" type="hidden" value="<?= $language?>">
 <div class="container">
     <img class="mb-2 logo" src="/css/images/brand-logo-template.svg" alt="BWW Apps">
 </div>
 
 <div class="container fill-height">
-    <!-- Example row of columns -->
     <div class="row">
         <?php if (!$loggedIn) : ?>
-            <div class="alert alert-secondary" role="alert">
-                If you have registered with this site please login for the optimal experience <a href="/login">click
-                    here to log in</a>. If you haven't registered please do so. <a href="/user/register">Click here to
-                    register an account.</a>
+            <div class="alert alert-secondary" role="alert"><?= $content['registerTxt'] ?><a href="/login"><?= $content['clickLogin'] ?></a><?= $content['ifNotRegistered'] ?><a href="/user/register"><?= $content['clickAndRegister'] ?></a>
             </div>
         <?php endif; ?>
         <div class="col-md-4">
-            <h2>Fitness Apps</h2>
-            <p>If you enjoy physical fitness activities as much as I do then you may find any or all of my fitness apps
-                useful. The Spartacus Workout is a great workout for burning fat and getting cut. The Run Speed
-                Calculator can help you determine the pace you need to maintain to meet your long-distance running
-                goals. The Fitness Calculator can help you calculate your body fat percentage and BMI. Last but not
-                least, the pyramid workout is a great strength training alternative to the popular 5x5 routine.</p>
+            <h2><?= $content['fitnessApps'] ?></h2>
+            <p><?= $content['fitAppsDesc'] ?></p>
         </div>
         <div class="col-md-4">
-            <h2>Utility Apps</h2>
-            <p>These apps are meant to help you get things done, and enjoy a better quality of life. The photo viewer is
-                a simple photo gallery which allows you to upload and view your photos. The To Do List and Shopping List
-                apps do exactly what you would infer by their respective names.
-                <!-- The To Do List, Shopping List, Calendar, and Calculator apps all do exactly what you would infer by their respective names. The notes app is a tool where you can store your notes in the cloud and have them available with you wherever you go as long as you have a browser and an internet connection.--></p>
+            <h2><?= $content['utilityApps'] ?></h2>
+            <p><?= $content['utilityAppsDesc'] ?></p>
         </div>
         <div class="col-md-4">
-            <h2>Trifling Apps</h2>
-            <p>These apps are of little real-world value. I only wrote them as a means to practice my coding skills.
-                However, the Horoscope Generator may provide some entertainment value if you are looking for a
-                laugh.</p>
+            <h2><?= $content['triflingApps'] ?></h2>
+            <p><?= $content['triflingAppsDesc'] ?></p>
         </div>
     </div>
-
     <hr>
-
-</div> <!-- /container -->
+</div>

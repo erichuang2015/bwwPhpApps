@@ -21,6 +21,13 @@ $(document).ready(function () {
     'use strict';
     var emailStatus = false;
     var passwordStatus = false;
+    var emailInput = $("#email");
+    emailStatus = validateEntries(emailInput);
+    var passwordInput = $("#password");
+    passwordStatus = validateEntries(passwordInput);
+    if(emailStatus && passwordStatus){
+        toggleSignInBtn(emailStatus, passwordStatus);
+    }
     $("#email").on("keyup blur change", function () {
         var emailInput = $("#email");
         emailStatus = validateEntries(emailInput);

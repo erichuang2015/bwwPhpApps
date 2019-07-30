@@ -1,0 +1,13 @@
+{
+  "title": "BWW Apps - Home",
+  "registerTxt": "If you have registered with this site please login for the optimal experience",
+  "clickLogin": " click here to log in.",
+  "ifNotRegistered": " If you haven't registered please do so. ",
+  "clickAndRegister": "Click here to register an account.",
+  "fitnessApps": "Fitness Apps",
+  "fitAppsDesc": "If you enjoy physical fitness activities as much as I do then you may find any or all of my fitness apps useful. The Spartacus Workout is a great workout for burning fat and getting cut. The Run Speed Calculator can help you determine the pace you need to maintain to meet your long-distance running goals. The Fitness Calculator can help you calculate your body fat percentage and BMI. Last but not least, the pyramid workout is a great strength training alternative to the popular 5x5 routine.",
+  "utilityApps": "Utility Apps",
+  "utilityAppsDesc": "These apps are meant to help you get things done, and enjoy a better quality of life. The photo viewer is a simple photo gallery which allows you to upload and view your photos. The To Do List and Shopping List apps do exactly what you would infer by their respective names.",
+  "triflingApps": "Trifling Apps",
+  "triflingAppsDesc": "These apps are of little real-world value. I only wrote them as a means to practice my coding skills. However, the Horoscope Generator may provide some entertainment value if you are looking for a laugh."
+}

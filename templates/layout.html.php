@@ -16,12 +16,12 @@
         <script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
         <script type="text/javascript" src="/js/vendor/modernizr-custom.js"></script>
         <script type="text/javascript" src="/js/Utils.js"></script>
-        <title><?=$title?></title>
+        <title><?= $title ?></title>
     </head>
 
     <body>
-        <?php include_once "../public/css/vendor/open-iconic-master/sprite/sprite.min.svg";?>
-        <?php include_once "../public/css/vendor/icomoon/symbol-defs.svg";?>
+        <?php include_once "../public/css/vendor/open-iconic-master/sprite/sprite.min.svg"; ?>
+        <?php include_once "../public/css/vendor/icomoon/symbol-defs.svg"; ?>
         <header>
             <!-- Fixed navbar -->
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -52,9 +52,9 @@
                                 <a class="dropdown-item" href="/photos">Photo Viewer</a>
                                 <a class="dropdown-item" href="/shoppinglist">Shopping List</a>
                                 <a class="dropdown-item" href="/todolist">To Do List</a>
-                                <!--<a class="dropdown-item" href="/">Calendar</a>
-							<a class="dropdown-item" href="/">Notes App</a>
-							<a class="dropdown-item" href="/">Calculator</a> -->
+                                <!--Todo: <a class="dropdown-item" href="/">Calendar</a>-->
+                                <!--Todo: <a class="dropdown-item" href="/">Notes App</a> -->
+                                <!--Todo: <a class="dropdown-item" href="/">Calculator</a> -->
                             </div>
                         </li>
 
@@ -71,19 +71,28 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownHelp">
                                 <a class="dropdown-item" href="/myaccount">My Account</a>
                                 <a class="dropdown-item" href="/about">About</a>
+                                <!--Todo: <a class="dropdown-item" href="/">Get Help</a> -->
                             </div>
                         </li>
 
-                        <?php if ($loggedIn): ?>
+                        <?php if ($loggedIn) : ?>
                         <li>
                             <a class="nav-link" href="/logout">Log out</a>
                         </li>
-                        <?php else: ?>
+                        <?php else : ?>
                         <li>
                             <a class="nav-link" href="/login">Log in</a>
                         </li>
-                        <?php endif;?>
+                        <?php endif; ?>
                     </ul>
+                </div>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label id="lblEnglish" class="btn btn-secondary active">
+                        <input id="rbEnglish" type="radio" name="english" id="btnEnglish" class="rb-language" autocomplete="off" checked> English
+                    </label>
+                    <label id="lblSpanish" class="btn btn-secondary">
+                        <input id="rbSpanish" type="radio" name="spanish" id="btnSpanish" class="rb-language" autocomplete="off"> Español
+                    </label>
                 </div>
             </nav>
         </header>
@@ -105,7 +114,7 @@
 
         <!-- Begin page content -->
         <main role="main">
-            <?=$output?>
+            <?= $output ?>
         </main>
 
         <footer class="footer">

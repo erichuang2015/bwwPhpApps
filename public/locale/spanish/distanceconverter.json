@@ -1,0 +1,17 @@
+{
+  "title": "BWW Apps - Convertidor de Distancia",
+  "h1Text": "Convertidor de Distancia",
+  "infoTxt": "Dado el hecho de que hay 12 pulgadas en un pie, y 5,280 pies en una milla, y un octavo de milla en un recorrido, podemos calcular la distancia para una unidad seleccionada de pies, millas o furlongs para un número dado de pulgadas.",
+  "instructions1": "Comience por elegir si desea convertir pulgadas a pies, millas o furlongs.",
+  "lblFeet": "Feet",
+  "lblMiles": "Millas",
+  "lblFurlongs": "Furlongs",
+  "btnSubmit": "Enviar",
+  "btnReset": "Reiniciar",
+  "instructions2": "Ingrese la cantidad de pulgadas que le gustaría convertir",
+  "lblInches": "Pulgadas:",
+  "lblResult": "Resultado:",
+  "errorEnterNum": "Error: Por favor ingrese un número.",
+  "errorNumGreaterZero": "Error: Introduzca un número mayor que cero.",
+  "errorNotNum": "Error: No has introducido un número. Inténtalo de nuevo."
+}

@@ -1,0 +1,13 @@
+{
+  "title": "BWW Apps - Inicio",
+  "registerTxt": "Si se ha registrado en este sitio, inicie sesión para obtener una experiencia óptima",
+  "clickLogin": " haga clic aquí para ingresar.",
+  "ifNotRegistered": " Si no se ha registrado, hágalo. ",
+  "clickAndRegister": "Haga clic aquí para registrar una cuenta.",
+  "fitnessApps": "Aplicaciones de Fitness",
+  "fitAppsDesc": "Si disfrutas tanto de las actividades físicas como yo, entonces puedes encontrar alguna de mis aplicaciones para ejercicios útiles. El Spartacus Workout es un excelente ejercicio para quemar grasa y cortarse. La calculadora de velocidad de carrera puede ayudarlo a determinar el ritmo que necesita mantener para alcanzar sus objetivos de carrera de larga distancia. La Calculadora de estado físico puede ayudarlo a calcular el porcentaje de grasa corporal y el IMC. Por último, pero no menos importante, el entrenamiento piramidal es una gran alternativa de entrenamiento de fuerza a la popular rutina 5x5.",
+  "utilityApps": "Aplicaciones de Utilidad",
+  "utilityAppsDesc": "Estas aplicaciones están destinadas a ayudarlo a hacer las cosas y a disfrutar de una mejor calidad de vida. El visor de fotos es una galería de fotos simple que le permite cargar y ver sus fotos. Las aplicaciones Lista de tareas y Lista de compras hacen exactamente lo que inferiría por sus respectivos nombres.",
+  "triflingApps": "Aplicaciones Insignificantes",
+  "triflingAppsDesc": "Estas aplicaciones tienen poco valor en el mundo real. Solo los escribí como un medio para practicar mis habilidades de codificación. Sin embargo, el Generador de horóscopo puede proporcionar algún valor de entretenimiento si está buscando reír."
+}

@@ -4,6 +4,7 @@ namespace BwwClasses\Controllers;
 
 use \utilityClasses\Authentication;
 use \utilityClasses\DatabaseTable;
+use \utilityClasses\Utils; //import this Utils class to use for initializing the language session variable
 
 class MyAccount
 {
@@ -191,15 +192,40 @@ class MyAccount
 
     public function home()
     {
-        $title = "BWW Apps - home";
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if($_SESSION['language'] == 'english'){
+            $homePath = __DIR__ . '/../../../public/locale/english/home.json';
+            $lang = 'english';
+        }else{
+            $homePath = __DIR__ . '/../../../public/locale/spanish/home.json';
+            $lang = 'spanish';
+        }
+        $homeContent = file_get_contents($homePath);
+        $homeContent = json_decode($homeContent, true);
+
         $loggedIn = $this->authentication->isLoggedIn();
         return [
             'template' => 'home.html.php',
-            'title' => $title,
+            'title' => $homeContent['title'],
             'variables' => [
-                'loggedIn' => $loggedIn
+                'loggedIn' => $loggedIn,
+                'content' => $homeContent,
+                'language' => $lang//add the language variable to the page for the hidden input value
             ]
         ];
+    }
+
+    public function changeHomePageLanguage(){
+        if(isset($_POST['english'])){
+            $_SESSION['language'] = 'english';
+        }
+        else{
+            $_SESSION['language'] = 'spanish';
+        }
+        $page = $this->home();
+        return $page;
     }
 
     //This function takes user input to create the replacement password after the user has requested to create a new password because they forgot their old one
