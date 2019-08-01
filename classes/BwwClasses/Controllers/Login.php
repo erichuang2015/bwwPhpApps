@@ -3,6 +3,7 @@ namespace BwwClasses\Controllers;
 
 use Birke\Rememberme\Authenticator;
 use Birke\Rememberme\Storage\FileStorage;
+use \utilityClasses\Utils; //import this Utils class to use for initializing the language session variable
 
 class Login
 {
@@ -73,7 +74,7 @@ class Login
         $loggedIn = $this->authentication->isLoggedIn();
         $this->storage->cleanAllTriplets($_SESSION['username']);
         $_SESSION = [];
-        session_destroy();
+        session_destroy(); //can't access session language var after session destroy has been called
         $this->rememberMe->clearCookie();
         return [
             'template' => 'logout.html.php',

@@ -1,4 +1,5 @@
 <?php
+
 namespace BwwClasses;
 
 class BwwRoutes implements \utilityClasses\Routes
@@ -136,12 +137,16 @@ class BwwRoutes implements \utilityClasses\Routes
                     'controller' => $horoscopeController,
                     'action' => 'render',
                 ],
+                'POST' => [
+                    'controller' => $horoscopeController,
+                    'action' => 'changeLanguage'
+                ]
             ],
             'runspeedcalculator' => [
                 'GET' => [
                     'controller' => $runSpeedCalculatorController,
                     'action' => 'render',
-                ],
+                ]
             ],
             'fitnesscalculator' => [
                 'GET' => [

@@ -20,38 +20,38 @@
     </head>
 
     <body>
+    <input id="language" type="hidden" value="<?= $language ?>">
         <?php include_once "../public/css/vendor/open-iconic-master/sprite/sprite.min.svg"; ?>
         <?php include_once "../public/css/vendor/icomoon/symbol-defs.svg"; ?>
         <header>
             <!-- Fixed navbar -->
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-                <a class="navbar-brand" href="/">BWW Apps</a>
+                <a class="navbar-brand" href="/"><?= $layoutContent['siteName'] ?></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/">Home <span class="sr-only">Home</span></a>
+                            <a class="nav-link" href="/"><?= $layoutContent['home'] ?><span class="sr-only"><?= $layoutContent['home'] ?></span></a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="" id="dropdownSpartacus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fitness Apps</a>
+                            <a class="nav-link dropdown-toggle" href="" id="dropdownSpartacus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $layoutContent['fitApps'] ?></a>
                             <div class="dropdown-menu" aria-labelledby="dropdownSpartacus">
-                                <a class="dropdown-item" href="/spartacus">Spartacus Workout</a>
-                                <a class="dropdown-item" href="/runspeedcalculator">Run Speed Calculator</a>
-                                <a class="dropdown-item" href="/fitnesscalculator">Fitness Calculator (Body Fat, BMI,
-                                    ect.)</a>
-                                <a class="dropdown-item" href="/pyramid">Pyramid Workout</a>
+                                <a class="dropdown-item" href="/spartacus"><?= $layoutContent['spartacusWorkout'] ?></a>
+                                <a class="dropdown-item" href="/runspeedcalculator"><?= $layoutContent['runCalc'] ?></a>
+                                <a class="dropdown-item" href="/fitnesscalculator"><?= $layoutContent['fitCalc'] ?></a>
+                                <a class="dropdown-item" href="/pyramid"><?= $layoutContent['pyramid'] ?></a>
                             </div>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="" id="dropdownUtilities" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Utility Apps</a>
+                            <a class="nav-link dropdown-toggle" href="" id="dropdownUtilities" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $layoutContent['utils'] ?></a>
                             <div class="dropdown-menu" aria-labelledby="dropdownUtilities">
-                                <a class="dropdown-item" href="/photos">Photo Viewer</a>
-                                <a class="dropdown-item" href="/shoppinglist">Shopping List</a>
-                                <a class="dropdown-item" href="/todolist">To Do List</a>
+                                <a class="dropdown-item" href="/photos"><?= $layoutContent['photos'] ?></a>
+                                <a class="dropdown-item" href="/shoppinglist"><?= $layoutContent['shopping'] ?></a>
+                                <a class="dropdown-item" href="/todolist"><?= $layoutContent['toDos'] ?></a>
                                 <!--Todo: <a class="dropdown-item" href="/">Calendar</a>-->
                                 <!--Todo: <a class="dropdown-item" href="/">Notes App</a> -->
                                 <!--Todo: <a class="dropdown-item" href="/">Calculator</a> -->
@@ -59,39 +59,39 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="" id="dropdownPractice" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Trifling Apps</a>
+                            <a class="nav-link dropdown-toggle" href="" id="dropdownPractice" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $layoutContent['trifling'] ?></a>
                             <div class="dropdown-menu" aria-labelledby="dropdownPractice">
-                                <a class="dropdown-item" href="/horoscope">Horoscope Generator</a>
-                                <a class="dropdown-item" href="/distanceconverter">Distance Converter</a>
+                                <a class="dropdown-item" href="/horoscope"><?= $layoutContent['horoscope'] ?></a>
+                                <a class="dropdown-item" href="/distanceconverter"><?= $layoutContent['distConverter'] ?></a>
                             </div>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="" id="dropdownHelp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Help</a>
+                            <a class="nav-link dropdown-toggle" href="" id="dropdownHelp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $layoutContent['help'] ?></a>
                             <div class="dropdown-menu" aria-labelledby="dropdownHelp">
-                                <a class="dropdown-item" href="/myaccount">My Account</a>
-                                <a class="dropdown-item" href="/about">About</a>
+                                <a class="dropdown-item" href="/myaccount"><?= $layoutContent['myAccount'] ?></a>
+                                <a class="dropdown-item" href="/about"><?= $layoutContent['about'] ?></a>
                                 <!--Todo: <a class="dropdown-item" href="/">Get Help</a> -->
                             </div>
                         </li>
 
                         <?php if ($loggedIn) : ?>
                         <li>
-                            <a class="nav-link" href="/logout">Log out</a>
+                            <a class="nav-link" href="/logout"><?= $layoutContent['logOut'] ?></a>
                         </li>
                         <?php else : ?>
                         <li>
-                            <a class="nav-link" href="/login">Log in</a>
+                            <a class="nav-link" href="/login"><?= $layoutContent['logIn'] ?></a>
                         </li>
                         <?php endif; ?>
                     </ul>
                 </div>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label id="lblEnglish" class="btn btn-secondary active">
-                        <input id="rbEnglish" type="radio" name="english" id="btnEnglish" class="rb-language" autocomplete="off" checked> English
+                        <input id="rbEnglish" type="radio" name="english" id="btnEnglish" class="rb-language" autocomplete="off" checked> <?= $layoutContent['english'] ?>
                     </label>
                     <label id="lblSpanish" class="btn btn-secondary">
-                        <input id="rbSpanish" type="radio" name="spanish" id="btnSpanish" class="rb-language" autocomplete="off"> Español
+                        <input id="rbSpanish" type="radio" name="spanish" id="btnSpanish" class="rb-language" autocomplete="off"> <?= $layoutContent['espanol'] ?>
                     </label>
                 </div>
             </nav>
@@ -100,13 +100,13 @@
         <div id="browserSupportModal" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
-                    <h3>Your browser does not support modern JavaScript. Therefore, it cannot process the code for this website. Please use one of the following modern browsers to access this site:</h3>
+                    <h3><?= $layoutContent['badBrowser'] ?></h3>
                     <ul>
-                        <li>Chrome 58 (or newer)</li>
-                        <li>Firefox 54 (or newer)</li>
-                        <li>Edge 14 (or newer)</li>
-                        <li>Safari 10 (or newer)</li>
-                        <li>Opera 55 (or newer)</li>
+                        <li>Chrome 58 <?= $layoutContent['orNewer'] ?></li>
+                        <li>Firefox 54 <?= $layoutContent['orNewer'] ?></li>
+                        <li>Edge 14 <?= $layoutContent['orNewer'] ?></li>
+                        <li>Safari 10 <?= $layoutContent['orNewer'] ?></li>
+                        <li>Opera 55 <?= $layoutContent['orNewer'] ?></li>
                     </ul>
                 </div>
             </div>
@@ -119,7 +119,7 @@
 
         <footer class="footer">
             <div class="container">
-                <span class="text-muted">Copyright &copy;</span><span id="currentYear" class="text-muted"></span>
+                <span class="text-muted"><?= $layoutContent['copyright'] ?> &copy;</span><span id="currentYear" class="text-muted"></span>
             </div>
         </footer>
 

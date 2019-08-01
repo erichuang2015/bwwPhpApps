@@ -31,11 +31,16 @@ $(document).ready(function () {
             let ing = "ing";
             let labelTxt = $(this).prev().text().toLowerCase();
             labelTxt = labelTxt.substr(0, labelTxt.length - 1);
-            if(this.id == "five" || this.id == "nine" ){
-                wordStatus = myHoroscopeGen.ValidateWord(value, ing);
+            let lang = $("#language").val();
+            if(this.id == "five" && lang == "english" || this.id == "nine" && lang == "english"){
+                    wordStatus = myHoroscopeGen.ValidateWord(value, ing);
             }
             else if(this.id == "seventeen"){
-                wordStatus = !isNaN(value);
+                if(value){
+                    wordStatus = !isNaN(value);
+                }else{
+                    wordStatus = false;
+                }
             }
             else{
                 wordStatus = myHoroscopeGen.ValidateWord(value);
@@ -49,7 +54,8 @@ $(document).ready(function () {
             else {
                 $(this).removeClass("is-valid");
                 $(this).addClass("is-invalid");
-                $("#" + this.id + "Error").text("Error: Please enter a " + labelTxt);
+                let errorEnterA = $("#errorEnterA").val();
+                $("#" + this.id + "Error").text(errorEnterA + labelTxt);
             }
 
             $("#btn-submit-horoscope").removeAttr("disabled");
@@ -112,7 +118,8 @@ class HoroscopesGenerator {
             _horoscopeData.eighteen = $('#eighteen').val().toLowerCase().trim();
         }
         function displayHoroscope() {
-            $('#horoscope-heading2').text('Today\'s Horoscopes');
+            let todaysHoroscopes = $("#todaysHoroscopes").val();
+            $('#horoscope-heading2').text(todaysHoroscopes);
             $('#user-input-table').hide();
             $('#horoscope-paragraph').removeAttr('hidden').show();
             $('#btn-submit-horoscope').hide();
@@ -122,9 +129,31 @@ class HoroscopesGenerator {
             _horoscopeData.four = _horoscopeData.four.replace(_horoscopeData.four.substr(0, 1), geminiFirstLetter);
             let cancerFirstLetter = _horoscopeData.five.charAt(0).toUpperCase();
             _horoscopeData.five = _horoscopeData.five.replace(_horoscopeData.five.substr(0, 1), cancerFirstLetter);
+            let someoneFeeling = $("#someoneFeeling").val();
+            let stayOutWay = $("#stayOutWay").val();
+            let dont = $("#dont").val();
+            let publicEmbarrassing = $("#publicEmbarrassing").val();
+            let controlUrge = $("#controlUrge").val();
+            let instead = $("#instead").val();
+            let tooMany = $("#tooMany").val();
+            let exhausted = $("#exhausted").val();
+            let aLovedOne = $("#aLovedOne").val();
+            let dontBeFlattered = $("#dontBeFlattered").val();
+            let inPrivate = $("#inPrivate").val();
+            let avoid = $("#avoid").val();
+            let neverLoan = $("#neverLoan").val();
+            let poorCredit = $("#poorCredit").val();
+            let goodDay = $("#goodDay").val();
+            let mayReceive = $("#mayReceive").val();
+            let secretAdmirer = $("#secretAdmirer").val();
+            let organize = $("#organize").val();
+            let better = $("#better").val();
+            let goodFriend = $("#goodFriend").val();
+            let buyNew = $("#buyNew").val();
+            let thankFriend = $("#thankFriend").val();
             let virgoFirstLetter = _horoscopeData.eight.charAt(0).toUpperCase();
             _horoscopeData.eight = _horoscopeData.eight.replace(_horoscopeData.eight.substr(0, 1), virgoFirstLetter);
-            horoScope = "<span class='sign'>Aries — Ram (March 21-April 19)</span><br>Someone you know may be feeling " + _horoscopeData.one + ". Stay out of the way!<br><br><span class='sign'>Taurus — Bull (April 20-May 20)</span><br>Don't " + _horoscopeData.two + " in public. It could prove embarrassing.<br><br><span class='sign'>Gemini — Twins (May 21-June 20)</span><br>Control the urge to " + _horoscopeData.three + ". " + _horoscopeData.four + " instead.<br><br><span class='sign'>Cancer — Crab (June 21-July 22)</span><br>" + _horoscopeData.five + " too many " + _horoscopeData.six + " will leave you exhausted!<br><br><span class='sign'>Leo — Lion (July 23-August 22)</span><br>A loved one thinks you are " + _horoscopeData.seven + ". Do not be taken in by flattery.<br><br><span class='sign'>Virgo — Virgin (August 23-September 22)</span><br>" + _horoscopeData.eight + " in private when possible. It's difficult to concentrate when people are watching.<br><br><span class='sign'>Libra— Scales (September 23-October 22)</span><br>Avoid " + _horoscopeData.nine + " " + _horoscopeData.ten + ".<br><br><span class='sign'>Scorpio — Scorpion (October 23-November 21)</span><br>Never loan money to " + _horoscopeData.eleven + " " + _horoscopeData.twelve + "! They are poor credit risks.<br><br><span class='sign'>Sagittarius — Archer (November 22-December 21)</span><br>Today is a good day to " + _horoscopeData.thirteen + " a(n) " + _horoscopeData.fourteen + ".<br><br><span class='sign'>Capricorn — Goat (December 22-January 19)</span><br>You may receive some " + _horoscopeData.fifteen + " from a secret admirer! Water them every day, and they will last a long time.<br><br><span class='sign'>Aquarius — Water Bearer (January 20-February 18)</span><br>Unless you organize your " + _horoscopeData.sixteen + " better, you won't get anything done.<br><br><span class='sign'>Pisces — Fish (February 19-March 20)</span><br>A good friend will give you $" + _horoscopeData.seventeen + " to buy new " + _horoscopeData.eighteen + ". Be sure to thank your friend.<br>";
+            horoScope = "<span class='sign'>Aries — Ram (March 21-April 19)</span><br>" + someoneFeeling + _horoscopeData.one + ". " + stayOutWay + "<br><br><span class='sign'>Taurus — Bull (April 20-May 20)</span><br>" + dont + " " + _horoscopeData.two + " " + publicEmbarrassing + "<br><br><span class='sign'>Gemini — Twins (May 21-June 20)</span><br>" + controlUrge + " " + _horoscopeData.three + ". " + _horoscopeData.four + " " + instead + "<br><br><span class='sign'>Cancer — Crab (June 21-July 22)</span><br>" + _horoscopeData.five + tooMany + _horoscopeData.six + exhausted + "<br><br><span class='sign'>Leo — Lion (July 23-August 22)</span><br>" + aLovedOne + _horoscopeData.seven + ". " + dontBeFlattered + "<br><br><span class='sign'>Virgo — Virgin (August 23-September 22)</span><br>" + _horoscopeData.eight + " " + inPrivate + "<br><br><span class='sign'>Libra— Scales (September 23-October 22)</span><br> " + avoid + _horoscopeData.nine + " " + _horoscopeData.ten + ".<br><br><span class='sign'>Scorpio — Scorpion (October 23-November 21)</span><br>" + neverLoan + _horoscopeData.eleven + " " + _horoscopeData.twelve + "! " + poorCredit + "<br><br><span class='sign'>Sagittarius — Archer (November 22-December 21)</span><br>" + goodDay + _horoscopeData.thirteen + " a(n) " + _horoscopeData.fourteen + ".<br><br><span class='sign'>Capricorn — Goat (December 22-January 19)</span><br>" + mayReceive + _horoscopeData.fifteen + secretAdmirer + "<br><br><span class='sign'>Aquarius — Water Bearer (January 20-February 18)</span><br>" + organize + _horoscopeData.sixteen + better + "<br><br><span class='sign'>Pisces — Fish (February 19-March 20)</span><br>" + goodFriend + " $" + _horoscopeData.seventeen + " " + buyNew + " " + _horoscopeData.eighteen + ". " + thankFriend + "<br>";
             $('#horoscope-paragraph').append(horoScope);
         }
         function resetHoroscope(textInputs) {
@@ -133,13 +162,14 @@ class HoroscopesGenerator {
             $("input[type=text]").removeClass("is-valid");
             $('#horoscope-paragraph').hide();
             $('#btn-reset-horoscope').hide();
-            $('#horoscope-heading2').text('Fill in the blanks below to generate your horoscope.');
+            let instructions = $("#instructionsHidden").val();
+            $('#horoscope-heading2').text(instructions);
             $('#user-input-table').show();
             $('#btn-submit-horoscope').show();
         }
         function ValidateWord(word, ing) {
             if(ing){
-                var substring = word.substr(-3);
+                let substring = word.substr(-3);
                 if(substring != "ing"){
                     return false;
                 }
