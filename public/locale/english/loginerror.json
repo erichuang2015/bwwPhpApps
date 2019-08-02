@@ -1,5 +1,5 @@
 {
     "title": "BWW Apps - You are not logged in",
     "h1Text": "You are not logged in",
-    "h2": "You must be logged in to view this page. <a href=\"/login\">Click here to log in</a> or <a href=\"/user/register\">click here to register an account</a>"
+    "h2": "You must be logged in to view this page. <a href=\"/login\">Click here to log in</a> or <a href=\"/user/register\">click here to register an account.</a>"
   }
