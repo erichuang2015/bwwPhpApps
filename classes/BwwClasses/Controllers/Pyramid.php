@@ -98,8 +98,6 @@ class Pyramid
 	{
 		$user = $this->authentication->getUser();
         $loggedIn = $this->authentication->isLoggedIn();
-        // print_r($_POST['exerciseId']);die;
-		// if (isset($_GET['id'])) {
         $pyramidData = [];
 		// if the user is logged in save their selections for future use.
 		if ($loggedIn) {

@@ -1,0 +1,5 @@
+{
+  "title": "BWW Apps - Usted no se ha identificado",
+  "h1Text": "Usted no se ha identificado",
+  "h2": "Usted debe estar conectado para ver esta página. <a href=\"/login\">Haga clic aquí para ingresar</a> o <a href=\"/user/register\">haga clic aquí para registrar una cuenta.</a>"
+}

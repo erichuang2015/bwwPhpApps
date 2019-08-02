@@ -70,7 +70,6 @@ class ShoppingList
 
     public function processUserRequest()
     {
-        // print_r("processUserRequest has been called");die;
         $newCategoryName = "";
         $newItemCategoryIds = [];
         $newItemNames = [];

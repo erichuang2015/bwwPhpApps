@@ -93,6 +93,10 @@ class BwwRoutes implements \utilityClasses\Routes
                     'controller' => $loginController,
                     'action' => 'error',
                 ],
+                'POST' => [
+                    'controller' => $loginController,
+                    'action' => 'changeLanguageFromErrorPg'
+                ]
             ],
             'login/success' => [
                 'GET' => [
