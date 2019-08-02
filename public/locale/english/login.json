@@ -1,0 +1,13 @@
+{
+  "title": "BWW Apps - Sign In",
+  "h1Text": "Sign in",
+  "logoAltTxt": "BWW Apps",
+  "email": "Email address",
+  "password": "Password",
+  "rememberMe": "Remember me",
+  "needRegister": "Need to register?",
+  "clickHere": "click here",
+  "forgotPw": "Forgot your password?",
+  "errorEmail": "Error: Enter a valid email address",
+  "errorPassword": "Error: Enter a password"
+}

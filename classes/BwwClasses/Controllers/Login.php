@@ -1,4 +1,5 @@
 <?php
+
 namespace BwwClasses\Controllers;
 
 use Birke\Rememberme\Authenticator;
@@ -29,7 +30,28 @@ class Login
 
     public function loginForm()
     {
-        return ['template' => 'login.html.php', 'title' => 'Log In'];
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/login.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/login.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
+        return [
+            'template' => 'login.html.php',
+            'title' => $content['title'], // notice the title also comes from the content file
+            'variables' => [
+                'content' => $content, //all the strings on the page
+                'language' => $lang //add the language variable to the page for the hidden input value
+            ]
+        ];
     }
 
     public function processLogin()
@@ -83,5 +105,26 @@ class Login
                 'loggedIn' => $loggedIn,
             ],
         ];
+    }
+
+    public function processUserRequest()
+    {
+        if (isset($_POST['english']) || isset($_POST['spanish'])) {
+            $page = $this->changeLanguage($_POST);
+            return $page;
+        } else {
+            $this->processLogin();
+        }
+    }
+
+    private function changeLanguage($post)
+    {
+        if (isset($post['english'])) {
+            $_SESSION['language'] = 'english';
+        } else {
+            $_SESSION['language'] = 'spanish';
+        }
+        $page = $this->loginForm();
+        return $page;
     }
 }

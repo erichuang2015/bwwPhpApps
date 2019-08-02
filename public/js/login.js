@@ -19,23 +19,23 @@
 
 $(document).ready(function () {
     'use strict';
-    var emailStatus = false;
-    var passwordStatus = false;
-    var emailInput = $("#email");
+    let emailStatus = false;
+    let passwordStatus = false;
+    let emailInput = $("#email");
     emailStatus = validateEntries(emailInput);
-    var passwordInput = $("#password");
+    let passwordInput = $("#password");
     passwordStatus = validateEntries(passwordInput);
     if(emailStatus && passwordStatus){
         toggleSignInBtn(emailStatus, passwordStatus);
     }
     $("#email").on("keyup blur change", function () {
-        var emailInput = $("#email");
+        let emailInput = $("#email");
         emailStatus = validateEntries(emailInput);
         toggleSignInBtn(emailStatus, passwordStatus);
     });
 
     $("#password").on("keyup blur change", function () {
-        var passwordInput = $("#password");
+        let passwordInput = $("#password");
         passwordStatus = validateEntries(passwordInput);
         toggleSignInBtn(emailStatus, passwordStatus);
     });
@@ -43,9 +43,9 @@ $(document).ready(function () {
 
 function validateEntries(inputElement) {
     $("#loginForm").removeClass('was-validated');
-    var inputTxt = $(inputElement).val();
-    var inputTxtLength = inputTxt.length;
-    var status = false;
+    let inputTxt = $(inputElement).val();
+    let inputTxtLength = inputTxt.length;
+    let status = false;
     if(inputElement[0].id == "email")//logic to determine if the inputElement is the email input
     {
         if (ValidateEmail(inputTxt)) {
@@ -54,13 +54,15 @@ function validateEntries(inputElement) {
         }
         else {
             status = false;
-            $("#emailInputError").text("Error: Enter a valid email address");
+            let errorEmail = $("#errorEmail").val();
+            $("#emailInputError").text(errorEmail);
         }
         return status;
     }
     else{
         if (inputTxtLength < 1) {
-            $("#passwordInputError").text("Error: Enter a password");
+            let errorPassword = $("#errorPassword").val();
+            $("#passwordInputError").text(errorPassword);
             status = false;
         }
         else {

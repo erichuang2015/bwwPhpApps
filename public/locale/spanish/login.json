@@ -1,0 +1,13 @@
+{
+    "title": "BWW Apps - Registrarse",
+    "h1Text": "Registrarse",
+    "logoAltTxt": "BWW Apps",
+    "email": "Dirección de correo electrónico",
+    "password": "Contraseña",
+    "rememberMe": "Recuérdame",
+    "needRegister": "¿Necesitas registrarte?",
+    "clickHere": "haga clic aquí",
+    "forgotPw": "¿Olvidaste tu contraseña?",
+    "errorEmail": "Error: ingrese una dirección de correo electrónico válida",
+    "errorPassword": "Error: ingrese una contraseña"
+}

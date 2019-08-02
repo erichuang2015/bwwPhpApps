@@ -113,7 +113,7 @@ class BwwRoutes implements \utilityClasses\Routes
                 ],
                 'POST' => [
                     'controller' => $loginController,
-                    'action' => 'processLogin',
+                    'action' => 'processUserRequest',
                 ],
             ],
             'spartacus' => [
