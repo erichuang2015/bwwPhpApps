@@ -83,7 +83,28 @@ class Login
 
     public function success()
     {
-        return ['template' => 'loginsuccess.html.php', 'title' => 'Login Successful'];
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/loginsuccess.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/loginsuccess.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
+        return [
+            'template' => 'loginsuccess.html.php',
+            'title' => $content['title'], // notice the title also comes from the content file
+            'variables' => [
+                'content' => $content, //all the strings on the page
+                'language' => $lang //add the language variable to the page for the hidden input value
+            ]
+        ];
     }
 
     public function error()
