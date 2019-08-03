@@ -150,10 +150,12 @@ class Login
         $content = json_decode($content, true);
 
         $loggedIn = $this->authentication->isLoggedIn();
-        $this->storage->cleanAllTriplets($_SESSION['username']);
-        $_SESSION = [];
-        session_destroy(); //can't access session language var after session destroy has been called
-        $this->rememberMe->clearCookie();
+        if (isset($_SESSION['username'])) {
+            $this->storage->cleanAllTriplets($_SESSION['username']);
+            $_SESSION = [];
+            session_destroy(); //can't access session language var after session destroy has been called
+            $this->rememberMe->clearCookie();
+        }
 
         return [
             'template' => 'logout.html.php',
