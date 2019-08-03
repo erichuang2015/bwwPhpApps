@@ -135,17 +135,33 @@ class Login
 
     public function logout()
     {
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/logout.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/logout.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
         $loggedIn = $this->authentication->isLoggedIn();
         $this->storage->cleanAllTriplets($_SESSION['username']);
         $_SESSION = [];
         session_destroy(); //can't access session language var after session destroy has been called
         $this->rememberMe->clearCookie();
+
         return [
             'template' => 'logout.html.php',
-            'title' => 'You have been logged out',
+            'title' => $content['title'], // notice the title also comes from the content file
             'variables' => [
-                'loggedIn' => $loggedIn,
-            ],
+                'content' => $content, //all the strings on the page
+                'language' => $lang //add the language variable to the page for the hidden input value
+            ]
         ];
     }
 
@@ -178,7 +194,29 @@ class Login
         } else {
             $_SESSION['language'] = 'spanish';
         }
-        $page = $this->loginForm();
+        $page = $this->error();
+        return $page;
+    }
+
+    public function changeLanguageFromSuccess()
+    {
+        if (isset($_POST['english'])) {
+            $_SESSION['language'] = 'english';
+        } else {
+            $_SESSION['language'] = 'spanish';
+        }
+        $page = $this->success();
+        return $page;
+    }
+
+    public function changeLanguageFromLogOut()
+    {
+        if (isset($_POST['english'])) {
+            $_SESSION['language'] = 'english';
+        } else {
+            $_SESSION['language'] = 'spanish';
+        }
+        $page = $this->logout();
         return $page;
     }
 }

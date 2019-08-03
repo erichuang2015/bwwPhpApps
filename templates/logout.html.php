@@ -1,9 +1,12 @@
 <link rel="stylesheet" href="/css/logout.css">
+<input id="language" type="hidden" value="<?= $language?>">
 <div class="jumbotron">
-    <h1 class="display-3">Logged out</h1>
+    <div class="container">
+    <h1><?= $content['h1Text'] ?></h1>
+    </div>
 </div>
 <div class="container fill-height">
     <div class="alert alert-primary" role="alert">
-        <h2>You have been logged out</h2>
+        <h2><?= $content['h2'] ?></h2>
     </div>
 </div>
