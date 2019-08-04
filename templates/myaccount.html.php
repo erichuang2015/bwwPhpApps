@@ -1,16 +1,17 @@
 <link rel="stylesheet" href="/css/myaccount.css">
-
+<input id="language" type="hidden" value="<?= $language?>">
+<input id="errorPw" type="hidden" value="<?= $content['errorPw'] ?>">
+<input id="errorPwNewAndOldMustDiffer" type="hidden" value="<?= $content['errorPwNewAndOldMustDiffer'] ?>">
+<input id="errorPwEntriesMustMatch" type="hidden" value="<?= $content['errorPwEntriesMustMatch'] ?>">
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
-        <h1 class="display-3"><?= $fname . ' ' . $lname ?>'s Account</h1>
+        <h1 class="display-3"><?= $fname . ' ' . $lname ?><?= $content['h1Text'] ?></h1>
     </div>
     <?php if (!$loggedIn) : ?>
     <div class="row">
         <div class="alert alert-secondary" role="alert">
-            If you have registered with this site please login for the optimal experience <a href="/login">click here to
-                log in</a>. If you haven't registered please do so <a href="/user/register">Click here to register an
-                account</a>
+            <?= $content['loginToProceed'] ?>
         </div><!-- /alert -->
     </div><!-- /row -->
     <?php endif; ?>
@@ -22,26 +23,26 @@
 
 <form id="passwordResetForm" method="post" action="" class="needs-validation container fill-height" autocomplete="off" novalidate>
     <!-- <input name="changePasswordSubmitted" type="hidden" value="true"></div> -->
-    <label for="oldpassword">Enter your old password:</label>
-    <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about password requirements" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Passwords must be more than 7 and less than 25 characters in length.  They must contain at lease one number, one uppercase and one lowercase alphabetical character, and may contain special characters.">
-    <span class="sr-only">Information about password requirements</span>
+    <label for="oldpassword"><?= $content['enterOldPw'] ?></label>
+    <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="<?= $content['pwRuleScreenReaderTxt'] ?>" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="<?= $content['pwRules'] ?>">
+    <span class="sr-only"><?= $content['pwRuleScreenReaderTxt'] ?></span>
     <input id="oldpassword" name="oldpassword" type="password" class="form-control" pattern="^(?=.*[\d\W])(?=.*[a-z])(?=.*[A-Z]).{8,24}$" value="" maxlength="24" autocomplete="off" required>
     <div class="invalid-feedback"><span id="oldpasswordInputError"></span></div>
-    <label for="newpassword1">Enter your new password:</label>
-    <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about password requirement" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Passwords must be more than 7 and less than 25 characters in length.  They must contain at lease one number, one uppercase and one lowercase alphabetical character, and may contain special characters.">
-    <span class="sr-only">Information about password requirements</span>
+    <label for="newpassword1"><?= $content['enterNewPw'] ?></label>
+    <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="<?= $content['passwordReqsAltTxt'] ?>" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="<?= $content['pwRules'] ?>">
+    <span class="sr-only"><?= $content['pwRuleScreenReaderTxt'] ?></span>
     <input id="newpassword1" name="newpassword1" type="password" class="form-control" pattern="^(?=.*[\d\W])(?=.*[a-z])(?=.*[A-Z]).{8,24}$" value="" maxlength="24" autocomplete="off" required>
     <div class="invalid-feedback"><span id="newpassword1InputError"></span></div>
-    <label for="newpassword2">Enter your new password again:</label>
-    <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about password requirement" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="Passwords must be more than 7 and less than 25 characters in length.  They must contain at lease one number, one uppercase and one lowercase alphabetical character, and may contain special characters.">
-    <span class="sr-only">Information about password requirement</span>
+    <label for="newpassword2"><?= $content['enterNewPwAgain'] ?></label>
+    <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="<?= $content['passwordReqsAltTxt'] ?>" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="<?= $content['pwRules'] ?>">
+    <span class="sr-only"><?= $content['pwRuleScreenReaderTxt'] ?></span>
     <input id="newpassword2" name="newpassword2" type="password" class="form-control" pattern="^(?=.*[\d\W])(?=.*[a-z])(?=.*[A-Z]).{8,24}$" value="" maxlength="24" autocomplete="off" required>
     <div class="invalid-feedback"><span id="newpassword2InputError"></span></div>
     <input id="submitPasswordChange" name="submitPasswordChange" type="submit" class="btn btn-primary" disabled>
 
     <?php if (!empty($errors)) : ?>
     <div class="alert alert-danger" role="alert">
-        <p>Your account could not be created, please check the following:</p>
+        <p><?= $content['accountCreationError'] ?></p>
         <ul>
             <?php foreach ($errors as $error) : ?>
             <li><?= $error ?></li>
@@ -56,21 +57,19 @@
 <?php if ($displayMainMenu == true) : ?>
 <form method="post" action="" class="container fill-height">
     <div class="row">
-        <div class="col-3">Name: </div>
+        <div class="col-3"><?= $content['nameLabel'] ?></div>
         <div class="col"><?= $fname . ' ' . $lname ?></div>
-        <!-- <div class="col-4"><input name="changeusername" type="submit" value="Change your username"></div> -->
     </div><!-- /row -->
     <div class="row">
-        <div class="col-3">Email: </div>
+        <div class="col-3"><?= $content['emailLabel'] ?></div>
         <div class="col"><?= $email ?></div>
-        <!-- <div class="col-4"><input name="changeemail" type="submit" value="Change your email"></div> -->
     </div><!-- /row -->
     <div class="row">
-        <div class="col-3">Password: </div>
+        <div class="col-3"><?= $content['pwLabel'] ?></div>
         <div class="col">********* </div>
     </div><!-- /row -->
     <div class="row">
-        <div class="col"><input name="changepassword" type="submit" value="Change your password" class="btn btn-link pl-0">
+        <div class="col"><input name="changepassword" type="submit" value="<?= $content['changePw'] ?>" class="btn btn-link pl-0">
         </div>
     </div><!-- /row -->
     <hr>

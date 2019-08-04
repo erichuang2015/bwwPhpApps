@@ -1,0 +1,19 @@
+{
+    "title": "'s Cuenta",
+    "h1Text": "'s Cuenta",
+    "loginToProceed": "Si se ha registrado en este sitio, inicie sesión para obtener una experiencia óptima <a href=\"/login\">Haga clic aquí para ingresar</a>. Si no se ha registrado, hágalo <a href=\"/user/register\">Haga clic aquí para registrar una cuenta.</a>",
+    "enterOldPw": "Ingrese su contraseña anterior:",
+    "pwRules": "Las contraseñas deben tener más de 7 y menos de 25 caracteres de longitud. Deben contener al menos un número, un carácter alfabético en mayúsculas y uno en minúsculas, y pueden contener caracteres especiales.",
+    "pwRuleScreenReaderTxt": "Información sobre requisitos de contraseña",
+    "enterNewPw": "Introduzca su nueva contraseña:",
+    "passwordReqsAltTxt": "Información sobre el requisito de contraseña",
+    "enterNewPwAgain": "Ingrese su nueva contraseña nuevamente:",
+    "accountCreationError": "No se pudo crear su cuenta, verifique lo siguiente:",
+    "nameLabel": "Nombre:",
+    "emailLabel": "Email: ",
+    "pwLabel": "Contraseña: ",
+    "changePw": "Cambia tu contraseña",
+    "errorPw": "Error: Ingrese una contraseña válida",
+    "errorPwNewAndOldMustDiffer": "Error: su nueva contraseña no puede ser la misma que su contraseña anterior.",
+    "errorPwEntriesMustMatch": "Error: las nuevas entradas de contraseña deben coincidir."
+}

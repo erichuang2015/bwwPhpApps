@@ -9,15 +9,17 @@ $(document).ready(function () {
             title: ""
         });
     });
-    var newpassword1Status = false;
-    var newpassword2Status = false;
-    var oldPasswordProperFormat = false;
-    var newpassword1ProperFormat = false;
-    var newpassword2ProperFormat = false;
-    var oldPassword;
-    var newpassword1;
-    var newpassword2;
-    var newPasswordsMatch = false;
+    let newpassword1Status = false;
+    let newpassword2Status = false;
+    let oldPasswordProperFormat = false;
+    let newpassword1ProperFormat = false;
+    let newpassword2ProperFormat = false;
+    let oldPassword;
+    let newpassword1;
+    let newpassword2;
+    let newPasswordsMatch = false;
+    let errorPw = $("#errorPw").val();
+    let errorPwNewAndOldMustDiffer = $("#errorPwNewAndOldMustDiffer").val();
     $("#oldpassword, #newpassword1, #newpassword2").on("keyup blur change", function () {
         if (oldPasswordProperFormat && newpassword1Status && newpassword2Status) {
             $("#submitPasswordChange").removeAttr("disabled");
@@ -37,7 +39,8 @@ $(document).ready(function () {
                 oldPasswordProperFormat = true;
             }
             else {
-                $("#oldpasswordInputError").text("Error: Enter a valid password");
+
+                $("#oldpasswordInputError").text(errorPw);
                 $("#oldpassword").removeClass("is-valid");
                 $("#oldpassword").addClass("is-invalid");
                 oldPasswordProperFormat = false;
@@ -55,7 +58,7 @@ $(document).ready(function () {
                 newpassword1ProperFormat = true;
             }
             else {
-                $("#newpassword1InputError").text("Error: Enter a valid password");
+                $("#newpassword1InputError").text(errorPw);
                 $("#newpassword1").removeClass("is-valid");
                 $("#newpassword1").addClass("is-invalid");
                 newpassword1ProperFormat = false;
@@ -66,7 +69,7 @@ $(document).ready(function () {
                     newPasswordsMatch = verifyNewPasswordsInputsMatch(newpassword1, newpassword2);
                 }
                 if(newPasswordsMatch){
-                    var trulyNewPw = verifyOldNotSameAsNew(oldPassword, newpassword1);
+                    let trulyNewPw = verifyOldNotSameAsNew(oldPassword, newpassword1);
                     if(trulyNewPw){
                         newpassword1Status = true;
                         newpassword2Status = true;
@@ -77,7 +80,7 @@ $(document).ready(function () {
                     else{
                         newpassword1Status = false;
                         newpassword2Status = false;
-                        $("#newpassword1InputError").text("Error: Your new password cannot be the same as your old password.");
+                        $("#newpassword1InputError").text(errorPwNewAndOldMustDiffer);
                         $("#newpassword1").removeClass("is-valid");
                         $("#newpassword1").addClass("is-invalid");
                     }
@@ -96,7 +99,7 @@ $(document).ready(function () {
                 newpassword2ProperFormat = true;
             }
             else {
-                $("#newpassword2InputError").text("Error: Enter a valid password");
+                $("#newpassword2InputError").text(errorPw);
                 $("#newpassword2").removeClass("is-valid");
                 $("#newpassword2").addClass("is-invalid");
                 newpassword2ProperFormat = false;
@@ -107,7 +110,7 @@ $(document).ready(function () {
                     newPasswordsMatch = verifyNewPasswordsInputsMatch(newpassword1, newpassword2);
                 }
                 if(newPasswordsMatch){
-                    var trulyNewPw = verifyOldNotSameAsNew(oldPassword, newpassword2);
+                    let trulyNewPw = verifyOldNotSameAsNew(oldPassword, newpassword2);
                     if(trulyNewPw){
                         newpassword1Status = true;
                         newpassword2Status = true;
@@ -118,7 +121,7 @@ $(document).ready(function () {
                     else{
                         newpassword1Status = false;
                         newpassword2Status = false;
-                        $("#newpassword2InputError").text("Error: Your new password cannot be the same as your old password.");
+                        $("#newpassword2InputError").text(errorPwNewAndOldMustDiffer);
                         $("#newpassword2").removeClass("is-valid");
                         $("#newpassword2").addClass("is-invalid");
                     }
@@ -140,12 +143,13 @@ function ValidatePasswordFormat(password) {
 }
 
 function verifyNewPasswordsInputsMatch(newpassword1, newpassword2) {
-    var match = false;
+    let match = false;
+    let errorPwEntriesMustMatch = $("#errorPwEntriesMustMatch").val();
     if (newpassword1 != newpassword2) {
-        $("#newpassword1InputError").text("Error: Your new password enrtries must match.");
+        $("#newpassword1InputError").text(errorPwEntriesMustMatch);
         $("#newpassword1").removeClass("is-valid");
         $("#newpassword1").addClass("is-invalid");
-        $("#newpassword2InputError").text("Error: Your new password enrtries must match.");
+        $("#newpassword2InputError").text(errorPwEntriesMustMatch);
         $("#newpassword2").removeClass("is-valid");
         $("#newpassword2").addClass("is-invalid");
     }
@@ -162,7 +166,7 @@ function verifyNewPasswordsInputsMatch(newpassword1, newpassword2) {
 }
 
 function verifyOldNotSameAsNew(oldPassword, newPassword){
-    var trulyNewPw = false;
+    let trulyNewPw = false;
     if(oldPassword){
         trulyNewPw = (oldPassword != newPassword) ? true : false;
     }

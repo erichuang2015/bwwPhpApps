@@ -21,20 +21,37 @@ class MyAccount
 
     public function render()
     {
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/myaccount.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/myaccount.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
+
         $user = $this->authentication->getUser();
         $accountInfo = $this->usersTable->find('id', $user['id']);
         $loggedIn = $this->authentication->isLoggedIn();
+
         return [
             'template' => 'myaccount.html.php',
-            'title' => $accountInfo[0]['fname'] . " " . $accountInfo[0]['lname'] . "'s Account",
+            'title' => $accountInfo[0]['fname'] . " " . $accountInfo[0]['lname'] . $content['title'], // notice the title also comes from the content file
             'variables' => [
                 'loggedIn' => $loggedIn,
-                // 'username' => $accountInfo[0]['name'],
                 'fname' => $accountInfo[0]['fname'],
                 'lname' => $accountInfo[0]['lname'],
                 'email' => $accountInfo[0]['email'],
                 'displayMainMenu' => true,
-            ],
+                'content' => $content, //all the strings on the page
+                'language' => $lang //add the language variable to the page for the hidden input value
+            ]
         ];
     }
 
@@ -48,7 +65,10 @@ class MyAccount
 
     public function processUserRequest()
     {
-        if (isset($_POST['changepassword'])) {
+        if (isset($_POST['english']) || isset($_POST['spanish'])) {
+            $page = $this->changeLanguage($_POST);
+            return $page;
+        } else if (isset($_POST['changepassword'])) {
             header('Location: /myaccount/changepassword');
         } else if (isset($_POST['changeemail'])) {
             $this->changeEmail();
@@ -59,29 +79,58 @@ class MyAccount
 
     public function renderChangePassword()
     {
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/myaccount.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/myaccount.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
+
+        $user = $this->authentication->getUser();
+        $accountInfo = $this->usersTable->find('id', $user['id']);
+        $loggedIn = $this->authentication->isLoggedIn();
+
         $user = $this->authentication->getUser();
         $accountInfo = $this->usersTable->find('id', $user['id']);
         $loggedIn = $this->authentication->isLoggedIn();
         return [
             'template' => 'myaccount.html.php',
-            'title' => $accountInfo[0]['fname'] . ' ' . $accountInfo[0]['lname'] . "'s Account",
+            'title' => $accountInfo[0]['fname'] . " " . $accountInfo[0]['lname'] . $content['title'], // notice the title also comes from the content file
             'variables' => [
                 'loggedIn' => $loggedIn,
                 'fname' => $accountInfo[0]['fname'],
                 'lname' => $accountInfo[0]['lname'],
                 'email' => $accountInfo[0]['email'],
                 'changePassword' => true,
-                'displayMainMenu' => false
+                'displayMainMenu' => false,
+                'content' => $content, //all the strings on the page
+                'language' => $lang //add the language variable to the page for the hidden input value
             ],
         ];
     }
 
-    public function changePassword()
+    public function determineChangeLanguageOrPassword()
     {
-        if (isset($_POST['newpassword1']) && isset($_POST['newpassword2']) && isset($_POST['oldpassword'])) {
-            $oldPassword = $_POST['oldpassword'];
-            $newPassword1 = $_POST['newpassword1'];
-            $newPassword2 = $_POST['newpassword2'];
+        if (isset($_POST['english']) || isset($_POST['spanish'])) {
+            $page = $this->changeLanguage($_POST);
+            return $page;
+        } else if (isset($_POST['newpassword1']) && isset($_POST['newpassword2']) && isset($_POST['oldpassword'])) {
+
+            $this->changePassword($_POST['newpassword1'], $_POST['newpassword2'], $_POST['oldpassword']);
+        }
+    }
+
+    public function changePassword($newPassword1, $newPassword2, $oldPassword)
+    {
+        if (isset($newPassword1) && isset($newPassword2) && isset($oldPassword)) {
             $valid = true;
             $errors = [];
             $user = $this->authentication->getUser();
@@ -107,7 +156,7 @@ class MyAccount
                 ];
             } else {
                 $newPassword1 = password_hash($newPassword1, PASSWORD_DEFAULT);
-                $accountData['id'] = (int) $user['id'];
+                $accountData['id'] = (int)$user['id'];
                 $accountData['fname'] = $accountInfo[0]['fname']; // update this to use lname and fname and pw recovery questions
                 $accountData['lname'] = $accountInfo[0]['lname'];
                 $accountData['email'] = $accountInfo[0]['email'];
@@ -125,7 +174,7 @@ class MyAccount
         parse_str($query, $queryCode);
 
         $verifyData = $this->usersVerifyTable->find('verifycode', $queryCode['token']);
-        $token = (string) $verifyData[0]['verifycode'];
+        $token = (string)$verifyData[0]['verifycode'];
         if ($token) {
             return [
                 'template' => 'passwordrecoveryreset.html.php',
@@ -195,10 +244,10 @@ class MyAccount
         Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
         $lang = '';
         //Add the proper set of strings depending on if Spanish or English is requested
-        if($_SESSION['language'] == 'english'){
+        if ($_SESSION['language'] == 'english') {
             $homePath = __DIR__ . '/../../../public/locale/english/home.json';
             $lang = 'english';
-        }else{
+        } else {
             $homePath = __DIR__ . '/../../../public/locale/spanish/home.json';
             $lang = 'spanish';
         }
@@ -217,11 +266,11 @@ class MyAccount
         ];
     }
 
-    public function changeHomePageLanguage(){
-        if(isset($_POST['english'])){
+    public function changeHomePageLanguage()
+    {
+        if (isset($_POST['english'])) {
             $_SESSION['language'] = 'english';
-        }
-        else{
+        } else {
             $_SESSION['language'] = 'spanish';
         }
         $page = $this->home();
@@ -274,5 +323,17 @@ class MyAccount
                 ]
             ];
         }
+    }
+
+    public function changeLanguage($post)
+    {
+        $args = func_get_args();
+        if (isset($post['english'])) {
+            $_SESSION['language'] = 'english';
+        } else {
+            $_SESSION['language'] = 'spanish';
+        }
+        $page = $this->loginForm();
+        return $page;
     }
 }

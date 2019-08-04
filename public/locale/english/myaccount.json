@@ -1,0 +1,19 @@
+{
+  "title": "'s Account",
+  "h1Text": "'s Account",
+  "loginToProceed": "If you have registered with this site please login for the optimal experience <a href=\"/login\">click here to log in</a>. If you haven't registered please do so <a href=\"/user/register\">Click here to register an account</a>",
+  "enterOldPw": "Enter your old password:",
+  "pwRules": "Passwords must be more than 7 and less than 25 characters in length.  They must contain at least one number, one uppercase, and one lowercase alphabetical character, and may contain special characters.",
+  "pwRuleScreenReaderTxt": "Information about password requirements",
+  "enterNewPw": "Enter your new password:",
+  "passwordReqsAltTxt": "Information about password requirement",
+  "enterNewPwAgain": "Enter your new password again:",
+  "accountCreationError": "Your account could not be created, please check the following:",
+  "nameLabel": "Name: ",
+  "emailLabel": "Email: ",
+  "pwLabel": "Password: ",
+  "changePw": "Change your password",
+  "errorPw": "Error: Enter a valid password",
+  "errorPwNewAndOldMustDiffer": "Error: Your new password cannot be the same as your old password.",
+  "errorPwEntriesMustMatch": "Error: Your new password entries must match."
+}

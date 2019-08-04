@@ -243,7 +243,7 @@ class BwwRoutes implements \utilityClasses\Routes
                 ],
                 'POST' => [
                     'controller' => $myaccountController,
-                    'action' => 'changePassword',
+                    'action' => 'determineChangeLanguageOrPassword',
                 ],
                 'login' => true,
             ],
