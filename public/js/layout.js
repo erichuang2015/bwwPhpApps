@@ -32,12 +32,12 @@ $(document).ready(function () {
     }
 
     let language = $("#language").val();
-    if(language == "spanish"){
+    if (language == "spanish") {
         $("#lblEnglish").removeClass("active");
         $("#rbEnglish").removeAttr("checked");
         $("#lblSpanish").addClass("active");
         $("#rbSpanish").attr("checked", "checked");
-    }else{
+    } else {
         $("#lblEnglish").addClass("active");
         $("#rbEnglish").attr("checked", "checked");
         $("#lblSpanish").removeClass("active");
@@ -63,19 +63,13 @@ $(document).ready(function () {
 function changeLanguage(target) {
     //call a POST to the page we are on while passing the target name
     let url = window.location.href;
-
     let language = target.name; // either 'spanish' or 'english'
-    // console.log(language);
-    $.post(url, language, function(data, status, xhr){
+    let loaded = 0;
+    $.post(url, language, function (data, status, xhr) {
         location.reload();
-        console.log(url);
-        console.log("<br>");
-        console.log(language);
-        console.log("<br>");
-        console.log(data);
-        console.log("<br>");
-        console.log(status);
-        console.log("<br>");
-        console.log(xhr);
+        loaded = 1;
     });
+    if (loaded == 0) {
+        location.reload();
+    }
 }
