@@ -1,4 +1,5 @@
 <?php
+
 namespace UtilityClasses;
 
 use \utilityClasses\Utils; //import this Utils class to use for initializing the language session variable
@@ -62,6 +63,15 @@ class EntryPoint
             $action = $routes[$this->route][$this->method]['action'];
 
             $page = $controller->$action();
+            // if ($_SESSION['language'] == 'english') {
+            //     $path = __DIR__ . '/../../public/locale/english/layout.json';
+            //     $lang = 'english';
+            // } else {
+            //     $path = __DIR__ . '/../../public/locale/spanish/layout.json';
+            //     $lang = 'spanish';
+            // }
+            // $layoutContent = file_get_contents($path);
+            // $layoutContent = json_decode($layoutContent, true);
 
             $title = $page['title'];
             $loggedIn = $authentication->isLoggedIn();
@@ -73,7 +83,7 @@ class EntryPoint
             } else {
                 $output = $this->loadTemplate($page['template']);
             }
-//            phpinfo();die;
+            //            phpinfo();die;
             echo $this->loadTemplate('layout.html.php', [
                 'loggedIn' => $loggedIn,
                 'output' => $output,

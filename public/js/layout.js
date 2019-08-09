@@ -63,8 +63,19 @@ $(document).ready(function () {
 function changeLanguage(target) {
     //call a POST to the page we are on while passing the target name
     let url = window.location.href;
+
     let language = target.name; // either 'spanish' or 'english'
+    // console.log(language);
     $.post(url, language, function(data, status, xhr){
         location.reload();
+        console.log(url);
+        console.log("<br>");
+        console.log(language);
+        console.log("<br>");
+        console.log(data);
+        console.log("<br>");
+        console.log(status);
+        console.log("<br>");
+        console.log(xhr);
     });
 }
