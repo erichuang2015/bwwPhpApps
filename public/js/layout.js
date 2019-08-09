@@ -70,6 +70,9 @@ function changeLanguage(target) {
         loaded = 1;
     });
     if (loaded == 0) {
-        location.reload();
+        setTimeout(function(){
+            location.reload();
+        }, 400);
+
     }
 }
