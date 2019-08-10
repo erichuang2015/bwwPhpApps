@@ -193,16 +193,47 @@ class MyAccount
 
     public function renderPasswordChangeSuccess()
     {
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/passwordchangesuccess.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/passwordchangesuccess.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
         $user = $this->authentication->getUser();
         $accountInfo = $this->usersTable->find('id', $user['id']);
         $loggedIn = $this->authentication->isLoggedIn();
+
         return [
             'template' => 'passwordchangesuccess.html.php',
-            'title' => 'Password change successful',
+            'title' => $content['title'],
             'variables' => [
                 'loggedIn' => $loggedIn,
+                'content' => $content, //all the strings on the page
+                'language' => $lang //add the language variable to the page for the hidden input value
             ],
         ];
+    }
+
+    /**
+     * @return array $page: this is is the passwordchangesuccess page and it's variables
+     */
+    public function changeLanguageFromPasswordSuccess()
+    {
+        if (isset($_POST['english'])) {
+            $_SESSION['language'] = 'english';
+        } else {
+            $_SESSION['language'] = 'spanish';
+        }
+        $page = $this->renderPasswordChangeSuccess();
+        return $page;
     }
 
     public function renderPasswordRecovery()

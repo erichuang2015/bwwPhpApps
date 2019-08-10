@@ -252,6 +252,10 @@ class BwwRoutes implements \utilityClasses\Routes
                     'controller' => $myaccountController,
                     'action' => 'renderPasswordChangeSuccess',
                 ],
+                'POST' => [
+                    'controller' => $myaccountController,
+                    'action' => 'changeLanguageFromPasswordSuccess',
+                ]
             ],
             'myaccount/passwordrecovery' => [
                 'GET' => [
