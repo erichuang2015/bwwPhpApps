@@ -15,5 +15,6 @@
     "changePw": "Cambia tu contraseña",
     "errorPw": "Error: Ingrese una contraseña válida",
     "errorPwNewAndOldMustDiffer": "Error: su nueva contraseña no puede ser la misma que su contraseña anterior.",
-    "errorPwEntriesMustMatch": "Error: las nuevas entradas de contraseña deben coincidir."
+    "errorPwEntriesMustMatch": "Error: las nuevas entradas de contraseña deben coincidir.",
+    "submit": "Enviar"
 }

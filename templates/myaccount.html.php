@@ -38,7 +38,7 @@
     <span class="sr-only"><?= $content['pwRuleScreenReaderTxt'] ?></span>
     <input id="newpassword2" name="newpassword2" type="password" class="form-control" pattern="^(?=.*[\d\W])(?=.*[a-z])(?=.*[A-Z]).{8,24}$" value="" maxlength="24" autocomplete="off" required>
     <div class="invalid-feedback"><span id="newpassword2InputError"></span></div>
-    <input id="submitPasswordChange" name="submitPasswordChange" type="submit" class="btn btn-primary" disabled>
+    <input id="submitPasswordChange" name="submitPasswordChange" type="submit" class="btn btn-primary" value="<?= $content['submit'] ?>" disabled>
 
     <?php if (!empty($errors)) : ?>
     <div class="alert alert-danger" role="alert">

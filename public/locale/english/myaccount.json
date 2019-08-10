@@ -15,5 +15,6 @@
   "changePw": "Change your password",
   "errorPw": "Error: Enter a valid password",
   "errorPwNewAndOldMustDiffer": "Error: Your new password cannot be the same as your old password.",
-  "errorPwEntriesMustMatch": "Error: Your new password entries must match."
+  "errorPwEntriesMustMatch": "Error: Your new password entries must match.",
+  "submit": "Submit"
 }
