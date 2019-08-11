@@ -128,6 +128,22 @@ class MyAccount
         }
     }
 
+    public function determineChangeLanguageOrRecoverPassword()
+    {
+        if (isset($_POST['english']) || isset($_POST['spanish'])) {
+
+            if (isset($post['english'])) {
+                $_SESSION['language'] = 'english';
+            } else {
+                $_SESSION['language'] = 'spanish';
+            }
+            $page = $this->renderPasswordRecovery();
+            return $page;
+        } else {
+            $this->recoverPassword($_POST);
+        }
+    }
+
     public function changePassword($newPassword1, $newPassword2, $oldPassword)
     {
         if (isset($newPassword1) && isset($newPassword2) && isset($oldPassword)) {
@@ -238,16 +254,34 @@ class MyAccount
 
     public function renderPasswordRecovery()
     {
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/passwordrecovery.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/passwordrecovery.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
         return [
             'template' => 'passwordrecovery.html.php',
-            'title' => "Password recovery form",
+            'title' => $content['title'],
+            'variables' => [
+                'content' => $content, //all the strings on the page
+                'language' => $lang //add the language variable to the page for the hidden input value
+            ],
         ];
     }
 
-    public function recoverPassword()
+    public function recoverPassword($post)
     {
-        if (!empty($_POST['user'])) {
-            $user = $_POST['user']; // contains the user supplied email
+        if (!empty($post['user'])) {
+            $user = $post['user']; // contains the user supplied email
         }
 
         $tempPw = $this->authentication->recoverPassWord($user['email']);
