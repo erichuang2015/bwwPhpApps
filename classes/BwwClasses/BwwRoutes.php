@@ -264,7 +264,7 @@ class BwwRoutes implements \utilityClasses\Routes
                 ],
                 'POST' => [
                     'controller' => $myaccountController,
-                    'action' => 'determineChangeLanguageOrPassword'
+                    'action' => 'determineChangeLanguageOrRecoverPassword'
                 ],
             ],
             'myaccount/passwordrecoveryreset' => [
@@ -274,7 +274,17 @@ class BwwRoutes implements \utilityClasses\Routes
                 ],
                 'POST' => [
                     'controller' => $myaccountController,
-                    'action' => 'createNewPassword',
+                    'action' => 'determineCreateNewPasswordOrChangeLang'
+                ]
+            ],
+            'myaccount/recoverpasswordemailsent' => [
+                'GET' => [
+                    'controller' => $myaccountController,
+                    'action' => 'renderRecoverPwEmailSent',
+                ],
+                'POST' => [
+                    'controller' => $myaccountController,
+                    'action' => 'changeRecoveryPwEmailSentLanguage'
                 ]
             ],
             'shoppinglist' => [

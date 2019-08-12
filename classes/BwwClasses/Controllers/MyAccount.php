@@ -31,10 +31,8 @@ class MyAccount
             $path = __DIR__ . '/../../../public/locale/spanish/myaccount.json';
             $lang = 'spanish';
         }
-
         $content = file_get_contents($path);
         $content = json_decode($content, true);
-
 
         $user = $this->authentication->getUser();
         $accountInfo = $this->usersTable->find('id', $user['id']);
@@ -57,9 +55,24 @@ class MyAccount
 
     public function success()
     {
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/registersuccess.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/registersuccess.json';
+            $lang = 'spanish';
+        }
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
         return [
             'template' => 'registersuccess.html.php',
-            'title' => 'Registration Successful'
+            'title' => $content['title'],
+            'content' => $content, //all the strings on the page
+            'language' => $lang //add the language variable to the page for the hidden input value
         ];
     }
 
@@ -123,7 +136,6 @@ class MyAccount
             $page = $this->changeLanguage($_POST);
             return $page;
         } else if (isset($_POST['newpassword1']) && isset($_POST['newpassword2']) && isset($_POST['oldpassword'])) {
-
             $this->changePassword($_POST['newpassword1'], $_POST['newpassword2'], $_POST['oldpassword']);
         }
     }
@@ -131,7 +143,6 @@ class MyAccount
     public function determineChangeLanguageOrRecoverPassword()
     {
         if (isset($_POST['english']) || isset($_POST['spanish'])) {
-
             if (isset($post['english'])) {
                 $_SESSION['language'] = 'english';
             } else {
@@ -156,9 +167,24 @@ class MyAccount
             if ($isTheOldPwValid == false || $newPassword1 != $newPassword2) {
                 $errors[] = 'Invalid input.  Please try again.';
                 $valid = false;
+
+                Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+                $lang = '';
+                //Add the proper set of strings depending on if Spanish or English is requested
+                if ($_SESSION['language'] == 'english') {
+                    $path = __DIR__ . '/../../../public/locale/english/myaccount.json';
+                    $lang = 'english';
+                } else {
+                    $path = __DIR__ . '/../../../public/locale/spanish/myaccount.json';
+                    $lang = 'spanish';
+                }
+
+                $content = file_get_contents($path);
+                $content = json_decode($content, true);
+
                 return [
                     'template' => 'myaccount.html.php',
-                    'title' => $accountInfo[0]['fname'] . " " . $accountInfo[0]['lname'] . "'s Account - Change Password",
+                    'title' => $accountInfo[0]['fname'] . " " . $accountInfo[0]['lname'] . $content['changePwTitle'],
                     'variables' => [
                         'loggedIn' => $loggedIn,
                         'fname' => $accountInfo[0]['fname'],
@@ -168,6 +194,8 @@ class MyAccount
                         'displayMainMenu' => false,
                         'errors' => $errors,
                         'changePassword' => true,
+                        'content' => $content, //all the strings on the page
+                        'language' => $lang //add the language variable to the page for the hidden input value
                     ],
                 ];
             } else {
@@ -188,21 +216,43 @@ class MyAccount
         $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         $query = parse_url($url, PHP_URL_QUERY);
         parse_str($query, $queryCode);
-
-        $verifyData = $this->usersVerifyTable->find('verifycode', $queryCode['token']);
+        $verifyData = $this->usersVerifyTable->find('verifycode', $queryCode['token']);//Todo: figure out why $verifyData is null after this statement runs; it seems the DB does not get populated with the verify code before this runs
         $token = (string)$verifyData[0]['verifycode'];
+
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/passwordrecoveryreset.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/passwordrecoveryreset.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
         if ($token) {
             return [
                 'template' => 'passwordrecoveryreset.html.php',
-                'title' => 'Create your new password'
+                'title' => $content['title'], // notice the title also comes from the content file
+                'variables' => [
+                    'content' => $content, //all the strings on the page
+                    'language' => $lang //add the language variable to the page for the hidden input value
+                ]
             ];
         } else {
             //Todo: test this by inputting an invalid token, and make sure it renders as expected
             $errorTxt = 'Your account could not be validated';
             return [
                 'template' => 'passwordrecoveryreset.html.php',
-                'title' => 'Create your new password',
-                'errors' => $errorTxt
+                'title' => $content['title'], // notice the title also comes from the content file
+                'errors' => $errorTxt,
+                'variables' => [
+                    'content' => $content, //all the strings on the page
+                    'language' => $lang //add the language variable to the page for the hidden input value
+                ]
             ];
         }
     }
@@ -280,28 +330,76 @@ class MyAccount
 
     public function recoverPassword($post)
     {
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+
+        $tempPw = false;
         if (!empty($post['user'])) {
+            $_SESSION['user'] = $post['user']; // contains the user supplied email
             $user = $post['user']; // contains the user supplied email
+            $tempPw = $this->authentication->recoverPassWord($user['email']);
         }
 
-        $tempPw = $this->authentication->recoverPassWord($user['email']);
         if ($tempPw != false) {
-            return [
-                'template' => 'recoverpasswordemailsent.html.php',
-                'title' => 'Password recovery email sent',
-                'variables' => [
-                    'email' => $user['email'],
-                ],
-            ];
+            header('Location: /myaccount/recoverpasswordemailsent');
         } else {
+            //Add the proper set of strings depending on if Spanish or English is requested
+            if ($_SESSION['language'] == 'english') {
+                $path = __DIR__ . '/../../../public/locale/english/passwordrecovery.json';
+                $lang = 'english';
+            } else {
+                $path = __DIR__ . '/../../../public/locale/spanish/passwordrecovery.json';
+                $lang = 'spanish';
+            }
+            $content = file_get_contents($path);
+            $content = json_decode($content, true);
             return [
                 'template' => 'passwordrecovery.html.php',
-                'title' => 'Password recovery form - Errors',
+                'title' => $content['title'] + " - Errors",
                 'variables' => [
                     'error' => 'One or more of your entries was incorrect.  Please try again.',
+                    'content' => $content,
+                    'language' => $lang//add the language variable to the page for the hidden input value
                 ],
             ];
         }
+    }
+
+    public function renderRecoverPwEmailSent()
+    {
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/recoverpasswordemailsent.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/recoverpasswordemailsent.json';
+            $lang = 'spanish';
+        }
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+        $user = $_SESSION['user'];
+        return [
+            'template' => 'recoverpasswordemailsent.html.php',
+            'title' => $content['title'],
+            'variables' => [
+                'email' => $user['email'],
+                'content' => $content,
+                'language' => $lang//add the language variable to the page for the hidden input value
+            ],
+        ];
+    }
+
+    public function changeRecoveryPwEmailSentLanguage()
+    {
+        if (isset($_POST['english'])) {
+            $_SESSION['language'] = 'english';
+        } else {
+            $_SESSION['language'] = 'spanish';
+        }
+        $page = $this->renderRecoverPwEmailSent();
+        return $page;
     }
 
     public function home()
@@ -342,23 +440,40 @@ class MyAccount
         return $page;
     }
 
+    public function determineCreateNewPasswordOrChangeLang()
+    {
+        if (isset($_POST['english']) || isset($_POST['spanish'])) {
+            if (isset($post['english'])) {
+                $_SESSION['language'] = 'english';
+            } else {
+                $_SESSION['language'] = 'spanish';
+            }
+            $page = $this->renderReplaceLostPassword();
+            return $page;
+        } else {
+            $this->createNewPassword($_POST);
+        }
+    }
+
     //This function takes user input to create the replacement password after the user has requested to create a new password because they forgot their old one
-    public function createNewPassword()
+    public function createNewPassword($post)
     {
         $valid = true;
         $loggedIn = $this->authentication->isLoggedIn();
         $errors = [];
         $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         $pattern = '/^(?=.*[\d\W])(?=.*[a-z])(?=.*[A-Z]).{8,24}$/';
-        if (empty($_POST['newpassword'])) {
+        if (empty($post['newpassword'])) {
             $valid = false;
             $errors[] = 'Please enter a valid password';
-        } else if (!preg_match($pattern, $_POST['newpassword'])) {
+        } else if (!preg_match($pattern, $post['newpassword'])) {
             $valid = false;
             $errors[] = 'Please enter a valid password';
         }
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
         if ($valid) {
-            $newPassWord = password_hash($_POST['newpassword'], PASSWORD_DEFAULT);
+            $newPassWord = password_hash($post['newpassword'], PASSWORD_DEFAULT);
             $query = parse_url($url, PHP_URL_QUERY);
             parse_str($query, $queryCode);
             $verifyData = $this->usersVerifyTable->find('verifycode', $queryCode['token']);
@@ -371,20 +486,49 @@ class MyAccount
             $user['password'] = $newPassWord;
             $this->usersTable->save($user);
             $this->usersVerifyTable->delete($verifyData[0]['id']);
+
+            //Add the proper set of strings depending on if Spanish or English is requested
+            if ($_SESSION['language'] == 'english') {
+                $path = __DIR__ . '/../../../public/locale/english/passwordresetsuccess.json';
+                $lang = 'english';
+            } else {
+                $path = __DIR__ . '/../../../public/locale/spanish/passwordresetsuccess.json';
+                $lang = 'spanish';
+            }
+
+            $content = file_get_contents($path);
+            $content = json_decode($content, true);
+
             return [
                 'template' => 'passwordresetsuccess.html.php',
-                'title' => 'Password Reset Successful',
+                'title' => $content['title'],
                 'variables' => [
-                    'loggedIn' => $loggedIn
+                    'loggedIn' => $loggedIn,
+                    'content' => $content,
+                    'language' => $lang//add the language variable to the page for the hidden input value
                 ]
             ];
         } else {
+            //Add the proper set of strings depending on if Spanish or English is requested
+            if ($_SESSION['language'] == 'english') {
+                $path = __DIR__ . '/../../../public/locale/english/passwordrecoveryreset.json';
+                $lang = 'english';
+            } else {
+                $path = __DIR__ . '/../../../public/locale/spanish/passwordrecoveryreset.json';
+                $lang = 'spanish';
+            }
+
+            $content = file_get_contents($path);
+            $content = json_decode($content, true);
             //return page with errors
             return [
+
                 'template' => 'passwordrecoveryreset.html.php',
-                'title' => 'Password recovery form - Error',
+                'title' => $content['errorTitle'],
                 'variables' => [
                     'errors' => $errors,
+                    'content' => $content,
+                    'language' => $lang//add the language variable to the page for the hidden input value
                 ]
             ];
         }
