@@ -40,14 +40,16 @@ $(document).ready(function() {
                 $("#submitBtn").attr("disabled", "true");
                 $(userFile).removeClass("is-valid");
                 $(userFile).addClass("is-invalid");
-                $("#userFileError").text("Error: Please only upload jpeg or png image files.");
+                var errorFileType = $("#errorFileType").val();
+                $("#userFileError").text(errorFileType);
             }
 
         } else {
             $("#submitBtn").attr("disabled", "true");
             $(userFile).removeClass("is-valid");
             $(userFile).addClass("is-invalid");
-            $("#userFileError").text("Error: Please select an image to upload.");
+            var errorSelectImg = $("#errorSelectImg").val();
+            $("#userFileError").text(errorSelectImg);
         }
     });
 

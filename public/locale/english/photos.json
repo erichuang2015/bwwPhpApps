@@ -1,0 +1,17 @@
+{
+    "title": "BWW Apps - Photo Gallery",
+    "h1Text": "Photo Gallery",
+    "mustBeLoggedIn": "You must be logged in to be able to use this app.",
+    "labelOptions": "What would you like to do?",
+    "optionsScreenReaderTxt": "Information about available activities for this app.",
+    "optionsList": "<ul><li>Upload allows you to add new photos to your collection.</li><li>Delete allows you to remove photos from your collection.</li><li>View Slideshow allows you to watch your photos appear and disappear from the screen in a graphically pleasing manner.</li></ul>",
+    "choose": "Choose...",
+    "optionUpload": "Upload Photos",
+    "optionViewSlideShow": "View Slideshow",
+    "selectErrorTxt": "Please select a valid option.",
+    "submitBtnTxt": "Submit",
+    "rotate": "Rotate",
+    "delete": "Delete",
+    "errorFileType": "Error: Please only upload jpeg or png image files.",
+    "errorSelectImg": "Error: Please select an image to upload."
+}

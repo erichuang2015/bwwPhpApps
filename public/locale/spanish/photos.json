@@ -1,0 +1,17 @@
+{
+    "title": "BWW Apps - Galería de Fotos",
+    "h1Text": "Galería de Fotos",
+    "mustBeLoggedIn": "Debe iniciar sesión para poder usar esta aplicación.",
+    "labelOptions": "Que te gustaría hacer?",
+    "optionsScreenReaderTxt": "Información sobre actividades disponibles para esta aplicación.",
+    "optionsList": "<ul><li>Cargar le permite agregar nuevas fotos a su colección.</li><li>Eliminar le permite eliminar fotos de su colección.</li><li>Ver presentación de diapositivas le permite ver sus fotos aparecer y desaparecer de la pantalla de una manera gráficamente agradable.</li></ul>",
+    "choose": "Escoger...",
+    "optionUpload": "Subir fotos",
+    "optionViewSlideShow": "Ver presentación",
+    "selectErrorTxt": "Por favor seleccione una opción válida.",
+    "submitBtnTxt": "Enviar",
+    "rotate": "Girar",
+    "delete": "Borrar",
+    "errorFileType": "Error: cargue solo archivos de imagen jpeg o png.",
+    "errorSelectImg": "Error: seleccione una imagen para cargar."
+}

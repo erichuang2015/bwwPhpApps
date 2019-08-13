@@ -3,6 +3,7 @@ namespace BwwClasses\Controllers;
 
 use \utilityClasses\Authentication;
 use \utilityClasses\DatabaseTable;
+use UtilityClasses\Utils;
 
 class Photos
 {
@@ -35,6 +36,20 @@ class Photos
             $this->rotatePhoto($_POST['id']);
         }
 
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/photos.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/photos.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
         if ($loggedIn) {
             $user = $this->authentication->getUser();
             $photos = [];
@@ -51,18 +66,22 @@ class Photos
 
             return [
                 'template' => 'photos.html.php',
-                'title' => 'Photo Gallery',
+                'title' => $content['title'],
                 'variables' => [
                     'loggedIn' => $loggedIn,
                     'photos' => $photos,
+                    'content' => $content,//all the strings on the page
+                    'language' => $lang//add the language variable to the page for the hidden input value
                 ]
             ];
         } else {
             return [
                 'template' => 'photos.html.php',
-                'title' => 'Photo Gallery',
+                'title' => $content['title'],
                 'variables' => [
                     'loggedIn' => $loggedIn,
+                    'content' => $content,//all the strings on the page
+                    'language' => $lang//add the language variable to the page for the hidden input value
                 ]
             ];
         }
@@ -70,14 +89,21 @@ class Photos
 
     public function processUserRequest()
     {
-        if (isset($_POST['choice'])) {
+        if (isset($_POST['english']) || isset($_POST['spanish'])) {
+            if (isset($_POST['english'])) {
+                $_SESSION['language'] = 'english';
+            } else {
+                $_SESSION['language'] = 'spanish';
+            }
+            $page = $this->render();
+            return $page;
+        } else if (isset($_POST['choice'])) {
             switch ((int)$_POST['choice']) {
                 case 1:
                     header("location: /photos/upload");
                     break;
                 case 2:
                     header("location: /photos/slideshow");
-                    // $userChoice = "location: /photos/slideshow";
                     break;
             }
         } else {
@@ -88,25 +114,17 @@ class Photos
     public function renderUploadForm()
     {
         return [
-            'template' => 'photosupload.html.php',
+            'template' => 'photosupload.html.php', //Todo: photosupload translations
             'title' => 'Photo Gallery - Upload',
         ];
     }
 
     public function savePhoto()
     {
-        // print_r($_FILES['userfile']['name'][0]); die;  // print name of the actual file from user's computer
-        //print_r($_FILES['userfile']['type'][0]); die;  // print the type of file to get ext
-
-        // print_r($_FILES['userfile']['tmp_name'][0]); die; // print the temporary name that php gave the file
-        // print_r($_FILES['userfile']['error'][0]); die; // print the error produced by the file
-        // print_r($_FILES['userfile']['size'][0]); die; // print the file size
-        //print_r($_SERVER['DOCUMENT_ROOT']); die; // prints out as: /home/vagrant/Code/bwwPhpApps/public
-
         if (empty($_FILES['userfile']['tmp_name'][0])) {
             $error = "You did not select a file.  Please try again.";
             return [
-                'template' => 'photosupload.html.php',
+                'template' => 'photosupload.html.php', //Todo: photosupload translations
                 'title' => "Photo Gallery Upload - Error",
                 'variables' => [
                     'error' => $error
@@ -121,7 +139,7 @@ class Photos
         if ($ext != '.jpg' && $ext != '.jpeg' && $ext != '.png') {
             $error = "Please upload only jpg or png files.  Other file types are not supported.";
             return [
-                'template' => 'photosupload.html.php',
+                'template' => 'photosupload.html.php', //Todo: photosupload translations
                 'title' => "Photo Gallery Upload - Error",
                 'variables' => [
                     'error' => $error
@@ -138,7 +156,7 @@ class Photos
         if ((!is_uploaded_file($_FILES['userfile']['tmp_name'][0])) || $check <= 0 || $check > 4194304) {
             $error = "File size cannot exceed 4MB!";
             return [
-                'template' => 'photosupload.html.php',
+                'template' => 'photosupload.html.php', //Todo: photosupload translations
                 'title' => "Photo Gallery Upload - Error",
                 'variables' => [
                     'error' => $error
@@ -240,7 +258,7 @@ class Photos
                 ];
             }
             return [
-                'template' => 'slideshow.html.php',
+                'template' => 'slideshow.html.php', //Todo: slideshow translations
                 'title' => 'Photo Gallery - Slideshow',
                 'variables' => [
                     'loggedIn' => $loggedIn,
@@ -249,7 +267,7 @@ class Photos
             ];
         } else {
             return [
-                'template' => 'slideshow.html.php',
+                'template' => 'slideshow.html.php', //Todo: slideshow translations
                 'title' => 'Photo Gallery - Slideshow',
                 'variables' => [
                     'loggedIn' => $loggedIn,

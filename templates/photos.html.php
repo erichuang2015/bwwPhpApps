@@ -1,13 +1,16 @@
 <link rel="stylesheet" href="/css/photogallery.css">
+<input id="language" type="hidden" value="<?= $language?>">
+<input id="errorFileType" type="hidden" value="<?= $content['errorFileType'] ?>">
+<input id="errorSelectImg" type="hidden" value="<?= $content['errorSelectImg'] ?>">
 <div class="jumbotron fill-height">
     <div class="container fill-height">
-        <h1 class="display-3">Photo Gallery</h1>
+        <h1 class="display-3"><?= $content['h1Text'] ?></h1>
         <!-- if not logged in display the below: -->
         <!-- <p>
       This app allows you to upload your photos and view them in a slide show.
     </p> -->
         <?php if (!$loggedIn) : ?>
-            <span class="alert alert-warning" role="alert">You must be logged in to be able to use this app.</span>
+            <span class="alert alert-warning" role="alert"><?= $content['mustBeLoggedIn'] ?></span>
         <?php endif; ?>
     </div>
 </div>
@@ -17,18 +20,18 @@
         <form action="" method="post">
             <div class="row">
                 <div class="col-md-4 mb-3">
-                    <label for="optionChoice">What would you like to do?</label>
-                    <span class="sr-only">Information about available activities for this app.</span>
-                    <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about available activities for this app." width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="<ul><li>Upload allows you to add new photos to your collection.</li><li>Delete allows you to remove photos from your collection.</li><li>View Slideshow allows you to watch your photos appear and disapear from the screen in a graphically pleasing manner.</li></ul>">
+                    <label for="optionChoice"><?= $content['labelOptions'] ?></label>
+                    <span class="sr-only"><?= $content['optionsScreenReaderTxt'] ?></span>
+                    <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="<?= $content['optionsScreenReaderTxt'] ?>" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content="<?= $content['optionsList'] ?>">
                     <select class="custom-select d-block w-100" id="optionChoice" name="choice" required>
-                        <option value="">Choose...</option>
-                        <option value="1">Upload Photos</option>
-                        <option value="2">View Slideshow</option>
+                        <option value=""><?= $content['choose'] ?></option>
+                        <option value="1"><?= $content['optionUpload'] ?></option>
+                        <option value="2"><?= $content['optionViewSlideShow'] ?></option>
                     </select>
                     <div class="invalid-feedback">
-                        Please select a valid option.
+                        <?= $content['selectErrorTxt'] ?>
                     </div><!-- /invalid-feedback -->
-                    <input id="submit" name="submit" type="submit" class="btn btn-primary btn-lg" value="Submit" disabled>
+                    <input id="submit" name="submit" type="submit" class="btn btn-primary btn-lg" value="<?= $content['submitBtnTxt'] ?>" disabled>
                 </div><!-- /col-md-4 mb-3 -->
             </div><!-- /row -->
         </form>
@@ -52,8 +55,8 @@
                                     <input type="hidden" name="userid" value="<?= $photo['userid'] ?>">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <input name="rotate" type="submit" class="btn btn-sm btn-outline-secondary" value="Rotate">
-                                            <input name="delete" type="submit" class="btn btn-sm btn-outline-secondary" value="Delete">
+                                            <input name="rotate" type="submit" class="btn btn-sm btn-outline-secondary" value="<?= $content['rotate'] ?>">
+                                            <input name="delete" type="submit" class="btn btn-sm btn-outline-secondary" value="<?= $content['delete'] ?>">
                                         </div><!-- /btn-group -->
                                     </div><!-- /d-flex justify-content-between align-items-center -->
                                 </div><!-- /card-body -->
