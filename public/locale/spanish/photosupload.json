@@ -1,0 +1,16 @@
+{
+    "title": "BWW Apps - Subir Galería de Fotos",
+    "h1Text": "Subir Galería de Fotos",
+    "serverErrorMsg": "Tu foto no se pudo subir. Por favor revisa lo siguiente:",
+    "lblSelectPhoto": "Selecciona la foto para subir",
+    "activitiesAvailSrTxt": "Información sobre actividades disponibles para esta aplicación.",
+    "fileTypeContentList": "<ul><li>Puedes subir archivos jpg o png. Otros tipos de archivos no son compatibles.</li><li>El tamaño del archivo no puede superar los 4 MB.</li><li>Puedes subir un total de 10 imágenes.</li></ul>",
+    "caption": "Subtítulo:",
+    "aboutCaptionSrTxt": "Información sobre el subtítulo.",
+    "optionalDescriptionContent": "Proporcione una descripción <b> opcional </b> de su imagen. Debe tener 55 caracteres o menos.",
+    "btnCancel": "Cancelar",
+    "sorryForLimitedStorage": "Lamento limitar tus cargas a solo 10 imágenes. Proporciono este servicio de forma gratuita, pero el almacenamiento web me cuesta dinero. Para mantener el costo de almacenamiento de este sitio a un nivel que puedo pagar, es necesario limitar la cantidad de imágenes que se cargan.",
+    "errorFileType": "Error: cargue solo archivos de imagen jpeg o png.",
+    "errorSelectImg": "Error: seleccione una imagen para cargar.",
+    "placeholderOptional": "opcional"
+}

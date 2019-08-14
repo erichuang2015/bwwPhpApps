@@ -223,6 +223,10 @@ class BwwRoutes implements \utilityClasses\Routes
                     'controller' => $photosController,
                     'action' => 'renderSlideShow',
                 ],
+                'POST' => [
+                    'controller' => $photosController,
+                    'action' => 'changeLangFromSlideShow',
+                ],
                 'login' => true,
             ],
             'myaccount' => [

@@ -1,4 +1,5 @@
 <?php
+
 namespace BwwClasses\Controllers;
 
 use \utilityClasses\Authentication;
@@ -113,21 +114,65 @@ class Photos
 
     public function renderUploadForm()
     {
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/photosupload.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/photosupload.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
         return [
-            'template' => 'photosupload.html.php', //Todo: photosupload translations
-            'title' => 'Photo Gallery - Upload',
+            'template' => 'photosupload.html.php',
+            'title' => $content['title'],
+            'variables' => [
+                'content' => $content,//all the strings on the page
+                'language' => $lang//add the language variable to the page for the hidden input value
+            ]
         ];
     }
 
     public function savePhoto()
     {
+        if (isset($_POST['english']) || isset($_POST['spanish'])) {
+            if (isset($_POST['english'])) {
+                $_SESSION['language'] = 'english';
+            } else {
+                $_SESSION['language'] = 'spanish';
+            }
+            $page = $this->renderUploadForm();
+            return $page;
+        }
+
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/photos.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/photos.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
         if (empty($_FILES['userfile']['tmp_name'][0])) {
-            $error = "You did not select a file.  Please try again.";
+            $error = $content['serverError1'];
             return [
-                'template' => 'photosupload.html.php', //Todo: photosupload translations
-                'title' => "Photo Gallery Upload - Error",
+                'template' => 'photosupload.html.php',
+                'title' => $content['title'] . " - Error",
                 'variables' => [
-                    'error' => $error
+                    'error' => $error,
+                    'content' => $content,//all the strings on the page
+                    'language' => $lang//add the language variable to the page for the hidden input value
                 ],
             ];
         }
@@ -137,12 +182,14 @@ class Photos
         $ext = strtolower($ext);
         // Pick a file extension
         if ($ext != '.jpg' && $ext != '.jpeg' && $ext != '.png') {
-            $error = "Please upload only jpg or png files.  Other file types are not supported.";
+            $error = $content['serverError2'];
             return [
-                'template' => 'photosupload.html.php', //Todo: photosupload translations
-                'title' => "Photo Gallery Upload - Error",
+                'template' => 'photosupload.html.php',
+                'title' => $content['title'] . " - Error",
                 'variables' => [
-                    'error' => $error
+                    'error' => $error,
+                    'content' => $content,//all the strings on the page
+                    'language' => $lang//add the language variable to the page for the hidden input value
                 ],
             ];
         }
@@ -154,12 +201,14 @@ class Photos
         $check = (int)$_FILES['userfile']['size'][0]; // get file size
         // Copy the file (if it is deemed safe) All this function (is_uploaded_file) does is return TRUE if the filename it’s passed as a parameter ($_FILES['userfile']['tmp_name'] in this case) was in fact uploaded as part of a form submission.
         if ((!is_uploaded_file($_FILES['userfile']['tmp_name'][0])) || $check <= 0 || $check > 4194304) {
-            $error = "File size cannot exceed 4MB!";
+            $error = $content['serverError3'];
             return [
-                'template' => 'photosupload.html.php', //Todo: photosupload translations
-                'title' => "Photo Gallery Upload - Error",
+                'template' => 'photosupload.html.php',
+                'title' => $content['title'] . " - Error",
                 'variables' => [
-                    'error' => $error
+                    'error' => $error,
+                    'content' => $content,//all the strings on the page
+                    'language' => $lang//add the language variable to the page for the hidden input value
                 ],
             ];
         } else {
@@ -244,6 +293,20 @@ class Photos
         $loggedIn = $this->authentication->isLoggedIn();
         $userImages = [];
 
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/slideshow.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/slideshow.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
         if ($loggedIn) {
             $user = $this->authentication->getUser();
             $photos = [];
@@ -258,21 +321,38 @@ class Photos
                 ];
             }
             return [
-                'template' => 'slideshow.html.php', //Todo: slideshow translations
-                'title' => 'Photo Gallery - Slideshow',
+                'template' => 'slideshow.html.php',
+                'title' => $content['title'],
                 'variables' => [
                     'loggedIn' => $loggedIn,
                     'photos' => $photos,
+                    'content' => $content,//all the strings on the page
+                    'language' => $lang//add the language variable to the page for the hidden input value
                 ],
             ];
         } else {
             return [
-                'template' => 'slideshow.html.php', //Todo: slideshow translations
-                'title' => 'Photo Gallery - Slideshow',
+                'template' => 'slideshow.html.php',
+                'title' => $content['title'],
                 'variables' => [
                     'loggedIn' => $loggedIn,
+                    'content' => $content,//all the strings on the page
+                    'language' => $lang//add the language variable to the page for the hidden input value
                 ],
             ];
+        }
+    }
+
+    public function changeLangFromSlideShow()
+    {
+        if (isset($_POST['english']) || isset($_POST['spanish'])) {
+            if (isset($_POST['english'])) {
+                $_SESSION['language'] = 'english';
+            } else {
+                $_SESSION['language'] = 'spanish';
+            }
+            $page = $this->renderSlideShow();
+            return $page;
         }
     }
 }

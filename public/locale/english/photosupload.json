@@ -1,0 +1,19 @@
+{
+    "title": "BWW Apps - Photo Gallery Upload",
+    "h1Text": "Photo Gallery Upload",
+    "serverErrorMsg": "Your photo could not be uploaded. Please check the following:",
+    "lblSelectPhoto": "Select the photo to upload",
+    "activitiesAvailSrTxt": "Information about available activities for this app.",
+    "fileTypeContentList": "<ul><li>You may upload jpg or png files.  Other file types are not supported.</li><li>File size cannot exceed 4MB.</li><li>You may upload a total of 10 images.</li></ul>",
+    "caption": "Caption:",
+    "aboutCaptionSrTxt": "Information about the caption.",
+    "optionalDescriptionContent": "Provide an <b>optional</b> description of your image. Must be 55 characters or less.",
+    "btnCancel": "Cancel",
+    "sorryForLimitedStorage": "I'm sorry for limiting your uploads to only 10 images. I'm providing this service for free, but the web storage costs me money. To keep the cost of storage for this site at a level I can afford it is necessary to limit the number of images that are uploaded.",
+    "errorFileType": "Error: Please only upload jpeg or png image files.",
+    "errorSelectImg": "Error: Please select an image to upload.",
+    "serverError1": "You did not select a file.  Please try again.",
+    "serverError2": "Please upload only jpg or png files.  Other file types are not supported.",
+    "serverError3": "File size cannot exceed 4MB!",
+    "placeholderOptional": "optional"
+}

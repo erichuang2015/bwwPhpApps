@@ -1,7 +1,5 @@
 <link rel="stylesheet" href="/css/photogallery.css">
 <input id="language" type="hidden" value="<?= $language?>">
-<input id="errorFileType" type="hidden" value="<?= $content['errorFileType'] ?>">
-<input id="errorSelectImg" type="hidden" value="<?= $content['errorSelectImg'] ?>">
 <div class="jumbotron fill-height">
     <div class="container fill-height">
         <h1 class="display-3"><?= $content['h1Text'] ?></h1>

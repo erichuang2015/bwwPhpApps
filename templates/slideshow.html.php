@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/css/vendor/bootstrap.min.css">
 <link rel="stylesheet" href="/css/photogallery.css">
+<input id="language" type="hidden" value="<?= $language?>">
 <?php if ($loggedIn): ?>
 
 <div class="container">
@@ -45,11 +46,11 @@
   <!-- Left and right controls -->
         <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
+          <span class="sr-only"><?= $content['srPrevious'] ?></span>
         </a>
         <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
+          <span class="sr-only"><?= $content['srNext'] ?></span>
         </a>
 </div>
 </div>
