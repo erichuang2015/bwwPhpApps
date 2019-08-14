@@ -3,6 +3,7 @@ namespace BwwClasses\Controllers;
 
 use \utilityClasses\DatabaseTable;
 use \utilityClasses\Authentication;
+use UtilityClasses\Utils;
 
 class Pyramid
 {
@@ -23,6 +24,21 @@ class Pyramid
 	{
         $loggedIn = $this->authentication->isLoggedIn();
         $userDatas = [];
+
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/pyramid.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/pyramid.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
         if($loggedIn){
 			$user = $this->authentication->getUser();
             $userDatas = $this->pyramidUserMaxTable->find('user_id', $user['id']);
@@ -50,7 +66,9 @@ class Pyramid
                 'variables' => [
                     'loggedIn' => $loggedIn,
                     'userDatas' => $userDatas,
-                    'exerciseTypes' => $exerciseTypes ?? NULL
+                    'exerciseTypes' => $exerciseTypes ?? NULL,
+                    'content' => $content,//all the strings on the page
+                    'language' => $lang//add the language variable to the page for the hidden input value
                   ]
                ];
 		}
@@ -59,13 +77,25 @@ class Pyramid
          'title' => 'Pyramid Workout',
          'variables' => [
             'loggedIn' => $loggedIn,
-            'max' => 100
+            'max' => 100,
+             'content' => $content,//all the strings on the page
+             'language' => $lang//add the language variable to the page for the hidden input value
            ]
 		];
     }
 
     public function processUserRequest()
     {
+        if (isset($_POST['english']) || isset($_POST['spanish'])) {
+            if (isset($_POST['english'])) {
+                $_SESSION['language'] = 'english';
+            } else {
+                $_SESSION['language'] = 'spanish';
+            }
+            $page = $this->render();
+            return $page;
+        }
+
         $exerciseId = (isset($_POST['exerciseId'])) ? (int)$_POST['exerciseId'] : -1;
         $recordId = (isset($_POST['recordId'])) ? (int)$_POST['recordId'] : NULL;
         $max = (isset($_POST['max'])) ? (double)$_POST['max'] : 0;
@@ -131,7 +161,7 @@ class Pyramid
         header('location: /pyramid/table');
     }
 
-    public function renderExercises()
+    public function renderExercises()//Todo: make this spanish
 	{
         $loggedIn = $this->authentication->isLoggedIn();
         $max = $_SESSION['max'];

@@ -1,0 +1,23 @@
+{
+  "title": "BWW Apps - Entrenamiento Piramidal",
+  "h1Text": "Entrenamiento Piramidal",
+  "serverError": "Su selección de ejercicio no pudo ser procesada. Por favor revisa lo siguiente: ",
+  "lblSelectExercise": "¿Para qué ejercicio quieres usar la pirámide?",
+  "selectExerciseSrTxt": "Una lista seleccionable de ejercicios",
+  "savingYourMaxContent": "Su máximo para el ejercicio que seleccione se guardará para que no tenga que recordarlo la próxima vez que use esta aplicación.",
+  "choose": "Escoger...",
+  "other": "Otro",
+  "errorInvalidExercise": "Por favor seleccione un ejercicio válido.",
+  "btnSubmit": "Enviar",
+  "lblNewExercise": "Ingrese el nombre de su nuevo ejercicio a continuación:",
+  "srNewExercise": "Una entrada de texto para ingresar un nuevo nombre de ejercicio.",
+  "infoPopoverTxt": "El nombre del ejercicio que agregue se guardará para que pueda usarlo para guardar sus repeticiones máximas en el futuro. El número máximo de caracteres para esta entrada es 45.",
+  "errorExerciseName": "Ingrese un nombre de ejercicio válido.",
+  "lblMax": "Ingrese su 1RM (una repetición máxima) para el ",
+  "srMax": "Información sobre 1RM - 1 rep máximo",
+  "1rmPopOverTxt": "1RM representa una repetición máxima. En otras palabras, es la cantidad máxima de peso que puede levantar una vez.",
+  "lblMaxNotLogged": "Ingrese su 1RM:",
+  "errorEnter1Rm": "Error: ingrese un número para su 1RM.",
+  "errorMoreThanTen": "Error: no seas tan modesto. Su 1RM debe ser de 10 lb o más.",
+  "errorLouFerringo": "Error: Fácil allí Lou Ferrigno. Su 1RM debe ser de 1200 lb o menos."
+}

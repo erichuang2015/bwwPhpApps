@@ -2,14 +2,14 @@
 
 $(document).ready(function () {
     "use strict";
-    var maxSelector = $("#max");
-    var maxErrorSelector = $("#maxError");
-    var max = 0;
-    var submitLoggedIn = $("#submitLoggedIn");
-    var selector = $("#maxNotLogged");
-    var errorSelector = $("#maxNotLoggedError");
-    var maxNotLogged = $("#maxNotLogged").val();
-    var submitBtn = $("#submit");
+    let maxSelector = $("#max");
+    let maxErrorSelector = $("#maxError");
+    let max = 0;
+    let submitLoggedIn = $("#submitLoggedIn");
+    let selector = $("#maxNotLogged");
+    let errorSelector = $("#maxNotLoggedError");
+    let maxNotLogged = $("#maxNotLogged").val();
+    let submitBtn = $("#submit");
     if(!isNaN($(maxSelector).val())){
         $(submitLoggedIn).removeAttr("disabled");
     }
@@ -25,8 +25,8 @@ $(document).ready(function () {
     });
 
     $("#exerciseSelect").on("change", function () {
-        var selectElement = $("#exerciseSelect");
-        var selectedIndex = selectElement[0].selectedIndex;
+        let selectElement = $("#exerciseSelect");
+        let selectedIndex = selectElement[0].selectedIndex;
         if (selectedIndex > 0) {
             $("#selectExerciseBtn").removeAttr("disabled");
         } else {
@@ -43,11 +43,11 @@ $(document).ready(function () {
     });
 
     $("#selectExerciseBtn").on("click keydown", function () {
-        var selectElement = $("#exerciseSelect");
-        var selectedIndex = selectElement[0].selectedIndex;
-        var selectedExercise = selectElement[0][selectedIndex].text;
-        var exerciseId = $(selectElement[0][selectedIndex]).attr("data-id");
-        var otherOption = $(selectElement[0][selectedIndex]).attr("data-other");
+        let selectElement = $("#exerciseSelect");
+        let selectedIndex = selectElement[0].selectedIndex;
+        let selectedExercise = selectElement[0][selectedIndex].text;
+        let exerciseId = $(selectElement[0][selectedIndex]).attr("data-id");
+        let otherOption = $(selectElement[0][selectedIndex]).attr("data-other");
         if (otherOption) {
             $("#chooseExercisePanel").hide();
             $("#newExerciseForm").show();
@@ -61,10 +61,10 @@ $(document).ready(function () {
         $("#exerciseTxt").text(selectedExercise.toLowerCase());
         $("#chooseExercisePanel").hide();
         $("#maxInputForm").show();
-        var arrayOfInputs = $("input[type='hidden'].user-max-data");
-        var exerciseMax = $(arrayOfInputs[exerciseId - 1]).attr("data-max");// -1 for zero based index
+        let arrayOfInputs = $("input[type='hidden'].user-max-data");
+        let exerciseMax = $(arrayOfInputs[exerciseId - 1]).attr("data-max");// -1 for zero based index
         $("#max").val(exerciseMax);
-        var recordId = $(arrayOfInputs[exerciseId - 1]).attr("data-id");// -1 for zero based index
+        let recordId = $(arrayOfInputs[exerciseId - 1]).attr("data-id");// -1 for zero based index
         $("#recordId").val(recordId);
         max = $("#max").val();
     });
@@ -78,7 +78,7 @@ $(document).ready(function () {
 
     $("#maxNotLogged").on("keyup blur change", function (e) {
         if (e.keycode != 9 && e.which != 9 && e.type != "tab") {
-            var maxNotLogged = $("#maxNotLogged").val();
+            let maxNotLogged = $("#maxNotLogged").val();
             validateMaxInput(selector, errorSelector, maxNotLogged, submitBtn);
         }
     });
@@ -87,22 +87,25 @@ $(document).ready(function () {
 function validateMaxInput(selector, errorSelector, max, submitBtn) {
     if (isNaN(max)) {
         $(selector).addClass("is-invalid");
-        $(errorSelector).text("Error: Please enter a number for your 1RM.");
+        let errorEnter1Rm = $("#errorEnter1Rm").val();
+        $(errorSelector).text(errorEnter1Rm);
         $(submitBtn).attr("disabled", "true");
         return;
     }
     else {
-        var maxNotLoggedNum = parseFloat(Number(max).toFixed(2));
+        let maxNotLoggedNum = parseFloat(Number(max).toFixed(2));
         if (maxNotLoggedNum < 10) {
             $(selector).removeClass("is-valid");
             $(selector).addClass("is-invalid");
-            $(errorSelector).text("Error: Don't be so modest. Your 1RM must be 10 Ibs or greater.");
+            let errorMoreThanTen = $("#errorMoreThanTen").val();
+            $(errorSelector).text(errorMoreThanTen);
             $(submitBtn).attr("disabled", "true");
         }
         else if (maxNotLoggedNum > 1200) {
             $(selector).removeClass("is-valid");
             $(selector).addClass("is-invalid");
-            $(errorSelector).text("Error: Easy there Lou Ferrigno. Your 1RM must be 1200 Ibs or less.");
+            let errorLouFerringo = $("#errorLouFerringo").val();
+            $(errorSelector).text(errorLouFerringo);
             $(submitBtn).attr("disabled", "true");
         }
         else {

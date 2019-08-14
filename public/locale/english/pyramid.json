@@ -1,0 +1,23 @@
+{
+  "title": "BWW Apps - Pyramid Workout",
+  "h1Text": "Pyramid Workout",
+  "serverError": "Your exercise selection could not be processed. Please check the following: ",
+  "lblSelectExercise": "Which exercise do you want to use the pyramid for?",
+  "selectExerciseSrTxt": "A selectable list of excercises",
+  "savingYourMaxContent": "Your max for the exercise you select will be saved so that you won't have to remember it the next time that you use this app.",
+  "choose": "Choose...",
+  "other": "Other",
+  "errorInvalidExercise": "Please select a valid exercise.",
+  "btnSubmit": "Submit",
+  "lblNewExercise": "Enter the name of your new exercise below:",
+  "srNewExercise": "A text input for entry of a new exercise name.",
+  "infoPopoverTxt": "The exercise name you add will be saved so that you can use it to save your max repetitions against in the future.  The maximum number of characters for this input is 45.",
+  "errorExerciseName": "Please input a valid exercise name.",
+  "lblMax": "Enter your 1RM (one rep max) for the ",
+  "srMax": "Information about 1RM - 1 rep max",
+  "1rmPopOverTxt": "1RM stands for one repetion maximum.  In other words, it is the maximum amount of weight you can lift one time.",
+  "lblMaxNotLogged": "Enter your 1RM:",
+  "errorEnter1Rm": "Error: Please enter a number for your 1RM.",
+  "errorMoreThanTen": "Error: Don't be so modest. Your 1RM must be 10 Ibs or greater.",
+  "errorLouFerringo": "Error: Easy there Lou Ferrigno. Your 1RM must be 1200 Ibs or less."
+}

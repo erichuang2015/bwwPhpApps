@@ -1,14 +1,18 @@
 <link rel="stylesheet" href="/css/pyramid.css">
+<input id="language" type="hidden" value="<?= $language?>">
+<input id="errorEnter1Rm" type="hidden" value="<?= $content['errorEnter1Rm'] ?>">
+<input id="errorMoreThanTen" type="hidden" value="<?= $content['errorMoreThanTen'] ?>">
+<input id="errorLouFerringo" type="hidden" value="<?= $content['errorLouFerringo'] ?>">
 <div class="jumbotron">
     <div class="container">
-        <h1 class="display-3">Pyramid Workout</h1>
+        <h1 class="display-3"><?= $content['h1Text'] ?></h1>
     </div>
 </div>
 
 <?php if (!empty($error)): ?>
 <div class="container fill-height">
     <div class="alert alert-danger" role="alert">
-        <h2>Your exercise selection could not be processed. Please check the following: <span class="d-block">
+        <h2><?= $content['serverError'] ?><span class="d-block">
                 <?=$error?> </span></h2>
     </div>
 </div>
@@ -18,13 +22,13 @@
 <div id="chooseExercisePanel" class="container fill-height">
     <div id="chooseExerciseRow" class="row mb-3">
         <div class="col-xs-12 col-sm-9 col-md-3 col-lg-4">
-            <label for="exercise">Which exercise do you want to use the pyramid for?</label>
-            <span class="sr-only">A selectable list of excercises</span>
-            <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="A selectable list of excercises" width="12px"
+            <label for="exercise"><?= $content['lblSelectExercise'] ?></label>
+            <span class="sr-only"><?= $content['selectExerciseSrTxt'] ?></span>
+            <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="<?= $content['selectExerciseSrTxt'] ?>" width="12px"
                 height="12px" data-container="body" data-toggle="popover" data-placement="right"
-                data-content="Your max for the exercise you select will be saved so that you won't have to remember it the next time that you use this app.">
+                data-content="<?= $content['savingYourMaxContent'] ?>">
             <select class="custom-select d-block w-100" id="exerciseSelect" required>
-                <option value="">Choose...</option>
+                <option value=""><?= $content['choose'] ?></option>
                 <?php $value = 1; ?>
                 <?php foreach ($exerciseTypes as $exercise): ?>
                 <option value="<?=$value?>" data-id="<?=$exercise["id"]?>">
@@ -32,16 +36,16 @@
                 </option>
                 <?php $value = $value + 1; ?>
                 <?php endforeach;?>
-                <option value="<?=$value?>" data-other="other">Other</option>
+                <option value="<?=$value?>" data-other="other"><?= $content['other'] ?></option>
             </select>
             <div class="invalid-feedback">
-                Please select a valid exercise.
+                <?= $content['errorInvalidExercise'] ?>
             </div>
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-xs-12 col-sm-9 col-md-3 col-lg-4">
-            <button id="selectExerciseBtn" class="btn btn-primary" disabled>submit</button>
+            <button id="selectExerciseBtn" class="btn btn-primary" disabled><?= $content['btnSubmit'] ?></button>
         </div>
     </div>
 </div>
@@ -50,21 +54,21 @@
 <form id="newExerciseForm" action="" method="post" class="container fill-height" style="display: none;">
     <div id="newExerciseRow" class="row mb-3">
         <div class="col-xs-12 col-sm-9 col-md-3 col-lg-4">
-            <label for="newExercise">Enter the name of your new exercise below:</label>
-            <span class="sr-only">A text input for entry of a new exercise name.</span>
-            <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="A text input for entry of a new exercise name."
+            <label for="newExercise"><?= $content['lblNewExercise'] ?></label>
+            <span class="sr-only"><?= $content['srNewExercise'] ?></span>
+            <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="<?= $content['srNewExercise'] ?>"
                 width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right"
-                data-content="The exercise name you add will be saved so that you can use it to save your max repetitions against in the future.  The maximum number of characters for this input is 45.">
+                data-content="<?= $content['infoPopoverTxt'] ?>">
             <input type="text" class="d-block w-100" id="newExerciseTxtInput" name="newExerciseTxtInput" maxlength="45"
                 required>
             <div class="invalid-feedback">
-                Please input a valid exercise name.
+                <?= $content['errorExerciseName'] ?>
             </div>
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-xs-12 col-sm-9 col-md-3 col-lg-4">
-            <button id="newExerciseSubmitBtn" class="btn btn-primary" disabled>submit</button>
+            <button id="newExerciseSubmitBtn" class="btn btn-primary" disabled><?= $content['btnSubmit'] ?></button>
         </div>
     </div>
 </form>
@@ -76,11 +80,11 @@
     novalidate>
     <div class="row mb-3">
         <div id="col-xs-12 col-sm-9 col-md-3 col-lg-4">
-            <label id="lblMax" for="max">Enter your 1RM (one rep max) for the <span id="exerciseTxt"></span></label>
-            <span class="sr-only">Information about 1RM - 1 rep max</span>
-            <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about 1RM - 1 rep max" width="12px"
+            <label id="lblMax" for="max"><?= $content['lblMax'] ?><span id="exerciseTxt"></span></label>
+            <span class="sr-only"><?= $content['srMax'] ?></span>
+            <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="<?= $content['srMax'] ?>" width="12px"
                 height="12px" data-container="body" data-toggle="popover" data-placement="right"
-                data-content="1RM stands for one repetion maximum.  In other words, it is the maximum amount of weight you can lift one time.">
+                data-content="<?= $content['1rmPopOverTxt'] ?>">
 
             <?php foreach ($userDatas as $userData): ?>
             <input type="hidden" class="user-max-data" data-id="<?=$userData["id"]?>"
@@ -96,7 +100,7 @@
     </div>
     <div class="row mb-3">
         <div id="col-xs-12 col-sm-9 col-md-3 col-lg-4">
-            <input id="submitLoggedIn" name="submitLoggedIn" type="submit" class="btn btn-primary" value="submit"
+            <input id="submitLoggedIn" name="submitLoggedIn" type="submit" class="btn btn-primary" value="<?= $content['btnSubmit'] ?>"
                 disabled>
         </div>
     </div>
@@ -107,15 +111,15 @@
 <form id="maxInputFormNotAuthenticated" action="" method="post" class="container needs-validation" autocomplete="off" novalidate>
     <div class="row mb-3">
         <div id="col-xs-12 col-sm-9 col-md-3 col-lg-4">
-            <label for="maxNotLogged">Enter your 1RM:</label>
-            <span class="sr-only">Information about 1RM - 1 rep max</span>
-            <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about 1RM - 1 rep max" width="12px"
+            <label for="maxNotLogged"><?= $content['lblMaxNotLogged'] ?></label>
+            <span class="sr-only"><?= $content['srMax'] ?></span>
+            <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="<?= $content['srMax'] ?>" width="12px"
                 height="12px" data-container="body" data-toggle="popover" data-placement="right"
-                data-content="1RM stands for one repetion maximum.  In other words, it is the maximum amount of weight you can lift one time.">
+                data-content="<?= $content['1rmPopOverTxt'] ?>">
             <input id="maxNotLogged" name="maxNotLogged" class="form-control" type="number" min="10" max="1200" size="4"
                 step="0.25" value="100" autocomplete="off" required autofocus>
             <div class="invalid-feedback"><span id="maxNotLoggedError"></span></div>
-            <input id="submit" name="submit" type="submit" class="btn btn-primary" value="submit" disabled>
+            <input id="submit" name="submit" type="submit" class="btn btn-primary" value="<?= $content['btnSubmit'] ?>" disabled>
         </div>
     </div>
 </form>

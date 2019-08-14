@@ -190,7 +190,7 @@ class BwwRoutes implements \utilityClasses\Routes
                     'action' => 'processUserRequest',
                 ],
             ],
-            'pyramid/table' => [
+            'pyramid/table' => [//Todo: make this spanish
                 'GET' => [
                     'controller' => $pyramidController,
                     'action' => 'renderExercises',
