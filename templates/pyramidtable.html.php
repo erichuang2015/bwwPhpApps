@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="/css/pyramid.css">
+<input id="language" type="hidden" value="<?= $language?>">
 <div class="jumbotron fill-height">
     <div class="container fill-height">
-        <h1 class="display-3">Pyramid Workout Table</h1>
+        <h1 class="display-3"><?= $content['h1Text'] ?></h1>
     </div>
 </div>
 <div class="container fill-height">
@@ -9,9 +10,9 @@
         <?=$exerciseName?>
     </h2>
     <div class="row font-weight-bold">
-        <div class="col-4">Set</div>
-        <div class="col-4">Weight</div>
-        <div class="col-4">Repetitions</div>
+        <div class="col-4"><?= $content['set'] ?></div>
+        <div class="col-4"><?= $content['weight'] ?></div>
+        <div class="col-4"><?= $content['repetitions'] ?></div>
     </div>
     <div class="row">
         <div class="col-4">1</div>
