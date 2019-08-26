@@ -95,7 +95,7 @@ class Pyramid
         $exerciseId = (isset($_POST['exerciseId'])) ? (int)$_POST['exerciseId'] : -1;
         $recordId = (isset($_POST['recordId'])) ? (int)$_POST['recordId'] : NULL;
         $max = (isset($_POST['max'])) ? (double)$_POST['max'] : 0;
-
+        $maxNotLogged = 0;
 
         if (isset($_POST['maxNotLogged'])) {
             $maxNotLogged = (double)$_POST['maxNotLogged'];
