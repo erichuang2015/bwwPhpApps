@@ -5,6 +5,7 @@ namespace BwwClasses\Controllers;
 use \utilityClasses\DatabaseTable;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use \utilityClasses\Utils;
 
 class Register
 {
@@ -21,9 +22,27 @@ class Register
 
     public function registrationForm()
     {
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/register.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/register.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
         return [
             'template' => 'register.html.php',
-            'title' => 'Register an account'
+            'title' => $content['title'],
+            'variables' => [
+                'content' => $content,//all the strings on the page
+                'language' => $lang//add the language variable to the page for the hidden input value
+            ]
         ];
     }
 
@@ -53,6 +72,16 @@ class Register
 
     public function storeUserData()
     {
+        if (isset($_POST['english']) || isset($_POST['spanish'])) {
+            if (isset($_POST['english'])) {
+                $_SESSION['language'] = 'english';
+            } else {
+                $_SESSION['language'] = 'spanish';
+            }
+            $page = $this->registrationForm();
+            return $page;
+        }
+
         $user = $_POST['user'];
         //Assume the data is valid to begin with
         $valid = true;

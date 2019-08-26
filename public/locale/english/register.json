@@ -1,0 +1,17 @@
+{
+  "title": "BWW Apps - Register an account",
+  "h1Text": "Register an account",
+  "registerInstructions": "Please fill out the below information to register for this site. By registering you will gain full access to all the apps on this site, and you will be able to save your data so it is available the next time you return to the site.",
+  "lblFirstName": "First name",
+  "lblLastName": "Last name",
+  "lblEmail": "Email",
+  "placeHolderEmail": "you@example.com",
+  "lblPassword": "Password",
+  "altTxtPassword": "Information about password requirements",
+  "dataContentPassword": "Passwords must be more than 7 and less than 25 characters in length. They must contain at lease one number, one uppercase and one lowercase alphabetic character, and may contain special characters.",
+  "submitBtn": "Register account",
+  "errorFirstNameInput": "Error: Enter a valid first name",
+  "errorLastNameInput": "Error: Enter a valid last name",
+  "errorEmailInput": "Error: Enter a valid email address",
+  "errorPasswordInput": "Error: Enter a valid password"
+}

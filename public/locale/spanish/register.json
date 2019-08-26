@@ -1,0 +1,17 @@
+{
+  "title": "BWW Apps - Registrar una cuenta",
+  "h1Text": "Registrar una cuenta",
+  "registerInstructions": "Complete la información a continuación para registrarse en este sitio. Al registrarse, obtendrá acceso completo a todas las aplicaciones en este sitio, y podrá guardar sus datos para que estén disponibles la próxima vez que regrese al sitio.",
+  "lblFirstName": "Nombre de pila",
+  "lblLastName": "Apellido",
+  "lblEmail": "Email",
+  "placeHolderEmail": "usted@ejemplo.com",
+  "lblPassword": "Contraseña",
+  "altTxtPassword": "Información sobre requisitos de contraseña",
+  "dataContentPassword": "Las contraseñas deben tener más de 7 y menos de 25 caracteres de longitud. Deben contener al menos un número, un carácter alfabético en mayúsculas y uno en minúsculas, y pueden contener caracteres especiales.",
+  "submitBtn": "Registrar Cuenta",
+  "errorFirstNameInput": "Error: Ingrese un nombre válido",
+  "errorLastNameInput": "Error: Ingrese un apellido válido",
+  "errorEmailInput": "Error: Ingrese una dirección de correo electrónico válida",
+  "errorPasswordInput": "Error: Ingrese una contraseña válida"
+}
