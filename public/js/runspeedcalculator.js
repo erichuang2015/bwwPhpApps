@@ -19,7 +19,7 @@ $(document).ready(function () {
     isMilesValid = ValidateDistance($("#distance").val());
     isMinutesValid = ValidateMinutes($("#runMinutes").val());
     isSecondsValid = ValidateSeconds($("#runSeconds").val());
-    if(isMilesValid && isMinutesValid && isSecondsValid){
+    if (isMilesValid && isMinutesValid && isSecondsValid) {
         $("#btnSubmitRunSpeed").removeAttr("disabled");
     }
 
@@ -30,7 +30,8 @@ $(document).ready(function () {
             $("#distance").addClass("is-valid");
             isMilesValid = true;
         } else {
-            $("#distanceError").text("Error: Enter a valid distance.");
+            let distanceInputError = $("#distanceInputError").val();
+            $("#distanceError").text(distanceInputError);
             $("#distance").removeClass("is-valid");
             $("#distance").addClass("is-invalid");
             isMilesValid = false;
@@ -45,7 +46,8 @@ $(document).ready(function () {
             $("#runMinutes").addClass("is-valid");
             isMinutesValid = true;
         } else {
-            $("#runMinutesError").text("Error: Enter a valid quantity of minutes.");
+            let runMinutesErrorHidden = $("#runMinutesErrorHidden").val();
+            $("#runMinutesError").text(runMinutesErrorHidden);
             $("#runMinutes").removeClass("is-valid");
             $("#runMinutes").addClass("is-invalid");
             isMinutesValid = false;
@@ -60,7 +62,8 @@ $(document).ready(function () {
             $("#runSeconds").addClass("is-valid");
             isSecondsValid = true;
         } else {
-            $("#runSecondsError").text("Error: Enter a valid quantity of seconds.");
+            let runSecondsErrorHidden = $("#runSecondsErrorHidden").val();
+            $("#runSecondsError").text(runSecondsErrorHidden);
             $("#runSeconds").removeClass("is-valid");
             $("#runSeconds").addClass("is-invalid");
             isSecondsValid = false;
@@ -84,7 +87,9 @@ function getMilesPerHour() {
     var secondsVal = $("#runSeconds").val();
     var mph = runSpeedDistCalculator(distanceVal, minutesVal, secondsVal);
     $('#mphAlert').removeAttr('hidden').show();
-    $("#mphAlert h2").text("You must run " + mph + " mph to acheive your goal.");
+    let youMustRun = $("#youMustRun").val();
+    let achieveGoal = $("#achieveGoal").val();
+    $("#mphAlert h2").text(youMustRun + " " + mph + " " + achieveGoal);
 }
 
 
@@ -108,13 +113,11 @@ function ValidateDistance(distance) {
     "use strict";
     if (isNaN(distance)) {
         return false;
-    }
-    else {
+    } else {
         distance = parseFloat(distance);
         if (distance >= 1 && distance <= 24) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -124,13 +127,11 @@ function ValidateMinutes(minutes) {
     "use strict";
     if (isNaN(minutes)) {
         return false;
-    }
-    else {
+    } else {
         minutes = parseFloat(minutes);
         if (minutes >= 1 && minutes <= 300) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -140,13 +141,11 @@ function ValidateSeconds(seconds) {
     "use strict";
     if (isNaN(seconds)) {
         return false;
-    }
-    else {
+    } else {
         seconds = parseFloat(seconds);
         if (seconds >= 0 && seconds <= 59) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -155,7 +154,7 @@ function ValidateSeconds(seconds) {
 function EnableSubmitIfValid() {
     if (isMilesValid && isMinutesValid && isSecondsValid) {
         $("#btnSubmitRunSpeed").removeAttr("disabled");
-    }else{
+    } else {
         $("#btnSubmitRunSpeed").attr("disabled", "true");
     }
 }

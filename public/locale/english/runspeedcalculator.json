@@ -1,4 +1,22 @@
 {
-  "": "",
-  "": ""
+  "title": "BWW Apps - Run Speed Calculator",
+  "h1Text": "Run Speed Calculator",
+  "h2Text": "This program will help you determine how fast you need to run in order to reach a specified distance within an allotted amount of time.",
+  "howFar": "How far do you want to run?",
+  "lblMiles": "Miles",
+  "srTxtMiles": "Information about input options for miles",
+  "dataContentMiles": "Valid input options for \"miles\" include any number that is one or greater and 24 or less.",
+  "howLong": "How much time will you spend running?",
+  "lblMinutes": "Minutes",
+  "srTxtMinutes": "Information about input options for minutes",
+  "dataContentMinutes": "Valid input options for \"minutes\" include any number that is one or greater and 300 or less.",
+  "lblSeconds": "Seconds",
+  "srTxtSeconds": "Information about input options for seconds",
+  "dataContentSeconds": "Valid input options for \"seconds\" include any number that is zero or greater and 59 or less.",
+  "btnSubmit": "Submit",
+  "distanceInputError": "Error: Enter a valid distance.",
+  "runMinutesErrorHidden": "Error: Enter a valid quantity of minutes.",
+  "runSecondsErrorHidden": "Error: Enter a valid quantity of seconds.",
+  "youMustRun": "You must run",
+  "achieveGoal": "mph to achieve your goal."
 }

@@ -158,6 +158,10 @@ class BwwRoutes implements \utilityClasses\Routes
                 'GET' => [
                     'controller' => $runSpeedCalculatorController,
                     'action' => 'render',
+                ],
+                'POST' => [
+                    'controller' => $runSpeedCalculatorController,
+                    'action' => 'changeLanguage'
                 ]
             ],
             'fitnesscalculator' => [
@@ -177,7 +181,7 @@ class BwwRoutes implements \utilityClasses\Routes
                 ],
                 'POST' => [
                     'controller' => $distanceconverterController,
-                    'action' => 'changeLanguage',
+                    'action' => 'changeLanguage'
                 ]
             ],
             'pyramid' => [

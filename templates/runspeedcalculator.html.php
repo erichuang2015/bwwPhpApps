@@ -1,21 +1,26 @@
 <link rel="stylesheet" href="/css/runspeed.css">
+<input id="language" type="hidden" value="<?= $language?>">
+<input id="distanceInputError" type="hidden" value="<?= $content['distanceInputError'] ?>">
+<input id="runMinutesErrorHidden" type="hidden" value="<?= $content['runMinutesErrorHidden'] ?>">
+<input id="runSecondsErrorHidden" type="hidden" value="<?= $content['runSecondsErrorHidden'] ?>">
+<input id="youMustRun" type="hidden" value="<?= $content['youMustRun'] ?>">
+<input id="achieveGoal" type="hidden" value="<?= $content['achieveGoal'] ?>">
 <div class="jumbotron">
     <div class="container">
-        <h1 class="display-3">Run Speed Calculator</h1>
+        <h1 class="display-3"><?= $content['h1Text'] ?></h1>
     </div>
 </div>
 <div class="container fill-height">
-    <h2 class="mb-4">This program will help you determine how fast you need to run in order to reach a specified distance
-        within an alloted amount of time.</h2>
+    <h2 class="mb-4"><?= $content['h2Text'] ?></h2>
     <form action="" method="" id="runSpeed-input-form" class="needs-validation">
         <div id="dist-time-input">
             <ol class="run-speed-ol">
                 <li>
-                    <p class="run-speed">How far do you want to run?</p>
+                    <p class="run-speed"><?= $content['howFar'] ?></p>
                     <div class="col-7 col-sm-7 col-md-3 col-lg-3 col-xl-3">
-                        <label for="distance">Miles</label>
-                        <span class="sr-only">Information about input options for miles</span>
-                        <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about input options for miles" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content='Valid input options for "miles" include any number that is one or greater and 24 or less.'>
+                        <label for="distance"><?= $content['lblMiles'] ?></label>
+                        <span class="sr-only"><?= $content['srTxtMiles'] ?></span>
+                        <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="<?= $content['srTxtMiles'] ?>" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content='<?= $content['dataContentMiles'] ?>'>
                     </div>
                     <div class="col-11 col-sm-9 col-md-5 col-lg-4 col-xl-3">
                         <input type="number" min="1" max="24" value="3" id="distance" step="0.01" class="form-control" required autofocus>
@@ -24,18 +29,18 @@
 
                 </li>
                 <li>
-                    <p class="run-time">How much time will you spend running?</p>
-                    <label for="runMinutes">Minutes</label>
-                    <span class="sr-only">Information about input options for minutes</span>
-                    <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about input options for minutes" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content='Valid input options for "minutes" include any number that is one or greater and 300 or less.'>
+                    <p class="run-time"><?= $content['howLong'] ?></p>
+                    <label for="runMinutes"><?= $content['lblMinutes'] ?></label>
+                    <span class="sr-only"><?= $content['srTxtMinutes'] ?></span>
+                    <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="<?= $content['srTxtMinutes'] ?>" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content='<?= $content['dataContentMinutes'] ?>'>
                     <div class="col-11 col-sm-9 col-md-5 col-lg-4 col-xl-3">
                         <input type="number" min="1" max="300" value="60" id="runMinutes" step="1" class="form-control" required>
                         <div class="invalid-feedback"><span id="runMinutesError"></span></div>
                     </div>
 
-                    <label class="run-seconds" for="runSeconds">Seconds</label>
-                    <span class="sr-only">Information about input options for seconds</span>
-                    <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="Information about input options for seconds" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content='Valid input options for "seconds" include any number that is zero or greater and 59 or less.'>
+                    <label class="run-seconds" for="runSeconds"><?= $content['lblSeconds'] ?></label>
+                    <span class="sr-only"><?= $content['srTxtSeconds'] ?></span>
+                    <img src="/css/vendor/open-iconic-master/svg/info.svg" alt="<?= $content['srTxtSeconds'] ?>" width="12px" height="12px" data-container="body" data-toggle="popover" data-placement="right" data-content='<?= $content['dataContentSeconds'] ?>'>
                     <div class="col-11 col-sm-9 col-md-5 col-lg-4 col-xl-3">
                         <input type="number" min="0" max="59" value="00" id="runSeconds" step="1" class="form-control" required>
                         <div class="invalid-feedback"><span id="runSecondsError"></span></div>
@@ -50,7 +55,7 @@
             </div>
 
             <!-- <p hidden id="mphParagraph"></p> -->
-            <button id="btnSubmitRunSpeed" name="btnsubmitrunspeed" class="btn btn-primary" disabled>Submit</button>
+            <button id="btnSubmitRunSpeed" name="btnsubmitrunspeed" class="btn btn-primary" disabled><?= $content['btnSubmit'] ?></button>
         </div>
     </form>
 </div>

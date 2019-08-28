@@ -1,4 +1,22 @@
 {
-  "": "",
-  "": ""
+  "title": "BWW Apps - Calculadora de Velocidad de Carrera",
+  "h1Text": "Calculadora de Velocidad de Carrera",
+  "h2Text": "Este programa lo ayudará a determinar qué tan rápido necesita correr para alcanzar una distancia específica dentro de un período de tiempo asignado.",
+  "howFar": "¿Hasta dónde quieres correr?",
+  "lblMiles": "Millas",
+  "srTxtMiles": "Información sobre las opciones de entrada para millas",
+  "dataContentMiles": "Las opciones de entrada válidas para \"millas\" incluyen cualquier número que sea uno o más y 24 o menos.",
+  "howLong": "¿Cuánto tiempo pasarás corriendo?",
+  "lblMinutes": "Minutos",
+  "srTxtMinutes": "Información sobre las opciones de entrada por minutos.",
+  "dataContentMinutes": "Las opciones de entrada válidas para \"minutos\" incluyen cualquier número que sea uno o mayor y 300 o menos.",
+  "lblSeconds": "Segundos",
+  "srTxtSeconds": "Información sobre opciones de entrada por segundos",
+  "dataContentSeconds": "Las opciones de entrada válidas para \"segundos\" incluyen cualquier número que sea cero o mayor y 59 o menor.",
+  "btnSubmit": "Enviar",
+  "distanceInputError": "Error: ingrese una distancia válida.",
+  "runMinutesErrorHidden": "Error: ingrese una cantidad válida de minutos.",
+  "runSecondsErrorHidden": "Error: ingrese una cantidad válida de segundos.",
+  "youMustRun": "Debes correr",
+  "achieveGoal": "mph para lograr su objetivo."
 }
