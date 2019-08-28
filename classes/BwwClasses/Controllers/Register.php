@@ -40,14 +40,28 @@ class Register
             'template' => 'register.html.php',
             'title' => $content['title'],
             'variables' => [
-                'content' => $content,//all the strings on the page
-                'language' => $lang//add the language variable to the page for the hidden input value
+                'content' => $content, //all the strings on the page
+                'language' => $lang //add the language variable to the page for the hidden input value
             ]
         ];
     }
 
     public function success()
     {
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/registersuccess.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/registersuccess.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
         $url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         $query = parse_url($url, PHP_URL_QUERY);
         $queryCode = [];
@@ -58,14 +72,22 @@ class Register
             $this->registerUser($verifyData);
             return [
                 'template' => 'registersuccess.html.php',
-                'title' => 'Registration Successful'
+                'title' => $content['title'],
+                'variables' => [
+                    'content' => $content, //all the strings on the page
+                    'language' => $lang //add the language variable to the page for the hidden input value
+                ]
             ];
         } else {
             $errorTxt = 'Your account could not be validated';
             return [
                 'template' => 'registersuccess.html.php',
-                'title' => 'Registration Successful',
-                'errors' => $errorTxt
+                'title' => $content['title'],
+                'errors' => $errorTxt,
+                'variables' => [
+                    'content' => $content, //all the strings on the page
+                    'language' => $lang //add the language variable to the page for the hidden input value
+                ]
             ];
         }
     }
@@ -182,17 +204,43 @@ class Register
 
     public function renderConfirmationEmailNotification()
     {
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/registerverifycode.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/registerverifycode.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
         return [
             'template' => 'registerverifycode.html.php',
-            'title' => 'Register - Verification Code',
+            'title' => $content['title'],
             'variables' => [
-                'email' => $_SESSION['email']
-            ],
+                'email' => $_SESSION['email'],
+                'content' => $content, //all the strings on the page
+                'language' => $lang //add the language variable to the page for the hidden input value
+            ]
         ];
     }
 
     public function registerUser($verifyData)
     {
+        // if (isset($_POST['english']) || isset($_POST['spanish'])) {
+        //     if (isset($_POST['english'])) {
+        //         $_SESSION['language'] = 'english';
+        //     } else {
+        //         $_SESSION['language'] = 'spanish';
+        //     }
+        //     $page = $this->renderConfirmationEmailNotification();
+        //     return $page;
+        // }
+
         //Assume the data is valid to begin with
         $valid = true;
         $errors = [];
@@ -217,7 +265,8 @@ class Register
             $user['password'] = $verifyData[0]['password'];
             $this->usersTable->save($user);
             $this->usersVerifyTable->delete($verifyData[0]['id']);
-            header('Location: /user/registersuccess');
+//            header('Location: /user/registersuccess');
+            return;
         }
     }
 }
