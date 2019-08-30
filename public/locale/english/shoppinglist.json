@@ -1,0 +1,16 @@
+{
+  "title": "BWW Apps - Shopping List",
+  "h1Text": "Shopping List",
+  "errorMustBeLoggedIn": "You must be logged in to be able to use this app.",
+  "toolTipAddCategory": "Add a new shopping category",
+  "btnTxtNevermind": "Nevermind",
+  "placeholderNewCategory": "Fancy New Category Name (e.g. Clothes)",
+  "btnSave": "Save",
+  "btnConfirm": "Confirm",
+  "addNew": "Add a new ",
+  "item": " item",
+  "nevermind": "Nevermind",
+  "newItemPlaceHolder": "Fancy New Item Name (e.g. dish detergent)",
+  "hiddenCategoryInputError": "Error: Enter a valid category. The number of characters must be greater than 1 or more and 45 or less.",
+  "itemInputError": "Error: Enter a valid shopping item. The number of characters must be greater than 1 or more and 120 or less."
+}

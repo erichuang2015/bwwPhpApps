@@ -1,14 +1,17 @@
 <?php
+
 namespace BwwClasses\Controllers;
 
 use \utilityClasses\Authentication;
 use \utilityClasses\DatabaseTable;
+use UtilityClasses\Utils;
 
 class ShoppingList
 {
     private $authentication;
     private $shoppingCategoriesTable;
     private $shoppingItemsTable;
+
     public function __construct(DatabaseTable $shoppingCategoriesTable, DatabaseTable $shoppingItemsTable, Authentication $authentication)
     {
         $this->shoppingCategoriesTable = $shoppingCategoriesTable;
@@ -18,6 +21,21 @@ class ShoppingList
 
     public function render()
     {
+        Utils::initializeLanguage(); // call static method in Utils class to ensure the language is set
+        $lang = '';
+        //Add the proper set of strings depending on if Spanish or English is requested
+        if ($_SESSION['language'] == 'english') {
+            $path = __DIR__ . '/../../../public/locale/english/shoppinglist.json';
+            $lang = 'english';
+        } else {
+            $path = __DIR__ . '/../../../public/locale/spanish/shoppinglist.json';
+            $lang = 'spanish';
+        }
+
+        $content = file_get_contents($path);
+        $content = json_decode($content, true);
+
+
         $loggedIn = $this->authentication->isLoggedIn();
         $userDatas = [];
         if ($loggedIn) {
@@ -51,25 +69,39 @@ class ShoppingList
 
             return [
                 'template' => 'shoppinglist.html.php',
-                'title' => 'Shopping List',
+                'title' => $content['title'], // notice the title also comes from the content file
                 'variables' => [
                     'loggedIn' => $loggedIn,
                     'shoppingCategories' => $shoppingCategories ?? null,
                     'shoppingItems' => $shoppingItems ?? null,
+                    'content' => $content,//all the strings on the page
+                    'language' => $lang//add the language variable to the page for the hidden input value
                 ],
             ];
         }
         return [
             'template' => 'shoppinglist.html.php',
-            'title' => 'Shopping List',
+            'title' => $content['title'], // notice the title also comes from the content file
             'variables' => [
                 'loggedIn' => $loggedIn,
+                'content' => $content,//all the strings on the page
+                'language' => $lang//add the language variable to the page for the hidden input value
             ],
         ];
     }
 
     public function processUserRequest()
     {
+        if (isset($_POST['english']) || isset($_POST['spanish'])) {
+            if (isset($_POST['english'])) {
+                $_SESSION['language'] = 'english';
+            } else {
+                $_SESSION['language'] = 'spanish';
+            }
+            $page = $this->render();
+            return $page;
+        }
+
         $newCategoryName = "";
         $newItemCategoryIds = [];
         $newItemNames = [];

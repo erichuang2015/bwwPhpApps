@@ -1,0 +1,16 @@
+{
+  "title": "BWW Apps - Lista de la Compra",
+  "h1Text": "Lista de la Compra",
+  "errorMustBeLoggedIn": "Debes iniciar sesión para poder usar esta aplicación.",
+  "toolTipAddCategory": "Agregar una nueva categoría de compras",
+  "btnTxtNevermind": "No importa",
+  "placeholderNewCategory": "Nombre de categoría nuevo elegante (por ejemplo, ropa)",
+  "btnSave": "Salvar",
+  "btnConfirm": "Confirmar",
+  "addNew": "Agregar un nuevo ",
+  "item": " ít",
+  "nevermind": "No importa",
+  "newItemPlaceHolder": "Nombre de artículo nuevo elegante (por ejemplo, detergente para platos)",
+  "hiddenCategoryInputError": "Error: ingrese una categoría válida. El número de caracteres debe ser mayor que 1 o más y 45 o menos.",
+  "itemInputError": "Error: ingrese un artículo de compra válido. El número de caracteres debe ser mayor que 1 o más y 120 o menos."
+}
